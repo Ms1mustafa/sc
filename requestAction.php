@@ -139,7 +139,7 @@ if (isset($_POST["delete"])) {
         <input name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
         <br>
         <button type="submit" name="edit" class="submit" <?php echo $canEdit; ?>>Edit</button>
-        <button type="submit" name="delete" class="submit">Delete</button>
+        <button type="submit" name="delete" class="submit" <?php echo $canEdit; ?>>Delete</button>
     </form>
 
     <script>
