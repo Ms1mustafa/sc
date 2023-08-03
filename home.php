@@ -63,7 +63,7 @@ $requests = $request->getRequestNumber($adminName);
                 <a class="addRequest" href="addRequest.php">New Request</a>
                 <br>
                 <br>
-                <a class="addRequest" href="#">Modify Request</a>
+                <a class="addRequest" href="adminRequests.php">Modify Request</a>
                 <br>
                 <br>
                 <a class="addRequest" href="">Dismantle Request</a>

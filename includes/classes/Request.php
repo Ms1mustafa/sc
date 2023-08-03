@@ -83,6 +83,18 @@ class Request
 
         return false;
     }
+    public function deleteRequest($workOrderNo)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("DELETE FROM request WHERE workOrderNo = :workOrderNo");
+
+            $query->bindValue(":workOrderNo", $workOrderNo);
+
+            return $query->execute();
+        }
+
+        return false;
+    }
 
     public function updateExecuterReq($pipeQty, $clampQty, $woodQty, $finishDate, $workOrderNo)
     {

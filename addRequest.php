@@ -4,12 +4,17 @@ include_once('includes/classes/Area.php');
 include_once('includes/classes/workType.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/FormSanitizer.php');
+include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
 
 if (!$userEmail) {
     header("location: login.php");
 }
+
+$account = new Account($con);
+
+Powers::admin($account, $userEmail);
 
 $generatedNumbers = [];
 
@@ -23,7 +28,6 @@ while (true) {
     }
 }
 
-$account = new Account($con);
 $requestNum = $account->getAccountDetails($userEmail, false, false, false, false, true);
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false, true);
 $inspectors = $account->getAccount(true, false, true, true);

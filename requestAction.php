@@ -4,6 +4,18 @@ include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Area.php');
 include_once('includes/classes/workType.php');
+include_once('includes/classes/Powers.php');
+
+$userEmail = $_COOKIE["email"];
+
+if (!$userEmail) {
+    header("location: login.php");
+}
+
+$account = new Account($con);
+$inspectors = $account->getAccount(true, false, true, true);
+
+Powers::admin($account, $userEmail);
 
 $workOrderNo = $_GET["workOrderNo"];
 
@@ -12,8 +24,6 @@ $getRequest = $request->getRequestDetails($workOrderNo);
 
 $canEdit = $getRequest['executerDate'] == NULL ? '' : 'disabled';
 
-$account = new Account($con);
-$inspectors = $account->getAccount(true, false, true, true);
 
 $area = new Area($con);
 $getArea = $area->getArea();
@@ -30,13 +40,20 @@ if (isset($_POST["edit"])) {
     $priority = @$_POST["priority"];
     $workType = @$_POST["workType"];
     $inspector = @$_POST["inspector"];
-    $inspectorName = $getRequest["inspector"] ?? $account->getAccountDetails($inspector, true, false, false, false, true);
+    $inspectorName = $getRequest["inspector"] ?? $account->getAccountDetails($inspector, true, false, false, false, false);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
-    $success = $request->editRequest($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspector, $notes);
-    // echo $workOrderNo;
+    $success = $request->editRequest($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspectorName, $notes);
     if ($success) {
         header("location: requestAction.php?workOrderNo=".$workOrderNo."");
+    }
+}
+
+if (isset($_POST["delete"])) {
+
+    $success = $request->deleteRequest($workOrderNo);
+    if ($success) {
+        header("location: home.php");
     }
 }
 
@@ -114,7 +131,7 @@ if (isset($_POST["edit"])) {
         <br>
         <label>Inspector</label>
         <select name="inspector" class="input-field" required <?php echo $canEdit; ?>>
-            <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ? $account->getAccountDetails($getRequest['inspector'], true, false, false, false, true) : 'select inspector'; ?></option>
+            <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ?? 'select inspector'; ?></option>
             <?php echo $inspectors; ?>
         </select>
         <br>

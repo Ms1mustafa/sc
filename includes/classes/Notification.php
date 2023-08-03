@@ -1,12 +1,33 @@
 <?php
-// include_once('../config.php');
-// include_once('../classes/constants.php');
-// include_once('FormSanitizer.php');
 
 class Notification
 {
     private $errorArray = array();
 
+    public function getAdminNotification($data)
+    {
+        $reqNo = $data["reqNo"];
+        $workOrderNo = $data["workOrderNo"];
+        $requester = $data["name"];
+        $new = $data["new"] == "yes" ? true : false;
+        $reqDate = FormSanitizer::formatDate($data["reqDate"]);
+
+        if (empty($this->errorArray)) {
+            $html = "
+            <a href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
+            <p>$reqNo, Request, $requester</p>
+            <p>$workOrderNo</p>
+            <p>request added : $reqDate</p>
+            </a>
+            <br>
+            <hr>
+            <br>
+            ";
+            return $html;
+        }
+
+        return false;
+    }
     public function getExecuterNotification($data)
     {
         $reqNo = $data["reqNo"];
