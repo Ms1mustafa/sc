@@ -20,7 +20,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 180vh;
+  min-height: 200vh;
   background: rgba(39, 39, 39, 0.4);
 }
 
@@ -127,6 +127,19 @@ header {
   color: #000;
   height: 50px;
   width: 100%;
+  padding: 0px 40px 0 45px;
+  border: 1px solid #e77823;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.input-fiel {
+  font-size: 15px;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 30%;
   padding: 0px 40px 0 45px;
   border: 1px solid #e77823;
   border-radius: 15px;
@@ -244,7 +257,8 @@ header {
 
 @media only screen and (max-width: 786px) {
   .wrapper {
-    min-height: 100vh;
+    min-height: 160vh;
+
   }
 
   .form-box {
@@ -385,4 +399,124 @@ header {
     height: 50px;
     width: 20%;
   }
+
+  .admin-Name {
+    position: relative;
+    top: -40px;
+  }
+
+  .Notification {
+    position: relative;
+    top: -45px;
+  }
+}
+
+.admin-Name {
+  font-size: 25px;
+  color: #fff;
+
+}
+
+.Notification {
+  font-size: 23px;
+  color: #fff;
+}
+
+.num {
+  color: #fff;
+  font-size: 20px;
+}
+
+.number {
+  font-size: 20px;
+  position: relative;
+  left: 30px;
+
+}
+
+.num-1 {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+  left: 60px;
+
+}
+
+.number-1 {
+  position: relative;
+  font-size: 20px;
+  left: 60px;
+}
+
+.number-2 {
+
+  font-size: 20px;
+
+}
+
+.num-3 {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+  left: 15px;
+
+}
+
+.num-4 {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+  left: 90px;
+
+}
+
+.number-4 {
+  position: relative;
+  font-size: 20px;
+  left: 130px;
+}
+
+.itemm {
+  color: #fff;
+  font-size: 20px;
+}
+
+.Name-1 {
+  color: #fff;
+  font-size: 25px;
+}
+
+
+/* table */
+table {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+  margin: 10px 0;
+  width: 50%;
+  table-layout: auto;
+}
+
+table tr {
+  width: 50px;
+  height: 60px;
+}
+
+table th {
+  text-align: center;
+  border: 1px solid #fff;
+  font-size: 0.85em;
+  padding: 0.7em;
+}
+
+table td {
+  text-align: center;
+  border: 1px solid #fff;
+  font-size: 0.8em;
+  padding: 0.5em;
+  width: 100px;
+  height: 70px;
+}
+
+table td:first-child {
+  width: 20px;
 }

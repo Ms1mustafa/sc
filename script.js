@@ -27,8 +27,8 @@ let Pipe, Clamp, Wood;
 ItemDescription.addEventListener("change", function () {
   if (ItemDescription.value == "Pipe 6M" && !Pipe) {
     let html = `
-      <tr>
-          <td>Pipe 6M</td>
+      <tr >
+          <td  >Pipe 6M</td>
           <td><input type="number" min = "1" name="pipeQty"></td>
       </tr>
     `;
