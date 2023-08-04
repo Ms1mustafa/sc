@@ -138,13 +138,14 @@ header {
   font-size: 15px;
   background: #fff;
   color: #000;
-  height: 50px;
-  width: 30%;
+  height: 40px;
+
   padding: 0px 40px 0 45px;
   border: 1px solid #e77823;
   border-radius: 15px;
   outline: none;
   transition: .2s ease;
+
 }
 
 .input-box a {
@@ -388,9 +389,37 @@ header {
   transition: .2s ease;
 }
 
-.pipe{
-  color: orangered;
+
+
+.pipe,
+.clamp,
+.Wood {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100px;
+  padding: 0 5px;
+  text-align: center;
+  border: 1px solid #e77823;
+  border-radius: 10px;
 }
+
+.pipe1,
+.clamp1,
+.Wood1 {
+  /* color: #fff; */
+  font-size: 15px;
+  font-weight: bold;
+  width: 100px;
+  padding: 0 5px;
+  text-align: center;
+  border: 1px solid #e77823;
+  border-radius: 10px;
+}
+
+
+
+
 
 @media only screen and (max-width: 786px) {
 
@@ -429,56 +458,71 @@ header {
 .num {
   color: #fff;
   font-size: 20px;
+
 }
 
 .number {
+
+  font-size: 20px;
+  position: relative;
+  left: 20px;
+}
+
+
+.num-rq {
+  font-size: 20px;
+  position: relative;
+  left: 70px;
+  color: #fff;
+}
+
+.num-rq1 {
+  font-size: 20px;
+  position: relative;
+  left: 80px;
+
+}
+
+.num1 {
+  font-size: 20px;
+}
+
+.num-rq2 {
   font-size: 20px;
   position: relative;
   left: 30px;
-
-}
-
-.num-1 {
   color: #fff;
+
+}
+
+.num-rq22 {
   font-size: 20px;
   position: relative;
-  left: 60px;
-
+  left: 80px;
 }
 
-.number-1 {
+.num-rq3 {
+  font-size: 20px;
   position: relative;
-  font-size: 20px;
-  left: 60px;
+  left: 10px;
 }
 
-.number-2 {
-
+.num-rq4 {
   font-size: 20px;
-
-}
-
-.num-3 {
+  position: relative;
+  left: 100px;
   color: #fff;
-  font-size: 20px;
-  position: relative;
-  left: 15px;
 
 }
 
-.num-4 {
-  color: #fff;
+.num-rq44 {
   font-size: 20px;
   position: relative;
-  left: 90px;
-
+  left: 140px;
 }
 
-.number-4 {
-  position: relative;
-  font-size: 20px;
-  left: 130px;
-}
+
+
 
 .itemm {
   color: #fff;
@@ -496,12 +540,12 @@ table {
   border: 1px solid #fff;
   border-collapse: collapse;
   margin: 10px 0;
-  width: 50%;
+  width: 30%;
   table-layout: auto;
 }
 
 table tr {
-  width: 50px;
+  width: 30px;
   height: 60px;
 }
 
@@ -517,7 +561,7 @@ table td {
   border: 1px solid #fff;
   font-size: 0.8em;
   padding: 0.5em;
-  width: 100px;
+  width: 30px;
   height: 70px;
 }
 

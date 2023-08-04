@@ -65,7 +65,7 @@ function getInputValue($name)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="css.css?1999">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
@@ -88,14 +88,14 @@ function getInputValue($name)
                 <table >
                 <thead >
                     <th >
-                        <select class="input-field" id="ItemDescription">
+                        <select class="input-fiel" id="ItemDescription">
                             <option disabled selected>Item description</option>
                             <option value="Pipe 6M">Pipe 6M</option>
                             <option value="Clamp movable">Clamp movable</option>
                             <option value="Wood 4m">Wood 4m</option>
                         </select>
                     </th>
-                    <th class="input-fiel" >Qty</th>
+                    <th><p class="input-fiel"> Qty</p></th>
                 </thead>
                 <tbody id="ItemDescriptionBody">
 

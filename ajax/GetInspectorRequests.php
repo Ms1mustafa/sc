@@ -44,22 +44,22 @@ if ($isQty != null) {
     <label class='number'>$reqNo</label>
 
     
-    <label class='num-1'>Requester</label>
-    <label  class='number-1'>$requester</label>
+    <label class='num-rq'>Requester</label>
+    <label  class='num-rq1'>$requester</label>
 
     <br>
     <label class='num'>Inspector</label>
-    <label class='number-2'>$inspector</label>
+    <label class='num1'>$inspector</label>
 
-    <label  class='num-3'>Area</label>
-    <label class='number-1' >$area</label>
+    <label  class='num-rq2'>Area</label>
+    <label class='num-rq22' >$area</label>
     <br>
 
     <label class='num'>Location</label>
-    <label class='number-2'>$item</label>
-   
-    <label class='num-4'>Notes</label>
-    <label  class='number-4'>$notes</label>
+    <label class='num-rq3'>$item</label>
+   <br>
+    <label class='num'>Notes</label>
+    <label  class='number'>$notes</label>
     <table>
         <thead>
             <th>Item description</th>
@@ -74,12 +74,12 @@ if ($isQty != null) {
                     <tr>
                         <td>Pipe 6M</td>
                         <td>$pipeQty</td>
-                        <td><input type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' ";
+                        <td><input class = 'pipe1' type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' ";
         if ($issued) {
             echo "disabled";
         }
         echo "></td>
-                        <td><input type='text' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' ";
+                        <td><input class = 'pipe1' type='text' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' ";
         if ($issued) {
             echo "disabled";
         }
@@ -92,12 +92,12 @@ if ($isQty != null) {
                     <tr>
                         <td>Clamp movable</td>
                         <td>$clampQty</td>
-                        <td><input type='number' min = '1' name='clampQtyStore' value='$clampQtyStore' ";
+                        <td><input class = 'pipe1' type='number' min = '1' name='clampQtyStore' value='$clampQtyStore' ";
         if ($issued) {
             echo "disabled";
         }
         echo "></td>
-                        <td><input type='text' name='clampQtyStoreComment' value='$clampQtyStoreComment' ";
+                        <td><input class = 'pipe1' type='text' name='clampQtyStoreComment' value='$clampQtyStoreComment' ";
         if ($issued) {
             echo "disabled";
         }
@@ -110,12 +110,12 @@ if ($isQty != null) {
                     <tr>
                         <td>Wood 4m</td>
                         <td>$woodQty</td>
-                        <td><input type='number' min = '1' name='woodQtyStore' value='$woodQtyStore' ";
+                        <td><input class = 'pipe1' type='number' min = '1' name='woodQtyStore' value='$woodQtyStore' ";
         if ($issued) {
             echo "disabled";
         }
         echo "></td>
-                        <td><input type='text' name='woodQtyStoreComment' value='$woodQtyStoreComment' ";
+                        <td><input  class = 'pipe1' type='text' name='woodQtyStoreComment' value='$woodQtyStoreComment' ";
         if ($issued) {
             echo "disabled";
         }

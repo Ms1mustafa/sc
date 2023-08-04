@@ -64,27 +64,28 @@ if ($isQty != null) {
 
     echo "<label class='num'>ReqNo</label>
     <label class='number'>$reqNo</label>
-    <br>
-    <label class='num'>Requester</label>
-    <label class='number'>$requester</label>
+    
+    <label class='num-rq'>Requester</label>
+    <label class='num-rq1'>$requester</label>
     <br>
     <label class='num' >Inspector</label>
-    <label class='number'>$inspector</label>
-    <br>
-    <label class='num'>Area</label>
-    <label class='number'>$area</label>
+    <label class='num1'>$inspector</label>
+   
+    <label class='num-rq2'>Area</label>
+    <label class='num-rq22'>$area</label>
     <br>
     <label class='num'>Location</label>
-    <label class='number'>$item</label>
-    <br>
-    <label class='num'>priority</label>
-    <label class='number'>$priority</label>
+    <label class='num-rq3'>$item</label>
+  
+    <label class='num-rq4'>priority</label>
+    <label class='num-rq44'>$priority</label>
     <br>
     <label class='num'>Notes</label>
     <label class='number'>$notes</label>
     <br>
-    <br>
+   
     <label class='num'>Date</label>
+   
     <input class='input-field' type='date' name='finishDate' value='$finishDate' ";
     
     if (!$new) {
@@ -107,13 +108,13 @@ if ($isQty != null) {
             echo "
                     <tr>
                         <td>Pipe 6M</td>
-                        <td><input type='number' min = '1' name='pipeQty' value='$pipeQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
-                        <td><input type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' ";
+                        <td><input class = 'Wood1' type='number' min = '1' name='pipeQty' value='$pipeQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
+                        <td><input class = 'Wood1' type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' ";
             if ($issued) {
                 echo "disabled";
             }
             echo "></td>
-                        <td><input type='text' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' ";
+                        <td><input  class = 'Wood1' type='text' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' ";
             if ($issued) {
                 echo "disabled";
             }
@@ -125,13 +126,13 @@ if ($isQty != null) {
             echo "
                     <tr>
                         <td>Clamp movable</td>
-                        <td><input type='number' min = '1' name='clampQty' value='$clampQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
-                        <td><input type='number' min = '1' name='clampQtyStore' value='$clampQtyStore' ";
+                        <td><input class = 'Wood1' type='number' min = '1' name='clampQty' value='$clampQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
+                        <td><input class = 'Wood1' type='number' min = '1' name='clampQtyStore' value='$clampQtyStore' ";
             if ($issued) {
                 echo "disabled";
             }
             echo "></td>
-                        <td><input type='text' name='clampQtyStoreComment' value='$clampQtyStoreComment' ";
+                        <td><input  class = 'Wood1' type='text' name='clampQtyStoreComment' value='$clampQtyStoreComment' ";
             if ($issued) {
                 echo "disabled";
             }
@@ -143,13 +144,13 @@ if ($isQty != null) {
             echo "
                     <tr>
                         <td>Wood 4m</td>
-                        <td><input type='number' min = '1' name='woodQty' value='$woodQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
-                        <td><input type='number' min = '1' name='woodQtyStore' value='$woodQtyStore' ";
+                        <td><input class = 'Wood1' type='number' min = '1' name='woodQty' value='$woodQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
+                        <td><input class = 'Wood1' type='number' min = '1' name='woodQtyStore' value='$woodQtyStore' ";
             if ($issued) {
                 echo "disabled";
             }
             echo "></td>
-                        <td><input type='text' name='woodQtyStoreComment' value='$woodQtyStoreComment' ";
+                        <td><input class = 'Wood1' type='text' name='woodQtyStoreComment' value='$woodQtyStoreComment' ";
             if ($issued) {
                 echo "disabled";
             }
@@ -165,7 +166,7 @@ if ($isQty != null) {
 
     if ($issued && !$executerAccept) {
         echo '
-            <button name="accept">accept</button>
+            <button  class="submit" name="accept">accept</button>
         ';
     }
     if($status == 'rejected'){
@@ -173,7 +174,7 @@ if ($isQty != null) {
             <p>Rejected</p>
             <p>Reject Reason : '.$rejectReason.'</p>
 
-            <button name="resendToInspector">Resend to inspector</button>
+            <button class="submit" name="resendToInspector">Resend to inspector</button>
         ';
     }
     echo "

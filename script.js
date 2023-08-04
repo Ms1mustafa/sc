@@ -29,7 +29,7 @@ ItemDescription.addEventListener("change", function () {
     let html = `
       <tr>
           <td class = 'pipe'>Pipe 6M</td>
-          <td><input class = 'pipe' type="number" min = "1" name="pipeQty"></td>
+          <td><input class = 'pipe1' type="number" min = "1" name="pipeQty"></td>
       </tr>
     `;
 
@@ -39,8 +39,8 @@ ItemDescription.addEventListener("change", function () {
   if (ItemDescription.value == "Clamp movable" && !Clamp) {
     let html = `
       <tr>
-          <td>Clamp movable</td>
-          <td><input type="number" min = "1" name="clampQty"></td>
+          <td  class = 'clamp' >Clamp movable</td>
+          <td><input  class = 'clamp1' type="number" min = "1" name="clampQty"></td>
       </tr>
     `;
 
@@ -50,8 +50,8 @@ ItemDescription.addEventListener("change", function () {
   if (ItemDescription.value == "Wood 4m" && !Wood) {
     let html = `
       <tr>
-          <td>Wood 4m</td>
-          <td><input type="number" min = "1" name="woodQty"></td>
+          <td class = 'Wood'>Wood 4m</td>
+          <td><input class = 'Wood1' type="number" min = "1" name="woodQty"></td>
       </tr>
     `;
 
