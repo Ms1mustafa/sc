@@ -62,29 +62,31 @@ if ($isQty != null) {
     $status = $requests["status"];
     $rejectReason = $requests["rejectReason"];
 
-    echo "<label>ReqNo</label>
-    <label>$reqNo</label>
+    echo "<label class='num'>ReqNo</label>
+    <label class='number'>$reqNo</label>
     <br>
-    <label>Requester</label>
-    <label>$requester</label>
+    <label class='num'>Requester</label>
+    <label class='number'>$requester</label>
     <br>
-    <label>Inspector</label>
-    <label>$inspector</label>
+    <label class='num' >Inspector</label>
+    <label class='number'>$inspector</label>
     <br>
-    <label>Area</label>
-    <label>$area</label>
+    <label class='num'>Area</label>
+    <label class='number'>$area</label>
     <br>
-    <label>Location</label>
-    <label>$item</label>
+    <label class='num'>Location</label>
+    <label class='number'>$item</label>
     <br>
-    <label>priority</label>
-    <label>$priority</label>
+    <label class='num'>priority</label>
+    <label class='number'>$priority</label>
     <br>
-    <label>Notes</label>
-    <label>$notes</label>
+    <label class='num'>Notes</label>
+    <label class='number'>$notes</label>
     <br>
-    <label>Date</label>
-    <input type='date' name='finishDate' value='$finishDate' ";
+    <br>
+    <label class='num'>Date</label>
+    <input class='input-field' type='date' name='finishDate' value='$finishDate' ";
+    
     if (!$new) {
         echo 'readonly';
     }
@@ -92,10 +94,10 @@ if ($isQty != null) {
     ";
     if ($issued) {
         echo '
-            <table>
-            <thead>
+            <table >
+            <thead >
                 <th>Item description</th>
-                <th>QTY Req</th>
+                <th >QTY Req</th>
                 <th>QTY Issued</th>
                 <th>Comment</th>
             </thead>

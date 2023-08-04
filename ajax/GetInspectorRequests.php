@@ -40,20 +40,26 @@ if ($isQty != null) {
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
 
-    echo "<label>ReqNo</label>
-    <label>$reqNo</label>
+    echo "<label  class='num'>ReqNo</label>
+    <label class='number'>$reqNo</label>
+
+    
+    <label class='num-1'>Requester</label>
+    <label  class='number-1'>$requester</label>
+
     <br>
-    <label>Requester</label>
-    <label>$requester</label>
+    <label class='num'>Inspector</label>
+    <label class='number-2'>$inspector</label>
+
+    <label  class='num-3'>Area</label>
+    <label class='number-1' >$area</label>
     <br>
-    <label>Area</label>
-    <label>$area</label>
-    <br>
-    <label>Location</label>
-    <label>$item</label>
-    <br>
-    <label>Notes</label>
-    <label>$notes</label>
+
+    <label class='num'>Location</label>
+    <label class='number-2'>$item</label>
+   
+    <label class='num-4'>Notes</label>
+    <label  class='number-4'>$notes</label>
     <table>
         <thead>
             <th>Item description</th>
@@ -121,9 +127,7 @@ if ($isQty != null) {
             
         </tbody>
     </table>
-    <label>Inspector</label>
-    <label>$inspector</label>
-    <br>
+  
     ";
     if ($status == 'resent') {
         echo '
@@ -132,10 +136,13 @@ if ($isQty != null) {
     }
     if ($status == 'pending') {
         echo '
-            <button name="accept" onclick="removeRequiredAttribute()">accept</button>
+            <button class="submit" name="accept" onclick="removeRequiredAttribute()">accept</button>
             <br>
-            <button name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
-            <input type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason">
+            <br>
+            <button class="submit" name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
+            <br>
+            <br>
+            <input class="input-field" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason">
         ';
     }
     echo "

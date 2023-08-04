@@ -63,8 +63,10 @@ if (isset($_POST["delete"])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
@@ -72,21 +74,52 @@ if (isset($_POST["delete"])) {
 </head>
 
 <body>
+
+<div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>LOGO .</p>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="#" class="link">Blog</a></li>
+                    <li><a href="#" class="link">Services</a></li>
+                    <li><a href="#" class="link">About</a></li>
+                </ul>
+                <div class="nav-button">
+                    <button class="btn white-btn">Log out</button>
+
+                </div>
+                <div class="nav-menu-btn">
+                    <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+                </div>
+        </nav>
+
+        <div class="login-container" id="login">
+            <div class="top">
+
+                <header class="addrequest">Edit Request...</header>
+            </div>
+            <br>
+            <div class="input-box">
+      
     <form method="POST">
         <?php echo $request->getError(constants::$requestFailed); ?>
-        <label>ReqNo</label>
-        <input value="<?php echo $getRequest['reqNo']; ?>" placeholder="Req No" name="reqNo" disabled readonly required>
+        <label class="priority">ReqNo</label>
+        <input value="<?php echo $getRequest['reqNo']; ?>" placeholder="Req No" class="input-field name="reqNo" disabled readonly required>
         <br>
         <label class="priority">Work Order No</label>
-        <input type="text" class="input-field" placeholder="Work Order No" name="workOrderNo" disabled readonly
+        <input type="text"laceholder="Work Order No" class="input-field name="workOrderNo" disabled readonly
             value="<?php echo $workOrderNo; ?>" required>
         <br>
-        <label>Requester</label>
-        <input value="<?php echo $getRequest['name']; ?>" name="name" disabled readonly>
+        <label class="priority">Requester</label>
+        <input value="<?php echo $getRequest['name']; ?>" class="input-field name="name" disabled readonly>
         <br>
         <br>
-        <label>Area</label>
-        <select name="area" class="input-field" id="area" required <?php echo $canEdit; ?>>
+        <label class="priority">Area</label>
+        <select  class="input-field" name="area" id="area" required <?php echo $canEdit; ?>>
             <?php if ($getRequest['area']) {
 
                 echo '<option value="' . $getRequest['area'] . '" selected >' .$getRequest['area'] . ' - ' .$area->getAreaName($getRequest['area']) . '</option>';
@@ -94,22 +127,24 @@ if (isset($_POST["delete"])) {
             <?php echo $getArea; ?>
         </select>
         <br>
-        <label>Location</label>
-        <select name="item" class="input-field" id="item" required <?php echo $canEdit; ?>>
+        <label class="priority">Location</label>
+        <select  class="input-field" name="item"  id="item" required <?php echo $canEdit; ?>>
             <?php if ($getRequest['item']) {
 
                 echo '<option value="' . $getRequest['item'] . '" selected >' . $getRequest['item'] . '</option>';
             } ?>
         </select>
         <br>
-        <input type="number" class="input-number" id="length" min="1" placeholder="L" name="length"
+        <br>
+        <input type="number"   class="input-number" id="length" min="1" placeholder="L" name="length"
             value="<?php echo $getRequest['length']; ?>" <?php echo $canEdit; ?>><span class="metre">m</span>
-        <input type="number" class="input-number" id="width" min="1" placeholder="W" name="width"
+        <input type="number"  class="input-number" id="width" min="1" placeholder="W" name="width"
             value="<?php echo $getRequest['width']; ?>" <?php echo $canEdit; ?>><span class="metre">m</span>
-        <input type="number" class="input-number" id="height" min="1" placeholder="H" name="height"
+        <input type="number"  class="input-number" id="height" min="1" placeholder="H" name="height"
             value="<?php echo $getRequest['height']; ?>" <?php echo $canEdit; ?>><span class="metre">m</span>
         <br>
-        <label>priority</label>
+        <br>
+        <label class="priority">priority</label>
         <br>
         <input type="radio" id="immediately" value="Immediately Today" name="priority" <?php echo $getRequest['priority'] == 'Immediately Today' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
         <label class="priority" for="immediately">Immediately &nbsp; Today</label>
@@ -123,23 +158,26 @@ if (isset($_POST["delete"])) {
         <input type="radio" id="low" value="Low More than 5 days" name="priority" <?php echo $getRequest['priority'] == 'Low More than 5 days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
         <label class="priority" for="low">Low &nbsp; More than 5 days</label>
         <br>
-        <label>work type</label>
-        <select name="workType" class="input-field" required <?php echo $canEdit; ?>>
+        <label class="priority">work type</label>
+        <select  class="input-field" name="workType"required <?php echo $canEdit; ?>>
             <option selected value="<?php echo $getRequest['workType'] ?? ''; ?>"><?php echo $getRequest['workType'] ?? 'Select work type'; ?></option>
             <?php echo $getWT; ?>
         </select>
         <br>
-        <label>Inspector</label>
-        <select name="inspector" class="input-field" required <?php echo $canEdit; ?>>
+        <label class="priority">Inspector</label>
+        <select class="input-field" name="inspector"  required <?php echo $canEdit; ?>>
             <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ?? 'select inspector'; ?></option>
             <?php echo $inspectors; ?>
         </select>
         <br>
-        <label>Notes</label>
-        <input name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
+        <label class="priority">Notes</label>
+        <input class="input-note" name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
         <br>
-        <button type="submit" name="edit" class="submit" <?php echo $canEdit; ?>>Edit</button>
-        <button type="submit" name="delete" class="submit" <?php echo $canEdit; ?>>Delete</button>
+        <br>
+        <button type="submit"  class="submit" name="edit"  <?php echo $canEdit; ?>>Edit</button>
+        <br>
+        <br>
+        <button type="submit"  class="submit"name="delete"  <?php echo $canEdit; ?>>Delete</button>
     </form>
 
     <script>

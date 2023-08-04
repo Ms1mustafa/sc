@@ -61,8 +61,7 @@ function getInputValue($name)
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -74,24 +73,29 @@ function getInputValue($name)
 </head>
 
 <body>
+<div class="wrappe">
+        <?php include_once('includes/navbar.php') ?>
+
+        <div class="login-container" id="login">
     <form method="POST">
-        <?php echo $adminName; ?>
+    <p class="Name-1"><?php echo $adminName; ?></p>
         <br>
-        <p>QTY</p>
+       
         <div id="reqInf"></div>
+        <br>
         <?php if ($new)
             echo '
-                <table>
-                <thead>
-                    <th>
-                        <select id="ItemDescription">
+                <table >
+                <thead >
+                    <th >
+                        <select class="input-field" id="ItemDescription">
                             <option disabled selected>Item description</option>
                             <option value="Pipe 6M">Pipe 6M</option>
                             <option value="Clamp movable">Clamp movable</option>
                             <option value="Wood 4m">Wood 4m</option>
                         </select>
                     </th>
-                    <th>Qty</th>
+                    <th class="input-fiel" >Qty</th>
                 </thead>
                 <tbody id="ItemDescriptionBody">
 
@@ -99,8 +103,9 @@ function getInputValue($name)
             </table>
             ';
         ?>
+        <br>
         <?php if ($new) {
-            echo '<button name="submit">submit</button>';
+            echo '<button   class="submit"name="submit">Done</button>';
         } ?>
     </form>
 
