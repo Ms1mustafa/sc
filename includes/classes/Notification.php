@@ -33,13 +33,16 @@ class Notification
         $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
         $requester = $data["name"];
+        $werehouseName = $data["werehouseName"] ?? false;
+        $type = $werehouseName ? 'Werehouse' : 'Request';
+        $sender = $werehouseName ?"$werehouseName": "$requester";
         $new = $data["new"] == "yes" ? true : false;
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
 
         if (empty($this->errorArray)) {
             $html = "
             <a href='qty.php?qtyNo=" . $workOrderNo . "&new=" . $new . "'>
-            <p>$reqNo, Request, $requester</p>
+            <p>$reqNo, ".$type.", ".$sender."</p>
             <p>$workOrderNo</p>
             <p>request added : $reqDate</p>
             </a>

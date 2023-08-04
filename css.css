@@ -374,6 +374,10 @@ header {
   transition: .2s ease;
 }
 
+.pipe{
+  color: orangered;
+}
+
 @media only screen and (max-width: 786px) {
 
   .addrequest {

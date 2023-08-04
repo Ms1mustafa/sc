@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
     $clampQty = @$_POST["clampQty"];
     $woodQty = @$_POST["woodQty"];
 
-    $success = $request->updateIssuedReq($pipeQty, $clampQty, $woodQty, $pipeQtyStore, $pipeQtyStoreComment, $clampQtyStore, $clampQtyStoreComment, $woodQtyStore, $woodQtyStoreComment, $workOrderNo);
+    $success = $request->updateIssuedReq($adminName, $pipeQty, $clampQty, $woodQty, $pipeQtyStore, $pipeQtyStoreComment, $clampQtyStore, $clampQtyStoreComment, $woodQtyStore, $woodQtyStoreComment, $workOrderNo);
 
     if ($success) {
         header("location: wereHouse.php");

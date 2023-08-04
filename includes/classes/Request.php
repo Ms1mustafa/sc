@@ -115,14 +115,15 @@ class Request
         return false;
     }
 
-    public function updateIssuedReq($pipeQty, $clampQty, $woodQty, $pipeQtyStore, $pipeQtyStoreComment, $clampQtyStore, $clampQtyStoreComment, $woodQtyStore, $woodQtyStoreComment, $workOrderNo)
+    public function updateIssuedReq($werehouseName,$pipeQty, $clampQty, $woodQty, $pipeQtyStore, $pipeQtyStoreComment, $clampQtyStore, $clampQtyStoreComment, $woodQtyStore, $woodQtyStoreComment, $workOrderNo)
     {
         if (empty($this->errorArray)) {
-            $sql = "UPDATE request SET pipeQtyStore = :pipeQtyStore, pipeQtyStoreComment =:pipeQtyStoreComment, clampQtyStore =:clampQtyStore, clampQtyStoreComment = :clampQtyStoreComment, woodQtyStore = :woodQtyStore, woodQtyStoreComment = :woodQtyStoreComment, issued = 'yes', wereHouseDate = :currentDateTime ";
+            $sql = "UPDATE request SET werehouseName = :werehouseName, pipeQtyStore = :pipeQtyStore, pipeQtyStoreComment =:pipeQtyStoreComment, clampQtyStore =:clampQtyStore, clampQtyStoreComment = :clampQtyStoreComment, woodQtyStore = :woodQtyStore, woodQtyStoreComment = :woodQtyStoreComment, issued = 'yes', wereHouseDate = :currentDateTime ";
 
             $sql .= "WHERE workOrderNo = :workOrderNo";
             $query = $this->con->prepare("$sql");
 
+            $query->bindValue(":werehouseName", $werehouseName);
             $query->bindValue(":pipeQtyStore", $pipeQtyStore);
             $query->bindValue(":pipeQtyStoreComment", $pipeQtyStoreComment);
             $query->bindValue(":clampQtyStore", $clampQtyStore);
