@@ -32,7 +32,9 @@ body {
   background: rgba(39, 39, 39, 0.4);
 }
 
+
 .nav {
+
   position: fixed;
   top: 0;
   display: flex;
@@ -455,7 +457,14 @@ header {
   color: #fff;
 }
 
+
 .num {
+  color: #fff;
+  font-size: 20px;
+
+}
+
+.num3 {
   color: #fff;
   font-size: 20px;
 
@@ -467,6 +476,7 @@ header {
   position: relative;
   left: 20px;
 }
+
 
 
 .num-rq {
@@ -482,6 +492,7 @@ header {
   left: 80px;
 
 }
+
 
 .num1 {
   font-size: 20px;
@@ -534,6 +545,95 @@ header {
   font-size: 25px;
 }
 
+@media only screen and (max-width: 786px) {
+
+  .num-rq {
+    position: static;
+    right: 100px;
+    margin-right: 60px;
+
+
+  }
+
+  .num1 {
+    font-size: 20px;
+    position: relative;
+    left: 15px;
+  }
+
+  .num-rq1 {
+    position: relative;
+    left: -50px;
+  }
+
+  .num-rq2 {
+    position: relative;
+    left: -200px;
+    top: 25px;
+
+
+  }
+
+  .num-rq22 {
+    position: relative;
+    left: -10px;
+    top: 20px;
+    left: -140px;
+
+  }
+
+  .num3 {
+    position: relative;
+    left: -2px;
+    top: 20px;
+  }
+
+
+  .num-rq3 {
+    position: relative;
+    top: 20px;
+    left: 18px;
+  }
+
+  .num-rq4 {
+    position: absolute;
+    top: 340px;
+    left: 22px;
+  }
+
+  .num-rq44 {
+    position: relative;
+    top: 40px;
+    left: -36px;
+  }
+
+  .input-field {
+    height: 50px;
+    width: 80%;
+  }
+
+  .input-fiel {
+    height: 40px;
+    width: 130px;
+  }
+
+  table {
+    position: relative;
+    right: 12px;
+    margin: 5px 0;
+    width: 30%;
+
+  }
+
+
+  .submit {
+    height: 45px;
+    width: 80%;
+  }
+
+
+}
+
 
 /* table */
 table {
@@ -567,4 +667,12 @@ table td {
 
 table td:first-child {
   width: 20px;
+}
+
+.fa-solid {
+  color: #e77823;
+  font-size: 30px;
+  position: relative;
+  left: 80%;
+  top: -90px;
 }

@@ -71,12 +71,18 @@ if (isset($_POST["submit"])) {
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+   
     <link rel="stylesheet" href="css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+        <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@200;300;400;500;600;700;800&family=Source+Sans+Pro:wght@600&display=swap"
+        rel="stylesheet">
+    
     <script src="script.js" defer></script>
     <title>Request </title>
 </head>
@@ -85,19 +91,22 @@ if (isset($_POST["submit"])) {
     <div class="wrapper">
         <nav class="nav">
             <div class="nav-logo">
-                <p>LOGO .</p>
-            </div>
+                <p>LOGO .<i class="fa-solid fa-circle-caret-left"></i></p>
+                
 
+            </div>
+           
             <div class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="home.php" class="link active">Home</a></li>
                     <li><a href="#" class="link">Blog</a></li>
                     <li><a href="#" class="link">Services</a></li>
                     <li><a href="#" class="link">About</a></li>
                 </ul>
+             
                 <div class="nav-button">
                     <button class="btn white-btn">Log out</button>
-
+                  
                 </div>
                 <div class="nav-menu-btn">
                     <i class="bx bx-menu" onclick="myMenuFunction()"></i>

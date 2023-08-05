@@ -74,18 +74,21 @@ if ($isQty != null) {
     <label class='num-rq2'>Area</label>
     <label class='num-rq22'>$area</label>
     <br>
-    <label class='num'>Location</label>
+    <label class='num3'>Location</label>
     <label class='num-rq3'>$item</label>
   
     <label class='num-rq4'>priority</label>
     <label class='num-rq44'>$priority</label>
+    <br>
+    <br>
+    <br>
     <br>
     <label class='num'>Notes</label>
     <label class='number'>$notes</label>
     <br>
    
     <label class='num'>Date</label>
-   
+   <br>
     <input class='input-field' type='date' name='finishDate' value='$finishDate' ";
     
     if (!$new) {

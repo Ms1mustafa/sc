@@ -26,9 +26,8 @@ $request = new Request($con);
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css.css">
+   
+    <link rel="stylesheet" href="css.css?1999">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
@@ -36,9 +35,10 @@ $request = new Request($con);
 </head>
 
 <body>
+
 <div class="wrappe">
         <?php include_once('includes/navbar.php') ?>
-
+        
         <div class="login-container" id="login">
     <p class="admin-Name"><?php echo $adminName; ?></p>
     <br>
