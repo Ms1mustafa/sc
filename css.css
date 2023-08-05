@@ -551,60 +551,41 @@ header {
     position: static;
     right: 100px;
     margin-right: 60px;
-
-
   }
 
   .num1 {
     font-size: 20px;
     position: relative;
-    left: 15px;
+    left: 10px;
   }
 
   .num-rq1 {
     position: relative;
-    left: -50px;
+    left: -60px;
   }
 
   .num-rq2 {
     position: relative;
-    left: -200px;
-    top: 25px;
-
-
+    left: -220px;
+    top: 30px;
   }
 
   .num-rq22 {
     position: relative;
-    left: -10px;
-    top: 20px;
-    left: -140px;
-
-  }
-
-  .num3 {
-    position: relative;
-    left: -2px;
-    top: 20px;
-  }
-
-
-  .num-rq3 {
-    position: relative;
-    top: 20px;
-    left: 18px;
+    left: 100px;
+    top: 3px;
   }
 
   .num-rq4 {
-    position: absolute;
-    top: 340px;
-    left: 22px;
+    position: relative;
+    top: 30px;
+    left: -150px;
   }
 
   .num-rq44 {
     position: relative;
-    top: 40px;
-    left: -36px;
+    left: 100px;
+
   }
 
   .input-field {
@@ -612,17 +593,10 @@ header {
     width: 80%;
   }
 
+
   .input-fiel {
     height: 40px;
     width: 130px;
-  }
-
-  table {
-    position: relative;
-    right: 12px;
-    margin: 5px 0;
-    width: 30%;
-
   }
 
 
@@ -631,7 +605,11 @@ header {
     width: 80%;
   }
 
+}
 
+.length {
+  font-size: 20px;
+  color: #fff;
 }
 
 

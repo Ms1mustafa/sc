@@ -119,6 +119,7 @@ if (isset($_POST["delete"])) {
         <br>
         <br>
         <label class="priority">Area</label>
+        <br>
         <select  class="input-field" name="area" id="area" required <?php echo $canEdit; ?>>
             <?php if ($getRequest['area']) {
 
