@@ -22,7 +22,7 @@ if (isset($_POST["accept"])) {
     $success = $request->updateInspectorReq('accepted', '', $workOrderNo);
 
     if ($success) {
-        header("location: inspectorQty.php?qtyNo=" . $workOrderNo . "");
+        header("location: inspectorPage.php");
     }
 }
 
@@ -32,7 +32,7 @@ if (isset($_POST["reject"])) {
     $success = $request->updateInspectorReq('rejected', $rejectReason, $workOrderNo);
 
     if ($success) {
-        header("location: inspectorQty.php?qtyNo=" . $workOrderNo . "");
+        header("location: inspectorPage.php");
     }
 }
 

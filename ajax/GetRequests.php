@@ -62,6 +62,11 @@ if ($isQty != null) {
     $status = $requests["status"];
     $rejectReason = $requests["rejectReason"];
 
+    $length = $requests["length"];
+    $width = $requests["width"];
+    $height = $requests["height"];
+    $lwh = $length * $width * $height;
+
     echo "<label class='num'>ReqNo</label>
     <label class='number'>$reqNo</label>
     
@@ -76,7 +81,14 @@ if ($isQty != null) {
     <br>
     <label class='num3'>Location</label>
     <label class='num-rq3'>$item</label>
+    <br>
+
+    <label class='num-rq4'>$length m</label>
+    <label class='num-rq4'>$width m</label>
+    <label class='num-rq4'>$height m</label>
+    <label class='num-rq4'>$lwh m</label>
   
+    <br>
     <label class='num-rq4'>priority</label>
     <label class='num-rq44'>$priority</label>
     <br>
@@ -169,7 +181,7 @@ if ($isQty != null) {
 
     if ($issued && !$executerAccept) {
         echo '
-            <button  class="submit" name="accept">accept</button>
+            <button class="submit" name="accept">accept</button>
         ';
     }
     if($status == 'rejected'){

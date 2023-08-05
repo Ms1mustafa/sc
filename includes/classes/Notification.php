@@ -28,14 +28,41 @@ class Notification
 
         return false;
     }
+
+    private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $requester){
+        if($inspectorDate){
+            return $inspector;
+        }
+        elseif($werehouseName){
+            return $werehouseName;
+        }
+        else{
+            return $requester;
+        }
+    }
+    private function getNotiType($werehouseName, $inspectorDate){
+        if($inspectorDate){
+            return "Inspector";
+        }
+        elseif($werehouseName){
+            return "Werehouse";
+        }
+        else{
+            return "Request";
+        }
+    }
     public function getExecuterNotification($data)
     {
         $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
         $requester = $data["name"];
+        $status = $data["status"];
+        $inspector = $data["inspector"];
+        $inspectorDate = $data["inspectorDate"];
         $werehouseName = $data["werehouseName"] ?? false;
-        $type = $werehouseName ? 'Werehouse' : 'Request';
-        $sender = $werehouseName ?"$werehouseName": "$requester";
+        $type = $this->getNotiType($werehouseName, $inspectorDate);
+        $sender = $this->getNotiFrom($werehouseName, $status, $inspector, $requester);
+        
         $new = $data["new"] == "yes" ? true : false;
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
 

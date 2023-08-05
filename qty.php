@@ -34,7 +34,7 @@ if (isset($_POST["accept"])) {
     $success = $request->executerAccept($workOrderNo);
 
     if ($success) {
-        header("location: qty.php?qtyNo=".$workOrderNo."");
+        header("location: notification.php");
     }
 }
 
@@ -46,7 +46,7 @@ if (isset($_POST["resendToInspector"])) {
     $success = $request->resendToInspector($pipeQty, $clampQty, $woodQty, $workOrderNo);
 
     if ($success) {
-        header("location: qty.php?qtyNo=".$workOrderNo."");
+        header("location: notification.php");
     }
 }
 
