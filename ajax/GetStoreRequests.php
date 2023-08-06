@@ -40,24 +40,24 @@ if ($isQty != null) {
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
 
-    echo "<label  class='num'>ReqNo</label>
+    echo "<label  class='Getwerhose'>ReqNo</label>
 
-    <label class='number'>$reqNo</label>
-   
-    <label class='num-rq' >Requester </label>
-    <label class='num-rq1'>$requester</label>
+    <label class='Getwerhose1'>$reqNo</label>
+   <br>
+    <label class='Getwerhose' >Requester </label>
+    <label class='Getwerhose2'>$requester</label>
     <br>
-    <label  class='num'>Inspector</label>
-    <label  class='num1'>$inspector</label>
-   
-    <label class='num-rq2'>Area</label>
-    <label class='num-rq22'>$area</label>
+    <label  class='Getwerhose'>Inspector</label>
+    <label  class='Getwerhose2'>$inspector</label>
+   <br>
+    <label class='Getwerhose'>Area</label>
+    <label class='Getwerhose3'>$area</label>
   <br>
-    <label class='num'>Location</label>
-    <label class='num-rq3'>$item</label>
+    <label class='Getwerhose'>Location</label>
+    <label class='Getwerhose4'>$item</label>
     <br>
-    <label class='num'>Notes</label>
-    <label class='number'>$notes</label>
+    <label class='Getwerhose'>Notes</label>
+    <label class='Getwerhose5'>$notes</label>
 
     <table>
         <thead>
@@ -104,7 +104,7 @@ if ($isQty != null) {
     
     ";
     if(!$issued){
-        echo'<button  class="submit" name="submit">Done</button>';
+        echo'<button  class="submittt" name="submit">Done</button>';
     }
     echo"
 ";

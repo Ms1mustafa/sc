@@ -67,18 +67,21 @@ if ($isQty != null) {
     $height = $requests["height"];
     $lwh = $length * $width * $height;
 
-    echo "<label class='num'>ReqNo</label>
-    <label class='number'>$reqNo</label>
     
-    <label class='num-rq'>Requester</label>
-    <label class='num-rq1'>$requester</label>
+    echo "<label class='Get'>ReqNo</label>
+    <label class='Getreq'>$reqNo</label>
     <br>
-    <label class='num' >Inspector</label>
-    <label class='num1'>$inspector</label>
    
-    <label class='num-rq2'>Area</label>
-    <label class='num-rq22'>$area</label>
+    <label class='Get'>Requester</label>
+    <label class='Getreq1'>$requester</label>
     <br>
+    <label class='Get' >Inspector</label>
+    <label class='Getreq1'>$inspector</label>
+   <br>
+    <label class='Get'>Area</label>
+    <label class='Getreq2'>$area</label>
+    <br>
+   
     
     <label class='length'>$length m</label>
     &nbsp; &nbsp; &nbsp;
@@ -88,22 +91,19 @@ if ($isQty != null) {
     &nbsp; &nbsp; &nbsp;
     <label class='length'>$lwh m</label>
   <br>
-    <label class='num3'>Location</label>
-    <label class='num-rq3'>$item</label>
-   
-
+    <label class='Get'>Location</label>
+    <label class='Getreq3'>$item</label>
+   <br>
     
-    <label class='num-rq4'>priority</label>
-    <label class='num-rq44'>$priority</label>
+    <label class='Get'>priority</label>
+    <label class='Getreq4'>$priority</label>
+     
+    <br>
+    <label class='Get'>Notes</label>
+    <label class='Getreq4'>$notes</label>
     <br>
    
-    
-    <br>
-    <label class='num'>Notes</label>
-    <label class='number'>$notes</label>
-    <br>
-   
-    <label class='num'>Date</label>
+    <label class='Get'>Date</label>
    <br>
     <input class='input-field' type='date' name='finishDate' value='$finishDate' ";
     
@@ -185,7 +185,7 @@ if ($isQty != null) {
 
     if ($issued && !$executerAccept) {
         echo '
-            <button class="submit" name="accept">accept</button>
+            <button class="submittt" name="accept">accept</button>
         ';
     }
     if($status == 'rejected'){

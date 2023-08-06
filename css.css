@@ -191,6 +191,51 @@ header {
   border: 2px solid #e77823;
 }
 
+.submitt {
+
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 45px;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  margin-top: 80%;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.submitt:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
+}
+
+.submittt {
+
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 45px;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  top: 260px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.submittt:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
+}
+
 .two-col {
   display: flex;
   justify-content: space-between;
@@ -264,6 +309,7 @@ header {
 
   }
 
+
   .form-box {
     width: 100%;
     height: 500px;
@@ -304,7 +350,7 @@ header {
   justify-content: center;
   align-items: center;
 
-  min-height: 110vh;
+  min-height: 120vh;
   background: rgba(39, 39, 39, 0.4);
 }
 
@@ -396,13 +442,13 @@ header {
 .pipe,
 .clamp,
 .Wood {
-  color: #fff;
+
   font-size: 18px;
   font-weight: bold;
-  width: 100px;
+  width: 50px;
   padding: 0 5px;
   text-align: center;
-  border: 1px solid #e77823;
+
   border-radius: 10px;
 }
 
@@ -444,11 +490,19 @@ header {
     position: relative;
     top: -45px;
   }
+
+  .pipe1,
+  .clamp1,
+  .Wood1 {
+    width: 28px;
+  }
 }
 
 .admin-Name {
   font-size: 25px;
   color: #fff;
+  position: relative;
+  top: -120px;
 
 }
 
@@ -456,84 +510,6 @@ header {
   font-size: 23px;
   color: #fff;
 }
-
-
-.num {
-  color: #fff;
-  font-size: 20px;
-
-}
-
-.num3 {
-  color: #fff;
-  font-size: 20px;
-
-}
-
-.number {
-
-  font-size: 20px;
-  position: relative;
-  left: 20px;
-}
-
-
-
-.num-rq {
-  font-size: 20px;
-  position: relative;
-  left: 70px;
-  color: #fff;
-}
-
-.num-rq1 {
-  font-size: 20px;
-  position: relative;
-  left: 80px;
-
-}
-
-
-.num1 {
-  font-size: 20px;
-}
-
-.num-rq2 {
-  font-size: 20px;
-  position: relative;
-  left: 30px;
-  color: #fff;
-
-}
-
-.num-rq22 {
-  font-size: 20px;
-  position: relative;
-  left: 80px;
-}
-
-.num-rq3 {
-  font-size: 20px;
-  position: relative;
-  left: 10px;
-}
-
-.num-rq4 {
-  font-size: 20px;
-  position: relative;
-  left: 100px;
-  color: #fff;
-
-}
-
-.num-rq44 {
-  font-size: 20px;
-  position: relative;
-  left: 140px;
-}
-
-
-
 
 .itemm {
   color: #fff;
@@ -545,48 +521,12 @@ header {
   font-size: 25px;
 }
 
-@media only screen and (max-width: 786px) {
 
-  .num-rq {
-    position: static;
-    right: 100px;
-    margin-right: 60px;
-  }
 
-  .num1 {
-    font-size: 20px;
-    position: relative;
-    left: 10px;
-  }
+@media only screen and (max-width: 768px) {
 
-  .num-rq1 {
-    position: relative;
-    left: -60px;
-  }
 
-  .num-rq2 {
-    position: relative;
-    left: -220px;
-    top: 30px;
-  }
 
-  .num-rq22 {
-    position: relative;
-    left: 100px;
-    top: 3px;
-  }
-
-  .num-rq4 {
-    position: relative;
-    top: 30px;
-    left: -150px;
-  }
-
-  .num-rq44 {
-    position: relative;
-    left: 100px;
-
-  }
 
   .input-field {
     height: 50px;
@@ -615,42 +555,114 @@ header {
 
 /* table */
 table {
-  border: 1px solid #fff;
+  position: absolute;
+  left: 50%;
+  top: 97%;
+  transform: translate(-50%, -50%);
   border-collapse: collapse;
-  margin: 10px 0;
-  width: 30%;
-  table-layout: auto;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #bdc3c7;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
-table tr {
-  width: 30px;
-  height: 60px;
+
+
+tr {
+  transition: all .2s ease-in;
+  cursor: pointer;
 }
 
-table th {
-  text-align: center;
-  border: 1px solid #fff;
-  font-size: 0.85em;
-  padding: 0.7em;
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-table td {
-  text-align: center;
-  border: 1px solid #fff;
-  font-size: 0.8em;
-  padding: 0.5em;
-  width: 30px;
-  height: 70px;
+tr:hover {
+  background-color: #d9d6d6;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
-table td:first-child {
-  width: 20px;
+@media only screen and (max-width: 768px) {
+  table {
+    width: 200px;
+  }
 }
 
-.fa-solid {
-  color: #e77823;
-  font-size: 30px;
+.Get {
+  color: #fff;
+  font-size: 20px;
+}
+
+.Getwerhose {
+  color: #fff;
+  font-size: 20px;
   position: relative;
-  left: 80%;
-  top: -90px;
+  top: -80px;
+}
+
+.Getreq {
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.Getwerhose1 {
+  font-size: 20px;
+  margin-left: 30px;
+  position: relative;
+  top: -80px;
+}
+
+.Getwerhose2 {
+  font-size: 20px;
+
+  position: relative;
+  top: -80px;
+}
+
+.Getwerhose3 {
+  font-size: 20px;
+  margin-left: 50px;
+  position: relative;
+  top: -80px;
+}
+
+.Getwerhose4 {
+  font-size: 20px;
+  margin-left: 10px;
+  position: relative;
+  top: -80px;
+}
+
+.Getwerhose5 {
+  font-size: 20px;
+  margin-left: 40px;
+  position: relative;
+  top: -80px;
+}
+
+.Getreq1 {
+  font-size: 20px;
+
+}
+
+.Getreq2 {
+  font-size: 20px;
+  margin-left: 50px;
+
+}
+
+.Getreq3 {
+  font-size: 20px;
+  margin-left: 20px;
+
+}
+
+.Getreq4 {
+  font-size: 20px;
+  margin-left: 30px;
+
 }
