@@ -79,21 +79,25 @@ if ($isQty != null) {
     <label class='num-rq2'>Area</label>
     <label class='num-rq22'>$area</label>
     <br>
+    
+    <label class='length'>$length m</label>
+    &nbsp; &nbsp; &nbsp;
+    <label class='length'>$width m</label>
+    &nbsp; &nbsp; &nbsp;
+    <label class='length'>$height m</label>
+    &nbsp; &nbsp; &nbsp;
+    <label class='length'>$lwh m</label>
+  <br>
     <label class='num3'>Location</label>
     <label class='num-rq3'>$item</label>
-    <br>
+   
 
-    <label class='num-rq4'>$length m</label>
-    <label class='num-rq4'>$width m</label>
-    <label class='num-rq4'>$height m</label>
-    <label class='num-rq4'>$lwh m</label>
-  
-    <br>
+    
     <label class='num-rq4'>priority</label>
     <label class='num-rq44'>$priority</label>
     <br>
-    <br>
-    <br>
+   
+    
     <br>
     <label class='num'>Notes</label>
     <label class='number'>$notes</label>
