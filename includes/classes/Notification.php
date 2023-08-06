@@ -29,25 +29,33 @@ class Notification
         return false;
     }
 
-    private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $requester){
-        if($inspectorDate){
+    private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $requester)
+    {
+        if ($inspectorDate) {
             return $inspector;
-        }
-        elseif($werehouseName){
+        } elseif ($werehouseName) {
             return $werehouseName;
         }
-        else{
-            return $requester;
-        }
+
+        return $requester;
     }
-    private function getNotiType($werehouseName, $inspectorDate){
-        if($inspectorDate){
+    private function getNotiDate($wereHouseDate, $inspectorDate, $reqDate)
+    {
+        if ($inspectorDate) {
+            return 'Ispector date : ' . FormSanitizer::formatDate($inspectorDate);
+        } elseif ($wereHouseDate) {
+            return 'WereHouse date : ' . FormSanitizer::formatDate($wereHouseDate);
+        }
+
+        return 'request added : ' . FormSanitizer::formatDate($reqDate);
+    }
+    private function getNotiType($werehouseName, $inspectorDate)
+    {
+        if ($inspectorDate) {
             return "Inspector";
-        }
-        elseif($werehouseName){
+        } elseif ($werehouseName) {
             return "Werehouse";
-        }
-        else{
+        } else {
             return "Request";
         }
     }
@@ -60,18 +68,19 @@ class Notification
         $inspector = $data["inspector"];
         $inspectorDate = $data["inspectorDate"];
         $werehouseName = $data["werehouseName"] ?? false;
+        $wereHouseDate = $data["wereHouseDate"] ?? false;
         $type = $this->getNotiType($werehouseName, $inspectorDate);
-        $sender = $this->getNotiFrom($werehouseName, $status, $inspector, $requester);
-        
+        $sender = $this->getNotiFrom($werehouseName, $inspectorDate, $inspector, $requester);
+
         $new = $data["new"] == "yes" ? true : false;
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
 
         if (empty($this->errorArray)) {
             $html = "
             <a href='qty.php?qtyNo=" . $workOrderNo . "&new=" . $new . "'>
-            <p>$reqNo, ".$type.", ".$sender."</p>
+            <p>$reqNo, " . $type . ", " . $sender . "</p>
             <p>$workOrderNo</p>
-            <p>request added : $reqDate</p>
+            <p>".$this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate)."</p>
             </a>
             <br>
             <hr>
@@ -119,7 +128,7 @@ class Notification
         $workOrderNo = $data["workOrderNo"];
         $executer = $data["executer"];
         $wereHouseDate = $data["wereHouseDate"] ? FormSanitizer::formatDate($data["wereHouseDate"]) : null;
-        $resentDate = $data["resentDate"] ? FormSanitizer::formatDate($data["resentDate"]) : null;    
+        $resentDate = $data["resentDate"] ? FormSanitizer::formatDate($data["resentDate"]) : null;
 
         if (empty($this->errorArray)) {
             $html = "
@@ -127,7 +136,7 @@ class Notification
                 <p>Executer : $executer</p>
                 <p>$workOrderNo</span></p>
             ";
-            if($resentDate){
+            if ($resentDate) {
                 $html .= "<p>resent : $resentDate</p>";
             }
             $html .= "

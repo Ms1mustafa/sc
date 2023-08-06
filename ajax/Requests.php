@@ -40,7 +40,7 @@ class Requests
 
         } 
     }else {
-            $sql .= " ORDER BY CASE WHEN status = 'rejected' THEN 0 ELSE 1 END, GREATEST(COALESCE(reqDate, '0000-00-00'), COALESCE(wereHouseDate, '0000-00-00')) DESC";
+        $sql .= " ORDER BY GREATEST(COALESCE(reqDate, '0000-00-00'), COALESCE(wereHouseDate, '0000-00-00'), COALESCE(inspectorDate, '0000-00-00')) DESC";
         }
 
     $query = $con->prepare($sql);
