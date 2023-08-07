@@ -151,6 +151,21 @@ header {
   transition: .2s ease;
 }
 
+.inputfieldrequest {
+  font-size: 15px;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 100%;
+  position: relative;
+  top: 90px;
+  padding: 0px 40px 0 45px;
+  border: 1px solid #e77823;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
 .input-fiel {
   font-size: 15px;
   background: #fff;
@@ -252,7 +267,7 @@ header {
   width: 100%;
   border: none;
   border-radius: 15px;
-  margin-top: 80%;
+  margin-top: 100%;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -275,7 +290,7 @@ header {
   border: none;
   border-radius: 15px;
   position: relative;
-  top: 260px;
+  top: 200px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -447,10 +462,11 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  min-height: 110vh;
+  width: 100%;
+  height: 100vh;
   background: rgba(39, 39, 39, 0.4);
 }
+
 
 .Notifications {
   font-size: 25px;
@@ -605,11 +621,6 @@ header {
     top: -40px;
   }
 
-  .Notification {
-    position: relative;
-    top: -45px;
-  }
-
   .pipe1,
   .clamp1,
   .Wood1 {
@@ -625,10 +636,6 @@ header {
 
 }
 
-.Notification {
-  font-size: 23px;
-  color: #fff;
-}
 
 .itemm {
   color: #fff;
@@ -638,6 +645,15 @@ header {
 .Name-1 {
   color: #fff;
   font-size: 25px;
+  position: absolute;
+  top: 100px;
+}
+
+.Notificationqty {
+  font-size: 23px;
+  position: absolute;
+  top: 220px;
+  color: #fff;
 }
 
 
@@ -669,6 +685,8 @@ header {
 .length {
   font-size: 20px;
   color: #fff;
+  position: relative;
+  top: 80px;
 }
 
 
@@ -676,7 +694,7 @@ header {
 table {
   position: absolute;
   left: 50%;
-  top: 83%;
+  top: 72%;
   transform: translate(-50%, -50%);
   border-collapse: collapse;
   width: 300px;
@@ -688,7 +706,7 @@ table {
 .itemestable {
   position: absolute;
   left: 50%;
-  top: 85%;
+  top: 68%;
   transform: translate(-50%, -50%);
   border-collapse: collapse;
   width: 300px;
@@ -725,6 +743,8 @@ tr:hover {
 .Get {
   color: #fff;
   font-size: 20px;
+  position: relative;
+  top: 80px;
 }
 
 .Getwerhose {
@@ -738,12 +758,14 @@ tr:hover {
   color: #fff;
   font-size: 20px;
   position: relative;
-  top: -90px;
+
 }
 
 .Getreq {
   font-size: 20px;
   margin-left: 30px;
+  position: relative;
+  top: 80px;
 }
 
 .Getwerhose1 {
@@ -757,7 +779,7 @@ tr:hover {
   font-size: 20px;
   margin-left: 30px;
   position: relative;
-  top: -90px;
+
 }
 
 .Getwerhose2 {
@@ -771,7 +793,7 @@ tr:hover {
   font-size: 20px;
   margin-left: 10px;
   position: relative;
-  top: -90px;
+
 }
 
 .Getwerhose3 {
@@ -785,7 +807,7 @@ tr:hover {
   font-size: 20px;
   margin-left: 60px;
   position: relative;
-  top: -90px;
+
 }
 
 .Getwerhose4 {
@@ -799,7 +821,7 @@ tr:hover {
   font-size: 20px;
   margin-left: 20px;
   position: relative;
-  top: -90px;
+
 }
 
 .Getwerhose5 {
@@ -813,28 +835,36 @@ tr:hover {
   font-size: 20px;
   margin-left: 50px;
   position: relative;
-  top: -90px;
+
 }
 
 .Getreq1 {
   font-size: 20px;
+  position: relative;
+  top: 80px;
 
 }
 
 .Getreq2 {
   font-size: 20px;
   margin-left: 50px;
+  position: relative;
+  top: 80px;
 
 }
 
 .Getreq3 {
   font-size: 20px;
   margin-left: 20px;
+  position: relative;
+  top: 80px;
 
 }
 
 .Getreq4 {
   font-size: 20px;
   margin-left: 30px;
+  position: relative;
+  top: 80px;
 
 }

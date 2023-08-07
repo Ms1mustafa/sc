@@ -79,13 +79,13 @@ function getInputValue($name)
         <div class="login-container" id="login">
     <form method="POST">
     <p class="Name-1"><?php echo $adminName; ?></p>
-        <br>
        
+       <br>
         <div id="reqInf"></div>
         <br>
         <?php if ($new)
             echo '
-                <table class="table2tab" >
+                <table  >
                 <thead >
                     <th >
                         <select class="input-fiel" id="ItemDescription">
