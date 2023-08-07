@@ -60,13 +60,12 @@ if ($isQty != null) {
     <label class='Getwerhose5'>$notes</label>
 
     <table>
-        <thead>
+        <tr>
             <th>Item description</th>
             <th>QTY Req</th>
             <th>QTY Issued</th>
             <th>Comment</th>
-        </thead>
-        <tbody>
+       </tr>
         ";
     if ($pipeQty) {
         echo "

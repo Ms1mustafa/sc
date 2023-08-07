@@ -40,34 +40,33 @@ if ($isQty != null) {
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
 
-    echo "<label  class='num'>ReqNo</label>
-    <label class='number'>$reqNo</label>
-
+    echo "<label  class='Getinspect'>ReqNo</label>
+    <label class='Getinspect1'>$reqNo</label>
+<br>
     
-    <label class='num-rq'>Requester</label>
-    <label  class='num-rq1'>$requester</label>
+    <label class='Getinspect'>Requester</label>
+    <label  class='Getinspect2'>$requester</label>
 
     <br>
-    <label class='num'>Inspector</label>
-    <label class='num1'>$inspector</label>
-
-    <label  class='num-rq2'>Area</label>
-    <label class='num-rq22' >$area</label>
+    <label class='Getinspect'>Inspector</label>
+    <label class='Getinspect2'>$inspector</label>
+<br>
+    <label  class='Getinspect'>Area</label>
+    <label class='Getinspect3' >$area</label>
     <br>
 
-    <label class='num'>Location</label>
-    <label class='num-rq3'>$item</label>
+    <label class='Getinspect'>Location</label>
+    <label class='Getinspect4'>$item</label>
    <br>
-    <label class='num'>Notes</label>
-    <label  class='number'>$notes</label>
-    <table>
-        <thead>
+    <label class='Getinspect'>Notes</label>
+    <label  class='Getinspect5'>$notes</label>
+    <table class='itemestable'>
+        <tr>
             <th>Item description</th>
             <th>QTY Req</th>
             <th>QTY Issued</th>
             <th>Comment</th>
-        </thead>
-        <tbody>
+       </tr
         ";
     if ($pipeQty) {
         echo "
@@ -136,13 +135,13 @@ if ($isQty != null) {
     }
     if ($status == 'pending') {
         echo '
-            <button class="submit" name="accept" onclick="removeRequiredAttribute()">accept</button>
+            <button class="submitacceptinspecter" name="accept" onclick="removeRequiredAttribute()">accept</button>
             <br>
             <br>
-            <button class="submit" name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
+            <button class="submitrejectinspecter" name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
             <br>
             <br>
-            <input class="input-field" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason">
+            <input class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason">
         ';
     }
     echo "
