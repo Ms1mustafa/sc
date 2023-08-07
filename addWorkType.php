@@ -60,17 +60,17 @@ if (isset($_POST["submit"])) {
   <form method="POST">
     <label>Work type id</label>
    
-    <input type="text"class="input-field" name="wtId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
+    <input type="text"class="inputfieldlogin" name="wtId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
 </div>
     <br>
     <div class="input-box">
     <form method="POST">
     <label for="wtName">Work type Name</label>
-    <input type="text"  class="input-field" name="wtName" id="wtName" placeholder="Work type name" required>
+    <input type="text"  class="inputfieldlogin" name="wtName" id="wtName" placeholder="Work type name" required>
 </div>
     <br>
     <div class="input-box">
-        <button type="submit" name="submit"  class="submit" >Add</button>
+        <button type="submit" name="submit"  class="submitlogin" >Add</button>
         </div>
     
   </form>

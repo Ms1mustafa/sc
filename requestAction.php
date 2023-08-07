@@ -100,7 +100,7 @@ if (isset($_POST["delete"])) {
         <div class="login-container" id="login">
             <div class="top">
 
-                <header class="addrequest">Edit Request...</header>
+                <header ></header>
             </div>
             <br>
             <div class="input-box">
@@ -108,13 +108,16 @@ if (isset($_POST["delete"])) {
     <form method="POST">
         <?php echo $request->getError(constants::$requestFailed); ?>
         <label class="priority">ReqNo</label>
-        <input value="<?php echo $getRequest['reqNo']; ?>" placeholder="Req No" class="input-field name="reqNo" disabled readonly required>
+        <br>
+        <input value="<?php echo $getRequest['reqNo']; ?>" placeholder="Req No" class="input-field" name="reqNo" disabled readonly required>
         <br>
         <label class="priority">Work Order No</label>
+        <br>
         <input type="text"laceholder="Work Order No" class="input-field name="workOrderNo" disabled readonly
             value="<?php echo $workOrderNo; ?>" required>
         <br>
         <label class="priority">Requester</label>
+        <br>
         <input value="<?php echo $getRequest['name']; ?>" class="input-field name="name" disabled readonly>
         <br>
         <br>
@@ -129,6 +132,7 @@ if (isset($_POST["delete"])) {
         </select>
         <br>
         <label class="priority">Location</label>
+        <br>
         <select  class="input-field" name="item"  id="item" required <?php echo $canEdit; ?>>
             <?php if ($getRequest['item']) {
 
@@ -160,18 +164,21 @@ if (isset($_POST["delete"])) {
         <label class="priority" for="low">Low &nbsp; More than 5 days</label>
         <br>
         <label class="priority">work type</label>
+        <br>
         <select  class="input-field" name="workType"required <?php echo $canEdit; ?>>
             <option selected value="<?php echo $getRequest['workType'] ?? ''; ?>"><?php echo $getRequest['workType'] ?? 'Select work type'; ?></option>
             <?php echo $getWT; ?>
         </select>
         <br>
         <label class="priority">Inspector</label>
+        <br>
         <select class="input-field" name="inspector"  required <?php echo $canEdit; ?>>
             <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ?? 'select inspector'; ?></option>
             <?php echo $inspectors; ?>
         </select>
         <br>
         <label class="priority">Notes</label>
+        <br>
         <input class="input-note" name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
         <br>
         <br>

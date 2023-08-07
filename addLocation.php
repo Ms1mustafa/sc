@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="css.css?1999">
     <title>Add location </title>
 </head>
 
@@ -67,22 +67,22 @@ if (isset($_POST["submit"])) {
         <div class="input-box">
 
     <form method="POST">
-        <input type="text" class="input-field" name="id" value="<?php echo $getItemId; ?>" placeholder="id" readonly required>
+        <input type="text" class="inputfieldlogin" name="id" value="<?php echo $getItemId; ?>" placeholder="id" readonly required>
 </div>
         <br>
 
-        <select class="input-field" name="areaId">
+        <select class="inputfieldlogin" name="areaId">
             <?php echo $getArea; ?>
         </select>
         <br>
         <br>
         <div class="input-box">
 
-        <input type="text"class="input-field"  name="itemName" placeholder="Add Item" required>
+        <input type="text"class="inputfieldlogin"  name="itemName" placeholder="Add Item" required>
 </div>
      <br>  
 <div class="input-box">
-        <button type="submit" name="submit"  class="submit" >Add</button>
+        <button type="submit" name="submit"  class="submitlogin" >Add</button>
         </div>
         
     </form>

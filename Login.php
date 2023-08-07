@@ -56,16 +56,16 @@ function getInputValue($name)
 
     <form method="POST">
         <?php  echo $account->getError(constants::$loginFailed); ?>
-        <input type="Email" name="email"class="input-field" placeholder="Username or Email"value="<?php getInputValue("email"); ?>" required>
+        <input type="Email" name="email"class="inputfieldlogin" placeholder="Username or Email"value="<?php getInputValue("email"); ?>" required>
         <i class="bx bx-user"></i>
         </div>
         <div class="input-box">
 
-        <input type="password" name="password"class="input-field" placeholder="Password" value="<?php getInputValue("password"); ?>" required>
+        <input type="password" name="password"class="inputfieldlogin" placeholder="Password" value="<?php getInputValue("password"); ?>" required>
         <i class="bx bx-lock-alt"></i>
         </div>
         <div class="input-box">
-        <input type="submit" name="submit" class="submit" value="Sign In">
+        <input type="submit" name="submit" class="submitlogin" value="Sign In">
         </div>
         
     </form>

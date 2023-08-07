@@ -25,7 +25,7 @@ $requests = $request->getRequestNumber($adminName);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="css.css?1999">
     <title>Owner </title>
 </head>
 
@@ -49,23 +49,23 @@ $requests = $request->getRequestNumber($adminName);
             <br>
 
             <div class="input-box">
-                <button class="input-field"><a href="addArea.php">Add area</a></button>
+                <button class="inputfieldlogin"><a href="addArea.php">Add area</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="input-field"><a href="addLocation.php">Add location</a></button>
+                <button class="inputfieldlogin"><a href="addLocation.php">Add location</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="input-field"> <a href="addAdmin.php">Add admin</a></button>
+                <button class="inputfieldlogin"> <a href="addAdmin.php">Add admin</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="input-field"><a href="addWorkType.php">Add work type</a></button>
+                <button class="inputfieldlogin"><a href="addWorkType.php">Add work type</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="input-field"> <a href="createAccount.php">Create new account</a></button>
+                <button class="inputfieldlogin"> <a href="createAccount.php">Create new account</a></button>
             </div>
             <br>
         </div>

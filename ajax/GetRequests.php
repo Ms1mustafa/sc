@@ -105,7 +105,7 @@ if ($isQty != null) {
    
     <label class='Get'>Date</label>
    <br>
-    <input class='input-field' type='date' name='finishDate' value='$finishDate' ";
+    <input class='inputfieldlogin' type='date' name='finishDate' value='$finishDate' ";
     
     if (!$new) {
         echo 'readonly';

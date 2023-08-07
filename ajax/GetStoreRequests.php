@@ -59,7 +59,7 @@ if ($isQty != null) {
     <label class='Getwerhose'>Notes</label>
     <label class='Getwerhose5'>$notes</label>
 
-    <table>
+    <table class='itemestable'>
         <tr>
             <th>Item description</th>
             <th>QTY Req</th>

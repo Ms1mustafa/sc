@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="css.css?1999">
   <title>Add Area </title>
 </head>
 
@@ -58,15 +58,15 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="input-box">
   <form method="POST">
-    <input type="text"  class="input-field" name="areaId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
+    <input type="text"  class="inputfieldlogin" name="areaId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
 </div>
 <br>
 <div class="input-box">
-    <input type="text" class="input-field"  name="areaName" placeholder="Add Area" required>
+    <input type="text" class="inputfieldlogin"  name="areaName" placeholder="Add Area" required>
 </div>
 <br>
 <div class="input-box">
-        <button type="submit" name="submit"  class="submit" >Add</button>
+        <button type="submit" name="submit"  class="submitlogin" >Add</button>
         </div>
    
    

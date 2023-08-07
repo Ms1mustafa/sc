@@ -73,7 +73,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
    
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="css.css?1999">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -116,7 +116,7 @@ if (isset($_POST["submit"])) {
         <div class="login-container" id="login">
             <div class="top">
 
-                <header class="addrequest">Add Request...</header>
+                <header ></header>
             </div>
             <br>
             <div class="input-box">
@@ -125,39 +125,46 @@ if (isset($_POST["submit"])) {
                     <?php echo $request->getError(constants::$requestFailed); ?>
                     <br>
                     <label class="priority">Req Name</label>
+                    <br>
                     <input type="text" class="input-field" placeholder="name" name="name"
                         value="<?php echo $adminName; ?>" readonly required>
             </div>
+            <br>
             <div class="input-box">
                 <label class="priority">Req No</label>
+                <br>
                 <input type="text" class="input-field" placeholder="Req No" name="reqNo" readonly
                     value="<?php echo $requestNum; ?>" required>
             </div>
+            <br>
             <div class="input-box">
                 <label class="priority">Work Order No</label>
+                <br>
                 <input type="text" class="input-field" placeholder="Work Order No" name="workOrderNo" readonly
                     value="<?php echo $workOrderNum; ?>" required>
             </div>
             <br>
-
+<div>
             <select name="area" class="input-field" id="area" required>
                 <option disabled selected value="">select area</option>
                 <?php echo $getArea; ?>
             </select>
-            <br>
-            <br>
+</div>
+<br>
             <select name="item" class="input-field" id="item" required>
                 <option disabled selected value="">select location</option>
             </select>
             <br>
             <br>
+            <div class="met">
             <input type="number" class="input-number" id="length" min="1" placeholder="L" name="length"><span
-                class="metre">m</span>
+                class="metre">L</span>
             <input type="number" class="input-number" id="width" min="1" placeholder="W" name="width"><span
-                class="metre">m</span>
-            <input type="number" class="input-number" id="height" min="1" placeholder="H" name="height"><span
-                class="metre">m</span>
-            <br>
+                class="metre">W</span>
+              
+              <input type="number" class="input-number" id="height" min="1" placeholder="H" name="height"><span
+                class="metre">H</span>
+</div>
             <p id="boxResult"></p>
             <br>
             <label class="priority">Priority</label>
@@ -188,8 +195,9 @@ if (isset($_POST["submit"])) {
             </select>
             <br>
             <label class="priority">Notes</label>
-            <textarea class="input-note" name="notes" required>Notes</textarea>
             <br>
+            <textarea class="input-note" name="notes" required></textarea>
+         
             <div class="input-box">
                 <button type="submit" name="submit" class="submit">submit</button>
             </div>

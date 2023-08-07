@@ -55,7 +55,7 @@ function getInputValue($name)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="css.css?1999">
   <title>SignUp</title>
 </head>
 
@@ -95,24 +95,24 @@ function getInputValue($name)
     <?php echo $account->getError(constants::$usernameTaken); ?>
 
     <label for="name">Name</label>
-    <input type="text" name="username" id="name"class="input-field" placeholder="Name" value="<?php getInputValue("username"); ?>" required />
+    <input type="text" name="username" id="name"class="inputfieldlogin" placeholder="Name" value="<?php getInputValue("username"); ?>" required />
 </div>
 
     <?php echo $account->getError(constants::$emailInvalid); ?>
     <?php echo $account->getError(constants::$emailTaken); ?>
     <div class="input-box">
     <label for="email">Email</label>
-    <input type="Email" id="email" name="email"class="input-field" placeholder="Email" value="<?php getInputValue("email"); ?>" required />
+    <input type="Email" id="email" name="email"class="inputfieldlogin" placeholder="Email" value="<?php getInputValue("email"); ?>" required />
 </div>
 <div class="input-box">
     <?php echo $account->getError(constants::$passwordLength); ?>
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" class="input-field" placeholder="Password" value="<?php getInputValue("password"); ?>"
+    <input type="password" name="password" id="password" class="inputfieldlogin" placeholder="Password" value="<?php getInputValue("password"); ?>"
       required />
 </div>
 <br>
 
-    <select class="input-field" name="type" >
+    <select class="inputfieldlogin" name="type" >
     <option value="Select Aperson" >Select Aperson</option>
       <option value="owner" >owner</option>
       <option value="admin" >admin</option>
@@ -123,7 +123,7 @@ function getInputValue($name)
     <br>
 <br>
        <div class="input-box">
-    <input type="submit"name="submit" class="submit" >
+    <input type="submit"name="submit" class="submitlogin" >
 </div>
   </form>
   
