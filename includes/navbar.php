@@ -9,9 +9,12 @@
             <li><a href="#" class="link">Blog</a></li>
             <li><a href="#" class="link">Services</a></li>
             <li><a href="#" class="link">About</a></li>
+            
         </ul>
+        
         <div class="nav-button">
             <a href="logout.php"><button class="btn white-btn">Log out</button></a>
+           <a href=""> <i class="fa-solid fa-share-from-square"></i></a>
         </div>
         <div class="nav-menu-btn">
             <i class="bx bx-menu" onclick="myMenuFunction()"></i>

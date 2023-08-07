@@ -662,7 +662,6 @@ header {
 
 
 
-
   .input-field {
     height: 50px;
     width: 80%;
@@ -738,6 +737,7 @@ tr:hover {
   table {
     width: 200px;
   }
+
 }
 
 .Get {
@@ -867,4 +867,11 @@ tr:hover {
   position: relative;
   top: 80px;
 
+}
+
+.fa-share-from-square {
+  color: #fff;
+  position: absolute;
+  right: 160px;
+  top: 40px;
 }
