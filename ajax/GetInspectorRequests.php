@@ -60,74 +60,9 @@ if ($isQty != null) {
    <br>
     <label class='Getinspect'>Notes</label>
     <label  class='Getinspect5'>$notes</label>
-    <table class='itemestable'>
-        <tr>
-            <th>Item description</th>
-            <th>QTY Req</th>
-            <th>QTY Issued</th>
-            <th>Comment</th>
-       </tr
+    
         ";
-    if ($pipeQty) {
-        echo "
-                    <tr>
-                        <td>Pipe 6M</td>
-                        <td>$pipeQty</td>
-                        <td><input class = 'pipe1' type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' ";
-        if ($issued) {
-            echo "disabled";
-        }
-        echo "></td>
-                        <td><input class = 'pipe1' type='text' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' ";
-        if ($issued) {
-            echo "disabled";
-        }
-        echo "></td>
-                    </tr>
-                ";
-    }
-    if ($clampQty) {
-        echo "
-                    <tr>
-                        <td>Clamp movable</td>
-                        <td>$clampQty</td>
-                        <td><input class = 'pipe1' type='number' min = '1' name='clampQtyStore' value='$clampQtyStore' ";
-        if ($issued) {
-            echo "disabled";
-        }
-        echo "></td>
-                        <td><input class = 'pipe1' type='text' name='clampQtyStoreComment' value='$clampQtyStoreComment' ";
-        if ($issued) {
-            echo "disabled";
-        }
-        echo "></td>
-                    </tr>
-                ";
-    }
-    if ($woodQty) {
-        echo "
-                    <tr>
-                        <td>Wood 4m</td>
-                        <td>$woodQty</td>
-                        <td><input class = 'pipe1' type='number' min = '1' name='woodQtyStore' value='$woodQtyStore' ";
-        if ($issued) {
-            echo "disabled";
-        }
-        echo "></td>
-                        <td><input  class = 'pipe1' type='text' name='woodQtyStoreComment' value='$woodQtyStoreComment' ";
-        if ($issued) {
-            echo "disabled";
-        }
-        echo "></td>
-                    </tr>
-                ";
-    }
-    echo "
-            
-        </tbody>
-    </table>
-  
-    ";
+   
     if ($status == 'resent') {
         echo '
             <button name="accept" onclick="removeRequiredAttribute()">accept</button>

@@ -26,6 +26,8 @@ $requests = $request->getRequestNumber($adminName);
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css.css?1999">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <title>Owner </title>
 </head>
 
@@ -36,7 +38,7 @@ $requests = $request->getRequestNumber($adminName);
         <div class="login-container" id="login">
             <div class="top">
 
-                <header>OwnerAccount</header>
+                <header></header>
             </div>
 
             <p class="adminName">

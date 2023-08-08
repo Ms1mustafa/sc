@@ -177,7 +177,7 @@ if (isset($_POST["submit"])) {
             <label class="priority" for="high">High &nbsp; 2-3 Days</label>
             <br>
             <input type="radio" id="medium" value="Medium 3-4 Days" name="priority">
-            <label class="priority" for="medium">Medium &nbsp; 3-4 Days</label>
+            <label class="priority" for="medium">Medium &nbsp; 4-5 Days</label>
             <br>
             <input type="radio" id="low" value="Low More than 5 days" name="priority">
             <label class="priority" for="low">Low &nbsp; More than 5 days</label>
