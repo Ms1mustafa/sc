@@ -1,6 +1,9 @@
 <nav class="nav">
     <div class="nav-logo">
+       
+       
         <p>LOGO .</p>
+        <a href="logout.php"><button class="buttonlogout">Log out</button></a>
     </div>
 
     <div class="nav-menu" id="navMenu">
@@ -13,8 +16,7 @@
         </ul>
         
         <div class="nav-button">
-            <a href="logout.php"><button class="btn white-btn">Log out</button></a>
-           <a href=""> <i class="fa-solid fa-share-from-square"></i></a>
+               <a href=""> <i class="fa-solid fa-share-from-square"></i></a>
         </div>
         <div class="nav-menu-btn">
             <i class="bx bx-menu" onclick="myMenuFunction()"></i>

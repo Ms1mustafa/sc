@@ -105,6 +105,7 @@ if ($isQty != null) {
    
     <label class='Get'>Date</label>
    <br>
+   
     <input class='inputfieldrequest' type='date' name='finishDate' value='$finishDate' ";
     
     if (!$new) {
