@@ -47,14 +47,14 @@ class Account
         return false;
     }
 
-    public function register($tk, $un, $em, $pw, $ty, $requestNum)
+    public function register($tk, $un, $em, $pw, $ty, $requestNum, $area = '')
     {
         $this->validateUsername($un);
         $this->validateEmail($em);
         $this->validatePassword($pw);
 
         if (empty($this->errorArray)) {
-            return $this->insertUserDetils($tk, $un, $em, $pw, $ty, $requestNum);
+            return $this->insertUserDetils($tk, $un, $em, $pw, $ty, $requestNum, $area);
         }
 
         return false;
@@ -78,9 +78,9 @@ class Account
         return false;
     }
 
-    public function insertUserDetils($tk, $un, $em, $pw, $ty, $requestNum)
+    public function insertUserDetils($tk, $un, $em, $pw, $ty, $requestNum, $area = '')
     {
-        $query = $this->con->prepare("INSERT INTO users (token,username,email, password, type, requestNum) VALUES (:tk, :un, :em, :pw, :ty, :requestNum)");
+        $query = $this->con->prepare("INSERT INTO users (token,username,email, password, type, requestNum, area) VALUES (:tk, :un, :em, :pw, :ty, :requestNum, :area)");
 
         $query->bindValue(":tk", $tk);
         $query->bindValue(":un", $un);
@@ -88,6 +88,7 @@ class Account
         $query->bindValue(":pw", $pw);
         $query->bindValue(":ty", $ty);
         $query->bindValue(":requestNum", $requestNum);
+        $query->bindValue(":area", $area);
 
         return $query->execute();
     }

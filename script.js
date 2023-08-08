@@ -1,3 +1,12 @@
+const userType = document.getElementById("userType");
+const areas = document.getElementById("areas");
+
+userType.addEventListener('change', () => {
+  if (userType.value == 'inspector') {
+    areas.style.display = 'block';
+  }
+})
+
 const lengthValue = document.getElementById("length");
 const width = document.getElementById("width");
 const height = document.getElementById("height");

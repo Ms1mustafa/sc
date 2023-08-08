@@ -191,7 +191,7 @@ if (isset($_POST["submit"])) {
             </select>
             <br>
             <br>
-            <select name="inspector" class="input-field" required>
+            <select name="inspector" id="inspector" class="input-field" required>
                 <option disabled selected value="">select inspector</option>
                 <?php echo $inspectors; ?>
             </select>
@@ -216,6 +216,13 @@ if (isset($_POST["submit"])) {
                 { areaId: $("#area").val() },
                 function (data) {
                     $("#item").html(data);
+                }
+            );
+            $.get(
+                "ajax/GetInspectors.php",
+                { areaId: $("#area").val() },
+                function (data) {
+                    $("#inspector").html(data);
                 }
             );
 

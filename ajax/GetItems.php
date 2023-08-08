@@ -7,5 +7,4 @@ $users = Items::items($con, $areaId);
 
 echo $users;
 
-
 ?>
