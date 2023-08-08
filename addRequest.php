@@ -14,6 +14,8 @@ if (!$userEmail) {
 
 $account = new Account($con);
 
+$request = new Request($con);
+
 Powers::admin($account, $userEmail);
 
 $generatedNumbers = [];
@@ -122,7 +124,7 @@ if (isset($_POST["submit"])) {
             <div class="input-box">
 
                 <form method="POST">
-                    <?php echo $request->getError(constants::$requestFailed); ?>
+                    <?php echo $request->getError(constants::$workOrderNoTaken); ?>
                     <br>
                     <label class="priority">Req Name</label>
                     <br>
@@ -138,10 +140,10 @@ if (isset($_POST["submit"])) {
             </div>
             <br>
             <div class="input-box">
+            <?php echo $request->getError(constants::$usernameTaken); ?>
                 <label class="priority">Work Order No</label>
                 <br>
-                <input type="text" class="input-field" placeholder="Work Order No" name="workOrderNo" readonly
-                    value="<?php echo $workOrderNum; ?>" required>
+                <input type="text" class="input-field" placeholder="Work Order No" name="workOrderNo" required>
             </div>
             <br>
 <div>

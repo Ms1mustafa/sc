@@ -73,7 +73,7 @@ if ($isQty != null) {
                         <td>Pipe 6M</td>
                         <td><input class = 'pipe1'type='number' name='pipeQty' value='$pipeQty' readonly></td>
                         <td><input class = 'pipe1' type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' "; if($issued){echo "disabled";}echo"></td>
-                        <td><input  class = 'pipe1' type='number' min = '1' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' "; if($issued){echo "disabled";}echo"></td>
+                        <td><input  class = 'pipe1' type='text' min = '1' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' "; if($issued){echo "disabled";}echo"></td>
                     </tr>
                 ";
     }

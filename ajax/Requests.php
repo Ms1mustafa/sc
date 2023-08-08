@@ -15,7 +15,7 @@ class Requests
     }
 
     if ($store) {
-        $whereClause[] = "finishDate != '0000:00:00' ";
+        $whereClause[] = "finishDate != '0000:00:00' AND issued != 'yes'";
     }
 
     if ($admin) {
@@ -23,7 +23,11 @@ class Requests
     }
 
     if ($inspector) {
-        $whereClause[] = "executerAccept = 'yes'";
+        $whereClause[] = "executerAccept = 'yes' AND status != 'accepted' AND status != 'rejected'";
+    }
+    
+    if(!$store && !$inspector && !$admin){
+        $whereClause[] = "executerAccept != 'yes' OR status = 'rejected' ";
     }
 
     if (!empty($whereClause)) {

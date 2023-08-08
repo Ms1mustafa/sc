@@ -17,6 +17,8 @@ class Request
 
     public function addRequest($reqNo, $name, $workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $executer, $inspector, $notes, $status)
     {
+        $this->validateworkOrderNo($workOrderNo);
+
         if ($reqNo && $name && $workOrderNo && $area && $item && $length && $width && $height && $priority && $workType && $executer && $inspector && $notes && $status) {
             if (empty($this->errorArray)) {
                 return $this->insertRequestDetils($reqNo, $name, $workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $executer, $inspector, $notes, $status);
@@ -28,6 +30,7 @@ class Request
     }
     public function editRequest($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspector, $notes)
     {
+        $this->validateworkOrderNo($workOrderNo);
         if ($workOrderNo && $area && $item && $length && $width && $height && $priority && $workType && $inspector && $notes) {
             if (empty($this->errorArray)) {
                 return $this->editRequestDetils($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspector, $notes);
@@ -187,6 +190,18 @@ class Request
         }
 
         return false;
+    }
+
+    public function validateworkOrderNo($workOrderNo)
+    {
+        $query = $this->con->prepare('SELECT * FROM request WHERE workOrderNo = :workOrderNo');
+        $query->bindValue(':workOrderNo', $workOrderNo);
+
+        $query->execute();
+
+        if ($query->rowCount() != 0) {
+            array_push($this->errorArray, constants::$workOrderNoTaken);
+        }
     }
 
     public function getRequestNumber($name)

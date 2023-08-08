@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
     $success = $account->updateUser($email, $areaName,'inspector');
 
     if ($success) {
-        header("location: addAdmin.php");
+        header("location: ownerPage.php");
     }
 }
 

@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
   $success = $area->addArea($areaId, $areaName);
 
   if ($success) {
-    header("location: addArea.php");
+    header("location: ownerPage.php");
   }
 }
 ?>

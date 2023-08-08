@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
     $success = $area->addItem($id, $areaId, $itemName);
   
     if ($success) {
-      header("location: addItem.php");
+      header("location: ownerPage.php");
     }
   }
 ?>

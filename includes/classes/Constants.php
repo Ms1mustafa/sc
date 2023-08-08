@@ -7,5 +7,6 @@ class Constants {
     public static $passwordLength = "Your password must be between 5 and 25 characters";
     public static $loginFailed = "Your username or password was incorrect";
     public static $requestFailed = "You should fill all fields";
+    public static $workOrderNoTaken = "workOrderNo already in use";
 }
 ?>

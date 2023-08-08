@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
   $success = $area->addWT($itemdesId, $itemdesName);
 
   if ($success) {
-    header("location: addItemDes.php");
+    header("location: ownerPage.php");
   }
 }
 ?>

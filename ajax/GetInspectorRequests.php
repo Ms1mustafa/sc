@@ -63,12 +63,12 @@ if ($isQty != null) {
     
         ";
    
-    if ($status == 'resent') {
-        echo '
-            <button name="accept" onclick="removeRequiredAttribute()">accept</button>
-        ';
-    }
-    if ($status == 'pending') {
+    // if ($status == 'resent') {
+    //     echo '
+    //         <button name="accept" onclick="removeRequiredAttribute()">accept</button>
+    //     ';
+    // }
+    if ($status = 'pending') {
         echo '
             <button class="submitacceptinspecter" name="accept" onclick="removeRequiredAttribute()">accept</button>
             <br>

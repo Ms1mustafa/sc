@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
   $success = $area->addWT($wtId, $wtName);
 
   if ($success) {
-    header("location: addWorkType.php");
+    header("location: ownerPage.php");
   }
 }
 ?>

@@ -59,10 +59,6 @@ $requests = $request->getRequestNumber($adminName);
             </div>
             <br>
             <div class="input-box">
-                <button class="inputfieldlogin"> <a href="addAdmin.php">Add admin</a></button>
-            </div>
-            <br>
-            <div class="input-box">
                 <button class="inputfieldlogin"><a href="addWorkType.php">Add work type</a></button>
             </div>
             <br>
