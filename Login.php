@@ -55,7 +55,7 @@ function getInputValue($name)
         <div class="input-box">
 
     <form method="POST">
-        <?php  echo $account->getError(constants::$loginFailed); ?>
+        <?php echo $account->getError(constants::$loginFailed); ?>
         <input type="Email" name="email"class="inputfieldlogin" placeholder="Username or Email"value="<?php getInputValue("email"); ?>" required>
         <i class="bx bx-user"></i>
         </div>
