@@ -1,6 +1,6 @@
 <?php
 include_once('includes/classes/Account.php');
-include_once('includes/classes/request.php');
+include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];

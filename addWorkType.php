@@ -1,5 +1,5 @@
 <?php
-include_once('includes/classes/workType.php');
+include_once('includes/classes/WorkType.php');
 include_once('includes/classes/FormSanitizer.php');
 
 $area = new workType($con);
