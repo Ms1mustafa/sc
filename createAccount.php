@@ -72,7 +72,7 @@ function getInputValue($name)
 <body>
   <!------------------- CreateAccount ------------------------->
 
-  <div class="wrappe">
+  <div class="pageoner">
     <nav class="nav">
       <div class="nav-logo">
         <p>LOGO .</p>
@@ -98,11 +98,11 @@ function getInputValue($name)
 
         <header>CreateAccount...</header>
       </div>
-      <div class="input-box">
+    
         <p class="adminName">
           <?php echo $requestNum; ?>
         </p>
-
+        <div class="input-box">
         <form method="POST">
           <?php echo $account->getError(constants::$usernameTaken); ?>
 
@@ -126,7 +126,7 @@ function getInputValue($name)
       </div>
       <br>
 
-      <select class="inputfieldlogin" id="userType" name="type">
+      <select class="inputfieldselect" id="userType" name="type">
         <option value="Select Aperson">Select Aperson</option>
         <option value="owner">owner</option>
         <option value="admin">admin</option>

@@ -51,8 +51,6 @@ if (isset($_POST["submit"])) {
                 <li><a href="#" class="link">Services</a></li>
                 <li><a href="#" class="link">About</a></li>
             </ul>
-            <div class="nav-button">
-            <button class="btn white-btn" >Log out</button>
             
         </div>
         <div class="nav-menu-btn">
@@ -71,7 +69,7 @@ if (isset($_POST["submit"])) {
 </div>
         <br>
 
-        <select class="inputfieldlogin" name="areaId">
+        <select class="inputfieldselect" name="areaId">
             <?php echo $getArea; ?>
         </select>
         <br>
