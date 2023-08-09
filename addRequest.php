@@ -32,7 +32,6 @@ while (true) {
 
 $requestNum = $account->getAccountDetails($userEmail, false, false, false, false, true);
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false, true);
-$inspectors = $account->getAccount(true, false, true, true);
 $executer = $account->getAccountByType('Execution');
 
 $area = new Area($con);
@@ -193,7 +192,6 @@ if (isset($_POST["submit"])) {
             <br>
             <select name="inspector" id="inspector" class="input-field" required>
                 <option disabled selected value="">select inspector</option>
-                <?php echo $inspectors; ?>
             </select>
             <br>
             <label class="priority">Notes</label>
