@@ -1,6 +1,6 @@
 <?php
 include_once('includes/config.php');
-include_once('includes/classes/constants.php');
+include_once('includes/classes/Constants.php');
 
 class Request
 {
