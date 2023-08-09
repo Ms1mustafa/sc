@@ -32,13 +32,14 @@ $requests = $request->getRequestNumber($adminName);
 </head>
 
 <body>
-    <div class="wrappe">
+    
         <?php include_once('includes/navbar.php') ?>
-
+        <div class="pageoner">
         <div class="login-container" id="login">
+            
             <div class="top">
 
-                <header></header>
+                <header >Owner</header>
             </div>
 
             <p class="adminName">

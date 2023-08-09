@@ -48,23 +48,24 @@ function getInputValue($name)
 <div class="wrapp">
      <!------------------- login form -------------------------->
 <div class="login-container" id="login">
-<div class="top">
-
-          <header>Sing up Now..!</header>
+<div class="">
+    <h1 class="welcomlogin"><span class="colorScaffolding">W</span>elcome  <span class="colorScaffolding">T</span>o <span class="colorScaffolding">S</span>caffolding <span class="colorScaffolding">A</span>pplaction </h1>
+<br>
+          <header><span class="colorScaffolding">L</span>ogin </header>
         </div>
-        <div class="input-box">
+        <div class="input-box1">
 
     <form method="POST">
         <?php echo $account->getError(constants::$loginFailed); ?>
         <input type="Email" name="email"class="inputfieldlogin" placeholder="Username or Email"value="<?php getInputValue("email"); ?>" required>
         <i class="bx bx-user"></i>
         </div>
-        <div class="input-box">
+        <div class="input-box1">
 
         <input type="password" name="password"class="inputfieldlogin" placeholder="Password" value="<?php getInputValue("password"); ?>" required>
         <i class="bx bx-lock-alt"></i>
         </div>
-        <div class="input-box">
+        <div class="input-box1">
         <input type="submit" name="submit" class="submitlogin" value="Sign In">
         </div>
         
