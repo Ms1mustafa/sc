@@ -4,7 +4,7 @@ include_once('../includes/classes/constants.php');
 
 class Requests
 {
-    public static function getRequest($con, $isNotification = null, $isQty = null, $workOrderNo = null, $store = null, $admin = null, $inspector = null)
+    public static function getRequest($con, $isNotification = null, $isQty = null, $workOrderNo = null, $store = null, $admin = null, $inspector = null, $name = null)
 {
     $sql = "SELECT * FROM request ";
 
@@ -19,11 +19,11 @@ class Requests
     }
 
     if ($admin) {
-        $whereClause[] = "issued = 'no'";
+        $whereClause[] = "issued = 'no' AND name = :name";
     }
 
     if ($inspector) {
-        $whereClause[] = "executerAccept = 'yes' AND status != 'accepted' AND status != 'rejected'";
+        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected'";
     }
     
     if(!$store && !$inspector && !$admin){
@@ -51,6 +51,13 @@ class Requests
 
     if ($isQty) {
         $query->bindValue(":workOrderNo", $workOrderNo);
+    }
+
+    if ($admin) {
+        $query->bindValue(":name", $name);
+    }
+    if ($inspector) {
+        $query->bindValue(":inspector", $inspector);
     }
 
     $query->execute();

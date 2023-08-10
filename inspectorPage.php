@@ -51,7 +51,7 @@ $request = new Request($con);
         function loadRequests() {
             $.get(
                 "ajax/GetInspectorRequests.php",
-                { isNotification: true, isQty: null, workOrderNo: null },
+                { isNotification: true, isQty: null, workOrderNo: null, inspector: '<?php echo $adminName;?>' },
                 function (data) {
                     $("#result").html(data);
                 }

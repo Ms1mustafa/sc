@@ -9,7 +9,7 @@ $isQty = $_GET['isQty'];
 $workOrderNo = $_GET['workOrderNo'];
 if ($isNotification != null) {
 
-    $requests = Requests::getRequest($con, $isNotification, false);
+    $requests = Requests::getRequest($con, $isNotification, false, false, false, false, false, );
     foreach ($requests as $request) {
         
         $notification = new Notification();

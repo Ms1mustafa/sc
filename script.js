@@ -33,7 +33,7 @@ const ItemDescription = document.getElementById("ItemDescription");
 const ItemDescriptionBody = document.getElementById("ItemDescriptionBody");
 
 let Pipe, Clamp, Wood;
-ItemDescription.addEventListener("change", function () {
+ItemDescription?.addEventListener("change", function () {
   if (ItemDescription.value == "Pipe 6M" && !Pipe) {
     let html = `
       <tr>

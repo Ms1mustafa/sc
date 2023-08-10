@@ -51,7 +51,7 @@ $request = new Request($con);
         function loadRequests() {
             $.get(
                 "ajax/GetAdminReq.php",
-                
+                { adminName: '<?php echo $adminName; ?>' },
                 function (data) {
                     $("#result").html(data);
                 }

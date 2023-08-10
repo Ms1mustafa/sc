@@ -7,9 +7,10 @@ include_once('../includes/classes/Notification.php');
 $isNotification = $_GET['isNotification'];
 $isQty = $_GET['isQty'];
 $workOrderNo = $_GET['workOrderNo'];
+$inspector = $_GET['inspector'];
 if ($isNotification != null) {
 
-    $requests = Requests::getRequest($con, $isNotification, false, null, null, null, true);
+    $requests = Requests::getRequest($con, $isNotification, false, null, null, null, $inspector);
     foreach ($requests as $request) {
         $notification = new Notification();
 
