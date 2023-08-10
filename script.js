@@ -1,12 +1,3 @@
-const userType = document.getElementById("userType");
-const areas = document.getElementById("areas");
-
-userType.addEventListener('change', () => {
-  if (userType.value == 'inspector') {
-    areas.style.display = 'block';
-  }
-})
-
 const lengthValue = document.getElementById("length");
 const width = document.getElementById("width");
 const height = document.getElementById("height");
@@ -28,6 +19,15 @@ width?.addEventListener("change", function () {
 height?.addEventListener("change", function () {
   getBoxResult([lengthValue, width, height]);
 });
+
+const userType = document.getElementById("userType");
+const areas = document.getElementById("areas");
+
+userType.addEventListener('change', () => {
+  if (userType.value == 'inspector') {
+    areas.style.display = 'block';
+  }
+})
 
 const ItemDescription = document.getElementById("ItemDescription");
 const ItemDescriptionBody = document.getElementById("ItemDescriptionBody");

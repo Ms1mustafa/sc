@@ -336,3 +336,98 @@ header {
     right: 40px;
   }
 }
+
+/*--------------------Home--------------*/
+.adminhome {
+  font-size: 30px;
+  font-weight: bold;
+
+}
+
+.Notificationshome {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.addRequest {
+  position: relative;
+  top: 270px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/*----------------addrequestNewrequest---------------------*/
+.newrequest {
+  display: flex;
+  width: 80%;
+  height: 90vh;
+  position: relative;
+  top: 70px;
+  left: 10%;
+}
+
+.namerequest {
+  font-size: 30px;
+  position: relative;
+  right: 40%;
+  top: 40px;
+}
+
+.labelnewrequest {
+  font-size: 20px;
+}
+
+.input-length {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  text-align: center;
+  width: 80px;
+  border: 2px solid #e77823;
+  position: relative;
+  left: 40px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.inputfieldselectnewreq {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 38%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.inputfieldnot {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 80px;
+  width: 38%;
+
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+@media only screen and (max-width: 786px) {
+  .namerequest {
+    margin-top: 30px;
+
+  }
+}
