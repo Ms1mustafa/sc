@@ -8,6 +8,7 @@ class Notification
     {
         $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
+        $priority = $data["priority"];
         $requester = $data["name"];
         $new = $data["new"] == "yes" ? true : false;
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
@@ -16,7 +17,7 @@ class Notification
             $html = "
             <a href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
             <p>$reqNo, Request, $requester</p>
-            <p>$workOrderNo</p>
+            <p>$priority</p>
             <p>request added : $reqDate</p>
             </a>
             <br>
@@ -63,6 +64,7 @@ class Notification
     {
         $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
+        $priority = $data["priority"];
         $requester = $data["name"];
         $status = $data["status"];
         $inspector = $data["inspector"];
@@ -79,7 +81,7 @@ class Notification
             $html = "
             <a href='qty.php?qtyNo=" . $workOrderNo . "&new=" . $new . "'>
             <p>$reqNo, " . $type . ", " . $sender . "</p>
-            <p>$workOrderNo</p>
+            <p>$priority</p>
             <p>".$this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate)."</p>
             </a>
             <br>
@@ -94,6 +96,7 @@ class Notification
     public function getWereHouseNotification($data)
     {
         $workOrderNo = $data["workOrderNo"];
+        $priority = $data["priority"];
         $executer = $data["executer"];
         $executerDate = FormSanitizer::formatDate($data["executerDate"]);
         $inspectorDate = $data["inspectorDate"] ? FormSanitizer::formatDate($data["inspectorDate"]) : null;
@@ -103,7 +106,7 @@ class Notification
             $html = "
                 <a href='wereHouseQty.php?qtyNo=" . $workOrderNo . "'>
                 <p>Executer: $executer</p>
-                <p>$workOrderNo</p>
+                <p>$priority</p>
             ";
 
             if ($inspectorDate) {
@@ -126,6 +129,7 @@ class Notification
     public function getInspectorNotification($data)
     {
         $workOrderNo = $data["workOrderNo"];
+        $priority = $data["priority"];
         $executer = $data["executer"];
         $wereHouseDate = $data["wereHouseDate"] ? FormSanitizer::formatDate($data["wereHouseDate"]) : null;
         $resentDate = $data["resentDate"] ? FormSanitizer::formatDate($data["resentDate"]) : null;
@@ -134,7 +138,7 @@ class Notification
             $html = "
                 <a href='inspectorQty.php?qtyNo=" . $workOrderNo . "'>
                 <p>Executer : $executer</p>
-                <p>$workOrderNo</span></p>
+                <p>$priority</span></p>
             ";
             if ($resentDate) {
                 $html .= "<p>resent : $resentDate</p>";
