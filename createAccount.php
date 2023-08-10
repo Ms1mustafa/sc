@@ -73,60 +73,44 @@ function getInputValue($name)
   <!------------------- CreateAccount ------------------------->
 
   <div class="pageoner">
-    <nav class="nav">
-      <div class="nav-logo">
-        <p>LOGO .</p>
-      </div>
-
-      <div class="nav-menu" id="navMenu">
-        <ul>
-          <li><a href="ownerPage.php" class="link active">Home</a></li>
-          <li><a href="#" class="link">Blog</a></li>
-          <li><a href="#" class="link">Services</a></li>
-          <li><a href="#" class="link">About</a></li>
-        </ul>
-
-        <div class="nav-menu-btn">
-          <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-        </div>
-    </nav>
-
-
-
+    
     <div class="login-container" id="login">
       <div class="top">
 
-        <header>CreateAccount...</header>
+        <header class="nameowner">CreateAccount...</header>
       </div>
     
-        <p class="adminName">
+        <p class="adminNameowner">
+          Rq num:
           <?php echo $requestNum; ?>
         </p>
+        <br>
         <div class="input-box">
         <form method="POST">
           <?php echo $account->getError(constants::$usernameTaken); ?>
 
-          <label for="name">Name</label>
-          <input type="text" name="username" id="name" class="inputfieldlogin" placeholder="Name"
+         
+          <input type="text" name="username" id="name" class="inputfieldarea" placeholder="Name"
             value="<?php getInputValue("username"); ?>" required />
       </div>
-
+<br>
       <?php echo $account->getError(constants::$emailInvalid); ?>
       <?php echo $account->getError(constants::$emailTaken); ?>
       <div class="input-box">
-        <label for="email">Email</label>
-        <input type="Email" id="email" name="email" class="inputfieldlogin" placeholder="Email"
+        
+        <input type="Email" id="email" name="email" class="inputfieldarea" placeholder="Email"
           value="<?php getInputValue("email"); ?>" required />
       </div>
+      <br>
       <div class="input-box">
         <?php echo $account->getError(constants::$passwordLength); ?>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="inputfieldlogin" placeholder="Password"
+        
+        <input type="password" name="password" id="password" class="inputfieldarea" placeholder="Password"
           value="<?php getInputValue("password"); ?>" required />
       </div>
       <br>
 
-      <select class="inputfieldselect" id="userType" name="type">
+      <select class="inputfieldownerselect-areatAccount" id="userType" name="type">
         <option value="Select Aperson">Select Aperson</option>
         <option value="owner">owner</option>
         <option value="admin">admin</option>
@@ -140,7 +124,7 @@ function getInputValue($name)
         </select>
       <br>
       <div class="input-box">
-        <input type="submit" name="submit" class="submitlogin">
+        <input type="submit" name="submit" class="submitarea">
       </div>
       </form>
 

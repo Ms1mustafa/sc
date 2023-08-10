@@ -31,39 +31,23 @@ if (isset($_POST["submit"])) {
 
 <body>
 <div class="wrappe">
-<nav class="nav">
-        <div class="nav-logo">
-            <p>LOGO .</p>
-</div>
-          
-        <div class="nav-menu" id="navMenu">
-            <ul>
-                <li><a href="ownerPage.php" class="link active">Home</a></li>
-                <li><a href="#" class="link">Blog</a></li>
-                <li><a href="#" class="link">Services</a></li>
-                <li><a href="#" class="link">About</a></li>
-            </ul>
-            
-        <div class="nav-menu-btn">
-            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-        </div>
-    </nav>
+
   <div class="login-container" id="login">
 <div class="top">
 
-          <header>Add Area...</header>
+          <header class="nameowner">Add Area...</header>
         </div>
         <div class="input-box">
   <form method="POST">
-    <input type="text"  class="inputfieldlogin" name="areaId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
+    <input type="text"  class="inputfieldarea" name="areaId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
 </div>
 <br>
 <div class="input-box">
-    <input type="text" class="inputfieldlogin"  name="areaName" placeholder="Add Area" required>
+    <input type="text" class="inputfieldarea"  name="areaName" placeholder="Add Area" required>
 </div>
 <br>
 <div class="input-box">
-        <button type="submit" name="submit"  class="submitlogin" >Add</button>
+        <button type="submit" name="submit"  class="submitarea" >Add</button>
         </div>
    
    

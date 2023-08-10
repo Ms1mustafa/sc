@@ -33,38 +33,38 @@ $requests = $request->getRequestNumber($adminName);
 
 <body>
     
-        <?php include_once('includes/navbar.php') ?>
+      
         <div class="pageoner">
         <div class="login-container" id="login">
             
             <div class="top">
 
-                <header >Owner</header>
+                <header class="nameowner" >Owner</header>
             </div>
 
-            <p class="adminName">
+            <p class="adminNameowner">
                 <?php echo $adminName; ?>
             </p>
             <br>
-            <p class="adminName">
+            <p class="adminNameowner">
                 <?php echo $userEmail; ?>
             </p>
             <br>
 
             <div class="input-box">
-                <button class="inputfieldlogin"><a href="addArea.php">Add area</a></button>
+                <button class="inputfieldowner"><a href="addArea.php">Add area</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="inputfieldlogin"><a href="addLocation.php">Add location</a></button>
+                <button class="inputfieldowner"><a href="addLocation.php">Add location</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="inputfieldlogin"><a href="addWorkType.php">Add work type</a></button>
+                <button class="inputfieldowner"><a href="addWorkType.php">Add work type</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="inputfieldlogin"> <a href="createAccount.php">Create new account</a></button>
+                <button class="inputfieldowner"> <a href="createAccount.php">Create new account</a></button>
             </div>
             <br>
         </div>

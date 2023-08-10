@@ -39,7 +39,7 @@ function getInputValue($name)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css.css?1222">
+  <link rel="stylesheet" href="css.css?1999">
  
     <title>Login</title>
 </head>
@@ -57,16 +57,17 @@ function getInputValue($name)
 
     <form method="POST">
         <?php echo $account->getError(constants::$loginFailed); ?>
-        <input type="Email" name="email"class="inputfieldlogin" placeholder="Username or Email"value="<?php getInputValue("email"); ?>" required>
-        <i class="bx bx-user"></i>
-        </div>
+        <input type="Email" name="email"class="inputfieldlogin" placeholder=" Email ..."value="<?php getInputValue("email"); ?>" required>
+               </div>
+               <br>
         <div class="input-box1">
 
         <input type="password" name="password"class="inputfieldlogin" placeholder="Password" value="<?php getInputValue("password"); ?>" required>
-        <i class="bx bx-lock-alt"></i>
+       
         </div>
+        <br>
         <div class="input-box1">
-        <input type="submit" name="submit" class="submitlogin" value="Sign In">
+        <input type="submit" name="submit" class="submitlogin" value="Signin">
         </div>
         
     </form>
