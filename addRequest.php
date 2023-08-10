@@ -177,7 +177,7 @@ if (isset($_POST["submit"])) {
             <textarea class="inputfieldnot" name="notes" required></textarea>
          
             <div class="input-box">
-                <button type="submit" name="submit" class="submitarea">submit</button>
+                <button type="submit" name="submit" class="submitarea">Done</button>
             </div>
 
 
