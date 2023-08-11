@@ -23,6 +23,7 @@ $request = new Request($con);
 $getRequest = $request->getRequestDetails($workOrderNo);
 
 $canEdit = $getRequest['executerDate'] == NULL ? '' : 'disabled';
+$executerAccept = $getRequest['executerAccept'] == 'yes' ? true : false ;
 
 
 $area = new Area($con);
@@ -182,10 +183,22 @@ if (isset($_POST["delete"])) {
         <input class="input-note" name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
         <br>
         <br>
-        <button type="submit"  class="submit" name="edit"  <?php echo $canEdit; ?>>Edit</button>
-        <br>
-        <br>
-        <button type="submit"  class="submit"name="delete"  <?php echo $canEdit; ?>>Delete</button>
+        <?php
+        if(!$executerAccept){
+            echo '
+                <button type="submit"  class="submit" name="edit"'. $canEdit .'>Edit</button>
+                <br>
+                <br>
+                <button type="submit"  class="submit" name="delete"'. $canEdit .'>Delete</button>
+            ';
+        }else{
+            echo '
+                <br>
+                <button type="submit"  class="submit" name="dismantling"'. $canEdit .'>dismantling</button>
+            ';
+        }
+        ?>
+        
     </form>
 
     <script>

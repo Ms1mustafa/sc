@@ -4,29 +4,29 @@ include_once('../includes/classes/constants.php');
 
 class Requests
 {
-    public static function getRequest($con, $isNotification = null, $isQty = null, $workOrderNo = null, $store = null, $admin = null, $inspector = null, $name = null)
+    public static function getRequest($con, $isNotification = null, $isQty = null, $workOrderNo = null, $store = null, $admin = null, $inspector = null, $name = null, $executer = null)
 {
     $sql = "SELECT * FROM request ";
 
     $whereClause = [];
 
     if ($isQty) {
-        $whereClause[] = "workOrderNo = :workOrderNo";
+        $whereClause[] = "workOrderNo = :workOrderNo ";
     }
 
     if ($store) {
-        $whereClause[] = "finishDate != '0000:00:00' AND issued != 'yes'";
+        $whereClause[] = "finishDate != '0000:00:00' AND issued != 'yes' ";
     }
 
     if ($admin) {
-        $whereClause[] = "issued = 'no' AND name = :name";
+        $whereClause[] = "executerAccept = 'yes' AND name = :name ";
     }
 
     if ($inspector) {
-        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected'";
+        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' ";
     }
     
-    if(!$store && !$inspector && !$admin){
+    if($executer){
         $whereClause[] = "executerAccept != 'yes' OR status = 'rejected' ";
     }
 

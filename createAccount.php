@@ -110,8 +110,8 @@ function getInputValue($name)
       </div>
       <br>
 
-      <select class="inputfieldownerselect-areatAccount" id="userType" name="type">
-        <option value="Select Aperson">Select Aperson</option>
+      <select class="inputfieldownerselect-areatAccount" id="userType" name="type" required>
+        <option value="" disabled selected>Select Aperson</option>
         <option value="owner">owner</option>
         <option value="admin">admin</option>
         <option value="inspector">inspector</option>

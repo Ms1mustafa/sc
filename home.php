@@ -27,6 +27,8 @@ $requests = $request->getRequestNumber($adminName);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css.css?1999">
     <title>Request </title>
@@ -34,7 +36,7 @@ $requests = $request->getRequestNumber($adminName);
 
 <body>
     <div class="wrappe">
-      
+
 
         <div class="login-container" id="login">
 
@@ -45,17 +47,40 @@ $requests = $request->getRequestNumber($adminName);
                 <br>
 
                 <p class="Notificationshome">Notifications</p>
+                <div id="result"></div>
 
-                                <a class="addRequest" href="addRequest.php">New Request</a>
+                <a class="addRequest" href="addRequest.php">New Request</a>
                 <br>
                 <br>
                 <a class="addRequest" href="adminRequests.php">Modify Request</a>
-                
-                
+
+
             </div>
         </div>
     </div>
 
+    <script>
+        let timeout = 0;
+
+        function loadRequests() {
+            $.get(
+                "ajax/GetAdminReq.php",
+                { adminName: '<?php echo $adminName; ?>' },
+                function (data) {
+                    $("#result").html(data);
+                }
+            );
+        }
+
+        function startTimer() {
+            loadRequests();
+            timeout = 3000;
+            setTimeout(startTimer, timeout);
+        }
+
+        startTimer();
+
+    </script>
 </body>
 
 </html>
