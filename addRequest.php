@@ -74,7 +74,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
    
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="css.css?1999">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -95,7 +95,7 @@ if (isset($_POST["submit"])) {
         <div class="login-container" id="login">
             <div class="top">
 
-                <header class="namerequest">NewRequest</header>
+                <header >NewRequest</header>
             </div>
             <br>
             <div class="input-box">
@@ -106,15 +106,17 @@ if (isset($_POST["submit"])) {
                     <label class="labelnewrequest">Req Name</label>
                     <br>
                     <br>
-                    <input type="text" class="inputfieldarea" placeholder="name" name="name"
+                    <input type="text" class="inputfieldrequest" cplaceholder="name" name="name"
                         value="<?php echo $adminName; ?>" readonly required>
             </div>
+
+            
             <br>
             <div class="input-box">
                 <label class="labelnewrequest">Req No</label>
                 <br>
                 <br>
-                <input type="text" class="inputfieldarea" placeholder="Req No" name="reqNo" readonly
+                <input type="text" class="inputfieldrequest" placeholder="Req No" name="reqNo" readonly
                     value="<?php echo $requestNum; ?>" required>
             </div>
             <br>
@@ -123,10 +125,12 @@ if (isset($_POST["submit"])) {
                 <label class="labelnewrequest">Work Order No</label>
                 <br>
                 <br>
-                <input type="text" class="inputfieldarea" placeholder="Work Order No" name="workOrderNo" required>
+                <input type="text" class="inputfieldrequest" placeholder="Work Order No" name="workOrderNo" required>
             </div>
             <br>
 <div>
+
+
             <select name="area" class="inputfieldselectnewreq" id="area" required>
                 <option disabled selected value="">select area</option>
                 <?php echo $getArea; ?>
@@ -146,20 +150,20 @@ if (isset($_POST["submit"])) {
 </div>
             <p id="boxResult"></p>
             <br>
-            <label class="labelnewrequest">Priority</label>
+            <label class="labelnewrequestpriority">Priority</label>
             <br>
             <br>
-            <input type="radio" id="immediately" value="Immediately Today" name="priority" checked>
-            <label class="labelnewrequest" for="immediately">Immediately &nbsp; Today</label>
+            <input class="priorty" type="radio" id="immediately" value="Immediately Today" name="priority" checked>
+            <label class="priorty" for="immediately">Immediately &nbsp; Today</label>
             <br>
-            <input type="radio" id="high" value="High 2-3 Days" name="priority">
-            <label class="labelnewrequest" for="high">High &nbsp; 2-3 Days</label>
+            <input  class="priorty" type="radio" id="high" value="High 2-3 Days" name="priority">
+            <label  class="priorty" for="high">High &nbsp; 2-3 Days</label>
             <br>
-            <input type="radio" id="medium" value="Medium 3-4 Days" name="priority">
-            <label class="labelnewrequest" for="medium">Medium &nbsp; 4-5 Days</label>
+            <input  class="priorty" type="radio" id="medium" value="Medium 3-4 Days" name="priority">
+            <label class="priorty" for="medium">Medium &nbsp; 4-5 Days</label>
             <br>
-            <input type="radio" id="low" value="Low More than 5 days" name="priority">
-            <label class="labelnewrequest" for="low">Low &nbsp; More than 5 days</label>
+            <input class="priorty" type="radio" id="low" value="Low More than 5 days" name="priority">
+            <label class="priorty" for="low">Low &nbsp; More than 5 days</label>
             <br>
             <br>
             <select name="workType" class="inputfieldselectnewreq" required>
@@ -172,12 +176,12 @@ if (isset($_POST["submit"])) {
                 <option disabled selected value="">select inspector</option>
             </select>
             <br>
-            <label class="labelnewrequest">Notes</label>
+            <label class="labelnewrequestnot">Notes</label>
             <br>
             <textarea class="inputfieldnot" name="notes" required></textarea>
          
             <div class="input-box">
-                <button type="submit" name="submit" class="submitarea">Done</button>
+                <button type="submit" name="submit" class="submitnewreq">Done</button>
             </div>
 
 
