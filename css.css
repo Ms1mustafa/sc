@@ -368,9 +368,10 @@ header {
 
 .namerequest {
   font-size: 30px;
-  position: relative;
-  right: 40%;
-  top: 40px;
+  position: absolute;
+  right: 80%;
+
+
 }
 
 .labelnewrequest {
@@ -425,9 +426,236 @@ header {
   transition: .2s ease;
 }
 
-@media only screen and (max-width: 786px) {
-  .namerequest {
-    margin-top: 30px;
+.inputfieldrequest {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 30%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
 
+.labelnewrequestpriority {
+  font-size: 20px;
+
+
+}
+
+.labelnewrequestnot {
+  font-size: 20px;
+}
+
+.submitnewreq {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 38%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  right: 20px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+@media only screen and (max-width: 900px) {
+  .namerequest {
+    position: relative;
+    top: 150px;
+    left: -20px;
+
+  }
+
+  .labelnewrequest {
+    position: relative;
+    top: -50px;
+  }
+
+  .inputfieldrequest {
+    position: relative;
+    top: -50px;
+    width: 180px;
+  }
+
+  .input-length {
+    position: relative;
+    left: -10px;
+    top: 130px;
+  }
+
+  .inputfieldselectnewreq {
+    position: relative;
+    top: 120px;
+    width: 100%;
+
+  }
+
+  .labelnewrequestpriority {
+    position: relative;
+    top: 140px;
+
+
+  }
+
+  .priorty {
+    position: relative;
+    top: 130px;
+  }
+
+  .labelnewrequestnot {
+    position: relative;
+    top: 140px;
+  }
+
+  .inputfieldnot {
+    position: relative;
+    top: 150px;
+    width: 230px;
+    left: 10px;
+  }
+
+  .submitnewreq {
+    position: relative;
+    top: 20px;
+    width: 280px;
+  }
+}
+
+/*------------------admin request-------------*/
+.nameadminrequest {
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+/*--------------requestAction--------------*/
+.inputfieldselectnewreqAction {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 38%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.input-lengthAction {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  text-align: center;
+  width: 80px;
+  border: 2px solid #e77823;
+  position: relative;
+  left: 40px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.labelnewrequestpriorityAction {
+  font-size: 20px;
+
+
+}
+
+.labelnewrequestnotAction {
+  font-size: 20px;
+}
+
+.inputfieldnotAction {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 80px;
+  width: 38%;
+
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.submitnewreqAction {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 38%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  right: 20px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .inputfieldselectnewreqAction {
+    position: relative;
+    top: 90px;
+    width: 100%;
+
+  }
+
+  .input-lengthAction {
+    position: relative;
+    left: -10px;
+    top: 100px;
+    width: 70px;
+  }
+
+  .labelnewrequestpriorityAction {
+    position: absolute;
+    top: 110%;
+
+
+  }
+
+  .priortyAction {
+    position: relative;
+    top: 100px;
+  }
+
+  .labelnewrequestnotAction {
+    position: relative;
+    top: 100px;
+  }
+
+  .inputfieldnotAction {
+    position: relative;
+    top: 100px;
+    width: 230px;
+    left: 10px;
+  }
+
+  .submitnewreqAction {
+    position: relative;
+    top: -30px;
+    width: 280px;
   }
 }

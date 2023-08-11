@@ -37,12 +37,12 @@ $request = new Request($con);
 <body>
 
 <div class="wrappe">
-        <?php include_once('includes/navbar.php') ?>
+       
         
         <div class="login-container" id="login">
-    <p class="admin-Name"><?php echo $adminName; ?></p>
+    <p class="nameadminrequest"><?php echo $adminName; ?></p>
     <br>
-    <p class="Notification">Notification</p>
+    <p class="nameadminrequest">Notification</p>
     <div id="result"></div>
 
     <script>
