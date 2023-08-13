@@ -9,14 +9,14 @@ class Notification
         $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
-        $requester = $data["name"];
+        $adminAddedName = $data["name"];
         $new = $data["new"] == "yes" ? true : false;
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
 
         if (empty($this->errorArray)) {
             $html = "
             <a href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
-            <p>$reqNo, Request, $requester</p>
+            <p>$reqNo, Request, $adminAddedName</p>
             <p>$priority</p>
             <p>request added : $reqDate</p>
             </a>
@@ -30,7 +30,7 @@ class Notification
         return false;
     }
 
-    private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $requester)
+    private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName)
     {
         if ($inspectorDate) {
             return $inspector;
@@ -38,7 +38,7 @@ class Notification
             return $werehouseName;
         }
 
-        return $requester;
+        return $adminAddedName;
     }
     private function getNotiDate($wereHouseDate, $inspectorDate, $reqDate)
     {
@@ -48,7 +48,7 @@ class Notification
             return 'WereHouse date : ' . FormSanitizer::formatDate($wereHouseDate);
         }
 
-        return 'request added : ' . FormSanitizer::formatDate($reqDate);
+        return 'request added : ' . $reqDate;
     }
     private function getNotiType($werehouseName, $inspectorDate)
     {
@@ -65,14 +65,14 @@ class Notification
         $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
-        $requester = $data["name"];
+        $adminAddedName = $data["adminAddedName"];
         $status = $data["status"];
         $inspector = $data["inspector"];
         $inspectorDate = $data["inspectorDate"];
         $werehouseName = $data["werehouseName"] ?? false;
         $wereHouseDate = $data["wereHouseDate"] ?? false;
         $type = $this->getNotiType($werehouseName, $inspectorDate);
-        $sender = $this->getNotiFrom($werehouseName, $inspectorDate, $inspector, $requester);
+        $sender = $this->getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName);
 
         $new = $data["new"] == "yes" ? true : false;
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);

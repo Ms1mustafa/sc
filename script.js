@@ -1,42 +1,32 @@
-const ItemDescription = document.getElementById("ItemDescription");
-const ItemDescriptionBody = document.getElementById("ItemDescriptionBody");
+const itemDescription = document.getElementById("ItemDescription");
+const itemDescriptionBody = document.getElementById("ItemDescriptionBody");
 
-let Pipe, Clamp, Wood;
-ItemDescription?.addEventListener("change", function () {
-  if (ItemDescription.value == "Pipe 6M" && !Pipe) {
+let selectedOptions = [];
+
+itemDescription.addEventListener("change", function () {
+  const selectedValue = itemDescription.value;
+
+  if (!selectedOptions.includes(selectedValue)) {
+    selectedOptions.push(selectedValue);
+
     let html = `
       <tr>
-          <td class = 'pipe'>Pipe 6M</td>
-          <td><input class = 'pipe1' type="number" min = "1" name="pipeQty"></td>
+          <td class='pipe'><input class='pipe1 cantEdit' name="itemName[]" value="${selectedValue}" readonly></td>
+          <td><input class='pipe1' type="number" min="1" name="itemQty[]"></td>
       </tr>
     `;
 
-    ItemDescriptionBody?.insertAdjacentHTML("afterbegin", html);
-    Pipe = true;
-  }
-  if (ItemDescription.value == "Clamp movable" && !Clamp) {
-    let html = `
-      <tr>
-          <td  class = 'clamp' >Clamp movable</td>
-          <td><input  class = 'clamp1' type="number" min = "1" name="clampQty"></td>
-      </tr>
-    `;
-
-    ItemDescriptionBody.insertAdjacentHTML("afterbegin", html);
-    Clamp = true;
-  }
-  if (ItemDescription.value == "Wood 4m" && !Wood) {
-    let html = `
-      <tr>
-          <td class = 'Wood'>Wood 4m</td>
-          <td><input class = 'Wood1' type="number" min = "1" name="woodQty"></td>
-      </tr>
-    `;
-
-    ItemDescriptionBody.insertAdjacentHTML("afterbegin", html);
-    Wood = true;
+    itemDescriptionBody.insertAdjacentHTML("afterbegin", html);
   }
 });
+
+itemDescriptionBody.addEventListener("keydown", function (event) {
+  const target = event.target;
+  if (target.classList.contains("cantEdit")) {
+    target.readOnly = true;
+  }
+});
+
 
 const lengthValue = document.getElementById("length");
 const width = document.getElementById("width");

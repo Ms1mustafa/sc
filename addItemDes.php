@@ -7,7 +7,7 @@ include_once('includes/classes/Powers.php');
 $userEmail = $_COOKIE["email"];
 $account = new Account($con);
 
-Powers::owner($account, $userEmail);
+// Powers::owner($account, $userEmail);
 
 $area = new ItemDes($con);
 $getAreaId = $area->getIdNum();
@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
   $success = $area->addWT($itemdesId, $itemdesName);
 
   if ($success) {
-    header("location: ownerPage.php");
+    header("location: addItemDes.php");
   }
 }
 ?>

@@ -44,7 +44,7 @@ $request = new Request($con);
 
 if (isset($_POST["submit"])) {
     $reqNo = FormSanitizer::sanitizeFormString($_POST["reqNo"]);
-    $name = FormSanitizer::sanitizeFormString($_POST["name"]);
+    $adminAddedName = FormSanitizer::sanitizeFormString($_POST["adminAddedName"]);
     $workOrderNo = FormSanitizer::sanitizeFormString($_POST["workOrderNo"]);
     $area = $area->getAreaName(@$_POST["area"]);
     $item = @$_POST["item"];
@@ -53,11 +53,13 @@ if (isset($_POST["submit"])) {
     $height = @$_POST["height"];
     $priority = @$_POST["priority"];
     $workType = @$_POST["workType"];
+    $executer = $account->getMainAccount('Execution');
+    $wereHouse = $account->getMainAccount('wereHouse');
     $inspector = @$_POST["inspector"];
     $inspectorName = $account->getAccountDetails($inspector, true, false, false, false, true);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
-    $success = $request->addRequest($reqNo, $name, $workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $executer, $inspectorName, $notes, 'pending');
+    $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $notes);
 
     if ($success) {
         header("location: home.php");
@@ -106,7 +108,7 @@ if (isset($_POST["submit"])) {
                     <label class="labelnewrequest">Req Name</label>
                     <br>
                     <br>
-                    <input type="text" class="inputfieldrequest" cplaceholder="name" name="name"
+                    <input type="text" class="inputfieldrequest" placeholder="name" name="adminAddedName"
                         value="<?php echo $adminName; ?>" readonly required>
             </div>
 

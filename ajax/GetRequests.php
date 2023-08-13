@@ -5,12 +5,12 @@ include_once('../includes/classes/FormSanitizer.php');
 include_once('../includes/classes/Notification.php');
 
 $isNotification = $_GET['isNotification'];
-$isQty = $_GET['isQty'];
-$workOrderNo = $_GET['workOrderNo'];
+$executer = $_GET['executer'];
+// $workOrderNo = $_GET['workOrderNo'];
 if ($isNotification != null) {
     $executer = $_GET['executer'];
 
-    $requests = Requests::getRequest($con, $isNotification, false, false, false, false, false, null, $executer);
+    $requests = Requests::getExecuterRequests($con, true, $executer);
     foreach ($requests as $request) {
         
         $notification = new Notification();
@@ -19,42 +19,26 @@ if ($isNotification != null) {
     }
 }
 
-if ($isQty != null) {
+if ($isNotification == null) {
 
-    $requests = Requests::getRequest($con, $isNotification, false);
-    foreach ($requests as $request) {
-        $workOrderNo = $request["workOrderNo"];
-        $requester = $request["name"];
-        $new = $request["new"] == "yes" ? true : false;
-
-        echo "
-            <tr>
-                <td></td>
-            </tr>
-        ";
-    }
-}
-
-if ($isQty != null) {
-
-    $requests = Requests::getRequest($con, false, $isQty, $workOrderNo);
+    $requests = Requests::getExecuterRequests($con, null, $executer);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
-    $requester = $requests["name"];
+    $adminAddedName = $requests["adminAddedName"];
     $inspector = $requests["inspector"];
     $area = $requests["area"];
     $item = $requests["item"];
     $priority = $requests["priority"];
     $notes = $requests["notes"];
-    $pipeQty = $requests["pipeQty"];
-    $clampQty = $requests["clampQty"];
-    $woodQty = $requests["woodQty"];
-    $pipeQtyStore = $requests["pipeQtyStore"];
-    $pipeQtyStoreComment = $requests["pipeQtyStoreComment"];
-    $clampQtyStore = $requests["clampQtyStore"];
-    $clampQtyStoreComment = $requests["clampQtyStoreComment"];
-    $woodQtyStore = $requests["woodQtyStore"];
-    $woodQtyStoreComment = $requests["woodQtyStoreComment"];
+    // $pipeQty = $requests["pipeQty"];
+    // $clampQty = $requests["clampQty"];
+    // $woodQty = $requests["woodQty"];
+    // $pipeQtyStore = $requests["pipeQtyStore"];
+    // $pipeQtyStoreComment = $requests["pipeQtyStoreComment"];
+    // $clampQtyStore = $requests["clampQtyStore"];
+    // $clampQtyStoreComment = $requests["clampQtyStoreComment"];
+    // $woodQtyStore = $requests["woodQtyStore"];
+    // $woodQtyStoreComment = $requests["woodQtyStoreComment"];
     $issued = $requests["issued"] == 'yes' ? true : null;
     $finishDate = $requests["finishDate"];
     $executerAccept = $requests["executerAccept"] == 'yes' ? true : null;
@@ -74,7 +58,7 @@ if ($isQty != null) {
     <br>
    
     <label class='Get'>Requester</label>
-    <label class='Getreq1'>$requester</label>
+    <label class='Getreq1'>$adminAddedName</label>
     <br>
     <label class='Get' >Inspector</label>
     <label class='Getreq1'>$inspector</label>
@@ -107,7 +91,7 @@ if ($isQty != null) {
     <label class='Get'>Date</label>
    <br>
    
-    <input class='inputfieldrequest' type='date' name='finishDate' value='$finishDate' ";
+    <input class='inputfieldrequest' type='date' name='finishDate' value= $finishDate ";
     
     if (!$new) {
         echo 'readonly';

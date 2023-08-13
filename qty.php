@@ -16,13 +16,14 @@ $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false
 
 $request = new Request($con);
 
-if (isset($_POST["submit"])) {
-    $pipeQty = $_POST["pipeQty"];
-    $clampQty = $_POST["clampQty"];
-    $woodQty = $_POST["woodQty"];
-    $finishDate = $_POST["finishDate"];
 
-    $success = $request->updateExecuterReq($pipeQty, $clampQty, $woodQty, $finishDate, $workOrderNo);
+if (isset($_POST["submit"])) {
+    $itemName = $_POST['itemName'];
+    $itemQty = $_POST['itemQty'];
+    $finishDate = $_POST['finishDate'];
+
+    // $success = $request->updateExecuterReq($pipeQty, $clampQty, $woodQty, $finishDate, $workOrderNo);
+    $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $finishDate);
 
     if ($success) {
         header("location: notification.php");
@@ -31,7 +32,7 @@ if (isset($_POST["submit"])) {
 
 if (isset($_POST["accept"])) {
 
-    $success = $request->executerAccept($workOrderNo);
+    // $success = $request->executerAccept($workOrderNo);
 
     if ($success) {
         header("location: notification.php");
@@ -42,8 +43,8 @@ if (isset($_POST["resendToInspector"])) {
     $pipeQty = $_POST["pipeQty"];
     $clampQty = $_POST["clampQty"];
     $woodQty = $_POST["woodQty"];
-    
-    $success = $request->resendToInspector($pipeQty, $clampQty, $woodQty, $workOrderNo);
+
+    // $success = $request->resendToInspector($pipeQty, $clampQty, $woodQty, $workOrderNo);
 
     if ($success) {
         header("location: notification.php");
@@ -61,7 +62,7 @@ function getInputValue($name)
 <html lang="en">
 
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -73,18 +74,20 @@ function getInputValue($name)
 </head>
 
 <body>
-<div class="wrappe">
+    <div class="wrappe">
         <?php include_once('includes/navbar.php') ?>
 
         <div class="login-container" id="login">
-    <form method="POST">
-    <p class="Name-1"><?php echo $adminName; ?></p>
-       
-       <br>
-        <div id="reqInf"></div>
-        <br>
-        <?php if ($new)
-            echo '
+            <form method="POST">
+                <p class="Name-1">
+                    <?php echo $adminName; ?>
+                </p>
+
+                <br>
+                <div id="reqInf"></div>
+                <br>
+                <?php if ($new)
+                    echo '
                 <table  >
                 <thead >
                     <th >
@@ -102,25 +105,31 @@ function getInputValue($name)
                 </tbody>
             </table>
             ';
-        ?>
-        <br>
-        <?php if ($new) {
-            echo '<button   class="submitt"name="submit">Done</button>';
-        } ?>
-    </form>
+                ?>
+                <br>
+                <?php if ($new) {
+                    echo '<button   class="submitt"name="submit">Done</button>';
+                } ?>
+            </form>
 
-    <script>
-        let timeout = 2000
-        $(window).on("load", function () {
-            $.get(
-                "ajax/GetRequests.php",
-                { isNotification: null, isQty: true, workOrderNo: <?php echo $workOrderNo; ?> },
-                function (data) {
-                    $("#reqInf").html(data);
-                }
-            );
-        })
-    </script>
+            <script>
+                let timeout = 2000
+                $(window).on("load", function () {
+                    $.get(
+                        "ajax/GetRequests.php",
+                        { isNotification: null, isQty: true, workOrderNo: <?php echo $workOrderNo; ?>, executer: '<?php echo $adminName; ?>' },
+                        function (data) {
+                            $("#reqInf").html(data);
+                        }
+                    );
+                    $.get(
+                        "ajax/GetItemDes.php",
+                        function (data) {
+                            $("#ItemDescription").html(data);
+                        }
+                    );
+                })
+            </script>
 
 </body>
 

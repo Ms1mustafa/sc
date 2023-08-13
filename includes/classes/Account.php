@@ -257,5 +257,23 @@ class Account
             return $row["requestNum"];
         }
     }
+
+    public function getMainAccount($type)
+    {
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE type=:type AND main ='yes'");
+
+        $query->bindValue(':type', $type);
+        $query->execute();
+
+        $html = "";
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $row["username"];
+        $html .= $name;
+
+
+        return $html;
+    }
 }
 ?>
