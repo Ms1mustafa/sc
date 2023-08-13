@@ -82,7 +82,7 @@ class Requests
         $whereClause = [];
 
         $whereClause[] = "executerAccept != 'yes' OR status = 'rejected' ";
-        $whereClause[] = "executer = :executer";
+        $whereClause[] = "executer = :executer ";
 
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);

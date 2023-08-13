@@ -39,6 +39,7 @@ header {
   text-align: center;
   position: relative;
   right: 30px;
+
 }
 
 .colorScaffolding {
@@ -110,6 +111,7 @@ header {
   }
 
   .submitlogin {
+    width: 95%;
     position: relative;
     right: 40px;
     top: 70px;
@@ -117,7 +119,7 @@ header {
 
   header {
     position: relative;
-    top: 70px;
+    top: 100px;
   }
 
   .inputfieldlogin {
@@ -130,7 +132,7 @@ header {
   .welcomlogin {
     font-size: 25px;
     position: relative;
-    top: 70px;
+    top: 80px;
   }
 }
 
@@ -181,6 +183,19 @@ header {
 
 }
 
+.buttonlogout {
+  text-align: center;
+  text-decoration: none;
+  height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  left: 10%;
+  top: 30px;
+  color: #e77823;
+
+}
+
 @media only screen and (max-width: 786px) {
 
   body {
@@ -215,6 +230,12 @@ header {
     position: relative;
     right: 30px;
 
+  }
+
+  .buttonlogout {
+    position: relative;
+    left: 5px;
+    padding: 0px 20px 0 20px;
   }
 }
 
@@ -266,6 +287,16 @@ header {
   border: 2px solid #e77823;
 }
 
+.Back {
+  position: relative;
+  left: 140px;
+  font-size: 20px;
+  text-decoration: none;
+  top: 30px;
+  color: #e77823;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 786px) {
   .submitarea {
     width: 100%;
@@ -281,6 +312,11 @@ header {
     right: 40px;
 
 
+  }
+
+  .Back {
+    position: relative;
+    left: 30px
   }
 }
 
@@ -351,7 +387,7 @@ header {
 
 .addRequest {
   position: relative;
-  top: 270px;
+  top: 180px;
   font-weight: bold;
   font-size: 20px;
 }
@@ -433,6 +469,22 @@ header {
   color: #000;
   height: 50px;
   width: 30%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.inputfieldrequestqty {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 20%;
   padding: 0px 40px 0 45px;
   border: 2px solid #e77823;
   position: relative;
@@ -529,6 +581,12 @@ header {
     top: 20px;
     width: 280px;
   }
+
+  .inputfieldrequestqty {
+    position: relative;
+    top: 80px;
+    width: 70%;
+  }
 }
 
 /*------------------admin request-------------*/
@@ -536,6 +594,15 @@ header {
   font-size: 20px;
   font-weight: bold;
 
+}
+
+@media only screen and (max-width: 900px) {
+
+  .nameadminrequest {
+    position: relative;
+    top: 70px;
+    font-size: 25px;
+  }
 }
 
 /*--------------requestAction--------------*/
@@ -657,5 +724,225 @@ header {
     position: relative;
     top: -30px;
     width: 280px;
+  }
+}
+
+
+/*-----------------OTYExecuter---------------*/
+.namerQTY {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.Getrquest {
+  color: #e77823;
+  font-size: 20px;
+
+}
+
+.length {
+  color: #e77823;
+  font-size: 20px;
+}
+
+.inputfieldGetReq {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 70%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 5px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+
+
+/* table */
+table {
+  position: absolute;
+  left: 3%;
+  top: 75%;
+  width: 230px;
+  border: 1px solid #e77823;
+  border-radius: 10px;
+
+}
+
+.itemestable {
+  position: absolute;
+  left: -40px;
+  top: 30%;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #e77823;
+  border-radius: 10px;
+}
+
+tr {
+  transition: all .2s ease-in;
+  cursor: pointer;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #e77823;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 768px) {
+  table {
+    width: 250px;
+  }
+
+}
+
+.pipe,
+.clamp,
+.Wood {
+
+  font-size: 14px;
+  font-weight: bold;
+  width: 50px;
+  padding: 0 5px;
+  text-align: center;
+
+  border-radius: 10px;
+}
+
+.pipe1,
+.clamp1,
+.Wood1 {
+  /* color: #fff; */
+  font-size: 10px;
+  font-weight: bold;
+  width: 50px;
+  height: 20px;
+  padding: 0 5px;
+  text-align: center;
+  border: 1px solid #e77823;
+  border-radius: 10px;
+}
+
+.submitQTY {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 30%;
+  border: none;
+  border-radius: 15px;
+  margin-top: 22%;
+
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  .namerQTY {
+    position: relative;
+    top: 80px;
+    font-weight: bolder;
+  }
+
+  .pipe1,
+  .clamp1,
+  .Wood1 {
+    width: 28px;
+  }
+
+  .Getrquest {
+    position: relative;
+    top: 80px;
+  }
+
+  .GetrquesQTY {
+    position: relative;
+    top: 80px;
+  }
+
+  .length {
+    position: relative;
+    top: 80px;
+  }
+
+  .submitQTY {
+    position: relative;
+    top: 300px;
+    width: 280px;
+    right: 8px;
+  }
+}
+
+/*------------wereHosuse------------*/
+.submitwere {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 38%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  right: 100px;
+  top: 280px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+/*-----------------notification----------*/
+.notification {
+  text-decoration: none;
+  font-size: 20px;
+  color: #e77823;
+  position: relative;
+  top: 30px;
+}
+
+.notification:hover {
+  color: #000;
+
+}
+
+.hrQty {
+  position: relative;
+  top: 30px;
+  width: 25%;
+  border: 1px solid #000
+}
+
+@media only screen and (max-width: 900px) {
+  .notification {
+    position: relative;
+    top: 90px;
+  }
+
+  .notification:hover {
+    color: #000;
+
+  }
+
+  .hrQty {
+    position: relative;
+    top: 80px;
+    width: 100%;
   }
 }

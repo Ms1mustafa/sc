@@ -28,6 +28,7 @@ $request = new Request($con);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <link rel="stylesheet" href="css.css">
+    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
@@ -35,13 +36,16 @@ $request = new Request($con);
 </head>
 
 <body>
+<div >
+    <a  class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
+    
+</div>
 <div class="wrappe">
-        <?php include_once('includes/navbar.php') ?>
-
+        
         <div class="login-container" id="login">
-   <p class="admin-Name"> <?php echo $adminName; ?></p>
+   <p class="nameadminrequest"> <?php echo $adminName; ?></p>
     <br>
-    <p  class="Notificationqty">Notification</p>
+    <p  class="nameadminrequest">Notification</p>
     <div id="result"></div>
 
     <script>

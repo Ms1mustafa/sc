@@ -76,7 +76,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
    
-    <link rel="stylesheet" href="css.css?1999">
+    <link rel="stylesheet" href="css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -91,13 +91,17 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
+<div >
+    <a class="Back" href="home.php">
+    <i class="fa-solid fa-arrow-left"></i>    Back</a>
+</div>
     <div class="newrequest">
         
 
         <div class="login-container" id="login">
             <div class="top">
 
-                <header >NewRequest</header>
+                <header class="namerequest">NewRequest</header>
             </div>
             <br>
             <div class="input-box">

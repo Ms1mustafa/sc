@@ -15,13 +15,13 @@ class Notification
 
         if (empty($this->errorArray)) {
             $html = "
-            <a href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
+            <a   class='notification' href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
             <p>$reqNo, Request, $adminAddedName</p>
             <p>$priority</p>
             <p>request added : $reqDate</p>
             </a>
             <br>
-            <hr>
+            <hr class='hrQty'>
             <br>
             ";
             return $html;
@@ -79,13 +79,13 @@ class Notification
 
         if (empty($this->errorArray)) {
             $html = "
-            <a href='qty.php?qtyNo=" . $workOrderNo . "&new=" . $new . "'>
+            <a  class='notification'  href='qty.php?qtyNo=" . $workOrderNo . "&new=" . $new . "'>
             <p>$reqNo, " . $type . ", " . $sender . "</p>
             <p>$priority</p>
             <p>".$this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate)."</p>
             </a>
             <br>
-            <hr>
+            <hr class='hrQty'>
             <br>
             ";
             return $html;
@@ -104,9 +104,13 @@ class Notification
 
         if (empty($this->errorArray)) {
             $html = "
-                <a href='wereHouseQty.php?qtyNo=" . $workOrderNo . "'>
+            
+                <a class='notification' href='wereHouseQty.php?qtyNo=" . $workOrderNo . "'>
+               
                 <p>Executer: $executer</p>
+                <br>
                 <p>$priority</p>
+                <br>
             ";
 
             if ($inspectorDate) {
@@ -117,7 +121,7 @@ class Notification
                 <p>Executer sent: $executerDate</p>
                 </a>
                 <br>
-                <hr>
+                <hr class='hrQty'>
                 <br>
             ";
 
@@ -136,7 +140,7 @@ class Notification
 
         if (empty($this->errorArray)) {
             $html = "
-                <a href='inspectorQty.php?qtyNo=" . $workOrderNo . "'>
+                <a   class='notification' href='inspectorQty.php?qtyNo=" . $workOrderNo . "'>
                 <p>Executer : $executer</p>
                 <p>$priority</span></p>
             ";
@@ -147,7 +151,7 @@ class Notification
                 <p>wereHouse sent : $wereHouseDate</p>
                 </a>
                 <br>
-                <hr>
+                <hr class='hrQty'>
                 <br>
             ";
 
