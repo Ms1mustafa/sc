@@ -82,7 +82,7 @@ class Requests
         $whereClause = [];
 
         $whereClause[] = "executerAccept != 'yes' OR status = 'rejected' ";
-        $whereClause[] = "executer = :executer";
+        $whereClause[] = "executer = :executer ";
 
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
@@ -140,6 +140,25 @@ class Requests
             else {
                 $array = $row;
             }
+        }
+
+        return $array;
+    }
+
+    public static function getItemsDes($con, $workOrderNo = null)
+    {
+        $sql = "SELECT * FROM requestitemdes WHERE workOrderNo = :workOrderNo";
+        
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $array[] = $row;
         }
 
         return $array;

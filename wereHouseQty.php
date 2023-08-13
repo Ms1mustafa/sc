@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
     $clampQty = @$_POST["clampQty"];
     $woodQty = @$_POST["woodQty"];
 
-    $success = $request->updateIssuedReq($adminName, $pipeQty, $clampQty, $woodQty, $pipeQtyStore, $pipeQtyStoreComment, $clampQtyStore, $clampQtyStoreComment, $woodQtyStore, $woodQtyStoreComment, $workOrderNo);
+    // $success = $request->updateIssuedReq($adminName, $pipeQty, $clampQty, $woodQty, $pipeQtyStore, $pipeQtyStoreComment, $clampQtyStore, $clampQtyStoreComment, $woodQtyStore, $woodQtyStoreComment, $workOrderNo);
 
     if ($success) {
         header("location: wereHouse.php");
@@ -76,8 +76,8 @@ function getInputValue($name)
         let timeout = 2000
         $(window).on("load", function () {
             $.get(
-                "ajax/GetStoreRequests.php",
-                { isNotification: null, isQty: true, workOrderNo: <?php echo $workOrderNo; ?> },
+                "ajax/GetWereHouseReq.php",
+                { isNotification: null, wereHouse: '<?php echo $adminName; ?>', workOrderNo : <?php echo $workOrderNo; ?> },
                 function (data) {
                     $("#reqInf").html(data);
                 }
