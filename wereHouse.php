@@ -48,8 +48,8 @@ $request = new Request($con);
 
         function loadRequests() {
             $.get(
-                "ajax/GetStoreRequests.php",
-                { isNotification: true, isQty: null, workOrderNo: null },
+                "ajax/GetWereHouseReq.php",
+                { isNotification: true, wereHouse: '<?php echo $adminName; ?>' },
                 function (data) {
                     $("#result").html(data);
                 }

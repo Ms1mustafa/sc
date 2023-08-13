@@ -87,12 +87,47 @@ class Requests
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
-            $sql .= " ORDER BY GREATEST(COALESCE(reqDate, '0000-00-00'), COALESCE(wereHouseDate, '0000-00-00'), COALESCE(inspectorDate, '0000-00-00')) DESC";
+            $sql .= "ORDER BY GREATEST(COALESCE(reqDate, '0000-00-00'), COALESCE(wereHouseDate, '0000-00-00'), COALESCE(inspectorDate, '0000-00-00')) DESC";
         };
         
         $query = $con->prepare($sql);
 
         $query->bindValue(":executer", $executer);
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            if ($isNoti) {
+                $array[] = $row;
+            }
+            else {
+                $array = $row;
+            }
+        }
+
+        return $array;
+    }
+
+    public static function getWereHouseRequests($con, $isNoti = null, $wereHouse, $workOrderNo = null)
+    {
+        $sql = "SELECT * FROM request ";
+
+        $whereClause = [];
+
+        $whereClause[] = "finishDate != '0000:00:00' AND issued != 'yes' ";
+        $whereClause[] = "wereHouse = :wereHouse ";
+
+        if (!empty($whereClause)) {
+            $sql .= "WHERE " . implode(" AND ", $whereClause);
+
+            $sql .= "ORDER BY COALESCE(executerDate, '0000-00-00') DESC";
+        };
+        
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":wereHouse", $wereHouse);
 
         $query->execute();
 
