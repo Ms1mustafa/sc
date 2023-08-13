@@ -37,6 +37,15 @@ class Request
         }
         return false;
     }
+    public function wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment)
+    {
+        if (empty($this->errorArray)) {
+            return $this->updateWereHouseReq($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
+        } else {
+            array_push($this->errorArray, constants::$requestFailed);
+        }
+        return false;
+    }
 
     public function insertRequestDetils($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $notes)
     {
@@ -79,17 +88,57 @@ class Request
 
     public function updateExecuterReq($finishDate, $workOrderNo)
     {
-        
-            $query = $this->con->prepare("UPDATE request SET finishDate = :finishDate, new = 'no', executerDate = :currentDateTime
+
+        $query = $this->con->prepare("UPDATE request SET finishDate = :finishDate, new = 'no', executerDate = :currentDateTime
                                         WHERE workOrderNo = :workOrderNo");
 
-            $query->bindValue(":finishDate", $finishDate);
+        $query->bindValue(":finishDate", $finishDate);
+        $query->bindValue(":workOrderNo", $workOrderNo);
+        $query->bindValue(":currentDateTime", $this->currentDateTime);
+
+        return $query->execute();
+    }
+    public function updateWereHouseReq($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment)
+    {
+
+        $query = $this->con->prepare("UPDATE request SET issued = 'yes', wereHouseDate = :currentDateTime
+                                        WHERE workOrderNo = :workOrderNo");
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+        $query->bindValue(":currentDateTime", $this->currentDateTime);
+
+        $this->updateItemsWereHouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
+        return $query->execute();
+    }
+    public function updateItemsWereHouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment)
+    {
+        $query = $this->con->prepare("UPDATE requestitemdes SET wereHouseQty = :wereHouseQty, wereHouseComment = :wereHouseComment WHERE workOrderNo = :workOrderNo AND itemName = :itemName");
+
+        for ($i = 0; $i < count($itemName); $i++) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":itemName", $itemName[$i]); 
+            $query->bindValue(":wereHouseQty", $wereHouseQty[$i]);
+            $query->bindValue(":wereHouseComment", $wereHouseComment[$i]);
+            $query->execute();
+        }
+
+        return true;
+    }
+
+    public function executerAccept($workOrderNo)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE request SET executerAccept = 'yes', executerAcceptDate = :currentDateTime
+                                        WHERE workOrderNo = :workOrderNo");
+
             $query->bindValue(":workOrderNo", $workOrderNo);
             $query->bindValue(":currentDateTime", $this->currentDateTime);
 
             return $query->execute();
-    }
+        }
 
+        return false;
+    }
 
     public function validateworkOrderNo($workOrderNo)
     {

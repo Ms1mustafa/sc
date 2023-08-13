@@ -32,7 +32,7 @@ if (isset($_POST["submit"])) {
 
 if (isset($_POST["accept"])) {
 
-    // $success = $request->executerAccept($workOrderNo);
+    $success = $request->executerAccept($workOrderNo);
 
     if ($success) {
         header("location: notification.php");
@@ -113,11 +113,10 @@ function getInputValue($name)
             </form>
 
             <script>
-                let timeout = 2000
                 $(window).on("load", function () {
                     $.get(
                         "ajax/GetRequests.php",
-                        { isNotification: null, isQty: true, workOrderNo: <?php echo $workOrderNo; ?>, executer: '<?php echo $adminName; ?>' },
+                        { isNotification: null, executer: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
                         function (data) {
                             $("#reqInf").html(data);
                         }

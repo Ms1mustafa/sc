@@ -22,7 +22,6 @@ if ($isNotification == null) {
 
     $requests = Requests::getWereHouseRequests($con, null, $wereHouse);
     $items = Requests::getItemsDes($con, $workOrderNo);
-    // print_r($items);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
     $adminAddedName = $requests["adminAddedName"];
@@ -30,15 +29,6 @@ if ($isNotification == null) {
     $area = $requests["area"];
     $item = $requests["item"];
     $notes = $requests["notes"];
-    // $pipeQty = $requests["pipeQty"];
-    // $clampQty = $requests["clampQty"];
-    // $woodQty = $requests["woodQty"];
-    // $pipeQtyStore = $requests["pipeQtyStore"];
-    // $pipeQtyStoreComment = $requests["pipeQtyStoreComment"];
-    // $clampQtyStore = $requests["clampQtyStore"];
-    // $clampQtyStoreComment = $requests["clampQtyStoreComment"];
-    // $woodQtyStore = $requests["woodQtyStore"];
-    // $woodQtyStoreComment = $requests["woodQtyStoreComment"];
     $issued = $requests["issued"] == 'yes' ? true : null;
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
@@ -73,50 +63,20 @@ if ($isNotification == null) {
     foreach ($items as $item) {
         echo '
         <tr>
-            <td>' . $item['itemName'] . '</td>
+            <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
             <td>' . $item['itemQty'] . '</td>
             ';
                 if($issued){
-                    echo "<td> <input class = 'pipe1' type='number' min = '1' name='QtyStore' value=' "; $item['wereHouseQty']; echo"' disabled> </td>";
-                    echo "<td> <input class = 'pipe1' type='text' min = '1' name='QtyStoreComment' value=' "; $item['wereHouseComment']; echo"' disabled> </td>";
+                    echo "<td> <input class = 'pipe1' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"' disabled> </td>";
+                    echo "<td> <input class = 'pipe1' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"' disabled> </td>";
                 }else{
-                    echo "<td> <input class = 'pipe1' type='number' min = '1' name='pipeQtyStore' value=' "; $item['wereHouseQty']; echo"'> </td>";
-                    echo "<td> <input class = 'pipe1' type='text' min = '1' name='QtyStoreComment' value=' "; $item['wereHouseComment']; echo"'> </td>";
+                    echo "<td> <input class = 'pipe1' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"'> </td>";
+                    echo "<td> <input class = 'pipe1' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"'> </td>";
                 }
             echo'
         </tr>
         ';
     }
-    // if ($pipeQty) {
-    //     echo "
-    //                 <tr>
-    //                     <td>Pipe 6M</td>
-    //                     <td><input class = 'pipe1'type='number' name='pipeQty' value='$pipeQty' readonly></td>
-    //                     <td><input class = 'pipe1' type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' "; if($issued){echo "disabled";}echo"></td>
-    //                     <td><input  class = 'pipe1' type='text' min = '1' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' "; if($issued){echo "disabled";}echo"></td>
-    //                 </tr>
-    //             ";
-    // }
-    // if ($clampQty) {
-    //     echo "
-    //                 <tr>
-    //                     <td>Clamp movable</td>
-    //                     <td><input class = 'clamp1' type='number' name='clampQty' value='$clampQty' readonly></td>
-    //                     <td><input class = 'clamp1' type='number' min = '1' name='clampQtyStore' value='$clampQtyStore' "; if($issued){echo "disabled";}echo"></td>
-    //                     <td><input class = 'clamp1' type='text' name='clampQtyStoreComment' value='$clampQtyStoreComment' "; if($issued){echo "disabled";}echo"></td>
-    //                 </tr>
-    //             ";
-    // }
-    // if ($woodQty) {
-    //     echo "
-    //                 <tr>
-    //                     <td>Wood 4m</td>
-    //                     <td><input  class = 'Wood1' type='number' name='woodQty' value='$woodQty' readonly></td>
-    //                     <td><input class = 'Wood1'   type='number' min = '1' name='woodQtyStore' value='$woodQtyStore' "; if($issued){echo "disabled";}echo"></td>
-    //                     <td><input class = 'Wood1' type='text' name='woodQtyStoreComment' value='$woodQtyStoreComment' "; if($issued){echo "disabled";}echo"></td>
-    //                 </tr>
-    //             ";
-    // }
     echo "       
         </tbody>
     </table>

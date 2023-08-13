@@ -19,17 +19,11 @@ Powers::wereHouse($account, $userEmail);
 $request = new Request($con);
 
 if (isset($_POST["submit"])) {
-    $pipeQtyStore = @$_POST["pipeQtyStore"];
-    $pipeQtyStoreComment = @$_POST["pipeQtyStoreComment"];
-    $clampQtyStore = @$_POST["clampQtyStore"];
-    $clampQtyStoreComment = @$_POST["clampQtyStoreComment"];
-    $woodQtyStore = @$_POST["woodQtyStore"];
-    $woodQtyStoreComment = @$_POST["woodQtyStoreComment"];
-    $pipeQty = @$_POST["pipeQty"];
-    $clampQty = @$_POST["clampQty"];
-    $woodQty = @$_POST["woodQty"];
+    $itemName = $_POST['itemName'];
+    $wereHouseQty = $_POST['wereHouseQty'];
+    $wereHouseComment = $_POST['wereHouseComment'];
 
-    // $success = $request->updateIssuedReq($adminName, $pipeQty, $clampQty, $woodQty, $pipeQtyStore, $pipeQtyStoreComment, $clampQtyStore, $clampQtyStoreComment, $woodQtyStore, $woodQtyStoreComment, $workOrderNo);
+    $success = $request->wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
 
     if ($success) {
         header("location: wereHouse.php");
@@ -47,7 +41,7 @@ function getInputValue($name)
 <html lang="en">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css.css">
@@ -58,32 +52,32 @@ function getInputValue($name)
 </head>
 
 <body>
-<div class="wrappe">
+    <div class="wrappe">
         <?php include_once('includes/navbar.php') ?>
 
         <div class="login-container" id="login">
-       <p class="admin-Name"> <?php echo $adminName; ?></p>
-    
-     
-       
-        <form method="POST">
-            <div id="reqInf"></div>
-        </form>
+            <p class="admin-Name">
+                <?php echo $adminName; ?>
+            </p>
 
-    </form>
+            <form method="POST">
+                <div id="reqInf"></div>
+            </form>
 
-    <script>
-        let timeout = 2000
-        $(window).on("load", function () {
-            $.get(
-                "ajax/GetWereHouseReq.php",
-                { isNotification: null, wereHouse: '<?php echo $adminName; ?>', workOrderNo : <?php echo $workOrderNo; ?> },
-                function (data) {
-                    $("#reqInf").html(data);
-                }
-            );
-        })
-    </script>
+            </form>
+
+            <script>
+                let timeout = 2000
+                $(window).on("load", function () {
+                    $.get(
+                        "ajax/GetWereHouseReq.php",
+                        { isNotification: null, wereHouse: '<?php echo $adminName; ?>', workOrderNo: <?php echo $workOrderNo; ?> },
+                        function (data) {
+                            $("#reqInf").html(data);
+                        }
+                    );
+                })
+            </script>
 
 </body>
 

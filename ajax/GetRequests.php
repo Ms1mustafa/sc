@@ -6,13 +6,12 @@ include_once('../includes/classes/Notification.php');
 
 $isNotification = $_GET['isNotification'];
 $executer = $_GET['executer'];
-// $workOrderNo = $_GET['workOrderNo'];
+
 if ($isNotification != null) {
-    $executer = $_GET['executer'];
 
     $requests = Requests::getExecuterRequests($con, true, $executer);
     foreach ($requests as $request) {
-        
+
         $notification = new Notification();
 
         echo $notification->getExecuterNotification($request);
@@ -20,8 +19,10 @@ if ($isNotification != null) {
 }
 
 if ($isNotification == null) {
+    $workOrderNo = $_GET['workOrderNo'];
 
-    $requests = Requests::getExecuterRequests($con, null, $executer);
+    $requests = Requests::getExecuterRequests($con, null, $executer, $workOrderNo);
+    $items = Requests::getItemsDes($con, $workOrderNo);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
     $adminAddedName = $requests["adminAddedName"];
@@ -30,15 +31,6 @@ if ($isNotification == null) {
     $item = $requests["item"];
     $priority = $requests["priority"];
     $notes = $requests["notes"];
-    // $pipeQty = $requests["pipeQty"];
-    // $clampQty = $requests["clampQty"];
-    // $woodQty = $requests["woodQty"];
-    // $pipeQtyStore = $requests["pipeQtyStore"];
-    // $pipeQtyStoreComment = $requests["pipeQtyStoreComment"];
-    // $clampQtyStore = $requests["clampQtyStore"];
-    // $clampQtyStoreComment = $requests["clampQtyStoreComment"];
-    // $woodQtyStore = $requests["woodQtyStore"];
-    // $woodQtyStoreComment = $requests["woodQtyStoreComment"];
     $issued = $requests["issued"] == 'yes' ? true : null;
     $finishDate = $requests["finishDate"];
     $executerAccept = $requests["executerAccept"] == 'yes' ? true : null;
@@ -52,7 +44,6 @@ if ($isNotification == null) {
     $height = $requests["height"];
     $lwh = $length * $width * $height;
 
-    
     echo "<label class='Get'>ReqNo</label>
     <label class='Getreq'>$reqNo</label>
     <br>
@@ -91,12 +82,12 @@ if ($isNotification == null) {
     <label class='Get'>Date</label>
    <br>
    
-    <input class='inputfieldrequest' type='date' name='finishDate' value= $finishDate ";
-    
+    <input class='inputfieldrequest' type='date' name='finishDate' value= '$finishDate' ";
+
     if (!$new) {
         echo 'readonly';
     }
-    echo " required>
+    echo "required>
     ";
     if ($issued) {
         echo '
@@ -109,59 +100,18 @@ if ($isNotification == null) {
             </thead>
             <tbody>
         ';
-        if ($pipeQty) {
-            echo "
-                    <tr>
-                        <td>Pipe 6M</td>
-                        <td><input class = 'Wood1' type='number' min = '1' name='pipeQty' value='$pipeQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
-                        <td><input class = 'Wood1' type='number' min = '1' name='pipeQtyStore' value='$pipeQtyStore' ";
-            if ($issued) {
-                echo "disabled";
-            }
-            echo "></td>
-                        <td><input  class = 'Wood1' type='text' name='pipeQtyStoreComment' value='$pipeQtyStoreComment' ";
-            if ($issued) {
-                echo "disabled";
-            }
-            echo "></td>
-                    </tr>
-                ";
-        }
-        if ($clampQty) {
-            echo "
-                    <tr>
-                        <td>Clamp movable</td>
-                        <td><input class = 'Wood1' type='number' min = '1' name='clampQty' value='$clampQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
-                        <td><input class = 'Wood1' type='number' min = '1' name='clampQtyStore' value='$clampQtyStore' ";
-            if ($issued) {
-                echo "disabled";
-            }
-            echo "></td>
-                        <td><input  class = 'Wood1' type='text' name='clampQtyStoreComment' value='$clampQtyStoreComment' ";
-            if ($issued) {
-                echo "disabled";
-            }
-            echo "></td>
-                    </tr>
-                ";
-        }
-        if ($woodQty) {
-            echo "
-                    <tr>
-                        <td>Wood 4m</td>
-                        <td><input class = 'Wood1' type='number' min = '1' name='woodQty' value='$woodQty' "; if ($status != 'rejected') { echo 'disabled';} echo"></td>
-                        <td><input class = 'Wood1' type='number' min = '1' name='woodQtyStore' value='$woodQtyStore' ";
-            if ($issued) {
-                echo "disabled";
-            }
-            echo "></td>
-                        <td><input class = 'Wood1' type='text' name='woodQtyStoreComment' value='$woodQtyStoreComment' ";
-            if ($issued) {
-                echo "disabled";
-            }
-            echo "></td>
-                    </tr>
-                ";
+        foreach ($items as $item) {
+            echo '
+            <tr>
+                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                <td>' . $item['itemQty'] . '</td>
+                
+                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
+                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
+                
+
+            </tr>
+            ';
         }
     }
     echo '
@@ -174,10 +124,10 @@ if ($isNotification == null) {
             <button class="submittt" name="accept">accept</button>
         ';
     }
-    if($status == 'rejected'){
-        echo'
+    if ($status == 'rejected') {
+        echo '
             <p>Rejected</p>
-            <p>Reject Reason : '.$rejectReason.'</p>
+            <p>Reject Reason : ' . $rejectReason . '</p>
 
             <button class="submit" name="resendToInspector">Resend to inspector</button>
         ';

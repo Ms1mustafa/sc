@@ -50,7 +50,7 @@ $request = new Request($con);
         function loadRequests() {
             $.get(
                 "ajax/GetRequests.php",
-                { isNotification: true, executer : '<?php echo $adminName;?>' },
+                { isNotification: true, executer: '<?php echo $adminName; ?>' },
                 function (data) {
                     $("#result").html(data);
                 }
