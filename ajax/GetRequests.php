@@ -44,20 +44,22 @@ if ($isNotification == null) {
     $height = $requests["height"];
     $lwh = $length * $width * $height;
 
-    echo "<label class='Get'>ReqNo</label>
-    <label class='Getreq'>$reqNo</label>
+    echo "<label class='Getrquest'>ReqNo</label>
+    <label class='GetrquesQTY'>$reqNo</label>
     <br>
-   
-    <label class='Get'>Requester</label>
-    <label class='Getreq1'>$adminAddedName</label>
-    <br>
-    <label class='Get' >Inspector</label>
-    <label class='Getreq1'>$inspector</label>
    <br>
-    <label class='Get'>Area</label>
-    <label class='Getreq2'>$area</label>
+    <label class='Getrquest'>Requester</label>
+    <label class='GetrquesQTY'>$adminAddedName</label>
     <br>
-   
+    <br>
+    <label class='Getrquest' >Inspector</label>
+    <label class='GetrquesQTY'>$inspector</label>
+   <br>
+   <br>
+    <label class='Getrquest'>Area</label>
+    <label class='GetrquesQTY'>$area</label>
+    <br>
+   <br>
     
     <label class='length'>$length m</label>
     &nbsp; &nbsp; &nbsp;
@@ -67,22 +69,23 @@ if ($isNotification == null) {
     &nbsp; &nbsp; &nbsp;
     <label class='length'>$lwh m</label>
   <br>
-    <label class='Get'>Location</label>
-    <label class='Getreq3'>$item</label>
+  <br>
+    <label class='Getrquest'>Location</label>
+    <label class='GetrquesQTY'>$item</label>
    <br>
-    
-    <label class='Get'>priority</label>
-    <label class='Getreq4'>$priority</label>
-     
     <br>
-    <label class='Get'>Notes</label>
-    <label class='Getreq4'>$notes</label>
+    <label class='Getrquest'>priority</label>
+    <label class='GetrquesQTY'>$priority</label>
+     <br>
     <br>
-   
-    <label class='Get'>Date</label>
+    <label class='Getrquest'>Notes</label>
+    <label class='GetrquesQTY'>$notes</label>
+    <br>
    <br>
-   
-    <input class='inputfieldrequest' type='date' name='finishDate' value= '$finishDate' ";
+    <label class='Getrquest'>Date</label>
+   <br>
+   <br>
+    <input class='inputfieldrequestqty' type='date' name='finishDate' value= '$finishDate' ";
 
     if (!$new) {
         echo 'readonly';
@@ -91,7 +94,7 @@ if ($isNotification == null) {
     ";
     if ($issued) {
         echo '
-            <table >
+            <table  >
             <thead >
                 <th>Item description</th>
                 <th >QTY Req</th>
@@ -106,8 +109,8 @@ if ($isNotification == null) {
                 <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                 <td>' . $item['itemQty'] . '</td>
                 
-                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
-                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
+                <td><input class = "pipe2" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
+                <td><input class = "pipe2" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
                 
 
             </tr>

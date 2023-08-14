@@ -12,7 +12,7 @@ itemDescription.addEventListener("change", function () {
     let html = `
       <tr>
           <td class='pipe'><input class='pipe1 cantEdit' name="itemName[]" value="${selectedValue}" readonly></td>
-          <td><input class='pipe1' type="number" min="1" name="itemQty[]"></td>
+          <td><input class='pipe2' type="number" min="1" name="itemQty[]"></td>
       </tr>
     `;
 
@@ -68,3 +68,4 @@ reject.addEventListener('click', function (e) {
     rejectReason.required = true
   }
 })
+

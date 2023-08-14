@@ -75,11 +75,11 @@ function getInputValue($name)
 
 <body>
     <div class="wrappe">
-        <?php include_once('includes/navbar.php') ?>
+        
 
         <div class="login-container" id="login">
             <form method="POST">
-                <p class="Name-1">
+                <p class="namerQTY">
                     <?php echo $adminName; ?>
                 </p>
 
@@ -88,17 +88,17 @@ function getInputValue($name)
                 <br>
                 <?php if ($new)
                     echo '
-                <table  >
+                <table  class="itemestable">
                 <thead >
                     <th >
-                        <select class="input-fiel" id="ItemDescription">
+                        <select class="inputfieldGetReq" id="ItemDescription">
                             <option disabled selected>Item description</option>
                             <option value="Pipe 6M">Pipe 6M</option>
                             <option value="Clamp movable">Clamp movable</option>
                             <option value="Wood 4m">Wood 4m</option>
                         </select>
                     </th>
-                    <th><p class="input-fiel"> Qty</p></th>
+                    <th><p class="inputfieldGetRequestl"> Qty</p></th>
                 </thead>
                 <tbody id="ItemDescriptionBody">
 
@@ -108,7 +108,7 @@ function getInputValue($name)
                 ?>
                 <br>
                 <?php if ($new) {
-                    echo '<button   class="submitt"name="submit">Done</button>';
+                    echo '<button   class="submitQTY"name="submit">Done</button>';
                 } ?>
             </form>
 

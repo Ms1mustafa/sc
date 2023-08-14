@@ -746,17 +746,17 @@ header {
 }
 
 .inputfieldGetReq {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
-  background: #fff;
+
   color: #000;
-  height: 50px;
-  width: 70%;
-  padding: 0px 40px 0 45px;
-  border: 2px solid #e77823;
+  height: 40px;
+  width: 100%;
+  border: 1px solid #e77823;
+
   position: relative;
   right: 5px;
-  border-radius: 15px;
+  border-radius: 5px;
   outline: none;
   transition: .2s ease;
 }
@@ -768,7 +768,7 @@ table {
   position: absolute;
   left: 3%;
   top: 75%;
-  width: 230px;
+  width: 250px;
   border: 1px solid #e77823;
   border-radius: 10px;
 
@@ -776,11 +776,10 @@ table {
 
 .itemestable {
   position: absolute;
-  left: -40px;
-  top: 30%;
-  width: 300px;
+  left: 50px;
+  top: 71%;
+  width: 200px;
   height: 200px;
-  border: 1px solid #e77823;
   border-radius: 10px;
 }
 
@@ -791,7 +790,7 @@ tr {
 
 th,
 td {
-  padding: 12px;
+  padding: 0px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
@@ -805,6 +804,12 @@ tr:hover {
 @media only screen and (max-width: 768px) {
   table {
     width: 250px;
+  }
+
+  .itemestable {
+    position: relative;
+    top: 100px;
+    left: 0px;
   }
 
 }
@@ -822,18 +827,29 @@ tr:hover {
   border-radius: 10px;
 }
 
+.pipe2 {
+  font-size: 14px;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  padding: 0 5px;
+  text-align: center;
+  border: 1px solid #e77823;
+  border-radius: 5px;
+}
+
 .pipe1,
 .clamp1,
 .Wood1 {
   /* color: #fff; */
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
-  width: 50px;
-  height: 20px;
+  width: 100px;
+  height: 30px;
   padding: 0 5px;
   text-align: center;
   border: 1px solid #e77823;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .submitQTY {
@@ -844,8 +860,9 @@ tr:hover {
   width: 30%;
   border: none;
   border-radius: 15px;
-  margin-top: 22%;
-
+  margin-top: 17%;
+  position: relative;
+  right: 20px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -884,11 +901,19 @@ tr:hover {
 
   .submitQTY {
     position: relative;
-    top: 300px;
+    top: 90px;
     width: 280px;
-    right: 8px;
+
+  }
+
+  .pipe1 {
+    width: 150px;
+    font-size: 15px;
   }
 }
+
+
+
 
 /*------------wereHosuse------------*/
 .submitwere {

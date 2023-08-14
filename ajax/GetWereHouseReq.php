@@ -33,23 +33,23 @@ if ($isNotification == null) {
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
 
-    echo "<label  class='Getwerhose'>ReqNo</label>
+    echo "<label  class='Getrquest'>ReqNo</label>
 
     <label class='Getwerhose1'>$reqNo</label>
    <br>
-    <label class='Getwerhose' >Requester </label>
+    <label class='Getrquest' >Requester </label>
     <label class='Getwerhose2'>$adminAddedName</label>
     <br>
-    <label  class='Getwerhose'>Inspector</label>
+    <label  class='Getrquest'>Inspector</label>
     <label  class='Getwerhose2'>$inspector</label>
    <br>
-    <label class='Getwerhose'>Area</label>
+    <label class='Getrquest'>Area</label>
     <label class='Getwerhose3'>$area</label>
   <br>
-    <label class='Getwerhose'>Location</label>
+    <label class='Getrquest'>Location</label>
     <label class='Getwerhose4'>$item</label>
     <br>
-    <label class='Getwerhose'>Notes</label>
+    <label class='Getrquest'>Notes</label>
     <label class='Getwerhose5'>$notes</label>
 
     <table class='itemestable'>
