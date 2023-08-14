@@ -764,6 +764,7 @@ header {
 
 
 /* table */
+
 table {
   position: absolute;
   left: 3%;
@@ -813,6 +814,7 @@ tr:hover {
   }
 
 }
+
 
 .pipe,
 .clamp,

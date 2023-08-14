@@ -70,10 +70,15 @@ function getInputValue($name)
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <title>Notification</title>
 </head>
 
 <body>
+<div >
+    <a class="Back" href="notification.php">
+    <i class="fa-solid fa-arrow-left"></i>    Back</a>
+</div>
     <div class="wrappe">
         
 
@@ -91,14 +96,11 @@ function getInputValue($name)
                 <table  class="itemestable">
                 <thead >
                     <th >
-                        <select class="inputfieldGetReq" id="ItemDescription">
+                        <select  class="inputfieldGetReq" id="ItemDescription">
                             <option disabled selected>Item description</option>
-                            <option value="Pipe 6M">Pipe 6M</option>
-                            <option value="Clamp movable">Clamp movable</option>
-                            <option value="Wood 4m">Wood 4m</option>
                         </select>
                     </th>
-                    <th><p class="inputfieldGetRequestl"> Qty</p></th>
+                    <th><p class="inputfieldGetReq"> Qty</p></th>
                 </thead>
                 <tbody id="ItemDescriptionBody">
 
@@ -124,7 +126,7 @@ function getInputValue($name)
                     $.get(
                         "ajax/GetItemDes.php",
                         function (data) {
-                            $("#ItemDescription").html(data);
+                            $("#ItemDescription").append(data);
                         }
                     );
                 })

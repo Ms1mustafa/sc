@@ -94,23 +94,25 @@ if ($isNotification == null) {
     ";
     if ($issued) {
         echo '
-            <table  >
-            <thead >
+        <main>
+   
+        <div role="region" aria-labelledby="Cap1" tabindex="0">
+        <table id="Books">
+       
                 <th>Item description</th>
                 <th >QTY Req</th>
                 <th>QTY Issued</th>
                 <th>Comment</th>
-            </thead>
-            <tbody>
+          
         ';
         foreach ($items as $item) {
             echo '
             <tr>
-                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                <td><input class = "" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                 <td>' . $item['itemQty'] . '</td>
                 
-                <td><input class = "pipe2" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
-                <td><input class = "pipe2" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
+                <td><input class = "" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
+                <td><input class = "" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
                 
 
             </tr>
@@ -118,8 +120,10 @@ if ($isNotification == null) {
         }
     }
     echo '
-        </tbody>
-        </table>
+    </tbody>
+    </table>
+    </div>
+    </main>
     ';
 
     if ($issued && !$executerAccept) {
