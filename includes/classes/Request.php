@@ -28,6 +28,18 @@ class Request
         }
         return false;
     }
+
+    public function editRequest($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspector, $notes)
+    {
+        if ($workOrderNo && $area && $item && $length && $width && $height && $priority && $workType && $inspector && $notes) {
+            if (empty($this->errorArray)) {
+                return $this->editRequestDetils($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspector, $notes);
+            }
+        } else {
+            array_push($this->errorArray, constants::$requestFailed);
+        }
+        return false;
+    }
     public function executerUpdate($workOrderNo, $itemName, $itemQty, $finishDate)
     {
         if (empty($this->errorArray)) {
@@ -68,6 +80,41 @@ class Request
 
         return $query->execute();
 
+    }
+
+    public function editRequestDetils($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspector, $notes)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE request SET area = :area, item = :item, length = :length, width = :width, height = :height, priority = :priority, workType = :workType, inspector = :inspector, notes = :notes
+                                        WHERE workOrderNo = :workOrderNo");
+
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":area", $area);
+            $query->bindValue(":item", $item);
+            $query->bindValue(":length", $length);
+            $query->bindValue(":width", $width);
+            $query->bindValue(":height", $height);
+            $query->bindValue(":priority", $priority);
+            $query->bindValue(":workType", $workType);
+            $query->bindValue(":inspector", $inspector);
+            $query->bindValue(":notes", $notes);
+
+            return $query->execute();
+        }
+
+        return false;
+    }
+    public function deleteRequest($workOrderNo)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("DELETE FROM request WHERE workOrderNo = :workOrderNo");
+
+            $query->bindValue(":workOrderNo", $workOrderNo);
+
+            return $query->execute();
+        }
+
+        return false;
     }
 
     public function executerUpdateDetils($workOrderNo, $itemName, $itemQty, $finishDate)
@@ -167,6 +214,31 @@ class Request
         if ($query->rowCount() != 0) {
             array_push($this->errorArray, constants::$workOrderNoTaken);
         }
+    }
+
+    public function getRequestDetails($workOrderNo = null)
+    {
+        $sql = "SELECT * FROM request ";
+
+        if ($workOrderNo) {
+            $sql .= "WHERE workOrderNo=:workOrderNo";
+        }
+
+        $query = $this->con->prepare($sql);
+
+        if ($workOrderNo) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+        }
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $array = $row;
+        }
+
+        return $array;
     }
 
     public function getError($error)

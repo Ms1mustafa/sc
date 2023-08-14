@@ -29,6 +29,31 @@ class Notification
         return false;
     }
 
+    public function getReqActionNotification($data)
+    {
+        $reqNo = $data["reqNo"];
+        $workOrderNo = $data["workOrderNo"];
+        $priority = $data["priority"];
+        $adminAddedName = $data["adminAddedName"];
+        $reqDate = FormSanitizer::formatDate($data["reqDate"]);
+
+        if (empty($this->errorArray)) {
+            $html = "
+            <a href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
+            <p>$reqNo, Request, $adminAddedName</p>
+            <p>$priority</p>
+            <p>request added : $reqDate</p>
+            </a>
+            <br>
+            <hr>
+            <br>
+            ";
+            return $html;
+        }
+
+        return false;
+    }
+
     private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName)
     {
         if ($inspectorDate) {

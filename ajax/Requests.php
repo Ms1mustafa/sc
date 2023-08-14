@@ -82,15 +82,24 @@ class Requests
 
         $whereClause[] = "status = 'accepted' AND adminAddedName = :admin ";
 
+        if (!$isNoti) {
+            $whereClause[] = "workOrderNo = :workOrderNo ";
+        }
+
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
             $sql .= "ORDER BY inspectorDate DESC";
-        };
-        
+        }
+        ;
+
         $query = $con->prepare($sql);
 
         $query->bindValue(":admin", $admin);
+
+        if (!$isNoti) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+        }
 
         $query->execute();
 
@@ -99,8 +108,40 @@ class Requests
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             if ($isNoti) {
                 $array[] = $row;
+            } else {
+                $array = $row;
             }
-            else {
+        }
+
+        return $array;
+    }
+
+    public static function getRequestsAction($con, $isNoti = null, $admin, $workOrderNo = null)
+    {
+        $sql = "SELECT * FROM request WHERE new = 'yes' AND adminAddedName = :adminAddedName ";
+
+        if (!$isNoti) {
+            $sql .= "workOrderNo = :workOrderNo ";
+        }
+
+        $sql .= "ORDER BY reqDate DESC";
+
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":adminAddedName", $admin);
+
+        if (!$isNoti) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+        }
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            if ($isNoti) {
+                $array[] = $row;
+            } else {
                 $array = $row;
             }
         }
@@ -117,7 +158,7 @@ class Requests
         $whereClause[] = "(executerAccept != 'yes' OR status = 'rejected') ";
         $whereClause[] = "executer = :executer ";
 
-        if(!$isNoti){
+        if (!$isNoti) {
             $whereClause[] = "workOrderNo = :workOrderNo ";
         }
 
@@ -125,12 +166,13 @@ class Requests
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
             $sql .= "ORDER BY GREATEST(COALESCE(reqDate, '0000-00-00'), COALESCE(wereHouseDate, '0000-00-00'), COALESCE(inspectorDate, '0000-00-00')) DESC";
-        };
-        
+        }
+        ;
+
         $query = $con->prepare($sql);
 
         $query->bindValue(":executer", $executer);
-        if(!$isNoti){
+        if (!$isNoti) {
             $query->bindValue(":workOrderNo", $workOrderNo);
         }
 
@@ -141,8 +183,7 @@ class Requests
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             if ($isNoti) {
                 $array[] = $row;
-            }
-            else {
+            } else {
                 $array = $row;
             }
         }
@@ -163,8 +204,9 @@ class Requests
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
             $sql .= "ORDER BY COALESCE(executerDate, '0000-00-00') DESC";
-        };
-        
+        }
+        ;
+
         $query = $con->prepare($sql);
 
         $query->bindValue(":wereHouse", $wereHouse);
@@ -176,8 +218,7 @@ class Requests
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             if ($isNoti) {
                 $array[] = $row;
-            }
-            else {
+            } else {
                 $array = $row;
             }
         }
@@ -199,8 +240,9 @@ class Requests
             $sql .= "ORDER BY 
             CASE WHEN status = 'resent' THEN 0 ELSE 1 END, 
             GREATEST(COALESCE(wereHouseDate, '0000-00-00'), COALESCE(resentDate, '0000-00-00')) DESC";
-        };
-        
+        }
+        ;
+
         $query = $con->prepare($sql);
 
         $query->bindValue(":inspector", $inspector);
@@ -212,8 +254,7 @@ class Requests
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             if ($isNoti) {
                 $array[] = $row;
-            }
-            else {
+            } else {
                 $array = $row;
             }
         }
@@ -224,7 +265,7 @@ class Requests
     public static function getItemsDes($con, $workOrderNo = null)
     {
         $sql = "SELECT * FROM requestitemdes WHERE workOrderNo = :workOrderNo";
-        
+
         $query = $con->prepare($sql);
 
         $query->bindValue(":workOrderNo", $workOrderNo);
@@ -234,7 +275,7 @@ class Requests
         $array = array();
 
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $array[] = $row;
+            $array[] = $row;
         }
 
         return $array;

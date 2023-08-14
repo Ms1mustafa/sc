@@ -4,6 +4,7 @@ include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
+$requestAction = true;
 
 if (!$userEmail) {
     header("location: login.php");
@@ -51,7 +52,7 @@ $request = new Request($con);
         function loadRequests() {
             $.get(
                 "ajax/GetAdminReq.php",
-                { adminName: '<?php echo $adminName; ?>' },
+                { isNotification : true, admin: '<?php echo $adminName; ?>', requestAction: true },
                 function (data) {
                     $("#result").html(data);
                 }

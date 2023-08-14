@@ -3,7 +3,7 @@ include_once('includes/config.php');
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Area.php');
-include_once('includes/classes/workType.php');
+include_once('includes/classes/WorkType.php');
 include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
@@ -23,7 +23,7 @@ $request = new Request($con);
 $getRequest = $request->getRequestDetails($workOrderNo);
 
 $canEdit = $getRequest['executerDate'] == NULL ? '' : 'disabled';
-$executerAccept = $getRequest['executerAccept'] == 'yes' ? true : false ;
+$executerAccept = $getRequest['executerAccept'] == 'yes' ? true : false;
 
 
 $area = new Area($con);
@@ -33,7 +33,7 @@ $workType = new workType($con);
 $getWT = $workType->getWT();
 
 if (isset($_POST["edit"])) {
-    $area = @$_POST["area"];
+    $area = $area->getAreaName(@$_POST["area"]);
     $item = @$_POST["item"];
     $length = @$_POST["length"];
     $width = @$_POST["width"];
@@ -46,7 +46,7 @@ if (isset($_POST["edit"])) {
 
     $success = $request->editRequest($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspectorName, $notes);
     if ($success) {
-        header("location: requestAction.php?workOrderNo=".$workOrderNo."");
+        header("location: home.php");
     }
 }
 
@@ -64,7 +64,7 @@ if (isset($_POST["delete"])) {
 <html lang="en">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css.css">
@@ -76,7 +76,7 @@ if (isset($_POST["delete"])) {
 
 <body>
 
-<div class="wrapper">
+    <div class="wrapper">
         <nav class="nav">
             <div class="nav-logo">
                 <p>LOGO .</p>
@@ -101,118 +101,126 @@ if (isset($_POST["delete"])) {
         <div class="login-container" id="login">
             <div class="top">
 
-                <header ></header>
+                <header></header>
             </div>
             <br>
             <div class="input-box">
-      
-    <form method="POST">
-        <?php echo $request->getError(constants::$requestFailed); ?>
-        <label class="priority">ReqNo</label>
-        <br>
-        <input value="<?php echo $getRequest['reqNo']; ?>" placeholder="Req No" class="input-field" name="reqNo" disabled readonly required>
-        <br>
-        <label class="priority">Work Order No</label>
-        <br>
-        <input type="text"laceholder="Work Order No" class="input-field name="workOrderNo" disabled readonly
-            value="<?php echo $workOrderNo; ?>" required>
-        <br>
-        <label class="priority">Requester</label>
-        <br>
-        <input value="<?php echo $getRequest['name']; ?>" class="input-field name="name" disabled readonly>
-        <br>
-        <br>
-        <label class="priority">Area</label>
-        <br>
-        <select  class="input-field" name="area" id="area" required <?php echo $canEdit; ?>>
-            <?php if ($getRequest['area']) {
 
-                echo '<option value="' . $getRequest['area'] . '" selected >' .$getRequest['area'] . ' - ' .$area->getAreaName($getRequest['area']) . '</option>';
-            } ?>
-            <?php echo $getArea; ?>
-        </select>
-        <br>
-        <label class="priority">Location</label>
-        <br>
-        <select  class="input-field" name="item"  id="item" required <?php echo $canEdit; ?>>
-            <?php if ($getRequest['item']) {
+                <form method="POST">
+                    <?php echo $request->getError(constants::$requestFailed); ?>
+                    <label class="priority">ReqNo :
+                        <?php echo $getRequest['reqNo']; ?>
+                    </label>
+                    <br>
+                    <label class="priority">Work Order No :
+                        <?php echo $workOrderNo; ?>
+                    </label>
+                    <br>
+                    <label class="priority">Requester :
+                        <?php echo $getRequest['adminAddedName']; ?>
+                    </label>
+                    <br>
+                    <br>
+                    <label class="priority">Area</label>
+                    <br>
+                    <select class="input-field" name="area" id="area" required <?php echo $canEdit; ?>>
+                        <?php if ($getRequest['area']) {
 
-                echo '<option value="' . $getRequest['item'] . '" selected >' . $getRequest['item'] . '</option>';
-            } ?>
-        </select>
-        <br>
-        <br>
-        <input type="number"   class="input-number" id="length" min="1" placeholder="L" name="length"
-            value="<?php echo $getRequest['length']; ?>" <?php echo $canEdit; ?>><span class="metre">m</span>
-        <input type="number"  class="input-number" id="width" min="1" placeholder="W" name="width"
-            value="<?php echo $getRequest['width']; ?>" <?php echo $canEdit; ?>><span class="metre">m</span>
-        <input type="number"  class="input-number" id="height" min="1" placeholder="H" name="height"
-            value="<?php echo $getRequest['height']; ?>" <?php echo $canEdit; ?>><span class="metre">m</span>
-        <br>
-        <br>
-        <label class="priority">priority</label>
-        <br>
-        <input type="radio" id="immediately" value="Immediately Today" name="priority" <?php echo $getRequest['priority'] == 'Immediately Today' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
-        <label class="priority" for="immediately">Immediately &nbsp; Today</label>
-        <br>
-        <input type="radio" id="high" value="High 2-3 Days" name="priority" <?php echo $getRequest['priority'] == 'High 2-3 Days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
-        <label class="priority" for="high">High &nbsp; 2-3 Days</label>
-        <br>
-        <input type="radio" id="medium" value="Medium 3-4 Days" name="priority" <?php echo $getRequest['priority'] == 'Medium 3-4 Days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
-        <label class="priority" for="medium">Medium &nbsp; 3-4 Days</label>
-        <br>
-        <input type="radio" id="low" value="Low More than 5 days" name="priority" <?php echo $getRequest['priority'] == 'Low More than 5 days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
-        <label class="priority" for="low">Low &nbsp; More than 5 days</label>
-        <br>
-        <label class="priority">work type</label>
-        <br>
-        <select  class="input-field" name="workType"required <?php echo $canEdit; ?>>
-            <option selected value="<?php echo $getRequest['workType'] ?? ''; ?>"><?php echo $getRequest['workType'] ?? 'Select work type'; ?></option>
-            <?php echo $getWT; ?>
-        </select>
-        <br>
-        <label class="priority">Inspector</label>
-        <br>
-        <select class="input-field" name="inspector"  required <?php echo $canEdit; ?>>
-            <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ?? 'select inspector'; ?></option>
-            <?php echo $inspectors; ?>
-        </select>
-        <br>
-        <label class="priority">Notes</label>
-        <br>
-        <input class="input-note" name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
-        <br>
-        <br>
-        <?php
-        if(!$executerAccept){
-            echo '
-                <button type="submit"  class="submit" name="edit"'. $canEdit .'>Edit</button>
+                            echo '<option value="' . $getRequest['area'] . '" selected >' . $getRequest['area'] . '</option>';
+                        } ?>
+                        <?php echo $getArea; ?>
+                    </select>
+                    <br>
+                    <label class="priority">Location</label>
+                    <br>
+                    <select class="input-field" name="item" id="item" required <?php echo $canEdit; ?>>
+                        <?php if ($getRequest['item']) {
+
+                            echo '<option value="' . $getRequest['item'] . '" selected >' . $getRequest['item'] . '</option>';
+                        } ?>
+                    </select>
+                    <br>
+                    <br>
+                    <input type="number" class="input-number" id="length" min="1" placeholder="L" name="length"
+                        value="<?php echo $getRequest['length']; ?>" <?php echo $canEdit; ?>><span
+                        class="metre">m</span>
+                    <input type="number" class="input-number" id="width" min="1" placeholder="W" name="width"
+                        value="<?php echo $getRequest['width']; ?>" <?php echo $canEdit; ?>><span class="metre">m</span>
+                    <input type="number" class="input-number" id="height" min="1" placeholder="H" name="height"
+                        value="<?php echo $getRequest['height']; ?>" <?php echo $canEdit; ?>><span
+                        class="metre">m</span>
+                    <br>
+                    <br>
+                    <label class="priority">priority</label>
+                    <br>
+                    <input type="radio" id="immediately" value="Immediately Today" name="priority" <?php echo $getRequest['priority'] == 'Immediately Today' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
+                    <label class="priority" for="immediately">Immediately &nbsp; Today</label>
+                    <br>
+                    <input type="radio" id="high" value="High 2-3 Days" name="priority" <?php echo $getRequest['priority'] == 'High 2-3 Days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
+                    <label class="priority" for="high">High &nbsp; 2-3 Days</label>
+                    <br>
+                    <input type="radio" id="medium" value="Medium 3-4 Days" name="priority" <?php echo $getRequest['priority'] == 'Medium 3-4 Days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
+                    <label class="priority" for="medium">Medium &nbsp; 3-4 Days</label>
+                    <br>
+                    <input type="radio" id="low" value="Low More than 5 days" name="priority" <?php echo $getRequest['priority'] == 'Low More than 5 days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
+                    <label class="priority" for="low">Low &nbsp; More than 5 days</label>
+                    <br>
+                    <label class="priority">work type</label>
+                    <br>
+                    <select class="input-field" name="workType" required <?php echo $canEdit; ?>>
+                        <option selected value="<?php echo $getRequest['workType'] ?? ''; ?>"><?php echo $getRequest['workType'] ?? 'Select work type'; ?></option>
+                        <?php echo $getWT; ?>
+                    </select>
+                    <br>
+                    <label class="priority">Inspector</label>
+                    <br>
+                    <select class="input-field" name="inspector" id="inspector" required <?php echo $canEdit; ?>>
+                        <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ?? 'select inspector'; ?></option>
+                        <?php echo $inspectors; ?>
+                    </select>
+                    <br>
+                    <label class="priority">Notes</label>
+                    <br>
+                    <input class="input-note" name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
+                    <br>
+                    <br>
+                    <?php
+                    if (!$executerAccept) {
+                        echo '
+                <button type="submit"  class="submit" name="edit"' . $canEdit . '>Edit</button>
                 <br>
                 <br>
-                <button type="submit"  class="submit" name="delete"'. $canEdit .'>Delete</button>
+                <button type="submit"  class="submit" name="delete"' . $canEdit . '>Delete</button>
             ';
-        }else{
-            echo '
+                    } else {
+                        echo '
                 <br>
-                <button type="submit"  class="submit" name="dismantling"'. $canEdit .'>dismantling</button>
+                <button type="submit"  class="submit" name="dismantling"' . $canEdit . '>dismantling</button>
             ';
-        }
-        ?>
-        
-    </form>
+                    }
+                    ?>
 
-    <script>
-        $("#area").on("change", function (e) {
-            $.get(
-                "ajax/GetItems.php",
-                { areaId: $("#area").val() },
-                function (data) {
-                    $("#item").html(data);
-                }
-            );
+                </form>
 
-        })
-    </script>
+                <script>
+                    $("#area").on("change", function (e) {
+                        $.get(
+                            "ajax/GetItems.php",
+                            { areaId: $("#area").val() },
+                            function (data) {
+                                $("#item").html(data);
+                            }
+                        );
+                        $.get(
+                            "ajax/GetInspectors.php",
+                            { areaId: $("#area").val() },
+                            function (data) {
+                                $("#inspector").html(data);
+                            }
+                        );
+
+                    })
+                </script>
 </body>
 
 </html>

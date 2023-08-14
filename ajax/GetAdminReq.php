@@ -6,15 +6,26 @@ include_once('../includes/classes/Notification.php');
 
 $isNotification = $_GET['isNotification'];
 $admin = $_GET['admin'];
-// $workOrderNo = $_GET['workOrderNo'];
+$requestAction = @$_GET['requestAction'];
 
 if ($isNotification != null) {
-    $requests = Requests::getAdminRequests($con, true, $admin);
-    foreach ($requests as $request) {
+    if ($requestAction) {
+        $requests = Requests::getRequestsAction($con, true, $admin);
 
-        $notification = new Notification();
+        foreach ($requests as $request) {
 
-        echo $notification->getAdminNotification($request);
+            $notification = new Notification();
+
+            echo $notification->getReqActionNotification($request);
+        }
+    } else {
+        $requests = Requests::getAdminRequests($con, true, $admin);
+        foreach ($requests as $request) {
+
+            $notification = new Notification();
+
+            echo $notification->getAdminNotification($request);
+        }
     }
 }
 if ($isNotification == null) {
@@ -22,7 +33,7 @@ if ($isNotification == null) {
 
     $requests = Requests::getAdminRequests($con, null, $admin, $workOrderNo);
     $items = Requests::getItemsDes($con, $workOrderNo);
-    
+
     $workOrderNo = $requests["workOrderNo"];
     $inspector = $requests["inspector"];
     $area = $requests["area"];
