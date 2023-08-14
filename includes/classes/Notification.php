@@ -6,19 +6,18 @@ class Notification
 
     public function getAdminNotification($data)
     {
-        $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
-        $adminAddedName = $data["name"];
-        $new = $data["new"] == "yes" ? true : false;
-        $reqDate = FormSanitizer::formatDate($data["reqDate"]);
+        $inspector = $data["inspector"];
+        $status = ucfirst($data["status"]);
+        $inspectorDate = FormSanitizer::formatDate($data["inspectorDate"]);
 
         if (empty($this->errorArray)) {
             $html = "
-            <a   class='notification' href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
-            <p>$reqNo, Request, $adminAddedName</p>
+            <a class='notification' href='adminQty.php?workOrderNo=" . $workOrderNo . "'>
+            <p>$status, $inspector</p>
             <p>$priority</p>
-            <p>request added : $reqDate</p>
+            <p>Inspector accepted : $inspectorDate</p>
             </a>
             <br>
             <hr class='hrQty'>
@@ -135,7 +134,7 @@ class Notification
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
         $executer = $data["executer"];
-        $wereHouseDate = $data["wereHouseDate"] ? FormSanitizer::formatDate($data["wereHouseDate"]) : null;
+        $executerAcceptDate = $data["executerAcceptDate"] ? FormSanitizer::formatDate($data["executerAcceptDate"]) : null;
         $resentDate = $data["resentDate"] ? FormSanitizer::formatDate($data["resentDate"]) : null;
 
         if (empty($this->errorArray)) {
@@ -148,7 +147,7 @@ class Notification
                 $html .= "<p>resent : $resentDate</p>";
             }
             $html .= "
-                <p>wereHouse sent : $wereHouseDate</p>
+                <p>Executer accept : $executerAcceptDate</p>
                 </a>
                 <br>
                 <hr class='hrQty'>

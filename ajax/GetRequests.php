@@ -88,7 +88,7 @@ if ($isNotification == null) {
     <input class='inputfieldrequestqty' type='date' name='finishDate' value= '$finishDate' ";
 
     if (!$new) {
-        echo 'readonly';
+        echo 'readonly ';
     }
     echo "required>
     ";

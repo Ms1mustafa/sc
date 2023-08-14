@@ -16,7 +16,7 @@ $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false
 Powers::admin($account, $userEmail);
 
 $request = new Request($con);
-$requests = $request->getRequestNumber($adminName);
+// $requests = $request->getRequestNumber($adminName);
 
 ?>
 
@@ -65,7 +65,7 @@ $requests = $request->getRequestNumber($adminName);
         function loadRequests() {
             $.get(
                 "ajax/GetAdminReq.php",
-                { adminName: '<?php echo $adminName; ?>' },
+                { isNotification: true, admin: '<?php echo $adminName; ?>' },
                 function (data) {
                     $("#result").html(data);
                 }
@@ -74,7 +74,7 @@ $requests = $request->getRequestNumber($adminName);
 
         function startTimer() {
             loadRequests();
-            timeout = 3000;
+            timeout = 5000;
             setTimeout(startTimer, timeout);
         }
 

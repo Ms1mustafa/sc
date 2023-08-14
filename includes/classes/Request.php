@@ -140,6 +140,23 @@ class Request
         return false;
     }
 
+    public function updateInspectorReq($status, $rejectReason, $workOrderNo)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE request SET status = :status, rejectReason = :rejectReason, inspectorDate = :currentDateTime
+                                        WHERE workOrderNo = :workOrderNo");
+
+            $query->bindValue(":status", $status);
+            $query->bindValue(":rejectReason", $rejectReason);
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":currentDateTime", $this->currentDateTime);
+
+            return $query->execute();
+        }
+
+        return false;
+    }
+
     public function validateworkOrderNo($workOrderNo)
     {
         $query = $this->con->prepare('SELECT * FROM request WHERE workOrderNo = :workOrderNo');

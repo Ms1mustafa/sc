@@ -74,6 +74,39 @@ class Requests
 
         return $array;
     }*/
+    public static function getAdminRequests($con, $isNoti = null, $admin, $workOrderNo = null)
+    {
+        $sql = "SELECT * FROM request ";
+
+        $whereClause = [];
+
+        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin ";
+
+        if (!empty($whereClause)) {
+            $sql .= "WHERE " . implode(" AND ", $whereClause);
+
+            $sql .= "ORDER BY inspectorDate DESC";
+        };
+        
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":admin", $admin);
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            if ($isNoti) {
+                $array[] = $row;
+            }
+            else {
+                $array = $row;
+            }
+        }
+
+        return $array;
+    }
 
     public static function getExecuterRequests($con, $isNoti = null, $executer, $workOrderNo = null)
     {
@@ -135,6 +168,42 @@ class Requests
         $query = $con->prepare($sql);
 
         $query->bindValue(":wereHouse", $wereHouse);
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            if ($isNoti) {
+                $array[] = $row;
+            }
+            else {
+                $array = $row;
+            }
+        }
+
+        return $array;
+    }
+
+    public static function getInspectorRequests($con, $isNoti = null, $inspector, $workOrderNo = null)
+    {
+        $sql = "SELECT * FROM request ";
+
+        $whereClause = [];
+
+        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' ";
+
+        if (!empty($whereClause)) {
+            $sql .= "WHERE " . implode(" AND ", $whereClause);
+
+            $sql .= "ORDER BY 
+            CASE WHEN status = 'resent' THEN 0 ELSE 1 END, 
+            GREATEST(COALESCE(wereHouseDate, '0000-00-00'), COALESCE(resentDate, '0000-00-00')) DESC";
+        };
+        
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":inspector", $inspector);
 
         $query->execute();
 

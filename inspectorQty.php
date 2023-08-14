@@ -78,7 +78,7 @@ function getInputValue($name)
         $(window).on("load", function () {
             $.get(
                 "ajax/GetInspectorRequests.php",
-                { isNotification: null, isQty: true, workOrderNo: <?php echo $workOrderNo; ?> },
+                { isNotification: null, inspector: '<?php echo $adminName;?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
                 function (data) {
                     $("#reqInf").html(data);
                 }

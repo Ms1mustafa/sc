@@ -5,12 +5,12 @@ include_once('../includes/classes/FormSanitizer.php');
 include_once('../includes/classes/Notification.php');
 
 $isNotification = $_GET['isNotification'];
-$isQty = $_GET['isQty'];
-$workOrderNo = $_GET['workOrderNo'];
+$inspector = $_GET['inspector'];
+
 if ($isNotification != null) {
     $inspector = $_GET['inspector'];
 
-    $requests = Requests::getRequest($con, $isNotification, false, null, null, null, $inspector);
+    $requests = Requests::getInspectorRequests($con, true, $inspector);
     foreach ($requests as $request) {
         $notification = new Notification();
 
@@ -18,51 +18,70 @@ if ($isNotification != null) {
     }
 }
 
-if ($isQty != null) {
+if ($isNotification == null) {
+    $workOrderNo = $_GET['workOrderNo'];
 
-    $requests = Requests::getRequest($con, false, $isQty, $workOrderNo);
+    $requests = Requests::getInspectorRequests($con, null, $inspector, $workOrderNo);
+    $items = Requests::getItemsDes($con, $workOrderNo);
+    
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
-    $requester = $requests["name"];
+    $adminAddedName = $requests["adminAddedName"];
     $inspector = $requests["inspector"];
     $area = $requests["area"];
     $item = $requests["item"];
     $notes = $requests["notes"];
-    $pipeQty = $requests["pipeQty"];
-    $clampQty = $requests["clampQty"];
-    $woodQty = $requests["woodQty"];
-    $pipeQtyStore = $requests["pipeQtyStore"];
-    $pipeQtyStoreComment = $requests["pipeQtyStoreComment"];
-    $clampQtyStore = $requests["clampQtyStore"];
-    $clampQtyStoreComment = $requests["clampQtyStoreComment"];
-    $woodQtyStore = $requests["woodQtyStore"];
-    $woodQtyStoreComment = $requests["woodQtyStoreComment"];
     $issued = $requests["issued"] == 'yes' ? true : null;
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
 
-    echo "<label  class='Getinspect'>ReqNo</label>
+    echo "<label  class='Getinspect'>ReqNo : </label>
     <label class='Getinspect1'>$reqNo</label>
 <br>
     
-    <label class='Getinspect'>Requester</label>
-    <label  class='Getinspect2'>$requester</label>
+    <label class='Getinspect'>Requester :</label>
+    <label  class='Getinspect2'>$adminAddedName</label>
 
     <br>
-    <label class='Getinspect'>Inspector</label>
+    <label class='Getinspect'>Inspector :</label>
     <label class='Getinspect2'>$inspector</label>
 <br>
-    <label  class='Getinspect'>Area</label>
+    <label  class='Getinspect'>Area :</label>
     <label class='Getinspect3' >$area</label>
     <br>
 
-    <label class='Getinspect'>Location</label>
+    <label class='Getinspect'>Location :</label>
     <label class='Getinspect4'>$item</label>
    <br>
-    <label class='Getinspect'>Notes</label>
+    <label class='Getinspect'>Notes :</label>
     <label  class='Getinspect5'>$notes</label>
     
-        ";
+    ";
+    if ($issued) {
+        echo '
+            <table  >
+            <thead >
+                <th>Item description</th>
+                <th >QTY Req</th>
+                <th>QTY Issued</th>
+                <th>Comment</th>
+            </thead>
+            <tbody>
+        ';
+        foreach ($items as $item) {
+            echo '
+            <tr>
+                <td>' . $item['itemName'] . '</td>
+                <td>' . $item['itemQty'] . '</td>
+                
+                <td>' . $item['wereHouseQty'] . '</td>
+                <td>' . $item['wereHouseComment'] . '</td>
+                
+
+            </tr>
+            ';
+        }
+    }
    
     // if ($status == 'resent') {
     //     echo '
