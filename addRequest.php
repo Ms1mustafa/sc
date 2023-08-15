@@ -182,7 +182,7 @@ if (isset($_POST["submit"])) {
                 <option disabled selected value="">select inspector</option>
             </select>
             <br>
-            <label class="labelnewrequestnot">Notes</label>
+            <label class="">Notes</label>
             <br>
             <textarea class="inputfieldnot" name="notes" required></textarea>
          

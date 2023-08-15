@@ -113,7 +113,7 @@ header {
   .submitlogin {
     width: 95%;
     position: relative;
-    right: 40px;
+    right: 10px;
     top: 70px;
   }
 
@@ -125,8 +125,8 @@ header {
   .inputfieldlogin {
     width: 190px;
     position: relative;
-    right: 35px;
-    top: 70px;
+    right: 10px;
+    top: 80px;
   }
 
   .welcomlogin {
@@ -971,5 +971,89 @@ tr:hover {
     position: relative;
     top: 80px;
     width: 100%;
+  }
+}
+
+/* -------------requestAction-------*/
+.requestAction {
+  position: relative;
+  top: 30px;
+  color: #e77823;
+  font-size: 20px;
+}
+
+.requestActionArea {
+
+  color: #e77823;
+  font-size: 20px;
+}
+
+.inputfieldnotAction {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 80px;
+  width: 30%;
+
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.inputlength {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  text-align: center;
+  width: 80px;
+  border: 2px solid #e77823;
+  position: relative;
+  left: 40px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.inputfieldrequestAction {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 30%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+@media only screen and (max-width: 900px) {
+
+  .inputlength {
+    position: relative;
+
+    left: -20px;
+  }
+
+  .inputfieldrequestAction {
+    width: 100%;
+
+  }
+
+  .inputfieldnotAction {
+    width: 100%;
+    position: relative;
+    top: 5px;
+    left: -20px;
+
   }
 }

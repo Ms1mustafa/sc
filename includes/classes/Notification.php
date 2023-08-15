@@ -39,13 +39,13 @@ class Notification
 
         if (empty($this->errorArray)) {
             $html = "
-            <a href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
+            <a  class='notification' href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
             <p>$reqNo, Request, $adminAddedName</p>
             <p>$priority</p>
             <p>request added : $reqDate</p>
             </a>
             <br>
-            <hr>
+            <hr class='hrQty'>
             <br>
             ";
             return $html;

@@ -27,7 +27,7 @@ $request = new Request($con);
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css.css?1999">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -36,6 +36,10 @@ $request = new Request($con);
 </head>
 
 <body>
+    <div>
+<a class="Back" href="home.php">
+    <i class="fa-solid fa-arrow-left"></i>    Back</a>
+</div>
 
 <div class="wrappe">
        
