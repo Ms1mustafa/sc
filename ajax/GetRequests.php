@@ -107,12 +107,12 @@ if ($isNotification == null) {
         ';
         foreach ($items as $item) {
             echo '
-            <tr>
-                <td><input class = "" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+            <tr >
+                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                 <td>' . $item['itemQty'] . '</td>
                 
-                <td><input class = "" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
-                <td><input class = "" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
+                <td><input class = "pipiss" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
+                <td><input class = "pipecomm" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
                 
 
             </tr>
@@ -128,7 +128,7 @@ if ($isNotification == null) {
 
     if ($issued && !$executerAccept) {
         echo '
-            <button class="submittt" name="accept">accept</button>
+            <button class="submitDone" name="accept">Done</button>
         ';
     }
     if ($status == 'rejected') {

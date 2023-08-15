@@ -767,8 +767,8 @@ header {
 
 .description {
   position: absolute;
-  left: 3%;
-  top: 100%;
+
+  top: 75%;
   width: 250px;
   border: 1px solid #e77823;
   border-radius: 10px;
@@ -801,18 +801,20 @@ header {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
+
 @media only screen and (max-width: 768px) {
   .description {
     width: 250px;
     position: absolute;
-    right: 100px;
+    left: -36px;
+    top: 90%;
   }
 
   .itemestable {
-    position: relative;
-    top: 100px;
-    left: -50px;
     font-size: 13px;
+    position: absolute;
+    top: 50%;
+    left: -30px
   }
 
 }
@@ -864,7 +866,7 @@ header {
 }
 
 .pipecomm {
-  width: 130px;
+  width: 120px;
   border: 1px #e77823 solid;
   border-radius: 5px;
   height: 30px;
@@ -887,6 +889,23 @@ header {
   transition: .3s ease-in-out;
 }
 
+.submitDone {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 30%;
+  border: none;
+  border-radius: 15px;
+  margin-top: 20%;
+  position: relative;
+  right: 20px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
 
 
 @media only screen and (max-width: 900px) {
@@ -894,6 +913,12 @@ header {
     position: relative;
     top: 80px;
     font-weight: bolder;
+  }
+
+  .submitDone {
+    width: 100%;
+    position: relative;
+    top: 280px;
   }
 
   .inputfieldGetReq {
@@ -999,7 +1024,7 @@ header {
   .submitGetHose {
     width: 100%;
     position: relative;
-    top: 120px;
+    top: 300px;
   }
 
   .notification:hover {
