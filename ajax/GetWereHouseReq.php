@@ -35,23 +35,26 @@ if ($isNotification == null) {
 
     echo "<label  class='Getrquest'>ReqNo</label>
 
-    <label class='Getwerhose1'>$reqNo</label>
+    <label class='GetrquesQTY'>$reqNo</label>
+   <br>
    <br>
     <label class='Getrquest' >Requester </label>
-    <label class='Getwerhose2'>$adminAddedName</label>
+    <label class='GetrquesQTY'>$adminAddedName</label>
+    <br>
     <br>
     <label  class='Getrquest'>Inspector</label>
-    <label  class='Getwerhose2'>$inspector</label>
+    <label  class='GetrquesQTY'>$inspector</label>
+   <br>
    <br>
     <label class='Getrquest'>Area</label>
-    <label class='Getwerhose3'>$area</label>
+    <label class='GetrquesQTY'>$area</label>
+  <br>
   <br>
     <label class='Getrquest'>Location</label>
-    <label class='Getwerhose4'>$item</label>
+    <label class='GetrquesQTY'>$item</label>
     <br>
-    <label class='Getrquest'>Notes</label>
-    <label class='Getwerhose5'>$notes</label>
-
+    <br>
+   
     <table class='itemestable'>
         <tr>
             <th>Item description</th>
@@ -67,11 +70,11 @@ if ($isNotification == null) {
             <td>' . $item['itemQty'] . '</td>
             ';
                 if($issued){
-                    echo "<td> <input class = 'pipe1' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"' disabled> </td>";
-                    echo "<td> <input class = 'pipe1' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"' disabled> </td>";
+                    echo "<td> <input class = '' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"' disabled> </td>";
+                    echo "<td> <input class = '' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"' disabled> </td>";
                 }else{
-                    echo "<td> <input class = 'pipe1' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"'> </td>";
-                    echo "<td> <input class = 'pipe1' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"'> </td>";
+                    echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"'> </td>";
+                    echo "<td> <input class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"'> </td>";
                 }
             echo'
         </tr>
@@ -83,7 +86,7 @@ if ($isNotification == null) {
     
     ";
     if (!$issued) {
-        echo '<button  class="submittt" name="submit">Done</button>';
+        echo '<button  class="submitGetHose" name="submit">Done</button>';
     }
     echo "
 ";

@@ -45,13 +45,19 @@ function getInputValue($name)
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css.css?1999">
+    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
     <title>Notification</title>
 </head>
 
+
 <body>
+<div >
+    <a class="Back" href="wereHouse.php">
+    <i class="fa-solid fa-arrow-left"></i>    Back</a>
+</div>
     <div class="wrappe">
       
 
@@ -59,7 +65,7 @@ function getInputValue($name)
             <p class="namerQTY">
                 <?php echo $adminName; ?>
             </p>
-
+<br>
             <form method="POST">
                 <div id="reqInf"></div>
             </form>

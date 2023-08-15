@@ -96,8 +96,8 @@ if ($isNotification == null) {
         echo '
         <main>
    
-        <div role="region" aria-labelledby="Cap1" tabindex="0">
-        <table id="Books">
+      
+        <table class="description" >
        
                 <th>Item description</th>
                 <th >QTY Req</th>
