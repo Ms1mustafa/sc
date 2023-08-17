@@ -22,6 +22,7 @@ if ($isNotification == null) {
 
     $requests = Requests::getWereHouseRequests($con, null, $wereHouse);
     $items = Requests::getItemsDes($con, $workOrderNo);
+    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
     $adminAddedName = $requests["adminAddedName"];
@@ -63,20 +64,35 @@ if ($isNotification == null) {
             <th>Comment</th>
         </tr>
         ";
-    foreach ($items as $item) {
+    if ($rejectItems) {
+        $itemsLoop = $rejectItems;
+    } else {
+        $itemsLoop = $items;
+    }
+
+    foreach ($itemsLoop as $item) {
         echo '
         <tr>
+        <td hidden><input name="rejectsNum[]" value="' . $item['rejectsNum'] . '" readonly></td>
             <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
             <td>' . $item['itemQty'] . '</td>
             ';
-                if($issued){
-                    echo "<td> <input class = '' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"' disabled> </td>";
-                    echo "<td> <input class = '' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"' disabled> </td>";
-                }else{
-                    echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value=' "; $item['wereHouseQty']; echo"'> </td>";
-                    echo "<td> <input class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' "; $item['wereHouseComment']; echo"'> </td>";
-                }
-            echo'
+        if ($issued) {
+            echo "<td> <input class = '' type='number' min = '1' name='wereHouseQty[]' value=' ";
+            $item['wereHouseQty'];
+            echo "' disabled> </td>";
+            echo "<td> <input class = '' type='text' min = '1' name='wereHouseComment[]' value=' ";
+            $item['wereHouseComment'];
+            echo "' disabled> </td>";
+        } else {
+            echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value=' ";
+            $item['wereHouseQty'];
+            echo "'> </td>";
+            echo "<td> <input class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' ";
+            $item['wereHouseComment'];
+            echo "'> </td>";
+        }
+        echo '
         </tr>
         ';
     }

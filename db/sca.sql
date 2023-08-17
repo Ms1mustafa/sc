@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2023 at 12:19 PM
+-- Generation Time: Aug 17, 2023 at 11:26 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -101,6 +101,35 @@ INSERT INTO `itemdes` (`id`, `number`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rejectitemdes`
+--
+
+CREATE TABLE `rejectitemdes` (
+  `id` int(11) NOT NULL,
+  `workOrderNo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `itemName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `itemQty` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `wereHouseQty` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `wereHouseComment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `rejectsNum` int(10) NOT NULL,
+  `qtyBack` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `rejectDate` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rejectitemdes`
+--
+
+INSERT INTO `rejectitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `rejectsNum`, `qtyBack`, `rejectDate`) VALUES
+(13, '34545678765', 'Movable clamp', '5', '55', ' ii', 1, '', '2023-08-16 01:20:27'),
+(14, '34545678765', 'Woode borders 6m', '8', '88', ' ee', 1, '', '2023-08-16 01:20:27'),
+(21, '34545678765 ', 'Woode borders Under 1M', '5', '6', ' q', 2, '', '2023-08-17 00:55:40'),
+(22, '34545678765 ', 'Pipe scaffolding 2m', '8', '9', ' w', 2, '', '2023-08-17 00:55:40'),
+(23, '34545678765 ', 'Woode borders 4m', '3', '4', ' e', 2, '', '2023-08-17 00:55:40');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `request`
 --
 
@@ -124,8 +153,9 @@ CREATE TABLE `request` (
   `executerDate` datetime(6) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
   `rejectReason` varchar(255) NOT NULL,
+  `rejectsNum` int(255) NOT NULL DEFAULT 0,
   `new` varchar(255) NOT NULL DEFAULT 'yes',
-  `finishDate` datetime(6) DEFAULT NULL,
+  `finishDate` date DEFAULT NULL,
   `issued` varchar(255) NOT NULL DEFAULT 'no',
   `wereHouseDate` datetime(6) DEFAULT NULL,
   `executerAccept` varchar(6) NOT NULL DEFAULT 'no',
@@ -138,8 +168,10 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerDate`, `status`, `rejectReason`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`) VALUES
-(3, '202300001', 'Basim Kareem', '547457568', 'Packing', 'item1', '6', '3', '8', '2 - Routine', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'te', '2023-08-12 19:21:45.875260', '2023-08-13 01:42:09.000000', 'pending', '', 'no', '2023-08-15 00:00:00.000000', 'no', NULL, 'no', NULL, NULL, NULL);
+INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`) VALUES
+(3, '202300001', 'Basim Kareem', '547457568', 'Packing', 'item1', '6', '3', '8', '2 - Routine', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'te', '2023-08-12 19:21:45.875260', '2023-08-13 01:42:09.000000', 'accepted', '', 0, 'no', '2023-08-15', 'yes', '2023-08-14 00:18:15.000000', 'yes', '2023-08-14 10:46:12.000000', '2023-08-14 11:17:29.000000', NULL),
+(5, '202300001', 'Basim Kareem', '34545678765', 'Packing', 'item2', '52', '84', '21', '2 - Routine', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'rredrrf', '2023-08-15 00:30:29.286628', '2023-08-17 00:55:40.000000', 'accepted', '', 2, 'no', '2023-08-16', 'yes', '2023-08-17 00:56:08.000000', 'yes', '2023-08-15 11:05:48.000000', '2023-08-17 01:00:48.000000', '2023-08-17 01:00:43.000000'),
+(6, '202300001', 'Basim Kareem', '7558756984', 'Packing', 'item1', '6', '3', '9', '2 - Routine', 'Low More than 5 days', 'Luay Saad', 'Ali', 'Mohammed', 'dgf', '2023-08-15 12:23:28.797866', NULL, 'pending', '', 0, 'yes', NULL, 'no', NULL, 'no', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -155,6 +187,8 @@ CREATE TABLE `requestitemdes` (
   `wereHouseQty` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `wereHouseComment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `editedItemQty` varchar(255) NOT NULL,
+  `editedWereHouseQty` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `editedWereHouseComment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `qtyBack` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -162,11 +196,11 @@ CREATE TABLE `requestitemdes` (
 -- Dumping data for table `requestitemdes`
 --
 
-INSERT INTO `requestitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `editedItemQty`, `qtyBack`) VALUES
-(20, '54745756', 'Pipe scaffolding3m', '6', '', '', '', ''),
-(21, '54745756', 'Woode borders 2m', '3', '', '', '', ''),
-(22, '547457568', 'Woode borders 5m', '5', '', '', '', ''),
-(23, '547457568', 'Woode borders 3m', '8', '', '', '', '');
+INSERT INTO `requestitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `editedItemQty`, `editedWereHouseQty`, `editedWereHouseComment`, `qtyBack`) VALUES
+(22, '547457568', 'Woode borders 5m', '5', '5', ' t', '', '', '', ''),
+(23, '547457568', 'Woode borders 3m', '8', '3', ' h', '', '', '', ''),
+(24, '34545678765', 'Pipe scaffolding 4M', '5', '5', ' ', '', '', '', ''),
+(25, '34545678765', 'Woode borders 1m', '8', '8', ' ', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -244,6 +278,12 @@ ALTER TABLE `itemdes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rejectitemdes`
+--
+ALTER TABLE `rejectitemdes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `request`
 --
 ALTER TABLE `request`
@@ -290,16 +330,22 @@ ALTER TABLE `itemdes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT for table `rejectitemdes`
+--
+ALTER TABLE `rejectitemdes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `requestitemdes`
 --
 ALTER TABLE `requestitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`

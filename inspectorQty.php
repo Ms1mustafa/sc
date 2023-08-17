@@ -17,6 +17,7 @@ $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false
 Powers::inspector($account, $userEmail);
 
 $request = new Request($con);
+$rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"] + 1;
 
 if (isset($_POST["accept"])) {
     $success = $request->updateInspectorReq('accepted', '', $workOrderNo);
@@ -29,7 +30,7 @@ if (isset($_POST["accept"])) {
 if (isset($_POST["reject"])) {
     $rejectReason = @$_POST["rejectReason"];
 
-    $success = $request->updateInspectorReq('rejected', $rejectReason, $workOrderNo);
+    $success = $request->updateInspectorReq('rejected', $rejectReason, $workOrderNo, $rejectsNum);
 
     if ($success) {
         header("location: inspectorPage.php");
@@ -47,7 +48,7 @@ function getInputValue($name)
 <html lang="en">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css.css?1999">
@@ -59,42 +60,44 @@ function getInputValue($name)
 </head>
 
 <body>
-<div class="wrappe">
+    <div class="wrappe">
         <?php include_once('includes/navbar.php') ?>
 
         <div class="login-container" id="login">
-    <form method="POST">
-    <p class="admin-Name"> <?php echo $adminName; ?></p>
-       
-       
-        <form method="POST">
-            <div id="reqInf"></div>
-        </form>
+            <form method="POST">
+                <p class="admin-Name">
+                    <?php echo $adminName; ?>
+                </p>
 
-    </form>
 
-    <script>
-        let timeout = 2000
-        $(window).on("load", function () {
-            $.get(
-                "ajax/GetInspectorRequests.php",
-                { isNotification: null, inspector: '<?php echo $adminName;?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
-                function (data) {
-                    $("#reqInf").html(data);
+                <form method="POST">
+                    <div id="reqInf"></div>
+                </form>
+
+            </form>
+
+            <script>
+                let timeout = 2000
+                $(window).on("load", function () {
+                    $.get(
+                        "ajax/GetInspectorRequests.php",
+                        { isNotification: null, inspector: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
+                        function (data) {
+                            $("#reqInf").html(data);
+                        }
+                    );
+                })
+
+                function addRequiredAttribute() {
+                    const rejectReason = document.getElementById('rejectReason');
+                    rejectReason.required = true;
                 }
-            );
-        })
 
-        function addRequiredAttribute() {
-            const rejectReason = document.getElementById('rejectReason');
-            rejectReason.required = true;
-        }
-
-        function removeRequiredAttribute() {
-            const rejectReason = document.getElementById('rejectReason');
-            rejectReason.required = false;
-        }
-    </script>
+                function removeRequiredAttribute() {
+                    const rejectReason = document.getElementById('rejectReason');
+                    rejectReason.required = false;
+                }
+            </script>
 
 </body>
 

@@ -163,7 +163,7 @@ class Request
 
         for ($i = 0; $i < count($itemName); $i++) {
             $query->bindValue(":workOrderNo", $workOrderNo);
-            $query->bindValue(":itemName", $itemName[$i]); 
+            $query->bindValue(":itemName", $itemName[$i]);
             $query->bindValue(":wereHouseQty", $wereHouseQty[$i]);
             $query->bindValue(":wereHouseComment", $wereHouseComment[$i]);
             $query->execute();
@@ -187,14 +187,81 @@ class Request
         return false;
     }
 
-    public function updateInspectorReq($status, $rejectReason, $workOrderNo)
+    public function updateInspectorReq($status, $rejectReason, $workOrderNo, $rejectsNum = 0)
     {
         if (empty($this->errorArray)) {
-            $query = $this->con->prepare("UPDATE request SET status = :status, rejectReason = :rejectReason, inspectorDate = :currentDateTime
-                                        WHERE workOrderNo = :workOrderNo");
+            $sql = "UPDATE request SET status = :status, rejectReason = :rejectReason, inspectorDate = :currentDateTime ";
+
+            if ($status == 'rejected') {
+                $sql .= ", rejectsNum = :rejectsNum ";
+            }
+
+            $sql .= "WHERE workOrderNo = :workOrderNo ";
+
+            $query = $this->con->prepare($sql);
 
             $query->bindValue(":status", $status);
             $query->bindValue(":rejectReason", $rejectReason);
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":currentDateTime", $this->currentDateTime);
+
+            if ($status == 'rejected') {
+                $query->bindValue(":rejectsNum", $rejectsNum);
+            }
+
+            return $query->execute();
+        }
+
+        return false;
+    }
+
+    public function updateRejectExecuter($workOrderNo, $itemName, $itemQty, $rejectsNum)
+    {
+        $query = $this->con->prepare("INSERT INTO rejectitemdes (workOrderNo, itemName, itemQty, rejectsNum) VALUES (:workOrderNo, :itemName, :itemQty, :rejectsNum)");
+
+        for ($i = 0; $i < count($itemName); $i++) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":rejectsNum", $rejectsNum);
+            $query->bindValue(":itemName", $itemName[$i]);
+            $query->bindValue(":itemQty", $itemQty[$i]);
+            $query->execute();
+        }
+
+        $query2 = $this->con->prepare("UPDATE request SET status = 'resent', executerDate = :currentDateTime WHERE workOrderNo = :workOrderNo");
+        $query2->bindValue(":workOrderNo", $workOrderNo);
+        $query2->bindValue(":currentDateTime", $this->currentDateTime);
+        $query2->execute();
+
+        return true;
+    }
+    public function updateRejectWerehouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment, $rejectsNum)
+    {
+        $query = $this->con->prepare("UPDATE rejectitemdes SET wereHouseQty = :wereHouseQty, wereHouseComment = :wereHouseComment WHERE workOrderNo = :workOrderNo AND itemName = :itemName AND rejectsNum = :rejectsNum");
+
+        for ($i = 0; $i < count($itemName); $i++) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":rejectsNum", $rejectsNum[$i]);
+            $query->bindValue(":itemName", $itemName[$i]);
+            $query->bindValue(":wereHouseQty", $wereHouseQty[$i]);
+            $query->bindValue(":wereHouseComment", $wereHouseComment[$i]);
+
+            $query->execute();
+        }
+
+        $query2 = $this->con->prepare("UPDATE request SET status = 'backExecuter', wereHouseDate = :currentDateTime WHERE workOrderNo = :workOrderNo");
+        $query2->bindValue(":workOrderNo", $workOrderNo);
+        $query2->bindValue(":currentDateTime", $this->currentDateTime);
+        $query2->execute();
+
+        return true;
+    }
+
+    public function resendToInspector($workOrderNo)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE request SET status = 'resentInspector', resentDate = :currentDateTime
+                                        WHERE workOrderNo = :workOrderNo");
+
             $query->bindValue(":workOrderNo", $workOrderNo);
             $query->bindValue(":currentDateTime", $this->currentDateTime);
 

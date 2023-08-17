@@ -5,6 +5,10 @@ include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
 $workOrderNo = $_GET["qtyNo"];
+if(!$workOrderNo){
+    header("location: index.php");
+}
+$resent = @$_GET["resent"];
 
 if (!$userEmail) {
     header("location: login.php");
@@ -17,13 +21,17 @@ $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false
 Powers::wereHouse($account, $userEmail);
 
 $request = new Request($con);
-
 if (isset($_POST["submit"])) {
-    $itemName = $_POST['itemName'];
-    $wereHouseQty = $_POST['wereHouseQty'];
-    $wereHouseComment = $_POST['wereHouseComment'];
+    $itemName = @$_POST['itemName'];
+    $wereHouseQty = @$_POST['wereHouseQty'];
+    $wereHouseComment = @$_POST['wereHouseComment'];
+    $rejectsNum = @$_POST['rejectsNum'];
 
-    $success = $request->wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
+    if($resent == 'yes'){
+        $success = $request->updateRejectWerehouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment, $rejectsNum);
+    }else{
+        $success = $request->wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
+    }
 
     if ($success) {
         header("location: wereHouse.php");

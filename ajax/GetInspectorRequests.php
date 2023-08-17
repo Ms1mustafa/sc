@@ -23,6 +23,7 @@ if ($isNotification == null) {
 
     $requests = Requests::getInspectorRequests($con, null, $inspector, $workOrderNo);
     $items = Requests::getItemsDes($con, $workOrderNo);
+    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
     
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
@@ -68,7 +69,12 @@ if ($isNotification == null) {
             </thead>
             <tbody>
         ';
-        foreach ($items as $item) {
+        if ($rejectItems) {
+            $itemsLoop = $rejectItems;
+        } else {
+            $itemsLoop = $items;
+        }
+        foreach ($itemsLoop as $item) {
             echo '
             <tr>
                 <td>' . $item['itemName'] . '</td>

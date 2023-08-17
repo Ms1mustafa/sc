@@ -1,26 +1,31 @@
-const itemDescription = document.getElementById("ItemDescription");
-const itemDescriptionBody = document.getElementById("ItemDescriptionBody");
+document.addEventListener("DOMContentLoaded", function () {
+  const itemDescription = document.getElementById("ItemDescription");
+  const itemDescriptionBody = document.getElementById("ItemDescriptionBody");
 
-let selectedOptions = [];
+  console.log(itemDescription, itemDescriptionBody);
 
-itemDescription.addEventListener("change", function () {
-  const selectedValue = itemDescription.value;
+  let selectedOptions = [];
 
-  if (!selectedOptions.includes(selectedValue)) {
-    selectedOptions.push(selectedValue);
+  itemDescription?.addEventListener("change", function () {
+      const selectedValue = itemDescription.value;
 
-    let html = `
-      <tr>
-          <td class='pipe'><input class='pipe1 cantEdit' name="itemName[]" value="${selectedValue}" readonly></td>
-          <td><input class='pipe2' type="number" min="1" name="itemQty[]"></td>
-      </tr>
-    `;
+      if (!selectedOptions.includes(selectedValue)) {
+          selectedOptions.push(selectedValue);
 
-    itemDescriptionBody.insertAdjacentHTML("afterbegin", html);
-  }
+          let html = `
+              <tr>
+                  <td class='pipe'><input class='pipe1 cantEdit' name="itemName[]" value="${selectedValue}" readonly></td>
+                  <td><input class='pipe2' type="number" min="1" name="itemQty[]"></td>
+              </tr>
+          `;
+
+          itemDescriptionBody?.insertAdjacentHTML("afterbegin", html);
+      }
+  });
 });
 
-itemDescriptionBody.addEventListener("keydown", function (event) {
+
+itemDescriptionBody?.addEventListener("keydown", function (event) {
   const target = event.target;
   if (target.classList.contains("cantEdit")) {
     target.readOnly = true;
@@ -53,7 +58,7 @@ height?.addEventListener("change", function () {
 const userType = document.getElementById("userType");
 const areas = document.getElementById("areas");
 
-userType.addEventListener('change', () => {
+userType?.addEventListener('change', () => {
   if (userType.value == 'inspector') {
     areas.style.display = 'block';
   }
@@ -62,7 +67,7 @@ userType.addEventListener('change', () => {
 const reject = document.getElementById('reject');
 const rejectReason = document.getElementById('rejectReason');
 
-reject.addEventListener('click', function (e) {
+reject?.addEventListener('click', function (e) {
   if (!rejectReason.required == true) {
     e.preventDefault();
     rejectReason.required = true

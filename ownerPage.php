@@ -13,7 +13,7 @@ $isOwner = $account->getAccountDetails($userEmail, null, null, null, true);
 Powers::owner($account, $userEmail);
 
 $request = new Request($con);
-$requests = $request->getRequestNumber($adminName);
+// $requests = $request->getRequestNumber($adminName);
 
 ?>
 

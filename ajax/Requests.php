@@ -155,7 +155,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "(executerAccept != 'yes' OR status = 'rejected') ";
+        $whereClause[] = "(executerAccept != 'yes' OR status = 'rejected' OR status = 'backExecuter') ";
         $whereClause[] = "executer = :executer ";
 
         if (!$isNoti) {
@@ -197,7 +197,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "finishDate != '0000:00:00' AND issued != 'yes' ";
+        $whereClause[] = "(finishDate != '0000:00:00' AND issued != 'yes') OR status = 'resent' ";
         $whereClause[] = "wereHouse = :wereHouse ";
 
         if (!empty($whereClause)) {
@@ -232,7 +232,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' ";
+        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' AND status != 'resent'  AND status != 'backExecuter'";
 
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
@@ -280,6 +280,30 @@ class Requests
 
         return $array;
     }
+
+    public static function getRejectItemsDes($con, $workOrderNo = null, $last = null)
+    {
+        $sql = "SELECT * FROM rejectitemdes WHERE workOrderNo = :workOrderNo ";
+
+        if($last){
+            $sql .= "AND rejectsNum = (SELECT MAX(rejectsNum) FROM rejectitemdes WHERE workOrderNo = :workOrderNo)";
+        }
+
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $array[] = $row;
+        }
+
+        return $array;
+    }
 }
+
 
 ?>

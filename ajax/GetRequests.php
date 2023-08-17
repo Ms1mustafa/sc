@@ -23,6 +23,7 @@ if ($isNotification == null) {
 
     $requests = Requests::getExecuterRequests($con, null, $executer, $workOrderNo);
     $items = Requests::getItemsDes($con, $workOrderNo);
+    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
     $adminAddedName = $requests["adminAddedName"];
@@ -94,33 +95,37 @@ if ($isNotification == null) {
     ";
     if ($issued) {
         echo '
-        <main>
-   
-      
-        <table class="description" >
-       
+            <main>
+            <table class="description" >
+        ';
+        if ($status != 'rejected') {
+            echo '
                 <th>Item description</th>
                 <th >QTY Req</th>
                 <th>QTY Issued</th>
                 <th>Comment</th>
           
         ';
-        foreach ($items as $item) {
-            echo '
-            <tr >
-                <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
-                <td>' . $item['itemQty'] . '</td>
-                
-                <td><input class = "pipiss" min = "1" name="itemName[]" value="' . $item['wereHouseQty'] . '" readonly></td>
-                <td><input class = "pipecomm" min = "1" name="itemName[]" value="' . $item['wereHouseComment'] . '" readonly></td>
-                
-
-            </tr>
+        }
+        if ($rejectItems) {
+            $itemsLoop = $rejectItems;
+        } else {
+            $itemsLoop = $items;
+        }
+        foreach ($itemsLoop as $item) {
+            if ($status != 'rejected') {
+                echo '
+                <tr >
+                    <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                    <td>' . $item['itemQty'] . '</td>
+                    <td>' . $item['wereHouseQty'] . '</td>
+                    <td>' . $item['wereHouseComment'] . '</td>
+                </tr>
             ';
+            }
         }
     }
     echo '
-    </tbody>
     </table>
     </div>
     </main>
@@ -131,12 +136,20 @@ if ($isNotification == null) {
             <button class="submitDone" name="accept">Done</button>
         ';
     }
-    if ($status == 'rejected') {
+    if ($status == 'rejected' || $status == 'backExecuter') {
         echo '
             <p>Rejected</p>
             <p>Reject Reason : ' . $rejectReason . '</p>
-
-            <button class="submit" name="resendToInspector">Resend to inspector</button>
+        ';
+    }
+    if($status == 'rejected'){
+        echo '
+        <button class="submit" name="resendToWereHouse">Resend to WereHouse</button>
+        ';
+    }
+    if($status == 'backExecuter'){
+        echo '
+        <button class="submit" name="resendToInspector">Resend to Inspector</button>
         ';
     }
     echo "

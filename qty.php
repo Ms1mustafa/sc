@@ -5,6 +5,7 @@ include_once('includes/classes/Request.php');
 $userEmail = $_COOKIE["email"];
 $workOrderNo = $_GET["qtyNo"];
 $new = @$_GET["new"];
+$reject = @$_GET["reject"];
 
 if (!$userEmail) {
     header("location: login.php");
@@ -16,13 +17,13 @@ $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false
 
 $request = new Request($con);
 
+$itemName = @$_POST['itemName'];
+$itemQty = @$_POST['itemQty'];
+$finishDate = @$_POST['finishDate'];
+$rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"];
 
 if (isset($_POST["submit"])) {
-    $itemName = $_POST['itemName'];
-    $itemQty = $_POST['itemQty'];
-    $finishDate = $_POST['finishDate'];
 
-    // $success = $request->updateExecuterReq($pipeQty, $clampQty, $woodQty, $finishDate, $workOrderNo);
     $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $finishDate);
 
     if ($success) {
@@ -39,12 +40,18 @@ if (isset($_POST["accept"])) {
     }
 }
 
-if (isset($_POST["resendToInspector"])) {
-    $pipeQty = $_POST["pipeQty"];
-    $clampQty = $_POST["clampQty"];
-    $woodQty = $_POST["woodQty"];
+if (isset($_POST["resendToWereHouse"])) {
 
-    // $success = $request->resendToInspector($pipeQty, $clampQty, $woodQty, $workOrderNo);
+    $success = $request->updateRejectExecuter($workOrderNo, $itemName, $itemQty, $rejectsNum);
+
+    if ($success) {
+        header("location: notification.php");
+    }
+}
+
+if (isset($_POST["resendToInspector"])) {
+
+    $success = $request->resendToInspector($workOrderNo);
 
     if ($success) {
         header("location: notification.php");
@@ -75,12 +82,12 @@ function getInputValue($name)
 </head>
 
 <body>
-<div >
-    <a class="Back" href="notification.php">
-    <i class="fa-solid fa-arrow-left"></i>    Back</a>
-</div>
+    <div>
+        <a class="Back" href="notification.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
     <div class="wrappe">
-        
+
 
         <div class="login-container" id="login">
             <form method="POST">
@@ -91,31 +98,34 @@ function getInputValue($name)
                 <br>
                 <div id="reqInf"></div>
                 <br>
-                <?php if ($new)
+                <?php if ($new || $reject)
                     echo '
-                <table  class="itemestable">
-                <thead >
-                    <th >
-                        <select  class="inputfieldGetReq" id="ItemDescription">
-                            <option disabled selected>Item description</option>
-                        </select>
-                    </th>
-                    <th><p class="inputfieldGetReq"> Qty</p></th>
-                </thead>
-                <tbody id="ItemDescriptionBody">
+                        <table  class="itemestable">
+                            <thead >
+                                <th >
+                                    <select  class="inputfieldGetReq" id="ItemDescription">
+                                        <option disabled selected>Item description</option>
+                                    </select>
+                                </th>
+                                <th><p class="inputfieldGetReq"> Qty</p></th>
+                            </thead>
+                            <tbody id="ItemDescriptionBody">
 
-                </tbody>
-            </table>
-            ';
+                            </tbody>
+                        </table>
+                    ';
                 ?>
                 <br>
                 <?php if ($new) {
-                    echo '<button   class="submitQTY"name="submit">Done</button>';
+                    echo '
+                    <button class="submitQTY"name="submit">Done</button>
+                    <button class="submitQTY"name="change">Send to another executer</button>
+                    ';
                 } ?>
             </form>
 
             <script>
-                $(window).on("load", function () {
+                $(document).ready(function () {
                     $.get(
                         "ajax/GetRequests.php",
                         { isNotification: null, executer: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
@@ -129,8 +139,9 @@ function getInputValue($name)
                             $("#ItemDescription").append(data);
                         }
                     );
-                })
+                });
             </script>
+
 
 </body>
 

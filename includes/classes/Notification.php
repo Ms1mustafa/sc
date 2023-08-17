@@ -97,13 +97,13 @@ class Notification
         $wereHouseDate = $data["wereHouseDate"] ?? false;
         $type = $this->getNotiType($werehouseName, $inspectorDate);
         $sender = $this->getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName);
-
-        $new = $data["new"] == "yes" ? true : false;
+        $reject = $status == 'rejected' ? '&reject=yes' : '';
+        $new = $data["new"] == "yes" ? '&new=yes' : '';
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
 
         if (empty($this->errorArray)) {
             $html = "
-            <a  class='notification'  href='qty.php?qtyNo=" . $workOrderNo . "&new=" . $new . "'>
+            <a  class='notification'  href='qty.php?qtyNo=" . $workOrderNo . $new . " $reject'>
             <p>$reqNo, " . $type . ", " . $sender . "</p>
             <p>$priority</p>
             <p>".$this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate)."</p>
@@ -122,25 +122,21 @@ class Notification
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
         $executer = $data["executer"];
+        $status = $data["status"];
         $executerDate = FormSanitizer::formatDate($data["executerDate"]);
-        $inspectorDate = $data["inspectorDate"] ? FormSanitizer::formatDate($data["inspectorDate"]) : null;
+        $resent = $status == 'resent' ? '&resent=yes' : '';
 
 
         if (empty($this->errorArray)) {
             $html = "
             
-                <a class='notification' href='wereHouseQty.php?qtyNo=" . $workOrderNo . "'>
+                <a class='notification' href='wereHouseQty.php?qtyNo=" . $workOrderNo . $resent ."'>
                
                 <p>Executer: $executer</p>
                 <br>
                 <p>$priority</p>
                 <br>
             ";
-
-            if ($inspectorDate) {
-                $html .= "<p>Inspector reject: $inspectorDate</p>";
-            }
-
             $html .= "
                 <p>Executer sent: $executerDate</p>
                 </a>
