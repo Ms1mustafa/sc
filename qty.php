@@ -14,6 +14,7 @@ if (!$userEmail) {
 $account = new Account($con);
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
 $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$anotherExecuter = $account->getTransferAccount('execution', $userEmail);
 
 $request = new Request($con);
 
@@ -119,6 +120,12 @@ function getInputValue($name)
                 <?php if ($new) {
                     echo '
                     <button class="submitQTY"name="submit">Done</button>
+                    <select>
+                        <option selected disabled>Select Executer</option>
+                        ';
+                            echo $anotherExecuter;
+                        echo'
+                    </select>
                     <button class="submitQTY"name="change">Send to another executer</button>
                     ';
                 } ?>

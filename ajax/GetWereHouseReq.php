@@ -73,25 +73,16 @@ if ($isNotification == null) {
     foreach ($itemsLoop as $item) {
         echo '
         <tr>
-        <td hidden><input name="rejectsNum[]" value="' . $item['rejectsNum'] . '" readonly></td>
+        <td hidden><input name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
             <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
             <td>' . $item['itemQty'] . '</td>
             ';
-        if ($issued) {
-            echo "<td> <input class = '' type='number' min = '1' name='wereHouseQty[]' value=' ";
-            $item['wereHouseQty'];
-            echo "' disabled> </td>";
-            echo "<td> <input class = '' type='text' min = '1' name='wereHouseComment[]' value=' ";
-            $item['wereHouseComment'];
-            echo "' disabled> </td>";
-        } else {
             echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value=' ";
             $item['wereHouseQty'];
             echo "'> </td>";
             echo "<td> <input class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' ";
             $item['wereHouseComment'];
             echo "'> </td>";
-        }
         echo '
         </tr>
         ';

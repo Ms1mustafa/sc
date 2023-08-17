@@ -275,5 +275,26 @@ class Account
 
         return $html;
     }
+    public function getTransferAccount($type, $email)
+    {
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE type=:type AND email != :email");
+
+        $query->bindValue(':type', $type);
+        $query->bindValue(':email', $email);
+        $query->execute();
+
+        $html = "";
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $name = $row["username"];
+            $email = $row["email"];
+            $html .= "<option value='$name'>$name</option>";
+        }
+
+
+
+        return $html;
+    }
 }
 ?>
