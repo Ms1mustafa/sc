@@ -119,32 +119,48 @@ function getInputValue($name)
                 <br>
                 <?php if ($new || $reject)
                     echo '
-                        <table  class="itemestable">
+                <div>
+                        <table class="description">
                             <thead >
                                 <th >
                                     <select  class="inputfieldGetReq" id="ItemDescription">
                                         <option disabled selected>Item description</option>
                                     </select>
                                 </th>
-                                <th><p class="inputfieldGetReq"> Qty</p></th>
+                                <th><p class="inputfieldGetReqoty"> Qty</p></th>
                             </thead>
                             <tbody id="ItemDescriptionBody">
 
                             </tbody>
                         </table>
+                       </div>
                     ';
                 ?>
                 <br>
                 <?php if ($new) {
                     echo '
+                
+                    
+           <div class="">
                     <button class="submitQTY" name="submit" id="executerDone">Done</button>
-                    <select name = "newUser">
+                    </div>
+                    <br>
+                    <div>
+                    <select class="inputfieldownerselectqty" name = "newUser">
                         <option selected disabled>Select Executer</option>
+                        </div>
+                        <br>
+                       
                         ';
                     echo $anotherExecuter;
                     echo '
+                   
                     </select>
-                    <button class="submitQTY"name="change">Send to another executer</button>
+                    <br>
+                    <div>
+                    <button class="submitQTY2"name="change">Send to another executer</button>
+                    </div>
+                   
                     ';
                 } ?>
             </form>

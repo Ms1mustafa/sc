@@ -744,6 +744,36 @@ header {
   font-weight: bold;
 }
 
+.inputfieldownerselectqty {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 28%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.footersection {
+  position: relative;
+  margin-top: 70px;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.footer {
+  position: relative;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
 .Getrquest {
   color: #e77823;
   font-size: 20px;
@@ -760,18 +790,32 @@ header {
   font-weight: bold;
 
   color: #000;
-  height: 40px;
-  width: 100%;
+  height: 50px;
+  width: 95%;
   border: 1px solid #e77823;
 
   position: relative;
-  right: 5px;
+  left: 2px;
   border-radius: 5px;
   outline: none;
   transition: .2s ease;
 }
 
+.inputfieldGetReqoty {
+  font-size: 13px;
+  font-weight: bold;
 
+  color: #000;
+  height: 50px;
+  width: 80%;
+  text-align: center;
+
+  position: relative;
+  right: 3px;
+  border-radius: 5px;
+  outline: none;
+  transition: .2s ease;
+}
 
 /* table */
 
@@ -784,6 +828,7 @@ header {
   border-radius: 10px;
 }
 
+/*
 .itemestable {
   position: absolute;
   left: 10px;
@@ -792,7 +837,7 @@ header {
   height: 200px;
   border-radius: 10px;
 }
-
+*/
 .description tr {
   transition: all .2s ease-in;
   cursor: pointer;
@@ -816,17 +861,18 @@ header {
   .description {
     width: 250px;
     position: absolute;
-    left: -36px;
+    left: 10px;
     top: 90%;
   }
 
+  /*
   .itemestable {
     font-size: 13px;
     position: absolute;
     top: 50%;
     left: -30px
   }
-
+*/
 }
 
 
@@ -846,7 +892,7 @@ header {
 .pipe2 {
   font-size: 14px;
   font-weight: bold;
-  width: 30px;
+  width: 120px;
   height: 30px;
   padding: 0 5px;
   text-align: center;
@@ -887,10 +933,27 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 30%;
+  width: 28%;
   border: none;
   border-radius: 15px;
   margin-top: 17%;
+  position: relative;
+  right: 20px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.submitQTY2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 28%;
+  border: none;
+  border-radius: 15px;
+  margin-top: 2%;
   position: relative;
   right: 20px;
   outline: none;
@@ -936,7 +999,14 @@ header {
     right: 2px;
   }
 
+  .submitQTY {
+    width: 110%;
+    margin-top: 70%;
+  }
 
+  .inputfieldownerselectqty {
+    width: 110%;
+  }
 
   .Getrquest {
     position: relative;
@@ -946,19 +1016,22 @@ header {
   .GetrquesQTY {
     position: relative;
     top: 80px;
+
   }
+
+  .submitQTY2 {
+    position: relative;
+
+    width: 110%;
+
+  }
+
 
   .length {
     position: relative;
     top: 80px;
   }
 
-  .submitQTY {
-    position: relative;
-    top: 90px;
-    width: 280px;
-
-  }
 
   .pipe1 {
     width: 120px;
