@@ -49,13 +49,17 @@ function getInputValue($name)
 </head>
 
 <body>
+<div>
+        <a class="Back" href="home.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
 <div class="wrappe">
-        <?php include_once('includes/navbar.php') ?>
+   
 
         <div class="login-container" id="login">
     <form method="POST">
-    <p class="admin-Name"> <?php echo $adminName; ?></p>
-       
+    <p class="namerQTY"> <?php echo $adminName; ?></p>
+       <br>
        
         <form method="POST">
             <div id="reqInf"></div>

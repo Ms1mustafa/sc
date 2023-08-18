@@ -56,19 +56,24 @@ function getInputValue($name)
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <title>Notification</title>
 </head>
 
 <body>
-    <div class="wrappe">
-        <?php include_once('includes/navbar.php') ?>
+<div>
+        <a class="Back" href="inspectorPage.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
 
+    <div class="wrappe">
+      
         <div class="login-container" id="login">
             <form method="POST">
-                <p class="admin-Name">
+                <p class="namerQTY">
                     <?php echo $adminName; ?>
                 </p>
-
+<br>
 
                 <form method="POST">
                     <div id="reqInf"></div>

@@ -117,8 +117,7 @@ if ($isNotification == null) {
         <br>
        <br>
         <label class='Getrquest'>Date</label>
-       <br>
-       <br>
+           <br>
         <input class='inputfieldrequestqty' type='date' id='finishDate' name='finishDate' value= '$finishDate' ";
 
         if (!$new) {

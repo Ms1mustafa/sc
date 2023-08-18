@@ -486,10 +486,9 @@ header {
   color: #000;
   height: 50px;
   width: 20%;
-  padding: 0px 40px 0 45px;
+
   border: 2px solid #e77823;
-  position: relative;
-  right: 20px;
+
   border-radius: 15px;
   outline: none;
   transition: .2s ease;
@@ -753,8 +752,7 @@ header {
   width: 28%;
   padding: 0px 40px 0 45px;
   border: 2px solid #e77823;
-  position: relative;
-  right: 20px;
+  margin-right: 20px;
   border-radius: 15px;
   outline: none;
   transition: .2s ease;
@@ -820,24 +818,42 @@ header {
 /* table */
 
 .description {
-  position: absolute;
-
-  top: 75%;
-  width: 250px;
+  margin-top: 30px;
+  width: 300px;
   border: 1px solid #e77823;
   border-radius: 10px;
 }
 
-/*
+
 .itemestable {
   position: absolute;
   left: 10px;
-
+  border: 2px solid #e77823;
   width: 200px;
   height: 200px;
   border-radius: 10px;
 }
-*/
+
+.itemestable tr {
+  transition: all .2s ease-in;
+  cursor: pointer;
+}
+
+.itemestable th,
+.itemestable td {
+  padding: 0px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.itemestable tr:hover {
+  background-color: #e77823;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+
 .description tr {
   transition: all .2s ease-in;
   cursor: pointer;
@@ -848,6 +864,7 @@ header {
   padding: 0px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 .description tr:hover {
@@ -862,17 +879,17 @@ header {
     width: 250px;
     position: absolute;
     left: 10px;
-    top: 90%;
+    top: 80%;
   }
 
-  /*
+
   .itemestable {
     font-size: 13px;
     position: absolute;
     top: 50%;
     left: -30px
   }
-*/
+
 }
 
 
@@ -919,6 +936,7 @@ header {
   border: 1px #e77823 solid;
   border-radius: 5px;
   height: 30px;
+  text-align: center;
 }
 
 .pipecomm {
@@ -937,8 +955,7 @@ header {
   border: none;
   border-radius: 15px;
   margin-top: 17%;
-  position: relative;
-  right: 20px;
+
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -954,8 +971,7 @@ header {
   border: none;
   border-radius: 15px;
   margin-top: 2%;
-  position: relative;
-  right: 20px;
+
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -967,12 +983,10 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 30%;
+  width: 25%;
   border: none;
   border-radius: 15px;
-  margin-top: 20%;
-  position: relative;
-  right: 20px;
+  margin-top: 20px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -989,9 +1003,8 @@ header {
   }
 
   .submitDone {
-    width: 100%;
-    position: relative;
-    top: 280px;
+    width: 80%;
+    margin-top: 230%;
   }
 
   .inputfieldGetReq {
@@ -1026,6 +1039,14 @@ header {
 
   }
 
+  .pipiss {
+    height: 10vh;
+  }
+
+  .pipecomm {
+    width: 93px;
+    height: 10vh;
+  }
 
   .length {
     position: relative;
@@ -1034,8 +1055,9 @@ header {
 
 
   .pipe1 {
-    width: 120px;
+    width: 167px;
     font-size: 13px;
+    height: 10vh;
   }
 }
 
@@ -1065,12 +1087,10 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 33%;
+  width: 25%;
   border: none;
   border-radius: 15px;
-  position: relative;
-  right: 20px;
-  top: 270px;
+  margin-top: 20%;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -1106,8 +1126,8 @@ header {
 
   .submitGetHose {
     width: 100%;
-    position: relative;
-    top: 300px;
+    margin-top: 200%;
+
   }
 
   .notification:hover {
@@ -1203,5 +1223,65 @@ header {
     top: 5px;
     left: -20px;
 
+  }
+}
+
+.submitacceptinspecter {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 15px;
+  margin-top: 10px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.inputrejectreason {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 15%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.submitDismantling {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 200px;
+  border: none;
+  border-radius: 15px;
+  margin-top: 10px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+@media only screen and (max-width: 900px) {
+  .submitacceptinspecter {
+    margin-top: 100px;
+  }
+
+  .inputrejectreason {
+    width: 150px;
+  }
+
+  .submitDismantling {
+    margin-top: 90px;
   }
 }

@@ -36,58 +36,31 @@ if ($isNotification == null) {
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
 
-    echo "<label  class='Getinspect'>ReqNo : </label>
-    <label class='Getinspect1'>$reqNo</label>
+    echo "<label  class='Getrquest'>ReqNo : </label>
+    <label class='GetrquesQTY'>$reqNo</label>
 <br>
-    
-    <label class='Getinspect'>Requester :</label>
-    <label  class='Getinspect2'>$adminAddedName</label>
-
     <br>
-    <label class='Getinspect'>Inspector :</label>
-    <label class='Getinspect2'>$inspector</label>
+    <label class='Getrquest'>Requester :</label>
+    <label  class='GetrquesQTY'>$adminAddedName</label>
+    <br>
+    <br>
+    <label class='Getrquest'>Inspector :</label>
+    <label class='GetrquesQTY'>$inspector</label>
 <br>
-    <label  class='Getinspect'>Area :</label>
-    <label class='Getinspect3' >$area</label>
+<br>
+    <label  class='Getrquest'>Area :</label>
+    <label class='GetrquesQTY' >$area</label>
     <br>
-
-    <label class='Getinspect'>Location :</label>
-    <label class='Getinspect4'>$item</label>
+    <br>
+    <label class='Getrquest'>Location :</label>
+    <label class='GetrquesQTY'>$item</label>
    <br>
-    <label class='Getinspect'>Notes :</label>
-    <label  class='Getinspect5'>$notes</label>
-    
+   <br>
+    <label class='Getrquest'>Notes :</label>
+    <label  class='GetrquesQTY'>$notes</label>
+    <br>
     ";
-    if ($issued) {
-        echo '
-            <table  >
-            <thead >
-                <th>Item description</th>
-                <th >QTY Req</th>
-                <th>QTY Issued</th>
-                <th>Comment</th>
-            </thead>
-            <tbody>
-        ';
-        if ($rejectItems) {
-            $itemsLoop = $rejectItems;
-        } else {
-            $itemsLoop = $items;
-        }
-        foreach ($itemsLoop as $item) {
-            echo '
-            <tr>
-                <td>' . $item['itemName'] . '</td>
-                <td>' . $item['itemQty'] . '</td>
-                
-                <td>' . $item['wereHouseQty'] . '</td>
-                <td>' . $item['wereHouseComment'] . '</td>
-                
-
-            </tr>
-            ';
-        }
-    }
+    
    
     // if ($status == 'resent') {
     //     echo '
@@ -97,9 +70,8 @@ if ($isNotification == null) {
     if ($status = 'pending') {
         echo '
             <button class="submitacceptinspecter" name="accept" onclick="removeRequiredAttribute()">accept</button>
-            <br>
-            <br>
-            <button class="submitrejectinspecter" name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
+         
+            <button class="submitacceptinspecter" name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
             <br>
             <br>
             <input class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason">

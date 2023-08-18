@@ -103,18 +103,23 @@ function getInputValue($name)
 <br>
             <form method="POST">
                 <div id="reqInf"></div>
+               
                 <?php
+                /*
                 if ($resent == 'no') {
                     echo '
                     <select name = "newUser">
                                     <option selected disabled>Select WereHouse</option>
+                             
                                     ';
                     echo $anotherWereHouse;
                     echo '
                                 </select>
-                                <button class="submitQTY"name="change">Send to another executer</button>
+                                <br>
+                                <button class=""name="change">Send to another executer</button>
                     ';
                 }
+                */
                 ?>
             </form>
 
