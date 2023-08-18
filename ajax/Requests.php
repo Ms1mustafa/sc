@@ -118,7 +118,7 @@ class Requests
 
     public static function getRequestsAction($con, $isNoti = null, $admin, $workOrderNo = null)
     {
-        $sql = "SELECT * FROM request WHERE new = 'yes' AND adminAddedName = :adminAddedName ";
+        $sql = "SELECT * FROM request WHERE executerDate != NULL AND adminAddedName = :adminAddedName ";
 
         if (!$isNoti) {
             $sql .= "workOrderNo = :workOrderNo ";
@@ -155,7 +155,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "(executerAccept != 'yes' OR status = 'rejected' OR status = 'backExecuter' OR qtyBackStatus = 'executer') ";
+        $whereClause[] = "(executerAccept != 'yes' OR status = 'rejected' OR status = 'backExecuter' OR qtyBackStatus = 'executer') AND executerNew = 'yes'";
         $whereClause[] = "executer = :executer ";
 
         if (!$isNoti) {

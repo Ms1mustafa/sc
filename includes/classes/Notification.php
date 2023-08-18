@@ -56,7 +56,7 @@ class Notification
 
     private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName, $qtyBackStatus)
     {
-        if ($qtyBackStatus = 'executer') {
+        if ($qtyBackStatus == 'executer') {
             return $adminAddedName;
         }elseif ($inspectorDate) {
             return $inspector;
@@ -134,7 +134,7 @@ class Notification
         $priority = $data["priority"];
         $executer = $data["executer"];
         $status = $data["status"];
-        $notiType = $data["qtyBackStatus"] == 'wereHouse' ? 'Dismantling' : 'Request';
+        // $notiType = $data["qtyBackStatus"] == 'wereHouse' ? 'Dismantling' : 'Request';
         $qtyBackDate = $data["qtyBackDate"];
         $executerDate = FormSanitizer::formatDate($data["executerDate"]);
         $date = $qtyBackDate ? FormSanitizer::formatDate($qtyBackDate) : $executerDate;
@@ -148,8 +148,6 @@ class Notification
             
                 <a class='notification' href='wereHouseQty.php?qtyNo=" . $workOrderNo . $resent ."'>
                 <p>Executer: $executer</p>
-                <br>
-                <p>$notiType</p>
                 <br>
                 <p>$priority</p>
                 <br>

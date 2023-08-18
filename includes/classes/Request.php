@@ -136,7 +136,7 @@ class Request
     public function updateExecuterReq($finishDate, $workOrderNo)
     {
 
-        $query = $this->con->prepare("UPDATE request SET finishDate = :finishDate, new = 'no', executerDate = :currentDateTime
+        $query = $this->con->prepare("UPDATE request SET finishDate = :finishDate, new = 'no', executerNew = 'no', executerDate = :currentDateTime
                                         WHERE workOrderNo = :workOrderNo");
 
         $query->bindValue(":finishDate", $finishDate);
@@ -148,7 +148,7 @@ class Request
     public function updateWereHouseReq($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment)
     {
 
-        $query = $this->con->prepare("UPDATE request SET issued = 'yes', wereHouseDate = :currentDateTime
+        $query = $this->con->prepare("UPDATE request SET issued = 'yes', executerNew = 'yes', wereHouseDate = :currentDateTime
                                         WHERE workOrderNo = :workOrderNo");
 
         $query->bindValue(":workOrderNo", $workOrderNo);
@@ -175,7 +175,7 @@ class Request
     public function executerAccept($workOrderNo)
     {
         if (empty($this->errorArray)) {
-            $query = $this->con->prepare("UPDATE request SET executerAccept = 'yes', executerAcceptDate = :currentDateTime
+            $query = $this->con->prepare("UPDATE request SET executerAccept = 'yes', executerNew = 'no', executerAcceptDate = :currentDateTime
                                         WHERE workOrderNo = :workOrderNo");
 
             $query->bindValue(":workOrderNo", $workOrderNo);
@@ -193,7 +193,7 @@ class Request
             $sql = "UPDATE request SET status = :status, rejectReason = :rejectReason, inspectorDate = :currentDateTime ";
 
             if ($status == 'rejected') {
-                $sql .= ", rejectsNum = :rejectsNum ";
+                $sql .= ", rejectsNum = :rejectsNum , executerNew = 'yes' ";
             }
 
             $sql .= "WHERE workOrderNo = :workOrderNo ";
@@ -227,7 +227,7 @@ class Request
             $query->execute();
         }
 
-        $query2 = $this->con->prepare("UPDATE request SET status = 'resent', executerDate = :currentDateTime WHERE workOrderNo = :workOrderNo");
+        $query2 = $this->con->prepare("UPDATE request SET status = 'resent', executerNew = 'no', executerDate = :currentDateTime WHERE workOrderNo = :workOrderNo");
         $query2->bindValue(":workOrderNo", $workOrderNo);
         $query2->bindValue(":currentDateTime", $this->currentDateTime);
         $query2->execute();
@@ -300,7 +300,17 @@ class Request
         try {
             $this->con->beginTransaction(); // Start transaction
 
-            $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus , qtyBackDate = :currentDateTime WHERE workOrderNo = :workOrderNo";
+            $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus , qtyBackDate = :currentDateTime";
+
+            // Add executerNew condition based on qtyBackStatus
+            if ($qtyBackStatus === 'executer') {
+                $sql .= ", executerNew = 'yes'";
+            } elseif ($qtyBackStatus === 'wereHouse') {
+                $sql .= ", executerNew = 'no'";
+            }
+
+            $sql .= " WHERE workOrderNo = :workOrderNo";
+
             $query = $this->con->prepare($sql);
             $query->bindValue(":qtyBackStatus", $qtyBackStatus);
             $query->bindValue(":currentDateTime", $this->currentDateTime);
@@ -336,6 +346,7 @@ class Request
     }
     return false;
 }
+
 
 
     public function validateworkOrderNo($workOrderNo)
