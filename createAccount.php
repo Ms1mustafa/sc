@@ -65,21 +65,27 @@ function getInputValue($name)
   <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
   <script src="script.js" defer></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="css.css?1999">
+  <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
   <title>SignUp</title>
 </head>
 
 <body>
   <!------------------- CreateAccount ------------------------->
+  <div>
+        <a class="Back" href="ownerPage.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
 
   <div class="pageoner">
     
     <div class="login-container" id="login">
       <div class="top">
 
-        <header class="nameowner">CreateAccount...</header>
+        <header class="nameowner">CreateAccount</header>
       </div>
-    
+    <br>
+    <br>
         <p class="adminNameowner">
           Rq num:
           <?php echo $requestNum; ?>

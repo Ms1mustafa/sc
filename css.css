@@ -102,7 +102,7 @@ header {
   border: 2px solid #e77823;
 }
 
-@media only screen and (max-width: 786px) {
+@media only screen and (max-width: 940px) {
   .inputfieldlogin {
     width: 190px;
     position: relative;
@@ -111,7 +111,7 @@ header {
   }
 
   .submitlogin {
-    width: 95%;
+    width: 90%;
     position: relative;
     right: 10px;
     top: 70px;
@@ -119,7 +119,7 @@ header {
 
   header {
     position: relative;
-    top: 100px;
+    top: 80px;
   }
 
   .inputfieldlogin {
@@ -302,14 +302,15 @@ header {
     width: 100%;
     position: relative;
     top: -50px;
-    right: 40px;
+    right: 20px;
   }
 
   .inputfieldarea {
     width: 200px;
     position: relative;
     top: -60px;
-    right: 40px;
+    right: 20px;
+
 
 
   }
@@ -369,7 +370,7 @@ header {
     position: relative;
     top: 15%;
     width: 100%;
-    right: 40px;
+    right: 20px;
   }
 }
 
@@ -436,7 +437,7 @@ header {
   background: #fff;
   color: #000;
   height: 50px;
-  width: 38%;
+  width: 37%;
   padding: 0px 40px 0 45px;
   border: 2px solid #e77823;
   position: relative;
@@ -452,7 +453,7 @@ header {
   background: #fff;
   color: #000;
   height: 80px;
-  width: 38%;
+  width: 37%;
 
   border: 2px solid #e77823;
   position: relative;
@@ -485,10 +486,9 @@ header {
   color: #000;
   height: 50px;
   width: 20%;
-  padding: 0px 40px 0 45px;
+
   border: 2px solid #e77823;
-  position: relative;
-  right: 20px;
+
   border-radius: 15px;
   outline: none;
   transition: .2s ease;
@@ -520,6 +520,8 @@ header {
   transition: .3s ease-in-out;
 }
 
+
+
 @media only screen and (max-width: 900px) {
   .namerequest {
     position: relative;
@@ -548,7 +550,7 @@ header {
   .inputfieldselectnewreq {
     position: relative;
     top: 120px;
-    width: 100%;
+    width: 95%;
 
   }
 
@@ -572,8 +574,9 @@ header {
   .inputfieldnot {
     position: relative;
     top: 150px;
-    width: 230px;
-    left: 10px;
+    width: 260px;
+    right: 10px;
+
   }
 
   .submitnewreq {
@@ -586,6 +589,12 @@ header {
     position: relative;
     top: 80px;
     width: 70%;
+  }
+
+  .Notesaddreq {
+    position: relative;
+    top: 100px;
+
   }
 }
 
@@ -734,6 +743,35 @@ header {
   font-weight: bold;
 }
 
+.inputfieldownerselectqty {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 28%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  margin-right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.footersection {
+  position: relative;
+  margin-top: 70px;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.footer {
+  position: relative;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
 .Getrquest {
   color: #e77823;
   font-size: 20px;
@@ -750,38 +788,71 @@ header {
   font-weight: bold;
 
   color: #000;
-  height: 40px;
-  width: 100%;
+  height: 50px;
+  width: 95%;
   border: 1px solid #e77823;
 
   position: relative;
-  right: 5px;
+  left: 2px;
   border-radius: 5px;
   outline: none;
   transition: .2s ease;
 }
 
+.inputfieldGetReqoty {
+  font-size: 13px;
+  font-weight: bold;
 
+  color: #000;
+  height: 50px;
+  width: 80%;
+  text-align: center;
+
+  position: relative;
+  right: 3px;
+  border-radius: 5px;
+  outline: none;
+  transition: .2s ease;
+}
 
 /* table */
 
 .description {
-  position: absolute;
-
-  top: 75%;
-  width: 250px;
+  margin-top: 30px;
+  width: 300px;
   border: 1px solid #e77823;
   border-radius: 10px;
 }
 
+
 .itemestable {
   position: absolute;
   left: 10px;
-
+  border: 2px solid #e77823;
   width: 200px;
   height: 200px;
   border-radius: 10px;
 }
+
+.itemestable tr {
+  transition: all .2s ease-in;
+  cursor: pointer;
+}
+
+.itemestable th,
+.itemestable td {
+  padding: 0px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.itemestable tr:hover {
+  background-color: #e77823;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 .description tr {
   transition: all .2s ease-in;
@@ -793,6 +864,7 @@ header {
   padding: 0px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 .description tr:hover {
@@ -806,9 +878,10 @@ header {
   .description {
     width: 250px;
     position: absolute;
-    left: -36px;
-    top: 90%;
+    left: 10px;
+    top: 80%;
   }
+
 
   .itemestable {
     font-size: 13px;
@@ -836,7 +909,7 @@ header {
 .pipe2 {
   font-size: 14px;
   font-weight: bold;
-  width: 30px;
+  width: 120px;
   height: 30px;
   padding: 0 5px;
   text-align: center;
@@ -863,6 +936,7 @@ header {
   border: 1px #e77823 solid;
   border-radius: 5px;
   height: 30px;
+  text-align: center;
 }
 
 .pipecomm {
@@ -877,12 +951,27 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 30%;
+  width: 28%;
   border: none;
   border-radius: 15px;
   margin-top: 17%;
-  position: relative;
-  right: 20px;
+
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.submitQTY2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 28%;
+  border: none;
+  border-radius: 15px;
+  margin-top: 2%;
+
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -894,12 +983,10 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 30%;
+  width: 25%;
   border: none;
   border-radius: 15px;
-  margin-top: 20%;
-  position: relative;
-  right: 20px;
+  margin-top: 20px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -916,9 +1003,8 @@ header {
   }
 
   .submitDone {
-    width: 100%;
-    position: relative;
-    top: 280px;
+    width: 80%;
+    margin-top: 230%;
   }
 
   .inputfieldGetReq {
@@ -926,7 +1012,14 @@ header {
     right: 2px;
   }
 
+  .submitQTY {
+    width: 110%;
+    margin-top: 70%;
+  }
 
+  .inputfieldownerselectqty {
+    width: 110%;
+  }
 
   .Getrquest {
     position: relative;
@@ -936,6 +1029,23 @@ header {
   .GetrquesQTY {
     position: relative;
     top: 80px;
+
+  }
+
+  .submitQTY2 {
+    position: relative;
+
+    width: 110%;
+
+  }
+
+  .pipiss {
+    height: 10vh;
+  }
+
+  .pipecomm {
+    width: 93px;
+    height: 10vh;
   }
 
   .length {
@@ -943,16 +1053,11 @@ header {
     top: 80px;
   }
 
-  .submitQTY {
-    position: relative;
-    top: 90px;
-    width: 280px;
-
-  }
 
   .pipe1 {
-    width: 120px;
+    width: 167px;
     font-size: 13px;
+    height: 10vh;
   }
 }
 
@@ -982,12 +1087,10 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 33%;
+  width: 25%;
   border: none;
   border-radius: 15px;
-  position: relative;
-  right: 20px;
-  top: 270px;
+  margin-top: 20%;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -1023,8 +1126,8 @@ header {
 
   .submitGetHose {
     width: 100%;
-    position: relative;
-    top: 300px;
+    margin-top: 200%;
+
   }
 
   .notification:hover {
@@ -1043,13 +1146,13 @@ header {
 .requestAction {
   position: relative;
   top: 30px;
-  color: #e77823;
+
   font-size: 20px;
 }
 
 .requestActionArea {
 
-  color: #e77823;
+
   font-size: 20px;
 }
 
@@ -1120,5 +1223,65 @@ header {
     top: 5px;
     left: -20px;
 
+  }
+}
+
+.submitacceptinspecter {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 15px;
+  margin-top: 10px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.inputrejectreason {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 15%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.submitDismantling {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 200px;
+  border: none;
+  border-radius: 15px;
+  margin-top: 10px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+@media only screen and (max-width: 900px) {
+  .submitacceptinspecter {
+    margin-top: 100px;
+  }
+
+  .inputrejectreason {
+    width: 150px;
+  }
+
+  .submitDismantling {
+    margin-top: 90px;
   }
 }

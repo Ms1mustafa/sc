@@ -94,7 +94,7 @@ if ($isNotification == null) {
     <label class='GetrquesQTY'>$item</label>
     <br>
     <br>
-   
+   <div>
     <table class='itemestable'>
         <tr>
             <th>Item description</th>
@@ -119,9 +119,9 @@ if ($isNotification == null) {
             echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value=' ";
             $item['wereHouseQty'];
             echo "'> </td>";
-            echo "<td> <input class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' ";
+            echo "<td>  <textarea class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' ";
             $item['wereHouseComment'];
-            echo "'> </td>";
+            echo "'>  </textarea></td>";
             echo '
         </tr>
         ';
@@ -129,7 +129,10 @@ if ($isNotification == null) {
         echo "       
         </tbody>
     </table>
+    </div>
+    <div>
     <button  class='submitGetHose' name='submit'>Done</button>
+    </div>
     ";
         echo "
 ";

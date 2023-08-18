@@ -41,27 +41,27 @@ if ($isNotification == null) {
     $reqDate = FormSanitizer::formatDate($requests["reqDate"]);
     $inspectorDate = FormSanitizer::formatDate($requests["inspectorDate"]);
 
-    echo "<label  class='Getinspect'>Inspector : </label>
-    <label class='Getinspect1'>$inspector</label>
+    echo "<label  class='Getrquest'>Inspector : </label>
+    <label class='GetrquesQTY'>$inspector</label>
     <br>
-    
-    <label  class='Getinspect'>Area :</label>
-    <label class='Getinspect3' >$area</label>
     <br>
-
-    <label class='Getinspect'>Location :</label>
-    <label class='Getinspect4'>$item</label>
+    <label  class='Getrquest'>Area :</label>
+    <label class='GetrquesQTY' >$area</label>
     <br>
-
-    <label class='Getinspect'>Request Added :</label>
-    <label  class='Getinspect5'>$reqDate</label>
     <br>
-
-    <label class='Getinspect'>Inspector accept :</label>
-    <label  class='Getinspect5'>$inspectorDate</label>
+    <label class='Getrquest'>Location :</label>
+    <label class='GetrquesQTY'>$item</label>
     <br>
-    
-    <button class='submitacceptinspecter' name='dismantling'>dismantling</button>
+    <br>
+    <label class='Getrquest'>Request Added :</label>
+    <label  class='GetrquesQTY'>$reqDate</label>
+    <br>
+<br>
+    <label class='Getrquest'>Inspector accept :</label>
+    <label  class='GetrquesQTY'>$inspectorDate</label>
+    <br>
+    <br>
+    <button class='submitDismantling' name='dismantling'>Dsmantling</button>
 ";
 }
 

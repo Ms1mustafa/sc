@@ -95,13 +95,13 @@ if ($isNotification == null) {
         <br>
        <br>
         
-        <label class='length'>$length m</label>
+        <label class='length'>$length L</label>
         &nbsp; &nbsp; &nbsp;
-        <label class='length'>$width m</label>
+        <label class='length'>$width W</label>
         &nbsp; &nbsp; &nbsp;
-        <label class='length'>$height m</label>
+        <label class='length'>$height H</label>
         &nbsp; &nbsp; &nbsp;
-        <label class='length'>$lwh m</label>
+        <label class='length'>$lwh m3</label>
       <br>
       <br>
         <label class='Getrquest'>Location</label>
@@ -117,8 +117,7 @@ if ($isNotification == null) {
         <br>
        <br>
         <label class='Getrquest'>Date</label>
-       <br>
-       <br>
+           <br>
         <input class='inputfieldrequestqty' type='date' id='finishDate' name='finishDate' value= '$finishDate' ";
 
         if (!$new) {
