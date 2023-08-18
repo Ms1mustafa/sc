@@ -32,7 +32,10 @@ $request = new Request($con);
 </head>
 
 <body>
+<div >
+    <a  class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
     
+</div>
       
         <div class="pageoner">
         <div class="login-container" id="login">

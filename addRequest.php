@@ -96,11 +96,8 @@ if (isset($_POST["submit"])) {
     <i class="fa-solid fa-arrow-left"></i>    Back</a>
 </div>
     <div class="newrequest">
-        
-
-        <div class="login-container" id="login">
+              <div class="login-container" id="login">
             <div class="top">
-
                 <header class="namerequest">NewRequest</header>
             </div>
             <br>
@@ -182,7 +179,7 @@ if (isset($_POST["submit"])) {
                 <option disabled selected value="">select inspector</option>
             </select>
             <br>
-            <label class="">Notes</label>
+            <label class="labelnewrequestpriority">Notes</label>
             <br>
             <textarea class="inputfieldnot" name="notes" required></textarea>
          
