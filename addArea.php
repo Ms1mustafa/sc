@@ -4,6 +4,7 @@ include_once('includes/classes/FormSanitizer.php');
 
 $area = new Area($con);
 $getAreaId = $area->getIdNum();
+$allAreas = $area->getArea();
 
 if (isset($_POST["submit"])) {
   $areaId = $_POST["areaId"];
@@ -52,6 +53,9 @@ if (isset($_POST["submit"])) {
    
    
   </form>
+<?php
+echo $allAreas
+?>
 </body>
 
 </html>
