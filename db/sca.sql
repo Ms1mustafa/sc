@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2023 at 11:26 AM
+-- Generation Time: Aug 18, 2023 at 02:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -116,17 +116,6 @@ CREATE TABLE `rejectitemdes` (
   `rejectDate` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `rejectitemdes`
---
-
-INSERT INTO `rejectitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `rejectsNum`, `qtyBack`, `rejectDate`) VALUES
-(13, '34545678765', 'Movable clamp', '5', '55', ' ii', 1, '', '2023-08-16 01:20:27'),
-(14, '34545678765', 'Woode borders 6m', '8', '88', ' ee', 1, '', '2023-08-16 01:20:27'),
-(21, '34545678765 ', 'Woode borders Under 1M', '5', '6', ' q', 2, '', '2023-08-17 00:55:40'),
-(22, '34545678765 ', 'Pipe scaffolding 2m', '8', '9', ' w', 2, '', '2023-08-17 00:55:40'),
-(23, '34545678765 ', 'Woode borders 4m', '3', '4', ' e', 2, '', '2023-08-17 00:55:40');
-
 -- --------------------------------------------------------
 
 --
@@ -161,17 +150,18 @@ CREATE TABLE `request` (
   `executerAccept` varchar(6) NOT NULL DEFAULT 'no',
   `executerAcceptDate` datetime(6) DEFAULT NULL,
   `inspectorDate` datetime(6) DEFAULT NULL,
-  `resentDate` datetime(6) DEFAULT NULL
+  `resentDate` datetime(6) DEFAULT NULL,
+  `qtyBackStatus` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'no',
+  `qtyBackDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`) VALUES
-(3, '202300001', 'Basim Kareem', '547457568', 'Packing', 'item1', '6', '3', '8', '2 - Routine', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'te', '2023-08-12 19:21:45.875260', '2023-08-13 01:42:09.000000', 'accepted', '', 0, 'no', '2023-08-15', 'yes', '2023-08-14 00:18:15.000000', 'yes', '2023-08-14 10:46:12.000000', '2023-08-14 11:17:29.000000', NULL),
-(5, '202300001', 'Basim Kareem', '34545678765', 'Packing', 'item2', '52', '84', '21', '2 - Routine', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'rredrrf', '2023-08-15 00:30:29.286628', '2023-08-17 00:55:40.000000', 'accepted', '', 2, 'no', '2023-08-16', 'yes', '2023-08-17 00:56:08.000000', 'yes', '2023-08-15 11:05:48.000000', '2023-08-17 01:00:48.000000', '2023-08-17 01:00:43.000000'),
-(6, '202300001', 'Basim Kareem', '7558756984', 'Packing', 'item1', '6', '3', '9', '2 - Routine', 'Low More than 5 days', 'Luay Saad', 'Ali', 'Mohammed', 'dgf', '2023-08-15 12:23:28.797866', NULL, 'pending', '', 0, 'yes', NULL, 'no', NULL, 'no', NULL, NULL, NULL);
+INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`, `qtyBackStatus`, `qtyBackDate`) VALUES
+(9, '202300001', 'Basim Kareem', '76546585', 'Packing', 'item1', '7', '3', '9', '2 - Routine', 'Low More than 5 days', 'Luay Saad', 'Ali', 'Mohammed', 'fse', '2023-08-17 20:01:54.526962', '2023-08-17 20:47:43.000000', 'pending', '', 0, 'no', '2023-08-18', 'no', NULL, 'no', NULL, NULL, NULL, 'no', NULL),
+(10, '202300001', 'Basim Kareem', '756858323', 'Packing', 'item2', '6', '4', '2', '3 - PM', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'few', '2023-08-17 20:02:11.585926', '2023-08-17 20:48:02.000000', 'accepted', '', 0, 'no', '2023-08-30', 'yes', '2023-08-18 01:10:43.000000', 'yes', '2023-08-18 01:16:31.000000', '2023-08-18 01:16:54.000000', NULL, 'done', '2023-08-18 15:37:12');
 
 -- --------------------------------------------------------
 
@@ -197,10 +187,12 @@ CREATE TABLE `requestitemdes` (
 --
 
 INSERT INTO `requestitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `editedItemQty`, `editedWereHouseQty`, `editedWereHouseComment`, `qtyBack`) VALUES
-(22, '547457568', 'Woode borders 5m', '5', '5', ' t', '', '', '', ''),
-(23, '547457568', 'Woode borders 3m', '8', '3', ' h', '', '', '', ''),
-(24, '34545678765', 'Pipe scaffolding 4M', '5', '5', ' ', '', '', '', ''),
-(25, '34545678765', 'Woode borders 1m', '8', '8', ' ', '', '', '', '');
+(39, '76546585', 'Fixed clamp', '6', '', '', '', '', '', ''),
+(40, '76546585', 'Pipe scaffolding Under 1M', '7', '', '', '', '', '', ''),
+(41, '76546585', 'Woode borders Under 1M', '8', '', '', '', '', '', ''),
+(42, '756858323', 'Pipe scaffolding 2m', '2', '2', ' ', '', '', '', '2'),
+(43, '756858323', 'Woode borders 2m', '3', '3', ' ', '', '', '', '3'),
+(44, '756858323', 'Woode borders 1m', '4', '4', ' ', '', '', '', '4');
 
 -- --------------------------------------------------------
 
@@ -231,7 +223,8 @@ INSERT INTO `users` (`id`, `token`, `username`, `email`, `password`, `area`, `ty
 (13, '230726082019105', 'Basim Kareem', 'BasimKareem@gmail.com', '123456789', '', 'admin', '202300001', 'yes'),
 (14, '230726083758160', 'Luay Saad', 'LuaySaad@gmail.com', '123456789', '', 'execution', '', 'yes'),
 (17, '230811011230189', 'wereHouse2', 'weho2@gmail.com', '123456789', '', 'wereHouse', '', 'no'),
-(18, '230811044540104', 'Mustafa', 'mustafa@gmail.com', '123456789', '', 'execution', '', 'yes');
+(18, '230811044540104', 'Mustafa', 'mustafa@gmail.com', '123456789', '', 'execution', '', 'no'),
+(19, '230817124849135', 'exe3', 'exe3@gmail.com', '123456789', '', 'execution', '', 'no');
 
 -- --------------------------------------------------------
 
@@ -333,25 +326,25 @@ ALTER TABLE `itemdes`
 -- AUTO_INCREMENT for table `rejectitemdes`
 --
 ALTER TABLE `rejectitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `requestitemdes`
 --
 ALTER TABLE `requestitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `worktype`

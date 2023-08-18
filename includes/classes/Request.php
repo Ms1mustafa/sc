@@ -270,6 +270,73 @@ class Request
 
         return false;
     }
+    public function transfer($newUser , $type, $workOrderNo)
+    {
+        if (empty($this->errorArray)) {
+            $sql = "UPDATE request SET ";
+
+            if($type == 'executer'){
+                $sql .= "executer = :newUser ";
+            }
+            if($type == 'wereHouse'){
+                $sql .= "wereHouse = :newUser ";
+            }
+
+            $sql .= "WHERE workOrderNo = :workOrderNo";
+
+            $query = $this->con->prepare($sql);
+
+            $query->bindValue(":newUser", $newUser);
+            $query->bindValue(":workOrderNo", $workOrderNo);
+
+            return $query->execute();
+        }
+
+        return false;
+    }
+    public function dismantling($qtyBackStatus, $workOrderNo, $rejectsNum = null, $itemName = null, $qtyBack = null, $qtyBackType = null)
+{
+    if (empty($this->errorArray)) {
+        try {
+            $this->con->beginTransaction(); // Start transaction
+
+            $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus , qtyBackDate = :currentDateTime WHERE workOrderNo = :workOrderNo";
+            $query = $this->con->prepare($sql);
+            $query->bindValue(":qtyBackStatus", $qtyBackStatus);
+            $query->bindValue(":currentDateTime", $this->currentDateTime);
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->execute();
+
+            if ($qtyBackStatus == 'done') {
+                $sql2 = "UPDATE $qtyBackType SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName ";
+                if ($qtyBackType == 'rejectitemdes') {
+                    $sql2 .= "AND rejectsNum = :rejectsNum";
+                }
+                $query2 = $this->con->prepare("$sql2");
+
+                for ($i = 0; $i < count($itemName); $i++) {
+                    $query2->bindValue(":workOrderNo", $workOrderNo);
+                    if ($qtyBackType == 'rejectitemdes') {
+                        $query2->bindValue(":rejectsNum", $rejectsNum[$i]);
+                    }
+                    $query2->bindValue(":itemName", $itemName[$i]);
+                    $query2->bindValue(":qtyBack", $qtyBack[$i]);
+                    $query2->execute();
+                }
+            }
+
+            $this->con->commit(); // Commit the transaction
+
+            return true;
+        } catch (PDOException $e) {
+            $this->con->rollBack(); // Rollback the transaction if an error occurs
+            // Handle the error here or log it
+            return false;
+        }
+    }
+    return false;
+}
+
 
     public function validateworkOrderNo($workOrderNo)
     {

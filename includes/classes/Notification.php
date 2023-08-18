@@ -54,35 +54,44 @@ class Notification
         return false;
     }
 
-    private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName)
+    private function getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName, $qtyBackStatus)
     {
-        if ($inspectorDate) {
+        if ($qtyBackStatus = 'executer') {
+            return $adminAddedName;
+        }elseif ($inspectorDate) {
             return $inspector;
         } elseif ($werehouseName) {
             return $werehouseName;
         }
+        
 
         return $adminAddedName;
     }
-    private function getNotiDate($wereHouseDate, $inspectorDate, $reqDate)
+    private function getNotiDate($wereHouseDate, $inspectorDate, $reqDate, $qtyBackDate)
     {
-        if ($inspectorDate) {
+        if ($qtyBackDate) {
+            return 'Dismantling date : ' . FormSanitizer::formatDate($qtyBackDate);
+        }elseif ($inspectorDate) {
             return 'Ispector date : ' . FormSanitizer::formatDate($inspectorDate);
         } elseif ($wereHouseDate) {
             return 'WereHouse date : ' . FormSanitizer::formatDate($wereHouseDate);
         }
+        
 
         return 'request added : ' . $reqDate;
     }
-    private function getNotiType($werehouseName, $inspectorDate)
+    private function getNotiType($werehouseName, $inspectorDate, $qtyBackDate)
     {
-        if ($inspectorDate) {
+        if($qtyBackDate){
+            return "Dismantling";
+        }elseif ($inspectorDate) {
             return "Inspector";
         } elseif ($werehouseName) {
             return "Werehouse";
         } else {
             return "Request";
         }
+        
     }
     public function getExecuterNotification($data)
     {
@@ -91,12 +100,14 @@ class Notification
         $priority = $data["priority"];
         $adminAddedName = $data["adminAddedName"];
         $status = $data["status"];
+        $qtyBackStatus = $data["qtyBackStatus"];
+        $qtyBackDate = $data["qtyBackDate"];
         $inspector = $data["inspector"];
         $inspectorDate = $data["inspectorDate"];
         $werehouseName = $data["werehouseName"] ?? false;
         $wereHouseDate = $data["wereHouseDate"] ?? false;
-        $type = $this->getNotiType($werehouseName, $inspectorDate);
-        $sender = $this->getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName);
+        $type = $this->getNotiType($werehouseName, $inspectorDate, $qtyBackDate);
+        $sender = $this->getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName, $qtyBackStatus);
         $reject = $status == 'rejected' ? '&reject=yes' : '';
         $new = $data["new"] == "yes" ? '&new=yes' : '';
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
@@ -106,7 +117,7 @@ class Notification
             <a  class='notification'  href='qty.php?qtyNo=" . $workOrderNo . $new . " $reject'>
             <p>$reqNo, " . $type . ", " . $sender . "</p>
             <p>$priority</p>
-            <p>".$this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate)."</p>
+            <p>".$this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate, $qtyBackDate)."</p>
             </a>
             <br>
             <hr class='hrQty'>
@@ -123,22 +134,26 @@ class Notification
         $priority = $data["priority"];
         $executer = $data["executer"];
         $status = $data["status"];
+        $notiType = $data["qtyBackStatus"] == 'wereHouse' ? 'Dismantling' : 'Request';
+        $qtyBackDate = $data["qtyBackDate"];
         $executerDate = FormSanitizer::formatDate($data["executerDate"]);
-        $resent = $status == 'resent' ? '&resent=yes' : '';
-
+        $date = $qtyBackDate ? FormSanitizer::formatDate($qtyBackDate) : $executerDate;
+        $resent = $status == 'resent' ? '&resent=yes' : '&resent=no';
+        if($data["qtyBackStatus"] == 'wereHouse'){
+            $resent = '&dismantling=yes';
+        }
 
         if (empty($this->errorArray)) {
             $html = "
             
                 <a class='notification' href='wereHouseQty.php?qtyNo=" . $workOrderNo . $resent ."'>
-               
                 <p>Executer: $executer</p>
+                <br>
+                <p>$notiType</p>
                 <br>
                 <p>$priority</p>
                 <br>
-            ";
-            $html .= "
-                <p>Executer sent: $executerDate</p>
+                <p>Executer sent: $date</p>
                 </a>
                 <br>
                 <hr class='hrQty'>

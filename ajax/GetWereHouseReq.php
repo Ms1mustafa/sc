@@ -20,7 +20,7 @@ if ($isNotification != null) {
 if ($isNotification == null) {
     $workOrderNo = $_GET['workOrderNo'];
 
-    $requests = Requests::getWereHouseRequests($con, null, $wereHouse);
+    $requests = Requests::getWereHouseRequests($con, null, $wereHouse, $workOrderNo);
     $items = Requests::getItemsDes($con, $workOrderNo);
     $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
     $reqNo = $requests["reqNo"];
@@ -33,8 +33,47 @@ if ($isNotification == null) {
     $issued = $requests["issued"] == 'yes' ? true : null;
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
+    $qtyBackStatus = $requests["qtyBackStatus"];
 
-    echo "<label  class='Getrquest'>ReqNo</label>
+    if ($qtyBackStatus == 'wereHouse') {
+        echo '
+        <table class="description">
+            <thead>
+                <th>Item description</th>
+                <th >QTY Req</th>
+                <th>QTY Issued</th>
+                <th>QTY dismantling</th>
+            </thead>
+            <tbody>
+            ';
+        if ($rejectItems) {
+            $itemsLoop = $rejectItems;
+        } else {
+            $itemsLoop = $items;
+        }
+
+        $dismantling = $rejectItems ? 'rejectDismantling' : 'dismantling';
+        foreach ($itemsLoop as $item) {
+            if ($status != 'rejected') {
+                echo '
+                    <tr >
+                        <td hidden><input name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
+                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                        <td>' . $item['itemQty'] . '</td>
+                        <td>' . $item['wereHouseQty'] . '</td>
+                        <td><input type="number" min="1" name = "qtyBack[]"' . $item['wereHouseComment'] . ' required></td>
+                    </tr>
+                ';
+            }
+        }
+        echo '
+            </tbody>
+        </table>
+        <button class="submit" name="'.$dismantling.'">Done</button>
+        ';
+    } else {
+
+        echo "<label  class='Getrquest'>ReqNo</label>
 
     <label class='GetrquesQTY'>$reqNo</label>
    <br>
@@ -64,14 +103,14 @@ if ($isNotification == null) {
             <th>Comment</th>
         </tr>
         ";
-    if ($rejectItems) {
-        $itemsLoop = $rejectItems;
-    } else {
-        $itemsLoop = $items;
-    }
+        if ($rejectItems) {
+            $itemsLoop = $rejectItems;
+        } else {
+            $itemsLoop = $items;
+        }
 
-    foreach ($itemsLoop as $item) {
-        echo '
+        foreach ($itemsLoop as $item) {
+            echo '
         <tr>
         <td hidden><input name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
             <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
@@ -83,20 +122,18 @@ if ($isNotification == null) {
             echo "<td> <input class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' ";
             $item['wereHouseComment'];
             echo "'> </td>";
-        echo '
+            echo '
         </tr>
         ';
-    }
-    echo "       
+        }
+        echo "       
         </tbody>
     </table>
-    
+    <button  class='submitGetHose' name='submit'>Done</button>
     ";
-    if (!$issued) {
-        echo '<button  class="submitGetHose" name="submit">Done</button>';
-    }
-    echo "
+        echo "
 ";
+    }
 }
 
 

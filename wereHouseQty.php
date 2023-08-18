@@ -17,15 +17,17 @@ if (!$userEmail) {
 $account = new Account($con);
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
 $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$anotherWereHouse = $account->getTransferAccount('wereHouse', $userEmail);
 
 Powers::wereHouse($account, $userEmail);
 
 $request = new Request($con);
+$itemName = @$_POST['itemName'];
+$wereHouseQty = @$_POST['wereHouseQty'];
+$wereHouseComment = @$_POST['wereHouseComment'];
+$rejectsNum = @$_POST['rejectsNum'];
+$qtyBack = @$_POST['qtyBack'];
 if (isset($_POST["submit"])) {
-    $itemName = @$_POST['itemName'];
-    $wereHouseQty = @$_POST['wereHouseQty'];
-    $wereHouseComment = @$_POST['wereHouseComment'];
-    $rejectsNum = @$_POST['rejectsNum'];
 
     if($resent == 'yes'){
         $success = $request->updateRejectWerehouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment, $rejectsNum);
@@ -35,6 +37,31 @@ if (isset($_POST["submit"])) {
 
     if ($success) {
         header("location: wereHouse.php");
+    }
+}
+
+if (isset($_POST["change"])) {
+    $newUser = @$_POST['newUser'];
+    $success = $request->transfer($newUser, 'wereHouse', $workOrderNo);
+
+    if ($success) {
+        header("location: notification.php");
+    }
+}
+
+if (isset($_POST["dismantling"])) {
+    $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'requestitemdes');
+
+    if ($success) {
+        header("location: inspectorPage.php");
+    }
+}
+
+if (isset($_POST["rejectDismantling"])) {
+    $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'rejectitemdes');
+
+    if ($success) {
+        header("location: inspectorPage.php");
     }
 }
 
@@ -76,8 +103,19 @@ function getInputValue($name)
 <br>
             <form method="POST">
                 <div id="reqInf"></div>
-            </form>
-
+                <?php
+                if ($resent == 'no') {
+                    echo '
+                    <select name = "newUser">
+                                    <option selected disabled>Select WereHouse</option>
+                                    ';
+                    echo $anotherWereHouse;
+                    echo '
+                                </select>
+                                <button class="submitQTY"name="change">Send to another executer</button>
+                    ';
+                }
+                ?>
             </form>
 
             <script>
@@ -85,7 +123,7 @@ function getInputValue($name)
                 $(window).on("load", function () {
                     $.get(
                         "ajax/GetWereHouseReq.php",
-                        { isNotification: null, wereHouse: '<?php echo $adminName; ?>', workOrderNo: <?php echo $workOrderNo; ?> },
+                        { isNotification: null, wereHouse: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
                         function (data) {
                             $("#reqInf").html(data);
                         }

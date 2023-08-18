@@ -74,4 +74,14 @@ reject?.addEventListener('click', function (e) {
   }
 })
 
+const executerDone = document.getElementById('executerDone');
+const finishDate = document.getElementById('finishDate');
+
+executerDone?.addEventListener('click', function (e) {
+  if (!finishDate.required == true) {
+    e.preventDefault();
+    finishDate.required = true
+  }
+})
+
 

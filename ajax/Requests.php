@@ -80,7 +80,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin ";
+        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND qtyBackStatus = 'no'";
 
         if (!$isNoti) {
             $whereClause[] = "workOrderNo = :workOrderNo ";
@@ -155,7 +155,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "(executerAccept != 'yes' OR status = 'rejected' OR status = 'backExecuter') ";
+        $whereClause[] = "(executerAccept != 'yes' OR status = 'rejected' OR status = 'backExecuter' OR qtyBackStatus = 'executer') ";
         $whereClause[] = "executer = :executer ";
 
         if (!$isNoti) {
@@ -165,7 +165,7 @@ class Requests
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
-            $sql .= "ORDER BY GREATEST(COALESCE(reqDate, '0000-00-00'), COALESCE(wereHouseDate, '0000-00-00'), COALESCE(inspectorDate, '0000-00-00')) DESC";
+            $sql .= "ORDER BY GREATEST(COALESCE(reqDate, '0000-00-00'), COALESCE(wereHouseDate, '0000-00-00'), COALESCE(inspectorDate, '0000-00-00'), COALESCE(qtyBackDate, '0000-00-00')) DESC";
         }
         ;
 
@@ -197,19 +197,26 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "(finishDate != '0000:00:00' AND issued != 'yes') OR status = 'resent' ";
+        $whereClause[] = "(finishDate != '0000:00:00' AND issued != 'yes' OR status = 'resent' OR qtyBackStatus = 'wereHouse') ";
         $whereClause[] = "wereHouse = :wereHouse ";
+        if (!$isNoti) {
+            $whereClause[] = "workOrderNo = :workOrderNo ";
+        }
 
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
-            $sql .= "ORDER BY COALESCE(executerDate, '0000-00-00') DESC";
+            $sql .= "ORDER BY GREATEST(COALESCE(executerDate, '0000-00-00'), COALESCE(qtyBackDate, '0000-00-00')) DESC";
         }
         ;
 
         $query = $con->prepare($sql);
 
         $query->bindValue(":wereHouse", $wereHouse);
+        if (!$isNoti) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+        }
+
 
         $query->execute();
 

@@ -32,6 +32,15 @@ if (isset($_POST["submit"])) {
     }
 }
 
+if (isset($_POST["change"])) {
+    $newUser = @$_POST['newUser'];
+    $success = $request->transfer($newUser, 'executer', $workOrderNo);
+
+    if ($success) {
+        header("location: notification.php");
+    }
+}
+
 if (isset($_POST["accept"])) {
 
     $success = $request->executerAccept($workOrderNo);
@@ -58,6 +67,15 @@ if (isset($_POST["resendToInspector"])) {
         header("location: notification.php");
     }
 }
+
+if (isset($_POST["dismantling"])) {
+    $success = $request->dismantling('wereHouse', $workOrderNo);
+
+    if ($success) {
+        header("location: inspectorPage.php");
+    }
+}
+
 
 function getInputValue($name)
 {
@@ -119,12 +137,12 @@ function getInputValue($name)
                 <br>
                 <?php if ($new) {
                     echo '
-                    <button class="submitQTY"name="submit">Done</button>
-                    <select>
+                    <button class="submitQTY" name="submit" id="executerDone">Done</button>
+                    <select name = "newUser">
                         <option selected disabled>Select Executer</option>
                         ';
-                            echo $anotherExecuter;
-                        echo'
+                    echo $anotherExecuter;
+                    echo '
                     </select>
                     <button class="submitQTY"name="change">Send to another executer</button>
                     ';

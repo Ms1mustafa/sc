@@ -18,18 +18,8 @@ Powers::admin($account, $userEmail);
 
 $request = new Request($con);
 
-if (isset($_POST["accept"])) {
-    $success = $request->updateInspectorReq('accepted', '', $workOrderNo);
-
-    if ($success) {
-        header("location: inspectorPage.php");
-    }
-}
-
-if (isset($_POST["reject"])) {
-    $rejectReason = @$_POST["rejectReason"];
-
-    $success = $request->updateInspectorReq('rejected', $rejectReason, $workOrderNo);
+if (isset($_POST["dismantling"])) {
+    $success = $request->dismantling('executer', $workOrderNo);
 
     if ($success) {
         header("location: inspectorPage.php");
@@ -84,16 +74,6 @@ function getInputValue($name)
                 }
             );
         })
-
-        function addRequiredAttribute() {
-            const rejectReason = document.getElementById('rejectReason');
-            rejectReason.required = true;
-        }
-
-        function removeRequiredAttribute() {
-            const rejectReason = document.getElementById('rejectReason');
-            rejectReason.required = false;
-        }
     </script>
 
 </body>
