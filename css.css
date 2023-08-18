@@ -111,7 +111,7 @@ header {
   }
 
   .submitlogin {
-    width: 90%;
+    width: 88%;
     position: relative;
     right: 10px;
     top: 70px;
@@ -485,7 +485,7 @@ header {
   background: #fff;
   color: #000;
   height: 50px;
-  width: 20%;
+  width: 25%;
 
   border: 2px solid #e77823;
 
@@ -588,7 +588,7 @@ header {
   .inputfieldrequestqty {
     position: relative;
     top: 80px;
-    width: 70%;
+    width: 90%;
   }
 
   .Notesaddreq {
@@ -790,7 +790,7 @@ header {
   color: #000;
   height: 50px;
   width: 95%;
-  border: 1px solid #e77823;
+ border: none;
 
   position: relative;
   left: 2px;
@@ -822,12 +822,12 @@ header {
   width: 300px;
   border: 1px solid #e77823;
   border-radius: 10px;
+
 }
 
 
 .itemestable {
-  position: absolute;
-  left: 10px;
+
   border: 2px solid #e77823;
   width: 200px;
   height: 200px;
@@ -857,6 +857,7 @@ header {
 .description tr {
   transition: all .2s ease-in;
   cursor: pointer;
+
 }
 
 .description th,
@@ -865,6 +866,7 @@ header {
   text-align: left;
   border-bottom: 1px solid #ddd;
   text-align: center;
+
 }
 
 .description tr:hover {
@@ -877,19 +879,22 @@ header {
 @media only screen and (max-width: 768px) {
   .description {
     width: 250px;
-    position: absolute;
-    left: 10px;
-    top: 80%;
+    margin-top: 90px;
+    margin-right: 40px;
+    margin-left: -55px;
   }
 
 
   .itemestable {
     font-size: 13px;
-    position: absolute;
-    top: 50%;
-    left: -30px
+    margin-top: 80px;
+    margin-right: 40px;
+    margin-left: -55px;
   }
 
+  .inputfieldGetReqoty {
+    width: 130px;
+  }
 }
 
 
@@ -954,7 +959,7 @@ header {
   width: 28%;
   border: none;
   border-radius: 15px;
-  margin-top: 17%;
+
 
   outline: none;
   background: #e77823;
@@ -1003,22 +1008,23 @@ header {
   }
 
   .submitDone {
-    width: 80%;
-    margin-top: 230%;
+    width: 100%;
+
   }
 
   .inputfieldGetReq {
-    position: relative;
-    right: 2px;
+    margin-right: 20px;
+    width: 190px;
+    border: none;
   }
 
   .submitQTY {
-    width: 110%;
-    margin-top: 70%;
+    width: 94%;
+
   }
 
   .inputfieldownerselectqty {
-    width: 110%;
+    width: 94%;
   }
 
   .Getrquest {
@@ -1035,7 +1041,7 @@ header {
   .submitQTY2 {
     position: relative;
 
-    width: 110%;
+    width: 94%;
 
   }
 
@@ -1055,9 +1061,10 @@ header {
 
 
   .pipe1 {
-    width: 167px;
+    width: 150px;
     font-size: 13px;
     height: 10vh;
+    margin-right: 30px;
   }
 }
 
@@ -1090,7 +1097,7 @@ header {
   width: 25%;
   border: none;
   border-radius: 15px;
-  margin-top: 20%;
+  margin-top: 3%;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -1126,7 +1133,7 @@ header {
 
   .submitGetHose {
     width: 100%;
-    margin-top: 200%;
+
 
   }
 
