@@ -171,7 +171,7 @@ class Notification
         $executer = $data["executer"];
         $status = $data["status"];
         $executerAcceptDate = $data["executerAcceptDate"] ? FormSanitizer::formatDate($data["executerAcceptDate"]) : null;
-        $wereHouseDate = $data["wereHouseDate"] ? FormSanitizer::formatDate($data["wereHouseDate"]) : null;
+        $resentDate = $data["resentDate"] ? FormSanitizer::formatDate($data["resentDate"]) : null;
 
         if (empty($this->errorArray)) {
             $html = "
@@ -179,8 +179,8 @@ class Notification
                 <p>Executer : $executer</p>
                 <p>$priority</span></p>
             ";
-            if ($status == 'backExecuter') {
-                $html .= "<p>resent : $wereHouseDate</p>";
+            if ($status == 'resentInspector') {
+                $html .= "<p>resent : $resentDate</p>";
             }
             $html .= "
                 <p>Executer accept : $executerAcceptDate</p>

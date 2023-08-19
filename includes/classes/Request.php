@@ -248,7 +248,7 @@ class Request
             $query->execute();
         }
 
-        $query2 = $this->con->prepare("UPDATE request SET status = 'backExecuter', wereHouseDate = :currentDateTime WHERE workOrderNo = :workOrderNo");
+        $query2 = $this->con->prepare("UPDATE request SET status = 'backExecuter', executerNew = 'yes', wereHouseDate = :currentDateTime WHERE workOrderNo = :workOrderNo");
         $query2->bindValue(":workOrderNo", $workOrderNo);
         $query2->bindValue(":currentDateTime", $this->currentDateTime);
         $query2->execute();
@@ -259,7 +259,7 @@ class Request
     public function resendToInspector($workOrderNo)
     {
         if (empty($this->errorArray)) {
-            $query = $this->con->prepare("UPDATE request SET status = 'resentInspector', resentDate = :currentDateTime
+            $query = $this->con->prepare("UPDATE request SET status = 'resentInspector', executerNew = 'no', resentDate = :currentDateTime
                                         WHERE workOrderNo = :workOrderNo");
 
             $query->bindValue(":workOrderNo", $workOrderNo);

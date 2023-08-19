@@ -239,7 +239,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' AND status != 'resent' OR status = 'backExecuter'";
+        $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' AND status != 'resent' AND status != 'backExecuter'";
 
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
