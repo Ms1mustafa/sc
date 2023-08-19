@@ -825,7 +825,7 @@ header {
 
 .description {
   margin-top: -10px;
-  width: 300px;
+  width: 290px;
   border: 1px solid #e77823;
   border-radius: 10px;
 
@@ -938,7 +938,7 @@ header {
 
 @media only screen and (max-width: 768px) {
   .description {
-    width: 250px;
+    width: 240px;
     margin-top: 120px;
     margin-right: 40px;
     margin-left: -55px;
@@ -1070,6 +1070,7 @@ header {
 
 .submitDonereg {
   font-size: 15px;
+
   font-weight: 500;
   color: black;
   height: 50px;
@@ -1080,11 +1081,9 @@ header {
   background: #e77823;
   cursor: pointer;
   transition: .3s ease-in-out;
+
 }
 
-.done {
-  display: flex;
-}
 
 @media only screen and (max-width: 900px) {
   .namerQTY {
@@ -1096,6 +1095,13 @@ header {
   .submitDone {
     width: 100%;
     margin-left: -20px;
+  }
+
+  .submitDonereg {
+    position: relative;
+    top: 90px;
+    width: 300px;
+    left: -30px;
   }
 
   .inputfieldGetReq {
@@ -1136,7 +1142,7 @@ header {
   }
 
   .pipecomm {
-    width: 93px;
+    width: 90px;
     height: 10vh;
   }
 
@@ -1147,7 +1153,7 @@ header {
 
 
   .pipe1 {
-    width: 150px;
+    width: 130px;
     font-size: 13px;
     height: 10vh;
     margin-right: 30px;
@@ -1155,6 +1161,7 @@ header {
 
   .pipe2 {
     height: 10vh;
+
   }
 
 

@@ -168,6 +168,7 @@ if ($isNotification == null) {
         </table>
         </div>
         </main>
+        <br>
         ';
 
         if ($issued && !$executerAccept) {
@@ -183,7 +184,8 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected') {
             echo '
-            <div class="done">
+           <br>
+           <div>
             <button class="submitDonereg" name="resendToWereHouse">Done</button>
             </div>
             ';
