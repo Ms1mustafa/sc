@@ -332,19 +332,119 @@ header {
   padding: 0px 40px 0 45px;
   border: 2px solid #e77823;
   position: relative;
-  right: 40px;
+  right: 20px;
   border-radius: 15px;
   outline: none;
   transition: .2s ease;
+}
+
+.inputfieldareaitme {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 30%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.submitlocation {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 38%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  right: 20px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.submitlocation:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
 }
 
 @media only screen and (max-width: 786px) {
   .inputfieldownerselect {
     position: relative;
     top: 15%;
-    width: 100%;
+    width: 95%;
 
 
+  }
+
+  .inputfieldareaitme {
+    position: absolute;
+    top: 50%;
+    width: 195px;
+  }
+
+  .submitlocation {
+    position: relative;
+    top: 110px;
+    width: 300px;
+  }
+}
+
+/*--------------------Item Description ------*/
+.itemdes {
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  top: -100px;
+}
+
+.iteminput {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 30%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.Additem {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 38%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  right: 20px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+@media only screen and (max-width: 786px) {
+  .iteminput {
+    width: 200px;
+  }
+
+  .Additem {
+    width: 290px;
   }
 }
 

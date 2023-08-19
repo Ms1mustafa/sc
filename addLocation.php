@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="css.css?1999">
   <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
   <title>Add location </title>
 </head>
@@ -62,13 +62,16 @@ if (isset($_POST["submit"])) {
       </select>
       <br>
       <br>
-      <div class="input-box">
+      <br>
+      <div >
 
-        <input type="text" class="" name="itemName" placeholder="Add Item" required>
+  
+        <input type="text" class="inputfieldareaitme" name="itemName" placeholder="Add Item" required>
       </div>
       <br>
-      <div class="input-box">
-        <button type="submit" name="submit" class="submitarea">Add</button>
+      <br>
+      <div >
+        <button type="submit" name="submit" class="submitlocation">Add</button>
       </div>
 
       </form>

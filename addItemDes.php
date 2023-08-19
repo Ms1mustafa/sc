@@ -32,18 +32,35 @@ if (isset($_POST["submit"])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css.css?1999">
+  <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
   <title>Owner </title>
 </head>
 
 <body>
+<div>
+        <a class="Back" href="ownerPage.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+  <div class="wrappe">
+        <div class="login-container" id="login">
+      <div class="top">
+
+        <header class="nameowner">Add Item...</header>
+      </div>
+      <div class="input-box">
+
   <form method="POST">
-    <label>Item Description id</label>
-    <input type="text" name="itemdesId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
+    <label >Item Description id</label>
+    <br>
+    <input class="iteminput" type="text" name="itemdesId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
     <br>
     <label for="itemdesName">Item Description id</label>
-    <input type="text" name="itemdesName" id="itemdesName" placeholder="Item Description name" required>
     <br>
-    <button name="submit">Add</button>
+    <input  class="iteminput" type="text" name="itemdesName" id="itemdesName" placeholder="Item Description name" required>
+    <br>
+    <br>
+    <button  class="Additem"name="submit">Add</button>
     <br>
   </form>
 </body>
