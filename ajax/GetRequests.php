@@ -112,13 +112,20 @@ if ($isNotification == null) {
         <label class='GetrquesQTY'>$priority</label>
          <br>
         <br>
-        <label class='Getrquest'>Notes</label>
-        <label class='GetrquesQTY'>$notes</label>
-        <br>
-       <br>
-        <label class='Getrquest'>Date</label>
-           <br>
-        <input class='inputfieldrequestqty' type='date' id='finishDate' name='finishDate' value= '$finishDate' ";
+        ";
+            if(!$issued){
+                echo "
+                    <label class='Getrquest'>Notes</label>
+                    <label class='GetrquesQTY'>$notes</label>
+                    <br>
+                    <br>
+                    <label class='Getrquest'>Date</label>
+                    <br>
+                    <input class='inputfieldrequestqty' type='date' id='finishDate' name='finishDate' value= '$finishDate'
+                ";
+            }
+        echo"
+         ";
 
         if (!$new) {
             echo 'readonly ';
