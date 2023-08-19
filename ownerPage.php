@@ -67,6 +67,10 @@ $request = new Request($con);
             </div>
             <br>
             <div class="input-box">
+                <button class="inputfieldowner"> <a href="addItemDes.php">Add item description</a></button>
+            </div>
+            <br>
+            <div class="input-box">
                 <button class="inputfieldowner"> <a href="createAccount.php">Create new account</a></button>
             </div>
             <br>
