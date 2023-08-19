@@ -599,7 +599,7 @@ header {
 
   .rejectreason {
     position: absolute;
-    top: 64%;
+    top: 70%;
     font-size: 20px;
   }
 }
@@ -831,6 +831,60 @@ header {
 
 }
 
+.descriptiontable {
+  margin-top: -10px;
+  width: 300px;
+  border: 1px solid #e77823;
+  border-radius: 10px;
+}
+
+.descriptiontable tr {
+  transition: all .2s ease-in;
+  cursor: pointer;
+
+}
+
+.descriptiontable th,
+.descriptiontable td {
+  padding: 0px;
+  text-align: left;
+  border: 1px solid #ddd;
+  text-align: center;
+
+}
+
+.descriptiontable tr:hover {
+  background-color: #e77823;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.descriptiontable2 {
+  border: 2px solid #e77823;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+
+.descriptiontable2 tr {
+  transition: all .2s ease-in;
+  cursor: pointer;
+}
+
+.descriptiontable2 th,
+.descriptiontable2 td {
+  padding: 0px;
+  text-align: left;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.descriptiontable2 tr:hover {
+  background-color: #e77823;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
 
 .itemestable {
 
@@ -885,11 +939,20 @@ header {
 @media only screen and (max-width: 768px) {
   .description {
     width: 250px;
-    margin-top: 90px;
+    margin-top: 120px;
     margin-right: 40px;
     margin-left: -55px;
   }
 
+  .descriptiontable {
+    width: 100px;
+
+  }
+
+  .descriptiontable2 {
+    margin-top: 70px;
+    margin-left: -50px;
+  }
 
   .itemestable {
     font-size: 13px;

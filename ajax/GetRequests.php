@@ -48,7 +48,7 @@ if ($isNotification == null) {
 
     if ($qtyBackStatus == 'executer') {
         echo '
-        <table class="description">
+        <table class="descriptiontable">
             <thead>
                 <th>Item description</th>
                 <th >QTY Req</th>
@@ -75,7 +75,7 @@ if ($isNotification == null) {
             echo '
             </tbody>
         </table>
-        <button class="submit" name="dismantling">Done</button>
+        <button class="submitQTY2" name="dismantling">Done</button>
         ';
     } else {
         echo "<label class='Getrquest'>ReqNo</label>
@@ -190,7 +190,7 @@ if ($isNotification == null) {
         }
         if ($status == 'backExecuter') {
             echo '
-            <button class="submit" name="resendToInspector">Resend to Inspector</button>
+            <button class="submitQTY2" name="resendToInspector">Resend to Inspector</button>
             
             ';
         }

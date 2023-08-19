@@ -37,9 +37,10 @@ if ($isNotification == null) {
 
     if ($qtyBackStatus == 'wereHouse') {
         echo '
-        <table class="description">
+        <table class="descriptiontable2">
             <thead>
                 <th>Item description</th>
+
                 <th >QTY Req</th>
                 <th>QTY Issued</th>
                 <th>QTY dismantling</th>
@@ -61,7 +62,7 @@ if ($isNotification == null) {
                         <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>
-                        <td><input type="number" min="1" name = "qtyBack[]"' . $item['wereHouseComment'] . ' required></td>
+                        <td><input class = "pipiss" type="number" min="1" name = "qtyBack[]"' . $item['wereHouseComment'] . ' required></td>
                     </tr>
                 ';
             }
@@ -69,7 +70,7 @@ if ($isNotification == null) {
         echo '
             </tbody>
         </table>
-        <button class="submit" name="'.$dismantling.'">Done</button>
+        <button class="submitGetHose" name="'.$dismantling.'">Done</button>
         ';
     } else {
 
