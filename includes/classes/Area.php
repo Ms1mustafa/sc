@@ -45,7 +45,7 @@ class Area
     public function insertItemDetils($id, $ai, $nm)
     {
 
-        $query = $this->con->prepare("INSERT INTO areaItems (number, areaId, name) VALUES (:id, :ai, :nm)");
+        $query = $this->con->prepare("INSERT INTO areaitems (number, areaId, name) VALUES (:id, :ai, :nm)");
 
         $query->bindValue(":id", $id);
         $query->bindValue(":ai", $ai);
@@ -61,7 +61,7 @@ class Area
     }
 
     public function getItemIdNum(){
-        $query = $this->con->prepare("SELECT * FROM areaItems");
+        $query = $this->con->prepare("SELECT * FROM areaitems");
         $query->execute();
         return $query->rowCount() + 1;
     }

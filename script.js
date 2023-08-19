@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const itemDescription = document.getElementById("ItemDescription");
   const itemDescriptionBody = document.getElementById("ItemDescriptionBody");
 
-  console.log(itemDescription, itemDescriptionBody);
-
   let selectedOptions = [];
 
   itemDescription?.addEventListener("change", function () {

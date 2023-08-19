@@ -25,7 +25,7 @@ class workType
     public function insertWTDetils($wtId, $wtName)
     {
 
-        $query = $this->con->prepare("INSERT INTO workType (number,name) VALUES (:wtId, :wtName)");
+        $query = $this->con->prepare("INSERT INTO worktype (number,name) VALUES (:wtId, :wtName)");
 
         $query->bindValue(":wtId", $wtId);
         $query->bindValue(":wtName", $wtName);
@@ -34,7 +34,7 @@ class workType
     }
 
     public function getWT(){
-        $query = $this->con->prepare("SELECT * FROM workType ");
+        $query = $this->con->prepare("SELECT * FROM worktype ");
         
         $query->execute();
 
@@ -49,7 +49,7 @@ class workType
         return $html . "</div>";
     }
     public function getWTName($wtId){
-        $query = $this->con->prepare("SELECT * FROM workType Where number =:wtId");
+        $query = $this->con->prepare("SELECT * FROM worktype Where number =:wtId");
         $query->bindValue(":wtId", $wtId);
         $query->execute();
 
@@ -64,7 +64,7 @@ class workType
     }
 
     public function getIdNum(){
-        $query = $this->con->prepare("SELECT * FROM workType");
+        $query = $this->con->prepare("SELECT * FROM worktype");
         $query->execute();
         return $query->rowCount() + 1;
     }

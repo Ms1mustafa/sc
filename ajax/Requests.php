@@ -48,7 +48,7 @@ class Requests
 
     public static function getRequestsAction($con, $isNoti = null, $admin, $workOrderNo = null)
     {
-        $sql = "SELECT * FROM request WHERE executerDate != NULL AND adminAddedName = :adminAddedName ";
+        $sql = "SELECT * FROM request WHERE executerDate IS NULL AND adminAddedName = :adminAddedName ";
 
         if (!$isNoti) {
             $sql .= "workOrderNo = :workOrderNo ";
