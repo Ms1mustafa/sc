@@ -104,7 +104,7 @@ class Notification
         $qtyBackDate = $data["qtyBackDate"];
         $inspector = $data["inspector"];
         $inspectorDate = $data["inspectorDate"];
-        $werehouseName = $data["werehouseName"] ?? false;
+        $werehouseName = $data["wereHouse"] ?? false;
         $wereHouseDate = $data["wereHouseDate"] ?? false;
         $type = $this->getNotiType($werehouseName, $inspectorDate, $qtyBackDate);
         $sender = $this->getNotiFrom($werehouseName, $inspectorDate, $inspector, $adminAddedName, $qtyBackStatus);

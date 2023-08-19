@@ -163,6 +163,7 @@ if ($isNotification == null) {
 
         if ($issued && !$executerAccept) {
             echo '
+           
                 <button class="submitDone" name="accept">Done</button>
             ';
         }
@@ -174,12 +175,15 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected') {
             echo '
-            <button class="submit" name="resendToWereHouse">Resend to WereHouse</button>
+            <div class="done">
+            <button class="submitDonereg" name="resendToWereHouse">Done</button>
+            </div>
             ';
         }
         if ($status == 'backExecuter') {
             echo '
             <button class="submit" name="resendToInspector">Resend to Inspector</button>
+            
             ';
         }
         echo "
