@@ -596,6 +596,12 @@ header {
     top: 100px;
 
   }
+
+  .rejectreason {
+    position: absolute;
+    top: 64%;
+    font-size: 20px;
+  }
 }
 
 /*------------------admin request-------------*/
@@ -1087,6 +1093,8 @@ header {
   .pipe2 {
     height: 10vh;
   }
+
+
 }
 
 

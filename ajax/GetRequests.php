@@ -178,7 +178,7 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-                <p>Reject Reason : ' . $rejectReason . '</p>
+                <p class="rejectreason">Reject Reason : ' . $rejectReason . '</p>
             ';
         }
         if ($status == 'rejected') {
