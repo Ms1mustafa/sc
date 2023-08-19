@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2023 at 02:54 PM
+-- Generation Time: Aug 19, 2023 at 12:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -139,6 +139,7 @@ CREATE TABLE `request` (
   `inspector` varchar(255) NOT NULL,
   `notes` varchar(255) NOT NULL,
   `reqDate` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `executerNew` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'yes',
   `executerDate` datetime(6) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
   `rejectReason` varchar(255) NOT NULL,
@@ -159,9 +160,9 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`, `qtyBackStatus`, `qtyBackDate`) VALUES
-(9, '202300001', 'Basim Kareem', '76546585', 'Packing', 'item1', '7', '3', '9', '2 - Routine', 'Low More than 5 days', 'Luay Saad', 'Ali', 'Mohammed', 'fse', '2023-08-17 20:01:54.526962', '2023-08-17 20:47:43.000000', 'pending', '', 0, 'no', '2023-08-18', 'no', NULL, 'no', NULL, NULL, NULL, 'no', NULL),
-(10, '202300001', 'Basim Kareem', '756858323', 'Packing', 'item2', '6', '4', '2', '3 - PM', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'few', '2023-08-17 20:02:11.585926', '2023-08-17 20:48:02.000000', 'accepted', '', 0, 'no', '2023-08-30', 'yes', '2023-08-18 01:10:43.000000', 'yes', '2023-08-18 01:16:31.000000', '2023-08-18 01:16:54.000000', NULL, 'done', '2023-08-18 15:37:12');
+INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerNew`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`, `qtyBackStatus`, `qtyBackDate`) VALUES
+(12, '202300001', 'Basim Kareem', '6574443745754', 'Packing', 'item2', '56', '6', '3', '4 - SD', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', '543', '2023-08-19 01:24:30.740422', 'no', '2023-08-19 01:25:39.000000', 'accepted', '', 0, 'no', '2023-08-20', 'yes', '2023-08-19 01:25:51.000000', 'yes', '2023-08-19 01:25:57.000000', '2023-08-19 01:26:25.000000', NULL, 'wereHouse', '2023-08-19 01:53:25'),
+(13, '202300001', 'Basim Kareem', '654573333', 'Packing', 'item2', '6', '9', '5', '2 - Routine', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'بثي', '2023-08-19 01:40:42.731992', 'yes', '2023-08-19 01:41:15.000000', 'rejected', 'فقث', 1, 'no', '2023-08-20', 'yes', '2023-08-19 01:41:46.000000', 'yes', '2023-08-19 01:42:04.000000', '2023-08-19 01:42:30.000000', NULL, 'no', NULL);
 
 -- --------------------------------------------------------
 
@@ -187,12 +188,12 @@ CREATE TABLE `requestitemdes` (
 --
 
 INSERT INTO `requestitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `editedItemQty`, `editedWereHouseQty`, `editedWereHouseComment`, `qtyBack`) VALUES
-(39, '76546585', 'Fixed clamp', '6', '', '', '', '', '', ''),
-(40, '76546585', 'Pipe scaffolding Under 1M', '7', '', '', '', '', '', ''),
-(41, '76546585', 'Woode borders Under 1M', '8', '', '', '', '', '', ''),
-(42, '756858323', 'Pipe scaffolding 2m', '2', '2', ' ', '', '', '', '2'),
-(43, '756858323', 'Woode borders 2m', '3', '3', ' ', '', '', '', '3'),
-(44, '756858323', 'Woode borders 1m', '4', '4', ' ', '', '', '', '4');
+(48, '6574443745754', 'Pipe scaffolding 6m', '11', '11', '  ', '', '', '', ''),
+(49, '6574443745754', 'Woode borders 5m', '22', '22', '  ', '', '', '', ''),
+(50, '6574443745754', 'Woode borders Under 1M', '33', '33', '  ', '', '', '', ''),
+(51, '654573333', 'Fixed clamp', '6', '6', '  ', '', '', '', ''),
+(52, '654573333', 'Woode borders 4m', '4', '4', '  ', '', '', '', ''),
+(53, '654573333', 'Pipe scaffolding 4M', '9', '9', '  ', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -326,19 +327,19 @@ ALTER TABLE `itemdes`
 -- AUTO_INCREMENT for table `rejectitemdes`
 --
 ALTER TABLE `rejectitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `requestitemdes`
 --
 ALTER TABLE `requestitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `users`
