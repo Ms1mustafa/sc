@@ -111,7 +111,7 @@ header {
   }
 
   .submitlogin {
-    width: 88%;
+    width: 95%;
     position: relative;
     right: 10px;
     top: 70px;
@@ -790,7 +790,7 @@ header {
   color: #000;
   height: 50px;
   width: 95%;
- border: none;
+  border: none;
 
   position: relative;
   left: 2px;
@@ -818,7 +818,7 @@ header {
 /* table */
 
 .description {
-  margin-top: 30px;
+  margin-top: -10px;
   width: 300px;
   border: 1px solid #e77823;
   border-radius: 10px;
@@ -843,7 +843,7 @@ header {
 .itemestable td {
   padding: 0px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
   text-align: center;
 }
 
@@ -864,7 +864,7 @@ header {
 .description td {
   padding: 0px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
   text-align: center;
 
 }
@@ -894,6 +894,7 @@ header {
 
   .inputfieldGetReqoty {
     width: 130px;
+
   }
 }
 
@@ -998,7 +999,23 @@ header {
   transition: .3s ease-in-out;
 }
 
+.submitDonereg {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 25%;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
 
+.done {
+  display: flex;
+}
 
 @media only screen and (max-width: 900px) {
   .namerQTY {
@@ -1009,7 +1026,7 @@ header {
 
   .submitDone {
     width: 100%;
-
+    margin-left: -20px;
   }
 
   .inputfieldGetReq {
@@ -1066,6 +1083,10 @@ header {
     height: 10vh;
     margin-right: 30px;
   }
+
+  .pipe2 {
+    height: 10vh;
+  }
 }
 
 
@@ -1098,6 +1119,7 @@ header {
   border: none;
   border-radius: 15px;
   margin-top: 3%;
+  margin-left: 20px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -1133,6 +1155,8 @@ header {
 
   .submitGetHose {
     width: 100%;
+    margin-left: -30px;
+
 
 
   }

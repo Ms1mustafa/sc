@@ -141,7 +141,7 @@ function getInputValue($name)
                     echo '
                 
                     
-           <div class="">
+        
                     <button class="submitQTY" name="submit" id="executerDone">Done</button>
                     </div>
                     
