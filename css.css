@@ -699,7 +699,7 @@ header {
 
   .rejectreason {
     position: absolute;
-    top: 70%;
+    top: 68%;
     font-size: 20px;
   }
 }
@@ -1046,6 +1046,7 @@ header {
 
   .descriptiontable {
     width: 100px;
+    margin-top: 90px;
 
   }
 
@@ -1232,7 +1233,7 @@ header {
 
   .submitQTY2 {
     position: relative;
-
+    left: -5px;
     width: 94%;
 
   }
