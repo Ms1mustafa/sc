@@ -45,7 +45,7 @@ if (isset($_POST["change"])) {
     $success = $request->transfer($newUser, 'wereHouse', $workOrderNo);
 
     if ($success) {
-        header("location: notification.php");
+        header("location: wereHouse.php");
     }
 }
 
@@ -53,7 +53,7 @@ if (isset($_POST["dismantling"])) {
     $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'requestitemdes');
 
     if ($success) {
-        header("location: inspectorPage.php");
+        header("location: wereHouse.php");
     }
 }
 
@@ -61,7 +61,7 @@ if (isset($_POST["rejectDismantling"])) {
     $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'rejectitemdes');
 
     if ($success) {
-        header("location: inspectorPage.php");
+        header("location: wereHouse.php");
     }
 }
 

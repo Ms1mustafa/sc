@@ -59,10 +59,10 @@ if ($isNotification == null) {
                 echo '
                     <tr >
                         <td hidden><input name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
-                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                        <td>' . $item['itemName'] . '</td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>
-                        <td><input class = "pipiss" type="number" min="1" name = "qtyBack[]"' . $item['wereHouseComment'] . ' required></td>
+                        <td>' . $item['wereHouseComment'] . '</td>
                     </tr>
                 ';
             }
