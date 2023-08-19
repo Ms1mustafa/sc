@@ -119,7 +119,7 @@ function getInputValue($name)
                 <br>
                 <?php if ($new || $reject)
                     echo '
-                <div>
+              
                         <table class="description">
                             <thead >
                                 <th >
@@ -133,7 +133,7 @@ function getInputValue($name)
 
                             </tbody>
                         </table>
-                       </div>
+                      
                     ';
                 ?>
                 <br>
@@ -143,15 +143,16 @@ function getInputValue($name)
                     
         
                     <button class="submitQTY" name="submit" id="executerDone">Done</button>
-                    </div>
+                   
                     
                     <br>
-                    <div>
+                   <br>
                    
                     <select class="inputfieldownerselectqty" name = "newUser">
                         <option selected disabled>Select Executer</option>
-                        </div>
+                       
                         <br>
+                        
                        
                         ';
                     echo $anotherExecuter;
@@ -159,9 +160,9 @@ function getInputValue($name)
                    
                     </select>
                     <br>
-                    <div>
+                   
                     <button class="submitQTY2"name="change">Send to another executer</button>
-                    </div>
+                    
                  
                     ';
                 } ?>
