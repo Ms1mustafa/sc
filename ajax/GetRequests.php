@@ -122,15 +122,17 @@ if ($isNotification == null) {
                     <label class='Getrquest'>Date</label>
                     <br>
                     <input class='inputfieldrequestqty' type='date' id='finishDate' name='finishDate' value= '$finishDate'
+                    ";
+                    if (!$new) {
+                        echo 'readonly ';
+                    }
+                    echo"
+                    >
                 ";
             }
         echo"
          ";
-
-        if (!$new) {
-            echo 'readonly ';
-        }
-        if ($issued) {
+        if ($issued && $status != 'rejected') {
             echo '
                 <main>
                 <table class="description" >
@@ -176,7 +178,6 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-                <p>Rejected</p>
                 <p>Reject Reason : ' . $rejectReason . '</p>
             ';
         }
