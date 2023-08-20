@@ -297,7 +297,7 @@ header {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 786px) {
+@media only screen and (max-width: 600px) {
   .submitarea {
     width: 100%;
     position: relative;
@@ -322,13 +322,30 @@ header {
 }
 
 /*--------------addlocation------------------*/
-.inputfieldownerselect {
+
+.inputfieldarea2 {
   font-size: 15px;
   font-weight: bold;
   background: #fff;
   color: #000;
   height: 50px;
-  width: 38%;
+  width: 30%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+  right: 20px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.inputfieldarea3 {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 50px;
+  width: 30%;
   padding: 0px 40px 0 45px;
   border: 2px solid #e77823;
   position: relative;
@@ -376,12 +393,26 @@ header {
   border: 2px solid #e77823;
 }
 
-@media only screen and (max-width: 786px) {
+@media only screen and (max-width: 600px) {
   .inputfieldownerselect {
-    position: relative;
-    top: 15%;
+    position: absolute;
+
     width: 95%;
 
+
+  }
+
+  .inputfieldarea2 {
+    width: 285px;
+    position: relative;
+    top: 90px;
+
+  }
+
+  .inputfieldarea3 {
+    width: 200px;
+    position: relative;
+    top: 70px;
 
   }
 
@@ -393,8 +424,8 @@ header {
 
   .submitlocation {
     position: relative;
-    top: 110px;
-    width: 300px;
+    top: 50px;
+    width: 290px;
   }
 }
 
@@ -438,7 +469,7 @@ header {
   transition: .3s ease-in-out;
 }
 
-@media only screen and (max-width: 786px) {
+@media only screen and (max-width:600px) {
   .iteminput {
     width: 200px;
   }
@@ -465,7 +496,7 @@ header {
   transition: .2s ease;
 }
 
-@media only screen and (max-width: 786px) {
+@media only screen and (max-width:600px) {
   .inputfieldownerselect-areatAccount {
     position: relative;
     top: 15%;
@@ -622,7 +653,7 @@ header {
 
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 600px) {
   .namerequest {
     position: relative;
     top: 150px;
@@ -711,7 +742,7 @@ header {
 
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 600px) {
 
   .nameadminrequest {
     position: relative;

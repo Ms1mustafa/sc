@@ -57,7 +57,7 @@ if (isset($_POST["submit"])) {
       </div>
       <br>
 
-      <select class="inputfieldownerselect" name="areaId">
+      <select class="inputfieldarea2" name="areaId">
         <?php echo $getArea; ?>
       </select>
       <br>
@@ -66,7 +66,7 @@ if (isset($_POST["submit"])) {
       <div >
 
   
-        <input type="text" class="inputfieldareaitme" name="itemName" placeholder="Add Item" required>
+        <input type="text" class="inputfieldarea3" name="itemName" placeholder="Add Item" required>
       </div>
       <br>
       <br>

@@ -53,9 +53,12 @@ if (isset($_POST["submit"])) {
   <form method="POST">
     <label >Item Description id</label>
     <br>
+    <br>
     <input class="iteminput" type="text" name="itemdesId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
     <br>
+    <br>
     <label for="itemdesName">Item Description id</label>
+    <br>
     <br>
     <input  class="iteminput" type="text" name="itemdesName" id="itemdesName" placeholder="Item Description name" required>
     <br>
