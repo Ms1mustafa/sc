@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 itemDescriptionBody?.addEventListener("keydown", function (event) {
   const target = event.target;
   if (target.classList.contains("cantEdit")) {
@@ -53,15 +52,6 @@ height?.addEventListener("change", function () {
   getBoxResult([lengthValue, width, height]);
 });
 
-const userType = document.getElementById("userType");
-const areas = document.getElementById("areas");
-
-userType?.addEventListener('change', () => {
-  if (userType.value == 'inspector') {
-    areas.style.display = 'block';
-  }
-})
-
 const reject = document.getElementById('reject');
 const rejectReason = document.getElementById('rejectReason');
 
@@ -81,5 +71,3 @@ executerDone?.addEventListener('click', function (e) {
     finishDate.required = true
   }
 })
-
-

@@ -34,11 +34,9 @@ if (isset($_POST["submit"])) {
 
   if ($_POST["type"] == "admin") {
     $success = $account->register($NewToken, $username, $email, $password, $type, $requestNum);
-  }
-  elseif($_POST["type"] == "inspector"){
+  } elseif ($_POST["type"] == "inspector") {
     $success = $account->register($NewToken, $username, $email, $password, $type, "", $areaName);
-  }
-  else {
+  } else {
     $success = $account->register($NewToken, $username, $email, $password, $type, "");
   }
 
@@ -73,44 +71,44 @@ function getInputValue($name)
 <body>
   <!------------------- CreateAccount ------------------------->
   <div>
-        <a class="Back" href="ownerPage.php">
-            <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
+    <a class="Back" href="ownerPage.php">
+      <i class="fa-solid fa-arrow-left"></i> Back</a>
+  </div>
 
   <div class="pageoner">
-    
+
     <div class="login-container" id="login">
       <div class="top">
 
         <header class="nameowner">CreateAccount</header>
       </div>
-    <br>
-    <br>
-        <p class="adminNameowner">
-          Rq num:
-          <?php echo $requestNum; ?>
-        </p>
-        <br>
-        <div class="input-box">
+      <br>
+      <br>
+      <p class="adminNameowner">
+        Rq num:
+        <?php echo $requestNum; ?>
+      </p>
+      <br>
+      <div class="input-box">
         <form method="POST">
           <?php echo $account->getError(constants::$usernameTaken); ?>
 
-         
+
           <input type="text" name="username" id="name" class="inputfieldarea" placeholder="Name"
             value="<?php getInputValue("username"); ?>" required />
       </div>
-<br>
+      <br>
       <?php echo $account->getError(constants::$emailInvalid); ?>
       <?php echo $account->getError(constants::$emailTaken); ?>
       <div class="input-box">
-        
+
         <input type="Email" id="email" name="email" class="inputfieldarea" placeholder="Email"
           value="<?php getInputValue("email"); ?>" required />
       </div>
       <br>
       <div class="input-box">
         <?php echo $account->getError(constants::$passwordLength); ?>
-        
+
         <input type="password" name="password" id="password" class="inputfieldarea" placeholder="Password"
           value="<?php getInputValue("password"); ?>" required />
       </div>
@@ -126,13 +124,26 @@ function getInputValue($name)
       </select>
       <br>
       <select name="areaName" id="areas" style="display: none;">
-            <?php echo $getArea; ?>
-        </select>
+        <?php echo $getArea; ?>
+      </select>
       <br>
       <div class="input-box">
         <input type="submit" name="submit" class="submitarea">
       </div>
       </form>
+
+      <script>
+        const userType = document.getElementById("userType");
+        const areas = document.getElementById("areas");
+
+        userType?.addEventListener('change', () => {
+          if (userType.value == 'inspector') {
+            areas.style.display = 'block';
+          } else {
+            areas.style.display = 'none';
+          }
+        })
+      </script>
 
 </body>
 

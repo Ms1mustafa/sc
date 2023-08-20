@@ -184,9 +184,19 @@ function getInputValue($name)
                         }
                     );
                 });
+
+                window.addEventListener("load", () => {
+                    // Get the input element
+                    const finishDate = document.getElementById("finishDate");
+
+                    // Get today's date
+                    const today = new Date().toISOString().split('T')[0];
+
+                    // Set the minimum attribute to restrict dates before today
+                    finishDate.min = today;
+                })
+
             </script>
-
-
 </body>
 
 </html>
