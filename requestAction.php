@@ -103,6 +103,7 @@ if (isset($_POST["delete"])) {
                     </label>
                     <br>
                     <br>
+                    <br>
                     <label class="requestAction">Requester :
                         <?php echo $getRequest['adminAddedName']; ?>
                     </label>
@@ -110,6 +111,7 @@ if (isset($_POST["delete"])) {
                     <br>
                     <br>
                     <label class="requestActionArea">Area</label>
+                    <br>
                     <br>
                     <select class="inputfieldrequestAction" name="area" id="area" required <?php echo $canEdit; ?>>
                         <?php if ($getRequest['area']) {
@@ -119,7 +121,9 @@ if (isset($_POST["delete"])) {
                         <?php echo $getArea; ?>
                     </select>
                     <br>
+                    <br>
                     <label class="requestActionArea">Location</label>
+                    <br>
                     <br>
                     <select class="inputfieldrequestAction" name="item" id="item" required <?php echo $canEdit; ?>>
                         <?php if ($getRequest['item']) {
@@ -139,6 +143,7 @@ if (isset($_POST["delete"])) {
                     <br>
                     <label class="requestActionArea">priority</label>
                     <br>
+                    <br>
                     <input type="radio" id="immediately" value="Immediately Today" name="priority" <?php echo $getRequest['priority'] == 'Immediately Today' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
                     <label class="requestActionArea" for="immediately">Immediately &nbsp; Today</label>
                     <br>
@@ -151,21 +156,27 @@ if (isset($_POST["delete"])) {
                     <input type="radio" id="low" value="Low More than 5 days" name="priority" <?php echo $getRequest['priority'] == 'Low More than 5 days' ? 'checked' : ''; ?> <?php echo $canEdit; ?>>
                     <label class="requestActionArea" for="low">Low &nbsp; More than 5 days</label>
                     <br>
+                    <br>
                     <label class="requestActionArea">work type</label>
+                    <br>
                     <br>
                     <select class="inputfieldrequestAction" name="workType" required <?php echo $canEdit; ?>>
                         <option selected value="<?php echo $getRequest['workType'] ?? ''; ?>"><?php echo $getRequest['workType'] ?? 'Select work type'; ?></option>
                         <?php echo $getWT; ?>
                     </select>
                     <br>
+                    <br>
                     <label class="requestActionArea">Inspector</label>
+                    <br>
                     <br>
                     <select class="inputfieldrequestAction" name="inspector" id="inspector" required <?php echo $canEdit; ?>>
                         <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ?? 'select inspector'; ?></option>
                         <?php echo $inspectors; ?>
                     </select>
                     <br>
+                    <br>
                     <label class="requestActionArea">Notes</label>
+                    <br>
                     <br>
                     <input class="inputfieldnotAction" name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
                     <br>
