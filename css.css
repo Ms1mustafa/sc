@@ -102,7 +102,7 @@ header {
   border: 2px solid #e77823;
 }
 
-@media only screen and (max-width: 940px) {
+@media only screen and (max-width:600px) {
   .inputfieldlogin {
     width: 190px;
     position: relative;
@@ -111,10 +111,10 @@ header {
   }
 
   .submitlogin {
-    width: 95%;
+    width: 280px;
     position: relative;
     right: 10px;
-    top: 70px;
+    top: 80px;
   }
 
   header {
@@ -132,7 +132,7 @@ header {
   .welcomlogin {
     font-size: 25px;
     position: relative;
-    top: 80px;
+    top: 95px;
   }
 }
 
