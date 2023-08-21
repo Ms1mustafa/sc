@@ -56,13 +56,8 @@ if ($isNotification == null) {
             </thead>
             <tbody>
             ';
-            if ($rejectItems) {
-                $itemsLoop = $rejectItems;
-            } else {
-                $itemsLoop = $items;
-            }
-            
-            foreach ($itemsLoop as $item) {
+
+            foreach ($items as $item) {
                 if ($status != 'rejected') {
                     echo '
                     <tr >
@@ -73,6 +68,34 @@ if ($isNotification == null) {
                 ';
                 }
             }
+            echo '
+            </tbody>
+        </table>
+        ';
+        echo '
+        <table class="descriptiontable">
+            <thead>
+                <th>Item description</th>
+                <th >QTY Req</th>
+                <th>QTY Issued</th>
+                <th>Reject</th>
+            </thead>
+            <tbody>
+            ';
+        if ($rejectItems) {
+            foreach ($rejectItems as $item) {
+                if ($status != 'rejected') {
+                    echo '
+                    <tr >
+                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                        <td>' . $item['itemQty'] . '</td>
+                        <td>' . $item['wereHouseQty'] . '</td>
+                        <td>reject ' . $item['rejectsNum'] . '</td>
+                    </tr>
+                ';
+                }
+            }
+        }
             echo '
             </tbody>
         </table>

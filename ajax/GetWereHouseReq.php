@@ -22,7 +22,8 @@ if ($isNotification == null) {
 
     $requests = Requests::getWereHouseRequests($con, null, $wereHouse, $workOrderNo);
     $items = Requests::getItemsDes($con, $workOrderNo);
-    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
+    $lastrejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
+    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
     $adminAddedName = $requests["adminAddedName"];
@@ -37,6 +38,58 @@ if ($isNotification == null) {
 
     if ($qtyBackStatus == 'wereHouse') {
         echo '
+        <table class="descriptiontable">
+            <thead>
+                <th>Item description</th>
+                <th >QTY Req</th>
+                <th>QTY Issued</th>
+            </thead>
+            <tbody>
+            ';
+
+        foreach ($items as $item) {
+            if ($status != 'rejected') {
+                echo '
+                    <tr >
+                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                        <td>' . $item['itemQty'] . '</td>
+                        <td>' . $item['wereHouseQty'] . '</td>
+                    </tr>
+                ';
+            }
+        }
+        echo '
+            </tbody>
+        </table>
+        ';
+        echo '
+        <table class="descriptiontable">
+            <thead>
+                <th>Item description</th>
+                <th >QTY Req</th>
+                <th>QTY Issued</th>
+                <th>Rejects</th>
+            </thead>
+            <tbody>
+            ';
+
+        foreach ($rejectItems as $item) {
+            if ($status != 'rejected') {
+                echo '
+                    <tr >
+                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                        <td>' . $item['itemQty'] . '</td>
+                        <td>' . $item['wereHouseQty'] . '</td>
+                        <td>reject ' . $item['rejectsNum'] . '</td>
+                    </tr>
+                ';
+            }
+        }
+        echo '
+            </tbody>
+        </table>
+        ';
+        echo '
         <table class="descriptiontable2">
             <thead>
                 <th>Item description</th>
@@ -48,7 +101,7 @@ if ($isNotification == null) {
             <tbody>
             ';
         if ($rejectItems) {
-            $itemsLoop = $rejectItems;
+            $itemsLoop = $lastrejectItems;
         } else {
             $itemsLoop = $items;
         }
@@ -70,7 +123,7 @@ if ($isNotification == null) {
         echo '
             </tbody>
         </table>
-        <button class="submitGetHose" name="'.$dismantling.'">Done</button>
+        <button class="submitGetHose" name="' . $dismantling . '">Done</button>
         ';
     } else {
 
