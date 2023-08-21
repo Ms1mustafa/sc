@@ -1158,7 +1158,7 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 28%;
+  width: 25%;
   border: none;
   border-radius: 15px;
 
@@ -1244,7 +1244,7 @@ header {
 
   .submitQTY {
     width: 94%;
-
+    margin-right: 20px
   }
 
   .inputfieldownerselectqty {
