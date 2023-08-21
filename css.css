@@ -729,9 +729,16 @@ header {
   }
 
   .rejectreason {
-    position: absolute;
-    top: 68%;
+    margin-top: 80px;
     font-size: 20px;
+    font-weight: bold;
+  }
+
+  .rejectreason2 {
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
   }
 }
 
@@ -746,7 +753,7 @@ header {
 
   .nameadminrequest {
     position: relative;
-    top: 70px;
+    top: 90px;
     font-size: 25px;
   }
 }
@@ -992,9 +999,10 @@ header {
 
 .descriptiontable2 {
   border: 2px solid #e77823;
-  width: 200px;
+  width: 300px;
   height: 200px;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
 
@@ -1070,8 +1078,8 @@ header {
 @media only screen and (max-width: 600px) {
   .description {
     width: 240px;
-    margin-top: 120px;
     margin-left: -50px;
+    margin-top: 70px;
 
   }
 
@@ -1083,14 +1091,14 @@ header {
 
   .descriptiontable2 {
     margin-top: 70px;
-    margin-left: -50px;
+    margin-left: -20px;
   }
 
   .itemestable {
     font-size: 13px;
     margin-top: 80px;
     margin-right: 40px;
-    margin-left: -55px;
+    margin-left: -45px;
   }
 
   .inputfieldGetReqoty {
@@ -1202,7 +1210,7 @@ header {
 
 .submitDonereg {
   font-size: 15px;
-
+  margin-bottom: 30px;
   font-weight: 500;
   color: black;
   height: 50px;
@@ -1215,6 +1223,9 @@ header {
   transition: .3s ease-in-out;
 
 }
+
+
+
 
 
 @media only screen and (max-width:600px) {
@@ -1231,7 +1242,7 @@ header {
 
   .submitDonereg {
     position: relative;
-    top: 90px;
+
     width: 300px;
     left: -30px;
   }
@@ -1264,7 +1275,7 @@ header {
 
   .submitQTY2 {
     position: relative;
-    left: -5px;
+    left: 10px;
     width: 94%;
 
   }
@@ -1516,10 +1527,12 @@ header {
 @media only screen and (max-width: 600px) {
   .submitacceptinspecter {
     margin-top: 100px;
+    margin-left: 20px;
   }
 
   .inputrejectreason {
     width: 150px;
+    margin-left: 30px;
   }
 
   .submitDismantling {

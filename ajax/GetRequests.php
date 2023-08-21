@@ -73,7 +73,7 @@ if ($isNotification == null) {
         </table>
         ';
         echo '
-        <table class="descriptiontable">
+        <table class="descriptiontable2">
             <thead>
                 <th>Item description</th>
                 <th >QTY Req</th>
@@ -159,6 +159,7 @@ if ($isNotification == null) {
         if ($issued && $status != 'rejected') {
             echo '
                 <main>
+                <div>
                 <table class="description" >
             ';
             if ($status != 'rejected') {
@@ -192,18 +193,19 @@ if ($isNotification == null) {
         </table>
         </div>
         </main>
-        <br>
+     
         ';
 
         if ($issued && !$executerAccept) {
             echo '
-           
+           <div>
                 <button class="submitDone" name="accept">Done</button>
             ';
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-                <p class="rejectreason">Reject Reason : ' . $rejectReason . '</p>
+                <p class="rejectreason2">Reject Reason : ' . $rejectReason . '</p>
+                </div>
             ';
         }
         if ($status == 'rejected') {
