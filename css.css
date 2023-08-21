@@ -1539,3 +1539,19 @@ header {
     margin-top: 90px;
   }
 }
+
+/*-----------------error---------------*/
+.error {
+  color: red;
+  font-weight: bold;
+  position: absolute;
+  top: 90px;
+}
+
+@media only screen and (max-width: 600px) {
+  .error {
+
+    position: absolute;
+    top: 57%;
+  }
+}
