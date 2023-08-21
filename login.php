@@ -12,10 +12,11 @@ $account = new Account($con);
 
 
 if (isset($_POST["submit"])) {
-    $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
+    $username = FormSanitizer::sanitizeFormString($_POST["username"]);
     $password = FormSanitizer::sanitizeFormString($_POST["password"]);
+    $email = $account->getAccountEmail($username);
 
-    $success = $account->login($email, $password);
+    $success = $account->login($username, $password);
 
     if ($success) {
         setcookie('email', $email, time() + (86400 * 365), "/");
@@ -57,7 +58,7 @@ function getInputValue($name)
 
     <form method="POST">
         <?php echo $account->getError(constants::$loginFailed); ?>
-        <input type="Email" name="email"class="inputfieldlogin" placeholder=" Email ..."value="<?php getInputValue("email"); ?>" required>
+        <input type="text" name="username"class="inputfieldlogin" placeholder=" Username ..."value="<?php getInputValue("username"); ?>" required>
                </div>
                <br>
         <div class="input-box1">

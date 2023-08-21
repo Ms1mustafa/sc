@@ -137,23 +137,14 @@ function getInputValue($name)
                     ';
                 ?>
                 <br>
-                <?php if ($new) {
+                <!-- <?php if ($new) {
                     echo '
-                
-                    
-        
                     <button class="submitQTY" name="submit" id="executerDone">Done</button>
-                   
-                    
                     <br>
                    <br>
-                   
                     <select class="inputfieldownerselectqty" name = "newUser">
                         <option selected disabled>Select Executer</option>
-                       
                         <br>
-                        
-                       
                         ';
                     echo $anotherExecuter;
                     echo '
@@ -162,10 +153,8 @@ function getInputValue($name)
                     <br>
                    
                     <button class="submitQTY2"name="change">Send to another executer</button>
-                    
-                 
                     ';
-                } ?>
+                } ?> -->
             </form>
 
             <script>

@@ -23,7 +23,7 @@ if ($isNotification == null) {
 
     $requests = Requests::getExecuterRequests($con, null, $executer, $workOrderNo);
     $items = Requests::getItemsDes($con, $workOrderNo);
-    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
+    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
     $adminAddedName = $requests["adminAddedName"];
@@ -61,6 +61,7 @@ if ($isNotification == null) {
             } else {
                 $itemsLoop = $items;
             }
+            
             foreach ($itemsLoop as $item) {
                 if ($status != 'rejected') {
                     echo '

@@ -60,11 +60,11 @@ class Account
         return false;
     }
 
-    public function login($em, $pw)
+    public function login($un, $pw)
     {
-        $query = $this->con->prepare("SELECT * FROM users WHERE email=:em AND password=:pw");
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:un AND password=:pw");
 
-        $query->bindValue(":em", $em);
+        $query->bindValue(":un", $un);
         $query->bindValue(":pw", $pw);
 
         $query->execute();
@@ -255,6 +255,19 @@ class Account
         }
         if ($requestNum) {
             return $row["requestNum"];
+        }
+    }
+
+    public function getAccountEmail($un)
+    {
+        $query = $this->con->prepare("SELECT * FROM users WHERE username = :un");
+
+        $query->bindValue(':un', $un);
+
+        $query->execute();
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        if (!empty($row)) {
+            return $row["email"];
         }
     }
 
