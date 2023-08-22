@@ -5,7 +5,7 @@ include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
 $workOrderNo = $_GET["qtyNo"];
-if(!$workOrderNo){
+if (!$workOrderNo) {
     header("location: index.php");
 }
 $resent = @$_GET["resent"];
@@ -29,10 +29,10 @@ $rejectsNum = @$_POST['rejectsNum'];
 $qtyBack = @$_POST['qtyBack'];
 if (isset($_POST["submit"])) {
 
-    if($resent == 'yes'){
+    if ($resent == 'yes') {
         $success = $request->updateRejectWerehouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment, $rejectsNum);
-    }else{
-        $success = $request->wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
+    } else {
+        $success = $request->wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment);
     }
 
     if ($success) {
@@ -51,14 +51,6 @@ if (isset($_POST["change"])) {
 
 if (isset($_POST["dismantling"])) {
     $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'requestitemdes');
-
-    if ($success) {
-        header("location: wereHouse.php");
-    }
-}
-
-if (isset($_POST["rejectDismantling"])) {
-    $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'rejectitemdes');
 
     if ($success) {
         header("location: wereHouse.php");
@@ -89,21 +81,21 @@ function getInputValue($name)
 
 
 <body>
-<div >
-    <a class="Back" href="wereHouse.php">
-    <i class="fa-solid fa-arrow-left"></i>    Back</a>
-</div>
+    <div>
+        <a class="Back" href="wereHouse.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
     <div class="wrappe">
-      
+
 
         <div class="login-container" id="login">
             <p class="namerQTY">
                 <?php echo $adminName; ?>
             </p>
-<br>
+            <br>
             <form method="POST">
                 <div id="reqInf"></div>
-               
+
                 <?php
                 /*
                 if ($resent == 'no') {

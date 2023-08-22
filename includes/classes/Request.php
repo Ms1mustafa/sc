@@ -40,19 +40,19 @@ class Request
         }
         return false;
     }
-    public function executerUpdate($workOrderNo, $itemName, $itemQty, $finishDate)
+    public function executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate)
     {
         if (empty($this->errorArray)) {
-            return $this->executerUpdateDetils($workOrderNo, $itemName, $itemQty, $finishDate);
+            return $this->executerUpdateDetils($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
         } else {
             array_push($this->errorArray, constants::$requestFailed);
         }
         return false;
     }
-    public function wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment)
+    public function wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment)
     {
         if (empty($this->errorArray)) {
-            return $this->updateWereHouseReq($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
+            return $this->updateWereHouseReq($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment);
         } else {
             array_push($this->errorArray, constants::$requestFailed);
         }
@@ -117,12 +117,13 @@ class Request
         return false;
     }
 
-    public function executerUpdateDetils($workOrderNo, $itemName, $itemQty, $finishDate)
+    public function executerUpdateDetils($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate)
     {
-        $query = $this->con->prepare("INSERT INTO requestitemdes (workOrderNo, itemName, itemQty) VALUES (:workOrderNo, :itemName, :itemQty)");
+        $query = $this->con->prepare("INSERT INTO rejectitemdes (workOrderNo, itemName, itemQty, rejectsNum) VALUES (:workOrderNo, :itemName, :itemQty, :rejectsNum)");
 
         for ($i = 0; $i < count($itemName); $i++) {
             $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":rejectsNum", $rejectsNum);
             $query->bindValue(":itemName", $itemName[$i]);
             $query->bindValue(":itemQty", $itemQty[$i]);
             $query->execute();
@@ -145,7 +146,7 @@ class Request
 
         return $query->execute();
     }
-    public function updateWereHouseReq($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment)
+    public function updateWereHouseReq($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment)
     {
 
         $query = $this->con->prepare("UPDATE request SET issued = 'yes', executerNew = 'yes', wereHouseDate = :currentDateTime
@@ -154,18 +155,19 @@ class Request
         $query->bindValue(":workOrderNo", $workOrderNo);
         $query->bindValue(":currentDateTime", $this->currentDateTime);
 
-        $this->updateItemsWereHouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment);
+        $this->updateItemsWereHouse($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment);
         return $query->execute();
     }
-    public function updateItemsWereHouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment)
+    public function updateItemsWereHouse($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment)
     {
-        $query = $this->con->prepare("UPDATE requestitemdes SET wereHouseQty = :wereHouseQty, wereHouseComment = :wereHouseComment WHERE workOrderNo = :workOrderNo AND itemName = :itemName");
+        $query = $this->con->prepare("UPDATE rejectitemdes SET wereHouseQty = :wereHouseQty, wereHouseComment = :wereHouseComment WHERE workOrderNo = :workOrderNo AND itemName = :itemName AND rejectsNum = :rejectsNum");
 
         for ($i = 0; $i < count($itemName); $i++) {
             $query->bindValue(":workOrderNo", $workOrderNo);
             $query->bindValue(":itemName", $itemName[$i]);
             $query->bindValue(":wereHouseQty", $wereHouseQty[$i]);
             $query->bindValue(":wereHouseComment", $wereHouseComment[$i]);
+            $query->bindValue(":rejectsNum", $rejectsNum[$i]);
             $query->execute();
         }
 
@@ -318,20 +320,27 @@ class Request
             $query->execute();
 
             if ($qtyBackStatus == 'done') {
-                $sql2 = "UPDATE $qtyBackType SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName ";
-                if ($qtyBackType == 'rejectitemdes') {
-                    $sql2 .= "AND rejectsNum = :rejectsNum";
-                }
-                $query2 = $this->con->prepare("$sql2");
+
+                // $sql2 = "UPDATE requestitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName ";
+
+                // $query2 = $this->con->prepare($sql2);
+
+                // for ($i = 0; $i < count($itemName); $i++) {
+                //     $query2->bindValue(":workOrderNo", $workOrderNo);
+                //     $query2->bindValue(":itemName", $itemName[$i]);
+                //     $query2->bindValue(":qtyBack", $qtyBack[$i]);
+                //     $query2->execute();
+                // }
+
+                $sql3 = "UPDATE rejectitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName AND rejectsNum = :rejectsNum";
+                $query3 = $this->con->prepare($sql3);
 
                 for ($i = 0; $i < count($itemName); $i++) {
-                    $query2->bindValue(":workOrderNo", $workOrderNo);
-                    if ($qtyBackType == 'rejectitemdes') {
-                        $query2->bindValue(":rejectsNum", $rejectsNum[$i]);
-                    }
-                    $query2->bindValue(":itemName", $itemName[$i]);
-                    $query2->bindValue(":qtyBack", $qtyBack[$i]);
-                    $query2->execute();
+                    $query3->bindValue(":workOrderNo", $workOrderNo);
+                    $query3->bindValue(":rejectsNum", $rejectsNum[$i]);
+                    $query3->bindValue(":itemName", $itemName[$i]);
+                    $query3->bindValue(":qtyBack", $qtyBack[$i]);
+                    $query3->execute();
                 }
             }
 

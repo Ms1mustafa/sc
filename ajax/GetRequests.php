@@ -22,7 +22,7 @@ if ($isNotification == null) {
     $workOrderNo = $_GET['workOrderNo'];
 
     $requests = Requests::getExecuterRequests($con, null, $executer, $workOrderNo);
-    $items = Requests::getItemsDes($con, $workOrderNo);
+    $lastrejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
     $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo);
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
@@ -48,31 +48,6 @@ if ($isNotification == null) {
 
     if ($qtyBackStatus == 'executer') {
         echo '
-        <table class="descriptiontable">
-            <thead>
-                <th>Item description</th>
-                <th >QTY Req</th>
-                <th>QTY Issued</th>
-            </thead>
-            <tbody>
-            ';
-
-            foreach ($items as $item) {
-                if ($status != 'rejected') {
-                    echo '
-                    <tr >
-                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
-                        <td>' . $item['itemQty'] . '</td>
-                        <td>' . $item['wereHouseQty'] . '</td>
-                    </tr>
-                ';
-                }
-            }
-            echo '
-            </tbody>
-        </table>
-        ';
-        echo '
         <table class="descriptiontable2">
             <thead>
                 <th>Item description</th>
@@ -90,7 +65,10 @@ if ($isNotification == null) {
                         <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>
-                        <td>reject ' . $item['rejectsNum'] . '</td>
+                        ';
+                        if($item["rejectsNum"] > 0)
+                            echo '<td>reject ' . $item["rejectsNum"] . '</td>';
+                        echo'
                     </tr>
                 ';
                 }
@@ -171,12 +149,7 @@ if ($isNotification == null) {
               
             ';
             }
-            if ($rejectItems) {
-                $itemsLoop = $rejectItems;
-            } else {
-                $itemsLoop = $items;
-            }
-            foreach ($itemsLoop as $item) {
+            foreach ($lastrejectItems as $item) {
                 if ($status != 'rejected') {
                     echo '
                     <tr >

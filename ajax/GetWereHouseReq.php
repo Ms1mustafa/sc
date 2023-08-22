@@ -21,7 +21,6 @@ if ($isNotification == null) {
     $workOrderNo = $_GET['workOrderNo'];
 
     $requests = Requests::getWereHouseRequests($con, null, $wereHouse, $workOrderNo);
-    $items = Requests::getItemsDes($con, $workOrderNo);
     $lastrejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
     $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo);
     $reqNo = $requests["reqNo"];
@@ -37,85 +36,37 @@ if ($isNotification == null) {
     $qtyBackStatus = $requests["qtyBackStatus"];
 
     if ($qtyBackStatus == 'wereHouse') {
+        
         echo '
-        <table class="descriptiontable">
-            <thead>
-                <th>Item description</th>
-                <th >QTY Req</th>
-                <th>QTY Issued</th>
-            </thead>
-            <tbody>
-            ';
-
-        foreach ($items as $item) {
-            if ($status != 'rejected') {
-                echo '
-                    <tr >
-                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
-                        <td>' . $item['itemQty'] . '</td>
-                        <td>' . $item['wereHouseQty'] . '</td>
-                    </tr>
-                ';
-            }
-        }
-        echo '
-            </tbody>
+        </tbody>
         </table>
-        ';
-        echo '
-        <table class="descriptiontable">
-            <thead>
-                <th>Item description</th>
-                <th >QTY Req</th>
-                <th>QTY Issued</th>
-                <th>Rejects</th>
-            </thead>
-            <tbody>
-            ';
-
-        foreach ($rejectItems as $item) {
-            if ($status != 'rejected') {
-                echo '
-                    <tr >
-                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
-                        <td>' . $item['itemQty'] . '</td>
-                        <td>' . $item['wereHouseQty'] . '</td>
-                        <td>reject ' . $item['rejectsNum'] . '</td>
-                    </tr>
-                ';
-            }
-        }
-        echo '
-            </tbody>
-        </table>
-        ';
-        echo '
         <table class="descriptiontable2">
             <thead>
                 <th>Item description</th>
 
                 <th >QTY Req</th>
                 <th>QTY Issued</th>
+                <th>Rejects</th>
                 <th>QTY dismantling</th>
             </thead>
             <tbody>
             ';
         if ($rejectItems) {
-            $itemsLoop = $lastrejectItems;
+            $itemsLoop = $rejectItems;
         } else {
             $itemsLoop = $items;
         }
 
-        $dismantling = $rejectItems ? 'rejectDismantling' : 'dismantling';
+        $dismantling = 'dismantling';
         foreach ($itemsLoop as $item) {
             if ($status != 'rejected') {
                 echo '
                     <tr >
-                        <td hidden><input name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
                         <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>
-                        <td><input class = "pipiss" type="number" min="1" name = "qtyBack[]"' . $item['wereHouseComment'] . ' required></td>
+                        <td><input class = "pipiss" name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
+                        <td><input class = "pipiss" type="number" min="1" name = "qtyBack[]" required></td>
                     </tr>
                 ';
             }
@@ -157,25 +108,19 @@ if ($isNotification == null) {
             <th>Comment</th>
         </tr>
         ";
-        if ($rejectItems) {
-            $itemsLoop = $rejectItems;
-        } else {
-            $itemsLoop = $items;
-        }
-
-        foreach ($itemsLoop as $item) {
+        foreach ($lastrejectItems as $item) {
             echo '
         <tr>
         <td hidden><input name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
             <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
             <td>' . $item['itemQty'] . '</td>
             ';
-            echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value=' ";
-            $item['wereHouseQty'];
-            echo "'> </td>";
-            echo "<td>  <textarea class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' value=' ";
-            $item['wereHouseComment'];
-            echo "'>  </textarea></td>";
+            echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value= " . @$item['wereHouseQty'] . " ";
+            if (@$item['wereHouseQty']) {
+                echo 'readonly';} echo"> </td>";
+            echo "<td><textarea class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' ";
+            if (@$item['wereHouseComment']) {
+                echo 'readonly';} echo">". @$item['wereHouseComment'] ."</textarea></td>";
             echo '
         </tr>
         ';

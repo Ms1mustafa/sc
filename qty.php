@@ -25,7 +25,7 @@ $rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"];
 
 if (isset($_POST["submit"])) {
 
-    $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $finishDate);
+    $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
 
     if ($success) {
         header("location: notification.php");
@@ -137,7 +137,7 @@ function getInputValue($name)
                     ';
                 ?>
                 <br>
-                 <?php if ($new) {
+                <?php if ($new) {
                     echo '
                     <button class="submitQTY" name="submit" id="executerDone">Done</button>
                     <br>
@@ -145,7 +145,7 @@ function getInputValue($name)
                     
                    
                     ';
-                } ?> 
+                } ?>
             </form>
 
             <script>
