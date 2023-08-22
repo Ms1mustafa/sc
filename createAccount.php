@@ -123,7 +123,8 @@ function getInputValue($name)
         <option value="wereHouse">WereHouse</option>
       </select>
       <br>
-      <select name="areaName" id="areas" style="display: none;">
+<br>
+      <select  class="inputfieldownerselect-areatAccount" name="areaName" id="areas" style="display: none;">
         <?php echo $getArea; ?>
       </select>
       <br>
