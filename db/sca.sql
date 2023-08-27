@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2023 at 12:32 PM
+-- Generation Time: Aug 27, 2023 at 12:56 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -60,9 +60,9 @@ CREATE TABLE `areaitems` (
 --
 
 INSERT INTO `areaitems` (`id`, `number`, `areaId`, `name`) VALUES
-(1, '1', '1', 'item1'),
-(2, '2', '1', 'item2'),
-(6, '3', '2', 'item3');
+(8, '1', '1', 'line 1'),
+(9, '2', '1', 'line 2'),
+(10, '3', '1', 'line 3');
 
 -- --------------------------------------------------------
 
@@ -116,6 +116,16 @@ CREATE TABLE `rejectitemdes` (
   `rejectDate` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `rejectitemdes`
+--
+
+INSERT INTO `rejectitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `rejectsNum`, `qtyBack`, `rejectDate`) VALUES
+(42, '775474732', 'Movable clamp', '11', '11', '', 0, '11', '2023-08-26 14:11:39'),
+(43, '775474732', 'Fixed clamp', '22', '22', '', 0, '40', '2023-08-26 14:11:39'),
+(44, '775474732 ', 'Fixed clamp', '33', '33', '', 1, '40', '2023-08-26 14:13:39'),
+(45, '775474732 ', 'Pipe scaffolding 6m', '44', '44', '', 1, '44', '2023-08-26 14:13:39');
+
 -- --------------------------------------------------------
 
 --
@@ -161,39 +171,7 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerNew`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`, `qtyBackStatus`, `qtyBackDate`) VALUES
-(12, '202300001', 'Basim Kareem', '6574443745754', 'Packing', 'item2', '56', '6', '3', '4 - SD', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', '543', '2023-08-19 01:24:30.740422', 'no', '2023-08-19 01:25:39.000000', 'accepted', '', 0, 'no', '2023-08-20', 'yes', '2023-08-19 01:25:51.000000', 'yes', '2023-08-19 01:25:57.000000', '2023-08-19 01:26:25.000000', NULL, 'wereHouse', '2023-08-19 01:53:25'),
-(13, '202300001', 'Basim Kareem', '654573333', 'Packing', 'item2', '6', '9', '5', '2 - Routine', 'Medium 3-4 Days', 'Luay Saad', 'Ali', 'Mohammed', 'بثي', '2023-08-19 01:40:42.731992', 'yes', '2023-08-19 01:41:15.000000', 'rejected', 'فقث', 1, 'no', '2023-08-20', 'yes', '2023-08-19 01:41:46.000000', 'yes', '2023-08-19 01:42:04.000000', '2023-08-19 01:42:30.000000', NULL, 'no', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `requestitemdes`
---
-
-CREATE TABLE `requestitemdes` (
-  `id` int(11) NOT NULL,
-  `workOrderNo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `itemName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `itemQty` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `wereHouseQty` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `wereHouseComment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `editedItemQty` varchar(255) NOT NULL,
-  `editedWereHouseQty` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `editedWereHouseComment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `qtyBack` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `requestitemdes`
---
-
-INSERT INTO `requestitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `editedItemQty`, `editedWereHouseQty`, `editedWereHouseComment`, `qtyBack`) VALUES
-(48, '6574443745754', 'Pipe scaffolding 6m', '11', '11', '  ', '', '', '', ''),
-(49, '6574443745754', 'Woode borders 5m', '22', '22', '  ', '', '', '', ''),
-(50, '6574443745754', 'Woode borders Under 1M', '33', '33', '  ', '', '', '', ''),
-(51, '654573333', 'Fixed clamp', '6', '6', '  ', '', '', '', ''),
-(52, '654573333', 'Woode borders 4m', '4', '4', '  ', '', '', '', ''),
-(53, '654573333', 'Pipe scaffolding 4M', '9', '9', '  ', '', '', '', '');
+(16, '202300001', 'Requester', '775474732', 'Packing', 'line 2', '4', '7', '2', '3 - PM', 'Low More than 5 days', 'Excauter', 'Warehouse', 'Inspector', 're', '2023-08-26 14:11:05.882633', 'no', '2023-08-26 14:13:39.000000', 'accepted', '', 1, 'no', '2023-08-26', 'yes', '2023-08-26 14:14:45.000000', 'yes', '2023-08-26 14:12:56.000000', '2023-08-26 14:15:48.000000', '2023-08-26 14:15:03.000000', 'done', '2023-08-27 13:55:21');
 
 -- --------------------------------------------------------
 
@@ -218,14 +196,32 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `token`, `username`, `email`, `password`, `area`, `type`, `requestNum`, `main`) VALUES
-(8, '230716020913142', 'Bilal', 'bilal@gmail.com', '123456789', '', 'owner', '', 'no'),
-(11, '230720030605170', 'Ali', 'ali@gmail.com', '123456789', '', 'wereHouse', '', 'yes'),
-(12, '230720031937132', 'Mohammed', 'mohammed@gmail.com', '123456789', '1', 'inspector', '', 'no'),
-(13, '230726082019105', 'Basim Kareem', 'BasimKareem@gmail.com', '123456789', '', 'admin', '202300001', 'yes'),
-(14, '230726083758160', 'Luay Saad', 'LuaySaad@gmail.com', '123456789', '', 'execution', '', 'yes'),
-(17, '230811011230189', 'wereHouse2', 'weho2@gmail.com', '123456789', '', 'wereHouse', '', 'no'),
-(18, '230811044540104', 'Mustafa', 'mustafa@gmail.com', '123456789', '', 'execution', '', 'no'),
-(19, '230817124849135', 'exe3', 'exe3@gmail.com', '123456789', '', 'execution', '', 'no');
+(25, '230821114033162', 'Requester', 'Requester@gmail.com', 'R12341234', '', 'admin', '202300001', 'yes'),
+(26, '230821114122103', 'Warehouse', 'Warehouse@gmail.com', 'W12341234', '', 'wereHouse', '', 'yes'),
+(27, '230821114149170', 'Excauter', 'Excauter@gmail.come', 'E12341234', '', 'execution', '', 'yes'),
+(28, '230821114217156', 'Inspector', 'Inspector@gmail.com', 'I12341234', '1', 'inspector', '', 'yes'),
+(29, '230821114247185', 'Manager', 'Manager@gmail.com', 'M12341234', '', 'owner', '', 'yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `werehouseback`
+--
+
+CREATE TABLE `werehouseback` (
+  `id` int(11) NOT NULL,
+  `workOrderNo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `itemName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `wereHouseComment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `qtyBack` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `werehouseback`
+--
+
+INSERT INTO `werehouseback` (`id`, `workOrderNo`, `itemName`, `wereHouseComment`, `qtyBack`) VALUES
+(54, '775474732', 'Fixed clamp', 'cmt', '15');
 
 -- --------------------------------------------------------
 
@@ -284,15 +280,15 @@ ALTER TABLE `request`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `requestitemdes`
---
-ALTER TABLE `requestitemdes`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `werehouseback`
+--
+ALTER TABLE `werehouseback`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -315,7 +311,7 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT for table `areaitems`
 --
 ALTER TABLE `areaitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `itemdes`
@@ -327,25 +323,25 @@ ALTER TABLE `itemdes`
 -- AUTO_INCREMENT for table `rejectitemdes`
 --
 ALTER TABLE `rejectitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `requestitemdes`
---
-ALTER TABLE `requestitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `werehouseback`
+--
+ALTER TABLE `werehouseback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `worktype`
