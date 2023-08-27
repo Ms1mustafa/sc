@@ -296,7 +296,7 @@ class Request
 
         return false;
     }
-    public function dismantling($qtyBackStatus, $workOrderNo, $rejectsNum = null, $itemName = null, $qtyBack = null, $qtyBackType = null)
+    public function dismantling($qtyBackStatus, $workOrderNo, $rejectsNum = null, $itemName = null, $qtyBack = null, $qtyBackType = null, $wereHouseItemName = null, $wereHouseComment = null, $wereHouseItemQty = null)
 {
     if (empty($this->errorArray)) {
         try {
@@ -320,24 +320,24 @@ class Request
             $query->execute();
 
             if ($qtyBackStatus == 'done') {
+                $sql2 = "INSERT INTO werehouseback (workOrderNo, itemName, wereHouseComment, qtyBack) VALUES (:workOrderNo, :itemName, :wereHouseComment, :qtyBack)";
 
-                // $sql2 = "UPDATE requestitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName ";
+                $query2 = $this->con->prepare($sql2);
 
-                // $query2 = $this->con->prepare($sql2);
+                for ($i = 0; $i < count($itemName); $i++) {
+                    $query2->bindValue(":workOrderNo", $workOrderNo);
+                    $query2->bindValue(":itemName", $wereHouseItemName[$i]);
+                    $query2->bindValue(":wereHouseComment", $wereHouseComment[$i]);
+                    $query2->bindValue(":qtyBack", $wereHouseItemQty[$i]);
+                    $query2->execute();
+                }
 
-                // for ($i = 0; $i < count($itemName); $i++) {
-                //     $query2->bindValue(":workOrderNo", $workOrderNo);
-                //     $query2->bindValue(":itemName", $itemName[$i]);
-                //     $query2->bindValue(":qtyBack", $qtyBack[$i]);
-                //     $query2->execute();
-                // }
-
-                $sql3 = "UPDATE rejectitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName AND rejectsNum = :rejectsNum";
+                $sql3 = "UPDATE rejectitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName";
                 $query3 = $this->con->prepare($sql3);
 
                 for ($i = 0; $i < count($itemName); $i++) {
                     $query3->bindValue(":workOrderNo", $workOrderNo);
-                    $query3->bindValue(":rejectsNum", $rejectsNum[$i]);
+                    // $query3->bindValue(":rejectsNum", $rejectsNum[$i]);
                     $query3->bindValue(":itemName", $itemName[$i]);
                     $query3->bindValue(":qtyBack", $qtyBack[$i]);
                     $query3->execute();

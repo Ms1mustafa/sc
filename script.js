@@ -1,6 +1,6 @@
+const itemDescription = document.getElementById("ItemDescription");
+const itemDescriptionBody = document.getElementById("ItemDescriptionBody");
 document.addEventListener("DOMContentLoaded", function () {
-  const itemDescription = document.getElementById("ItemDescription");
-  const itemDescriptionBody = document.getElementById("ItemDescriptionBody");
 
   let selectedOptions = [];
 
@@ -26,6 +26,39 @@ itemDescriptionBody?.addEventListener("keydown", function (event) {
   const target = event.target;
   if (target.classList.contains("cantEdit")) {
     target.readOnly = true;
+  }
+});
+
+const wereHouseItemDescription = document.getElementById("wereHouseItemDescription");
+const wereHouseItemDescriptionBody = document.getElementById("wereHouseItemDescriptionBody");
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  let wereHouseSelectedOptions = [];
+
+  wereHouseItemDescription?.addEventListener("change", function () {
+      const wereHouseSelectedValue = wereHouseItemDescription.value;
+
+      if (!wereHouseSelectedOptions.includes(wereHouseSelectedValue)) {
+          wereHouseSelectedOptions.push(wereHouseSelectedValue);
+
+          let html2 = `
+              <tr>
+                  <td class='pipe'><input class='pipe1 cantEdit' name="wereHouseItemName[]" value="${wereHouseSelectedValue}" readonly></td>
+                  <td><input class='pipe2' type="text" name="wereHouseComment[]"></td>
+                  <td><input class='pipe2' type="number" min="1" name="wereHouseItemQty[]"></td>
+              </tr>
+          `;
+
+          wereHouseItemDescriptionBody?.insertAdjacentHTML("afterbegin", html2);
+      }
+  });
+});
+
+wereHouseItemDescriptionBody?.addEventListener("keydown", function (event) {
+  const target2 = event.target;
+  if (target2.classList.contains("cantEdit")) {
+    target2.readOnly = true;
   }
 });
 

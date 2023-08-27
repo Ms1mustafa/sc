@@ -53,27 +53,42 @@ if ($isNotification == null) {
                 <th>Item description</th>
                 <th >QTY Req</th>
                 <th>QTY Issued</th>
-                <th>Reject</th>
+                <th hidden>Reject</th>
             </thead>
             <tbody>
             ';
-        if ($rejectItems) {
+            $mergedItems = array();
+
             foreach ($rejectItems as $item) {
                 if ($status != 'rejected') {
-                    echo '
-                    <tr >
-                        <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
-                        <td>' . $item['itemQty'] . '</td>
-                        <td>' . $item['wereHouseQty'] . '</td>
-                        ';
-                        if($item["rejectsNum"] > 0)
-                            echo '<td>reject ' . $item["rejectsNum"] . '</td>';
-                        echo'
-                    </tr>
-                ';
+                    $itemName = $item['itemName'];
+                    if (!isset($mergedItems[$itemName])) {
+                        $mergedItems[$itemName] = array(
+                            'itemName' => $itemName,
+                            'itemQty' => 0,
+                            'wereHouseQty' => 0,
+                            'rejectsNum' => 0
+                        );
+                    }
+            
+                    $mergedItems[$itemName]['itemQty'] += $item['itemQty'];
+                    $mergedItems[$itemName]['wereHouseQty'] += $item['wereHouseQty'];
+                    $mergedItems[$itemName]['rejectsNum'] += $item['rejectsNum'];
                 }
             }
-        }
+            
+            foreach ($mergedItems as $item) {
+                echo '
+                    <tr>
+                        <td><input class="pipe1" min="1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
+                        <td>' . $item['itemQty'] . '</td>
+                        <td>' . $item['wereHouseQty'] . '</td>';
+                if ($item["rejectsNum"] > 0) {
+                    echo '<td hidden>reject ' . $item["rejectsNum"] . '</td>';
+                }
+                echo '</tr>';
+            }
+            
             echo '
             </tbody>
         </table>
