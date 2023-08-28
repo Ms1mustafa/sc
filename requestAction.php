@@ -178,7 +178,7 @@ if (isset($_POST["delete"])) {
                     <label class="requestActionArea">Notes</label>
                     <br>
                     <br>
-                    <input class="inputfieldnotAction" name="notes" value="<?php echo $getRequest['notes']; ?>" <?php echo $canEdit; ?>>
+                    <textarea class="inputfieldnotAction" name="notes" ><?php echo $getRequest['notes']; ?> <?php echo $canEdit; ?></textarea>
                     <br>
                     <br>
                     <?php

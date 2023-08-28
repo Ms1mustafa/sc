@@ -471,13 +471,23 @@ header {
   transition: .3s ease-in-out;
 }
 
+.Itemlabel {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 @media only screen and (max-width:600px) {
   .iteminput {
     width: 200px;
+
   }
 
   .Additem {
     width: 290px;
+  }
+
+  .input-item {
+    margin-top: 70px;
   }
 }
 
@@ -713,9 +723,9 @@ header {
   }
 
   .submitnewreq {
-    position: relative;
-    top: 20px;
+
     width: 280px;
+    margin-top: 20px;
   }
 
   .inputfieldrequestqty {
@@ -961,6 +971,28 @@ header {
   transition: .2s ease;
 }
 
+.QTYnotes {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 60px;
+  width: 20%;
+  padding: 0px 20px 20px;
+  border: 2px solid #e77823;
+
+  margin-top: 30px;
+  border-radius: 15px;
+  outline: none;
+  transition: .2s ease;
+}
+
+.GetOTYNote {
+  color: #e77823;
+
+  font-size: 20px;
+}
+
 /* table */
 
 .description {
@@ -1100,12 +1132,23 @@ header {
     font-size: 13px;
     margin-top: 80px;
     margin-right: 40px;
-    margin-left: -45px;
+    margin-left: -52px;
   }
 
   .inputfieldGetReqoty {
     width: 130px;
 
+  }
+
+  .GetOTYNote {
+    position: relative;
+    top: 70px;
+  }
+
+  .QTYnotes {
+    position: relative;
+    top: 60px;
+    width: 74%;
   }
 }
 
@@ -1140,7 +1183,7 @@ header {
   /* color: #fff; */
   font-size: 11px;
   font-weight: bold;
-  width: 100px;
+  width: 150px;
   height: 30px;
   padding: 0 5px;
   text-align: center;
@@ -1298,7 +1341,7 @@ header {
 
 
   .pipe1 {
-    width: 130px;
+    width: 122px;
     font-size: 13px;
     height: 10vh;
     margin-right: 30px;

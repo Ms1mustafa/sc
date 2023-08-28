@@ -201,7 +201,7 @@ class Requests
 
     public static function getItemsDes($con, $workOrderNo = null)
     {
-        $sql = "SELECT * FROM requestitemdes WHERE workOrderNo = :workOrderNo";
+        $sql = "SELECT * FROM rejectitemdes WHERE workOrderNo = :workOrderNo";
 
         $query = $con->prepare($sql);
 
