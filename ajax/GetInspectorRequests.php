@@ -56,9 +56,11 @@ if ($isNotification == null) {
     <label class='GetrquesQTY'>$item</label>
    <br>
    <br>
-    <label class='Getrquest'>Notes :</label>
-    <label  class='GetrquesQTY'>$notes</label>
+    <label class='GetOTYNote'>Notes :</label>
     <br>
+    <textarea class='Getnote'>$notes</textarea>
+    <br>
+    
     ";
     
    
@@ -74,7 +76,7 @@ if ($isNotification == null) {
             <button class="submitacceptinspecter" name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
             <br>
             <br>
-            <input class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason">
+            <textarea class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason"></textarea>
         ';
     }
     echo "

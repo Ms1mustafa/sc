@@ -92,7 +92,7 @@ if ($isNotification == null) {
             echo '
             </tbody>
         </table>
-        <button class="submitQTY2" name="dismantling">Done</button>
+        <button class="submitQTYReceining" name="dismantling">Receiving</button>
         ';
     } else {
         echo "<label class='Getrquest'>ReqNo</label>
@@ -193,7 +193,7 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-                <p class="rejectreason2">Reject Reason : ' . $rejectReason . '</p>
+            <textarea class="rejectreason2">Reject Reason : ' . $rejectReason . '</textarea>
                 </div>
             ';
         }
@@ -207,6 +207,7 @@ if ($isNotification == null) {
         }
         if ($status == 'backExecuter') {
             echo '
+            <br>
             <button class="submitQTY2" name="resendToInspector">Resend to Inspector</button>
             
             ';
