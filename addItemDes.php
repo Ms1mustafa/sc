@@ -48,16 +48,16 @@ if (isset($_POST["submit"])) {
 
         <header class="nameowner">Add Item...</header>
       </div>
-      <div class="input-box">
+      <div class="input-item">
 
   <form method="POST">
-    <label >Item Description id</label>
+    <label class="Itemlabel">Item Description id</label>
     <br>
     <br>
     <input class="iteminput" type="text" name="itemdesId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
     <br>
     <br>
-    <label for="itemdesName">Item Description id</label>
+    <label  class="Itemlabel" sfor="itemdesName">Item Description </label>
     <br>
     <br>
     <input  class="iteminput" type="text" name="itemdesName" id="itemdesName" placeholder="Item Description name" required>

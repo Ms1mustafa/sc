@@ -92,7 +92,7 @@ if ($isNotification == null) {
             echo '
             </tbody>
         </table>
-        <button class="submitQTY2" name="dismantling">Done</button>
+        <button class="submitQTYReceining" name="dismantling">Receiving</button>
         ';
     } else {
         echo "<label class='Getrquest'>ReqNo</label>
@@ -132,10 +132,11 @@ if ($isNotification == null) {
         ";
             if(!$issued){
                 echo "
-                    <label class='Getrquest'>Notes</label>
-                    <label class='GetrquesQTY'>$notes</label>
+                    <label class='GetOTYNote'>Notes</label>
                     <br>
+                    <textarea class='QTYnotes'>$notes</textarea>
                     <br>
+                    
                     <label class='Getrquest'>Date</label>
                     <br>
                     <input class='inputfieldrequestqty' type='date' id='finishDate' name='finishDate' value= '$finishDate'
@@ -171,7 +172,7 @@ if ($isNotification == null) {
                         <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>
-                        <td>' . $item['wereHouseComment'] . '</td>
+                        <td><textarea class = "pipecomm">' . $item['wereHouseComment'] . '</textarea></td>
                     </tr>
                 ';
                 }
@@ -192,7 +193,7 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-                <p class="rejectreason2">Reject Reason : ' . $rejectReason . '</p>
+            <textarea class="rejectreason2">Reject Reason : ' . $rejectReason . '</textarea>
                 </div>
             ';
         }
@@ -206,6 +207,7 @@ if ($isNotification == null) {
         }
         if ($status == 'backExecuter') {
             echo '
+            <br>
             <button class="submitQTY2" name="resendToInspector">Resend to Inspector</button>
             
             ';

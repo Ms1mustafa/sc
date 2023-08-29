@@ -5,20 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
   let selectedOptions = [];
 
   itemDescription?.addEventListener("change", function () {
-      const selectedValue = itemDescription.value;
+    const selectedValue = itemDescription.value;
 
-      if (!selectedOptions.includes(selectedValue)) {
-          selectedOptions.push(selectedValue);
+    if (!selectedOptions.includes(selectedValue)) {
+      selectedOptions.push(selectedValue);
 
-          let html = `
+      let html = `
               <tr>
                   <td class='pipe'><input class='pipe1 cantEdit' name="itemName[]" value="${selectedValue}" readonly></td>
                   <td><input class='pipe2' type="number" min="1" name="itemQty[]"></td>
               </tr>
           `;
 
-          itemDescriptionBody?.insertAdjacentHTML("afterbegin", html);
-      }
+      itemDescriptionBody?.insertAdjacentHTML("afterbegin", html);
+    }
   });
 });
 
@@ -37,21 +37,21 @@ document.addEventListener("DOMContentLoaded", function () {
   let wereHouseSelectedOptions = [];
 
   wereHouseItemDescription?.addEventListener("change", function () {
-      const wereHouseSelectedValue = wereHouseItemDescription.value;
+    const wereHouseSelectedValue = wereHouseItemDescription.value;
 
-      if (!wereHouseSelectedOptions.includes(wereHouseSelectedValue)) {
-          wereHouseSelectedOptions.push(wereHouseSelectedValue);
+    if (!wereHouseSelectedOptions.includes(wereHouseSelectedValue)) {
+      wereHouseSelectedOptions.push(wereHouseSelectedValue);
 
-          let html2 = `
+      let html2 = `
               <tr>
                   <td class='pipe'><input class='pipe1 cantEdit' name="wereHouseItemName[]" value="${wereHouseSelectedValue}" readonly></td>
-                  <td><input class='pipe2' type="text" name="wereHouseComment[]"></td>
-                  <td><input class='pipe2' type="number" min="1" name="wereHouseItemQty[]"></td>
+                  <td><textarea  class='pipecomm' type="text" name="wereHouseComment[]"></textarea ></td>
+                  <td><input class='pipiss' type="number" min="1" name="wereHouseItemQty[]"></td>
               </tr>
           `;
 
-          wereHouseItemDescriptionBody?.insertAdjacentHTML("afterbegin", html2);
-      }
+      wereHouseItemDescriptionBody?.insertAdjacentHTML("afterbegin", html2);
+    }
   });
 });
 
