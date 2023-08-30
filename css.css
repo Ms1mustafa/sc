@@ -1073,6 +1073,8 @@ header {
   height: 200px;
   border-radius: 10px;
   margin-top: 10px;
+  position: relative;
+  left: 50px
 }
 
 
@@ -1717,7 +1719,7 @@ header {
 }
 
 .ReceivingMaterials {
-  margin-left: 50px;
+  margin-left: 90px;
 }
 
 .Print {
@@ -1728,10 +1730,15 @@ header {
   width: 250px;
   border: none;
   border-radius: 15px;
-  margin-top: 10px;
+  margin-top: 70px;
   outline: none;
-  margin-left: 50px;
+  margin-left: 100px;
   background: #e77823;
   cursor: pointer;
   transition: .3s ease-in-out;
+}
+
+.Issued {
+  margin-top: 80px;
+  margin-left: 20px;
 }
