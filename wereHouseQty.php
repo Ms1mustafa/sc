@@ -138,6 +138,7 @@ function getInputValue($name)
 
                             </tbody>
                         </table>
+                        <br>
                     ';
                 }
                 ?>
