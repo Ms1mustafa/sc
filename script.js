@@ -104,3 +104,9 @@ executerDone?.addEventListener('click', function (e) {
     finishDate.required = true
   }
 })
+
+const printButton = document.getElementById("printButton");
+
+printButton.addEventListener("click", function() {
+  window.print();
+});

@@ -35,6 +35,30 @@ if ($isNotification == null) {
     $status = $requests["status"];
     $qtyBackStatus = $requests["qtyBackStatus"];
 
+    echo "
+    <label  class='Getrquest'>ReqNo</label>
+
+    <label class='GetrquesQTY'>$reqNo</label>
+   <br>
+   <br>
+    <label class='Getrquest' >Requester </label>
+    <label class='GetrquesQTY'>$adminAddedName</label>
+    <br>
+    <br>
+    <label  class='Getrquest'>Inspector</label>
+    <label  class='GetrquesQTY'>$inspector</label>
+   <br>
+   <br>
+    <label class='Getrquest'>Area</label>
+    <label class='GetrquesQTY'>$area</label>
+  <br>
+  <br>
+    <label class='Getrquest'>Location</label>
+    <label class='GetrquesQTY'>$item</label>
+    <br>
+    <br>
+    ";
+
     if ($qtyBackStatus == 'wereHouse') {
         
         echo '
@@ -95,27 +119,7 @@ if ($isNotification == null) {
         ';
     } else {
 
-        echo "<label  class='Getrquest'>ReqNo</label>
-
-    <label class='GetrquesQTY'>$reqNo</label>
-   <br>
-   <br>
-    <label class='Getrquest' >Requester </label>
-    <label class='GetrquesQTY'>$adminAddedName</label>
-    <br>
-    <br>
-    <label  class='Getrquest'>Inspector</label>
-    <label  class='GetrquesQTY'>$inspector</label>
-   <br>
-   <br>
-    <label class='Getrquest'>Area</label>
-    <label class='GetrquesQTY'>$area</label>
-  <br>
-  <br>
-    <label class='Getrquest'>Location</label>
-    <label class='GetrquesQTY'>$item</label>
-    <br>
-    <br>
+        echo "
    <div>
     <table class='itemestable'>
         <tr>

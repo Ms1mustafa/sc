@@ -248,7 +248,6 @@ header {
 .wrappe {
   display: flex;
   width: 80%;
-  height: 90vh;
   position: relative;
   top: 150px;
   left: 10%;
@@ -1741,4 +1740,13 @@ header {
 .Issued {
   margin-top: 80px;
   margin-left: 20px;
+}
+
+@media print {
+  #printButton {
+    display: none;
+  }
+  .Back{
+    display: none;
+  }
 }

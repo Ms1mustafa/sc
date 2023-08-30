@@ -55,7 +55,7 @@ foreach ($requests as $request) {
             <td>$itemName</td>
             <td></td>
             <td>$qtyBack</td>
-            <td><textarea class ='pipecomitm' readonly>$wereHouseComment</textarea></td>
+            <td>$wereHouseComment</td>
         </tr>
     ";
 }

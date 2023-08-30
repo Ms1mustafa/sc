@@ -16,10 +16,8 @@ $workOrderNo = $_GET["req"];
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css.css?1999">
+    <link rel="stylesheet" href="css.css">
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
     <title>Notification</title>
 </head>
@@ -37,7 +35,7 @@ $workOrderNo = $_GET["req"];
             <h1 class="ReceivingMaterials">Receiving Materials</h1>
     <div id="reqInf"></div>
     <h3 class="Issued">Issued By: &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Recorded By:</h3>
-    <button class="Print">Print</button>
+    <button class="Print" id="printButton">Print</button>
 
     <script>
         $(window).on("load", function () {
