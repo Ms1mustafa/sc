@@ -27,6 +27,7 @@ $workOrderNo = $_GET["req"];
 
 <body>
     <div id="reqInf"></div>
+    <button>Print</button>
 
     <script>
         $(window).on("load", function () {
