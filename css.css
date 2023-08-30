@@ -667,11 +667,11 @@ header {
 
 .rejectreason2 {
   font-size: 15px;
-  font-weight: bold;
+
   background: #fff;
   color: #000;
   height: 60px;
-  width: 22%;
+  width: 27%;
   padding: 0px 20px 20px;
   border: 2px solid #e77823;
 
@@ -765,7 +765,7 @@ header {
   }
 
   .rejectreason2 {
-    margin-top: 80px;
+    margin-top: 30px;
     font-size: 15px;
     width: 100%;
     font-weight: bold;
@@ -1067,10 +1067,38 @@ header {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
+.descriptiontableReceivingMaterials {
+  border: 2px solid #e77823;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+
+.descriptiontableReceivingMaterials tr {
+  transition: all .2s ease-in;
+  cursor: pointer;
+}
+
+.descriptiontableReceivingMaterials th,
+.descriptiontableReceivingMaterials td {
+  padding: 0px;
+  text-align: left;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.descriptiontableReceivingMaterialstr:hover {
+  background-color: #e77823;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
 .itemestable {
 
   border: 2px solid #e77823;
-  width: 100px;
+
   height: 200px;
   border-radius: 10px;
 }
@@ -1120,8 +1148,8 @@ header {
 @media only screen and (max-width: 600px) {
   .description {
     width: 240px;
-    margin-left: -50px;
-    margin-top: 70px;
+    margin-left: -40px;
+    margin-top: 100px;
 
   }
 
@@ -1132,14 +1160,19 @@ header {
   }
 
   .descriptiontable2 {
-    margin-top: 70px;
+    margin-top: 90px;
     margin-left: -20px;
+  }
+
+  .descriptiontableReceivingMaterials {
+    margin-top: 90px;
+    margin-left: -55px;
   }
 
   .itemestable {
     font-size: 13px;
     margin-top: 80px;
-    margin-left: -50px;
+    margin-left: -40px;
 
 
   }
@@ -1161,19 +1194,6 @@ header {
   }
 }
 
-
-.pipe,
-.clamp,
-.Wood {
-
-  font-size: 14px;
-  font-weight: bold;
-  width: 50px;
-  padding: 0 5px;
-  text-align: center;
-
-  border-radius: 10px;
-}
 
 .pipe2 {
   font-size: 14px;
@@ -1215,6 +1235,13 @@ header {
   height: 30px;
 }
 
+.pipecomitm {
+  width: 90px;
+  border: 1px #e77823 solid;
+  border-radius: 5px;
+  height: 30px;
+}
+
 .submitQTY {
   font-size: 15px;
   font-weight: 500;
@@ -1236,7 +1263,7 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 33%;
+  width: 30%;
   border: none;
   border-radius: 15px;
   margin-top: 2%;
@@ -1272,6 +1299,7 @@ header {
   border: none;
   border-radius: 15px;
   margin-top: 20px;
+  margin-left: 30px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -1363,6 +1391,12 @@ header {
   .pipecomm {
     width: 90px;
     height: 10vh;
+
+  }
+
+  .pipecomitm {
+    width: 70px;
+    height: 10vh;
   }
 
   .length {
@@ -1371,13 +1405,6 @@ header {
   }
 
 
-  .pipe1 {
-    width: 165px;
-    font-size: 13px;
-    height: 10vh;
-    text-align: center;
-    margin-right: 30px;
-  }
 
   .pipe2 {
     height: 10vh;
@@ -1424,23 +1451,6 @@ header {
   transition: .3s ease-in-out;
 }
 
-.buttondismantling {
-  font-size: 15px;
-  font-weight: 500;
-  color: black;
-  height: 50px;
-  width: 25%;
-  border: none;
-  border-radius: 15px;
-  position: relative;
-  top: 200px;
-  margin-left: 20px;
-  outline: none;
-  background: #e77823;
-  cursor: pointer;
-  transition: .3s ease-in-out;
-}
-
 /*-----------------notification----------*/
 .notification {
   text-decoration: none;
@@ -1455,9 +1465,16 @@ header {
 
 }
 
+
 .hrQty {
   position: relative;
   top: 30px;
+  width: 25%;
+  border: 1px solid #000
+}
+
+.reqhr {
+
   width: 25%;
   border: 1px solid #000
 }
@@ -1470,7 +1487,7 @@ header {
 
   .submitGetHose {
     width: 93%;
-    margin-left: -20px;
+    margin-left: -10px;
 
 
 
@@ -1484,6 +1501,12 @@ header {
   .hrQty {
     position: relative;
     top: 80px;
+    width: 100%;
+  }
+
+  .reqhr {
+
+
     width: 100%;
   }
 }
@@ -1581,6 +1604,7 @@ header {
   border: none;
   border-radius: 15px;
   margin-top: 10px;
+  margin-left: 30px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -1593,7 +1617,7 @@ header {
   background: #fff;
   color: #000;
   height: 70px;
-  width: 17%;
+  width: 19%;
   padding: 0px 40px 0 45px;
   border: 2px solid #e77823;
   position: relative;
@@ -1620,19 +1644,21 @@ header {
 
 @media only screen and (max-width: 600px) {
   .submitacceptinspecter {
-    margin-top: 100px;
+    margin-top: 70px;
     margin-left: 20px;
   }
 
   .inputrejectreason {
     width: 150px;
-    margin-left: 30px;
+    margin-left: 10px;
   }
 
   .submitDismantling {
     margin-top: 90px;
   }
 }
+
+
 
 /*-----------------error---------------*/
 .error {
@@ -1675,4 +1701,37 @@ header {
     top: 60px;
     width: 74%;
   }
+
+  .Print {
+    position: relative;
+    left: -50px;
+  }
+
+  .ReceivingMaterials {
+    position: relative;
+    top: 70px;
+    right: 50px;
+    text-align: center;
+    font-size: 25px;
+  }
+}
+
+.ReceivingMaterials {
+  margin-left: 50px;
+}
+
+.Print {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 250px;
+  border: none;
+  border-radius: 15px;
+  margin-top: 10px;
+  outline: none;
+  margin-left: 50px;
+  background: #e77823;
+  cursor: pointer;
+  transition: .3s ease-in-out;
 }

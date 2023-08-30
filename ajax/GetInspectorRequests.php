@@ -58,7 +58,7 @@ if ($isNotification == null) {
    <br>
     <label class='GetOTYNote'>Notes :</label>
     <br>
-    <textarea class='Getnote'>$notes</textarea>
+    <textarea class='Getnote' readonly>$notes</textarea>
     <br>
     
     ";
@@ -71,9 +71,9 @@ if ($isNotification == null) {
     // }
     if ($status = 'pending') {
         echo '
-            <button class="submitacceptinspecter" name="accept" onclick="removeRequiredAttribute()">accept</button>
+            <button class="submitacceptinspecter" name="accept" onclick="removeRequiredAttribute()">Accept</button>
          
-            <button class="submitacceptinspecter" name="reject" id="reject" onclick="addRequiredAttribute()">reject</button>
+            <button class="submitacceptinspecter" name="reject" id="reject" onclick="addRequiredAttribute()">Reject</button>
             <br>
             <br>
             <textarea class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason"></textarea>

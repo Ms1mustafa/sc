@@ -196,7 +196,7 @@ if ($isNotification == null) {
                         <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>
-                        <td><textarea class = "pipecomm">' . $item['wereHouseComment'] . '</textarea></td>
+                        <td><textarea class = "pipecomm" readonly>' . $item['wereHouseComment'] . '</textarea></td>
                     </tr>
                 ';
                 }
@@ -217,7 +217,7 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-            <textarea class="rejectreason2">Reject Reason : ' . $rejectReason . '</textarea>
+            <textarea class="rejectreason2" readonly>Reject Reason : ' . $rejectReason . '</textarea>
                 </div>
             ';
         }

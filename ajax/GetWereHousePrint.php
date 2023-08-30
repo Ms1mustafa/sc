@@ -8,7 +8,7 @@ $requests = Requests::getWereHouseItems($con, $workOrderNo);
 $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo);
 
 echo "
-    <table class='descriptiontable2'>
+    <table class='descriptiontableReceivingMaterials'>
         <thead>
             <th>Item description</th>
             <th>QTY Issued</th>
@@ -55,7 +55,7 @@ foreach ($requests as $request) {
             <td>$itemName</td>
             <td></td>
             <td>$qtyBack</td>
-            <td>$wereHouseComment</td>
+            <td><textarea class ='pipecomitm' readonly>$wereHouseComment</textarea></td>
         </tr>
     ";
 }

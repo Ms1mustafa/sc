@@ -26,8 +26,17 @@ $workOrderNo = $_GET["req"];
 
 
 <body>
+<div>
+        <a class="Back" href="wereHouseQty.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+    <div class="wrappe">
+
+
+        <div class="login-container" id="login">
+            <h1 class="ReceivingMaterials">Receiving Materials</h1>
     <div id="reqInf"></div>
-    <button>Print</button>
+    <button class="Print">Print</button>
 
     <script>
         $(window).on("load", function () {
