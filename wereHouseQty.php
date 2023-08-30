@@ -59,7 +59,7 @@ if (isset($_POST["dismantling"])) {
     $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'requestitemdes', $wereHouseItemName, $wereHouseComment, $wereHouseItemQty);
 
     if ($success) {
-        header("location: wereHouse.php");
+        header("location: wereHousePrint.php?req=".$workOrderNo."");
     }
 }
 

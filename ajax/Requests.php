@@ -199,9 +199,9 @@ class Requests
         return $array;
     }
 
-    public static function getItemsDes($con, $workOrderNo = null)
+    public static function getWereHouseItems($con, $workOrderNo = null)
     {
-        $sql = "SELECT * FROM rejectitemdes WHERE workOrderNo = :workOrderNo";
+        $sql = "SELECT * FROM werehouseback WHERE workOrderNo = :workOrderNo";
 
         $query = $con->prepare($sql);
 

@@ -47,8 +47,32 @@ if ($isNotification == null) {
     $lwh = $length * $width * $height;
 
     if ($qtyBackStatus == 'executer') {
-        echo '
-        <table class="descriptiontable2">
+        echo "
+        <label class='Getrquest'>ReqNo</label>
+        <label class='GetrquesQTY'>$reqNo</label>
+        <br>
+        <br>
+        <label class='Getrquest'>Requester</label>
+        <label class='GetrquesQTY'>$adminAddedName</label>
+        <br>
+        <br>
+        <label class='Getrquest' >Inspector</label>
+        <label class='GetrquesQTY'>$inspector</label>
+        <br>
+        <br>
+        <label class='Getrquest'>Area</label>
+        <label class='GetrquesQTY'>$area</label>
+        <br>
+        <br>
+        <label class='Getrquest'>Location</label>
+        <label class='GetrquesQTY'>$item</label>
+        <br>
+        <br>
+        <label class='Getrquest'>priority</label>
+        <label class='GetrquesQTY'>$priority</label>
+        <br>
+
+        <table class='descriptiontable2'>
             <thead>
                 <th>Item description</th>
                 <th >QTY Req</th>
@@ -56,7 +80,7 @@ if ($isNotification == null) {
                 <th hidden>Reject</th>
             </thead>
             <tbody>
-            ';
+            ";
             $mergedItems = array();
 
             foreach ($rejectItems as $item) {
