@@ -122,6 +122,7 @@ header {
   header {
     position: relative;
     top: 80px;
+    text-align: center;
   }
 
   .inputfieldlogin {
@@ -134,7 +135,9 @@ header {
   .welcomlogin {
     font-size: 25px;
     position: relative;
-    top: 95px;
+    top: 110px;
+    text-align: center;
+
   }
 }
 
@@ -595,12 +598,11 @@ header {
   font-weight: bold;
   background: #fff;
   color: #000;
-  height: 80px;
-  width: 37%;
-
+  height: 60px;
+  width: 32%;
+  padding: 0px 20px 20px;
   border: 2px solid #e77823;
-  position: relative;
-  right: 20px;
+  margin-top: 15px;
   border-radius: 15px;
   outline: none;
   transition: .2s ease;
@@ -628,8 +630,8 @@ header {
   background: #fff;
   color: #000;
   height: 50px;
-  width: 25%;
-
+  width: 24%;
+  text-align: center;
   border: 2px solid #e77823;
 
   border-radius: 15px;
@@ -733,7 +735,7 @@ header {
   .inputfieldnot {
     position: relative;
     top: 150px;
-    width: 260px;
+    width: 200px;
     right: 10px;
 
   }
@@ -1068,7 +1070,7 @@ header {
 .itemestable {
 
   border: 2px solid #e77823;
-  width: 200px;
+  width: 100px;
   height: 200px;
   border-radius: 10px;
 }
@@ -1081,7 +1083,7 @@ header {
 .itemestable th,
 .itemestable td {
   padding: 0px;
-  text-align: left;
+
   border: 1px solid #ddd;
   text-align: center;
 }
@@ -1137,8 +1139,9 @@ header {
   .itemestable {
     font-size: 13px;
     margin-top: 80px;
-    margin-right: 40px;
-    margin-left: -37px;
+    margin-left: -50px;
+
+
   }
 
   .inputfieldGetReqoty {
@@ -1179,7 +1182,7 @@ header {
   height: 30px;
   padding: 0 5px;
   text-align: center;
-  border: 1px solid #e77823;
+  border: none;
   border-radius: 5px;
 }
 
@@ -1189,11 +1192,11 @@ header {
   /* color: #fff; */
   font-size: 11px;
   font-weight: bold;
-  width: 136px;
+  width: 138px;
   height: 30px;
-  padding: 0 5px;
+
   text-align: center;
-  border: 1px solid #e77823;
+  border: none;
   border-radius: 5px;
 }
 
@@ -1369,9 +1372,10 @@ header {
 
 
   .pipe1 {
-    width: 122px;
+    width: 165px;
     font-size: 13px;
     height: 10vh;
+    text-align: center;
     margin-right: 30px;
   }
 
