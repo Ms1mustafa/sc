@@ -135,6 +135,11 @@ function getInputValue($name)
                         </table>
                       
                     ';
+                    if($reject == 'yes'){
+                        echo '
+                            <button class="submitDonereg" name="resendToWereHouse">Done</button>
+                        ';
+                    }
                 ?>
                 <br>
                 <?php if ($new) {

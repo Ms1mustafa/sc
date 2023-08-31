@@ -221,14 +221,7 @@ if ($isNotification == null) {
                 </div>
             ';
         }
-        if ($status == 'rejected') {
-            echo '
-           <br>
-           <div>
-            <button class="submitDonereg" name="resendToWereHouse">Done</button>
-            </div>
-            ';
-        }
+        
         if ($status == 'backExecuter') {
             echo '
             <br>

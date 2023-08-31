@@ -144,6 +144,7 @@ function getInputValue($name)
                             </tbody>
                         </table>
                         <br>
+                        <button class="buttondismantling" name="dismantling">Done</button>
                     ';
                 }
                 ?>

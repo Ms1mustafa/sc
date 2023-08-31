@@ -117,7 +117,6 @@ if ($isNotification == null) {
         echo '
             </tbody>
         </table>
-        <button class="buttondismantling" name="' . $dismantling . '">Done</button>
         ';
     } else {
 
