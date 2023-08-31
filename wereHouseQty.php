@@ -98,10 +98,11 @@ function getInputValue($name)
 
 
         <div class="login-container" id="login">
-            <p class="namerQTY">
+            <p class="namerQTY notPrint">
                 <?php echo $adminName; ?>
             </p>
             <br>
+            <button class="Print" id="printButton">Print</button>
             <form method="POST">
                 <div id="reqInf"></div>
 

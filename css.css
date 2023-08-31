@@ -1749,4 +1749,15 @@ header {
   .Back{
     display: none;
   }
+  button,
+  .notPrint{
+    display: none;
+  }
+  .pipiss,
+  .pipecomm{
+    background-color: transparent;
+    resize: none;
+    text-align: center;
+    border: 1px solid transparent;
+  }
 }

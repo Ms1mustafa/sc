@@ -36,6 +36,7 @@ if ($isNotification == null) {
     $qtyBackStatus = $requests["qtyBackStatus"];
 
     echo "
+    <div class = 'notPrint'>
     <label  class='Getrquest'>ReqNo</label>
 
     <label class='GetrquesQTY'>$reqNo</label>
@@ -57,6 +58,7 @@ if ($isNotification == null) {
     <label class='GetrquesQTY'>$item</label>
     <br>
     <br>
+    </div>
     ";
 
     if ($qtyBackStatus == 'wereHouse') {
