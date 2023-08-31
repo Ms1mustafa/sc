@@ -92,8 +92,12 @@ function getInputValue($name)
 <body>
     <div>
         <a class="Back" href="wereHouse.php">
-            <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
+         
+            <i class="fa-solid fa-arrow-left" ></i> Back</a>
+               </div>
+               <div class="printwerehouse">
+               <i class="fa-solid fa-print"  id="printButton"></i>
+</div>
     <div class="wrappe">
 
 
@@ -102,7 +106,7 @@ function getInputValue($name)
                 <?php echo $adminName; ?>
             </p>
             <br>
-            <button class="Print" id="printButton">Print</button>
+         
             <form method="POST">
                 <div id="reqInf"></div>
 
@@ -125,7 +129,7 @@ function getInputValue($name)
 
                 if ($dismantling == 'yes') {
                     echo '
-                        <table class="description">
+                        <table class="">
                             <thead >
                                 <th >
                                     <select  class="inputfieldGetReq" id="wereHouseItemDescription">

@@ -1040,7 +1040,6 @@ header {
 
 .itemestable {
   border: 2px solid #e77823;
-
   height: 200px;
   border-radius: 10px;
 }
@@ -1161,10 +1160,10 @@ header {
 }
 
 .pipecomm {
-  width: 120px;
+  width: 190px;
   border: 1px #e77823 solid;
   border-radius: 5px;
-  height: 30px;
+  height: 40px;
 }
 
 .pipecomitm {
@@ -1359,7 +1358,7 @@ header {
   border: none;
   border-radius: 15px;
   margin-top: 3%;
-  margin-left: 20px;
+  margin-left: 50px;
   outline: none;
   background: #e77823;
   cursor: pointer;
@@ -1615,10 +1614,20 @@ header {
   .Issued {
     display: none;
   }
+
+  .printwerehouse {
+    position: relative;
+    left: 50px;
+  }
 }
 
 .ReceivingMaterials {
   margin-left: 90px;
+}
+
+.ReceivingMaterialswere {
+  margin-left: 90px;
+  display: none;
 }
 
 .Print {
@@ -1642,17 +1651,34 @@ header {
   margin-left: 20px;
 }
 
+.Issuedprint {
+  margin-top: 100px;
+  margin-left: 20px;
+  display: none;
+}
+
 @media print {
   #printButton {
     display: none;
   }
+
   .Back {
     display: none;
   }
+
+  .Issuedprint {
+    display: block;
+  }
+
+  .ReceivingMaterialswere {
+    display: block;
+  }
+
   button,
   .notPrint {
     display: none;
   }
+
   .pipiss,
   .pipecomm {
     background-color: transparent;
@@ -1660,4 +1686,11 @@ header {
     text-align: center;
     border: 1px solid transparent;
   }
+}
+
+.printwerehouse {
+  margin-left: 17%;
+  color: rgb(231, 120, 35);
+  margin-top: 10px;
+  font-size: 20px;
 }

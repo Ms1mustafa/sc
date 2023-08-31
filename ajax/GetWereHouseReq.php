@@ -123,6 +123,8 @@ if ($isNotification == null) {
 
         echo "
    <div>
+   <h1 class='ReceivingMaterialswere'>Receiving Materials</h1>
+   <br>
     <table class='itemestable'>
         <tr>
             <th>Item description</th>
@@ -151,6 +153,7 @@ if ($isNotification == null) {
     </table>
     </div>
     <div>
+    <h3 class='Issuedprint'>Issued By: &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Recorded By:</h3>
     <button  class='submitGetHose' name='submit'>Done</button>
     </div>
     ";
