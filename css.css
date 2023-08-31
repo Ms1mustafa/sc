@@ -1,15 +1,13 @@
 /* POPPINS FONT */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
-
-
 }
 
 body {
-  background: url('images/1.jpg');
+  background: url("images/1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -24,22 +22,18 @@ body {
 }
 
 header {
-
   font-size: 30px;
   text-align: center;
   font-weight: bold;
   padding: 0px 0 30px 0;
   position: relative;
   right: 40px;
-
-
 }
 
 .welcomlogin {
   text-align: center;
   position: relative;
   right: 30px;
-
 }
 
 .colorScaffolding {
@@ -57,13 +51,10 @@ header {
   gap: 0;
 }
 
-
 .input-box1 a {
   text-decoration: none;
   color: #000;
-
 }
-
 
 .inputfieldlogin {
   font-size: 15px;
@@ -77,7 +68,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .submitlogin {
@@ -93,7 +84,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitlogin:hover {
@@ -102,14 +93,12 @@ header {
   border: 2px solid #e77823;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
   .inputfieldlogin {
     width: 190px;
     position: relative;
     top: 80px;
     left: 3px;
-
-
   }
 
   .submitlogin {
@@ -137,7 +126,6 @@ header {
     position: relative;
     top: 110px;
     text-align: center;
-
   }
 }
 
@@ -155,20 +143,17 @@ header {
 .input-box a {
   text-decoration: none;
   color: #000;
-
 }
 
 .nameowner {
   font-size: 30px;
   position: relative;
   right: 40%;
-
 }
 
 .adminNameowner {
   font-size: 25px;
   font-weight: bold;
-
 }
 
 .inputfieldowner {
@@ -184,8 +169,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
-
+  transition: 0.2s ease;
 }
 
 .buttonlogout {
@@ -198,11 +182,9 @@ header {
   left: 10%;
   top: 30px;
   color: #e77823;
-
 }
 
 @media only screen and (max-width: 786px) {
-
   body {
     max-height: 20vh;
   }
@@ -234,7 +216,6 @@ header {
     text-align: center;
     position: relative;
     right: 30px;
-
   }
 
   .buttonlogout {
@@ -267,7 +248,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .submitarea {
@@ -283,7 +264,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitarea:hover {
@@ -315,14 +296,11 @@ header {
     position: relative;
     top: -60px;
     right: 20px;
-
-
-
   }
 
   .Back {
     position: relative;
-    left: 30px
+    left: 30px;
   }
 }
 
@@ -341,7 +319,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldarea3 {
@@ -357,7 +335,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldareaitme {
@@ -373,7 +351,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .submitlocation {
@@ -389,7 +367,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitlocation:hover {
@@ -403,22 +381,18 @@ header {
     position: absolute;
 
     width: 95%;
-
-
   }
 
   .inputfieldarea2 {
     width: 285px;
     position: relative;
     top: 90px;
-
   }
 
   .inputfieldarea3 {
     width: 200px;
     position: relative;
     top: 70px;
-
   }
 
   .inputfieldareaitme {
@@ -455,7 +429,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .Additem {
@@ -471,7 +445,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .Itemlabel {
@@ -479,10 +453,9 @@ header {
   font-weight: bold;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
   .iteminput {
     width: 200px;
-
   }
 
   .Additem {
@@ -508,10 +481,10 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
   .inputfieldownerselect-areatAccount {
     position: relative;
     top: 15%;
@@ -524,7 +497,6 @@ header {
 .adminhome {
   font-size: 30px;
   font-weight: bold;
-
 }
 
 .Notificationshome {
@@ -553,8 +525,6 @@ header {
   font-size: 30px;
   position: absolute;
   right: 80%;
-
-
 }
 
 .labelnewrequest {
@@ -574,7 +544,7 @@ header {
   left: 40px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldselectnewreq {
@@ -590,7 +560,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldnot {
@@ -605,7 +575,7 @@ header {
   margin-top: 15px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldrequest {
@@ -621,7 +591,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldrequestqty {
@@ -636,13 +606,11 @@ header {
 
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .labelnewrequestpriority {
   font-size: 20px;
-
-
 }
 
 .labelnewrequestnot {
@@ -662,7 +630,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .rejectreason2 {
@@ -678,17 +646,14 @@ header {
   margin-top: 10px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
-
-
 
 @media only screen and (max-width: 600px) {
   .namerequest {
     position: relative;
     top: 150px;
     left: -20px;
-
   }
 
   .labelnewrequest {
@@ -712,14 +677,11 @@ header {
     position: relative;
     top: 120px;
     width: 95%;
-
   }
 
   .labelnewrequestpriority {
     position: relative;
     top: 140px;
-
-
   }
 
   .priorty {
@@ -737,11 +699,9 @@ header {
     top: 150px;
     width: 200px;
     right: 10px;
-
   }
 
   .submitnewreq {
-
     width: 280px;
     margin-top: 20px;
   }
@@ -755,7 +715,6 @@ header {
   .Notesaddreq {
     position: relative;
     top: 100px;
-
   }
 
   .rejectreason {
@@ -770,7 +729,6 @@ header {
     width: 100%;
     font-weight: bold;
     margin-left: -40px;
-
   }
 }
 
@@ -778,11 +736,9 @@ header {
 .nameadminrequest {
   font-size: 20px;
   font-weight: bold;
-
 }
 
 @media only screen and (max-width: 600px) {
-
   .nameadminrequest {
     position: relative;
     top: 90px;
@@ -804,7 +760,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .input-lengthAction {
@@ -820,13 +776,11 @@ header {
   left: 40px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .labelnewrequestpriorityAction {
   font-size: 20px;
-
-
 }
 
 .labelnewrequestnotAction {
@@ -846,7 +800,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .submitnewreqAction {
@@ -862,16 +816,14 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
-
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
   .inputfieldselectnewreqAction {
     position: relative;
     top: 90px;
     width: 100%;
-
   }
 
   .input-lengthAction {
@@ -884,8 +836,6 @@ header {
   .labelnewrequestpriorityAction {
     position: absolute;
     top: 110%;
-
-
   }
 
   .priortyAction {
@@ -912,7 +862,6 @@ header {
   }
 }
 
-
 /*-----------------OTYExecuter---------------*/
 .namerQTY {
   font-size: 25px;
@@ -931,14 +880,12 @@ header {
   margin-right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
-
 
 .Getrquest {
   color: #e77823;
   font-size: 20px;
-
 }
 
 .length {
@@ -959,7 +906,7 @@ header {
   left: 2px;
   border-radius: 5px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldGetReqoty {
@@ -975,7 +922,7 @@ header {
   right: 3px;
   border-radius: 5px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .QTYnotes {
@@ -991,7 +938,7 @@ header {
   margin-top: 30px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .GetOTYNote {
@@ -1007,9 +954,7 @@ header {
   width: 290px;
   border: 2px solid #e77823;
   border-radius: 10px;
-
 }
-
 
 .descriptiontable {
   margin-top: -10px;
@@ -1019,9 +964,8 @@ header {
 }
 
 .descriptiontable tr {
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
   cursor: pointer;
-
 }
 
 .descriptiontable th,
@@ -1030,7 +974,6 @@ header {
   text-align: left;
   border: 1px solid #ddd;
   text-align: center;
-
 }
 
 .descriptiontable tr:hover {
@@ -1047,9 +990,8 @@ header {
   margin-top: 10px;
 }
 
-
 .descriptiontable2 tr {
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
   cursor: pointer;
 }
 
@@ -1075,12 +1017,10 @@ header {
   margin-top: 10px;
   position: relative;
   left: -50px;
-
 }
 
-
 .descriptiontableReceivingMaterials tr {
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
   cursor: pointer;
 }
 
@@ -1099,7 +1039,6 @@ header {
 }
 
 .itemestable {
-
   border: 2px solid #e77823;
 
   height: 200px;
@@ -1107,7 +1046,7 @@ header {
 }
 
 .itemestable tr {
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
   cursor: pointer;
 }
 
@@ -1125,11 +1064,9 @@ header {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
-
 .description tr {
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
   cursor: pointer;
-
 }
 
 .description th,
@@ -1138,7 +1075,6 @@ header {
   text-align: left;
   border: 1px solid #ddd;
   text-align: center;
-
 }
 
 .description tr:hover {
@@ -1147,19 +1083,16 @@ header {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
-
 @media only screen and (max-width: 600px) {
   .description {
     width: 240px;
     margin-left: -40px;
     margin-top: 100px;
-
   }
 
   .descriptiontable {
     width: 100px;
     margin-top: 90px;
-
   }
 
   .descriptiontable2 {
@@ -1170,20 +1103,16 @@ header {
   .descriptiontableReceivingMaterials {
     width: 90px;
     margin-top: 90px;
-
   }
 
   .itemestable {
     font-size: 13px;
     margin-top: 80px;
     margin-left: -40px;
-
-
   }
 
   .inputfieldGetReqoty {
     width: 130px;
-
   }
 
   .GetOTYNote {
@@ -1197,7 +1126,6 @@ header {
     width: 74%;
   }
 }
-
 
 .pipe2 {
   font-size: 14px;
@@ -1255,11 +1183,10 @@ header {
   border: none;
   border-radius: 15px;
 
-
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitQTY2 {
@@ -1275,7 +1202,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitQTYReceining {
@@ -1291,7 +1218,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitDone {
@@ -1307,7 +1234,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitDonereg {
@@ -1322,15 +1249,10 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
-
+  transition: 0.3s ease-in-out;
 }
 
-
-
-
-
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
   .namerQTY {
     position: relative;
     top: 80px;
@@ -1357,7 +1279,7 @@ header {
 
   .submitQTY {
     width: 94%;
-    margin-right: 20px
+    margin-right: 20px;
   }
 
   .inputfieldownerselectqty {
@@ -1372,14 +1294,12 @@ header {
   .GetrquesQTY {
     position: relative;
     top: 80px;
-
   }
 
   .submitQTY2 {
     position: relative;
     left: 10px;
     width: 94%;
-
   }
 
   .submitQTYReceining {
@@ -1395,7 +1315,6 @@ header {
   .pipecomm {
     width: 90px;
     height: 10vh;
-
   }
 
   .pipecomitm {
@@ -1408,18 +1327,10 @@ header {
     top: 80px;
   }
 
-
-
   .pipe2 {
     height: 10vh;
-
   }
-
-
 }
-
-
-
 
 /*------------wereHosuse------------*/
 .submitwere {
@@ -1436,7 +1347,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitGetHose {
@@ -1452,7 +1363,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 /*-----------------notification----------*/
@@ -1466,21 +1377,18 @@ header {
 
 .notification:hover {
   color: #000;
-
 }
-
 
 .hrQty {
   position: relative;
   top: 30px;
   width: 25%;
-  border: 1px solid #000
+  border: 1px solid #000;
 }
 
 .reqhr {
-
   width: 25%;
-  border: 1px solid #000
+  border: 1px solid #000;
 }
 
 @media only screen and (max-width: 600px) {
@@ -1492,14 +1400,10 @@ header {
   .submitGetHose {
     width: 93%;
     margin-left: -10px;
-
-
-
   }
 
   .notification:hover {
     color: #000;
-
   }
 
   .hrQty {
@@ -1509,8 +1413,6 @@ header {
   }
 
   .reqhr {
-
-
     width: 100%;
   }
 }
@@ -1524,8 +1426,6 @@ header {
 }
 
 .requestActionArea {
-
-
   font-size: 20px;
 }
 
@@ -1542,7 +1442,7 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputlength {
@@ -1558,7 +1458,7 @@ header {
   left: 40px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .inputfieldrequestAction {
@@ -1574,11 +1474,10 @@ header {
   right: 20px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 @media only screen and (max-width: 600px) {
-
   .inputlength {
     position: relative;
 
@@ -1587,7 +1486,6 @@ header {
 
   .inputfieldrequestAction {
     width: 100%;
-
   }
 
   .inputfieldnotAction {
@@ -1595,7 +1493,6 @@ header {
     position: relative;
     top: 5px;
     left: -20px;
-
   }
 }
 
@@ -1612,7 +1509,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .inputrejectreason {
@@ -1628,7 +1525,7 @@ header {
 
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .submitDismantling {
@@ -1643,7 +1540,7 @@ header {
   outline: none;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 @media only screen and (max-width: 600px) {
@@ -1662,8 +1559,6 @@ header {
   }
 }
 
-
-
 /*-----------------error---------------*/
 .error {
   color: red;
@@ -1674,7 +1569,6 @@ header {
 
 @media only screen and (max-width: 600px) {
   .error {
-
     position: absolute;
     top: 57%;
   }
@@ -1694,10 +1588,8 @@ header {
   margin-top: 30px;
   border-radius: 15px;
   outline: none;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
-
-
 
 @media only screen and (max-width: 600px) {
   .Getnote {
@@ -1709,7 +1601,6 @@ header {
   .Print {
     position: relative;
     left: -90px;
-
   }
 
   .ReceivingMaterials {
@@ -1743,7 +1634,7 @@ header {
   margin-left: 100px;
   background: #e77823;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .Issued {
@@ -1755,7 +1646,18 @@ header {
   #printButton {
     display: none;
   }
-  .Back{
+  .Back {
     display: none;
+  }
+  button,
+  .notPrint {
+    display: none;
+  }
+  .pipiss,
+  .pipecomm {
+    background-color: transparent;
+    resize: none;
+    text-align: center;
+    border: 1px solid transparent;
   }
 }
