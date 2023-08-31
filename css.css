@@ -248,6 +248,7 @@ header {
 .wrappe {
   display: flex;
   width: 80%;
+  height: 90vh;
   position: relative;
   top: 150px;
   left: 10%;
@@ -1068,12 +1069,13 @@ header {
 
 .descriptiontableReceivingMaterials {
   border: 2px solid #e77823;
-  width: 300px;
+  width: 600px;
   height: 200px;
   border-radius: 10px;
   margin-top: 10px;
   position: relative;
-  left: 50px
+  left: -50px;
+
 }
 
 
@@ -1166,8 +1168,9 @@ header {
   }
 
   .descriptiontableReceivingMaterials {
+    width: 90px;
     margin-top: 90px;
-    margin-left: -55px;
+
   }
 
   .itemestable {
@@ -1237,10 +1240,10 @@ header {
 }
 
 .pipecomitm {
-  width: 90px;
+  width: 130px;
   border: 1px #e77823 solid;
   border-radius: 5px;
-  height: 30px;
+  height: 50px;
 }
 
 .submitQTY {
@@ -1705,15 +1708,21 @@ header {
 
   .Print {
     position: relative;
-    left: -50px;
+    left: -90px;
+
   }
 
   .ReceivingMaterials {
     position: relative;
     top: 70px;
-    right: 50px;
+    right: 60px;
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .Issued {
+    display: none;
   }
 }
 
@@ -1738,15 +1747,6 @@ header {
 }
 
 .Issued {
-  margin-top: 80px;
+  margin-top: 100px;
   margin-left: 20px;
-}
-
-@media print {
-  #printButton {
-    display: none;
-  }
-  .Back{
-    display: none;
-  }
 }

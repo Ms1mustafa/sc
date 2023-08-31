@@ -33,6 +33,8 @@ $workOrderNo = $_GET["req"];
 
         <div class="login-container" id="login">
             <h1 class="ReceivingMaterials">Receiving Materials</h1>
+            <br>
+            <br>
     <div id="reqInf"></div>
     <h3 class="Issued">Issued By: &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Recorded By:</h3>
     <button class="Print" id="printButton">Print</button>
