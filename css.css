@@ -660,6 +660,7 @@ header {
   border: 2px solid #e77823;
 }
 
+
 .rejectreason2 {
   font-size: 15px;
 
@@ -670,7 +671,7 @@ header {
   padding: 0px 20px 20px;
   border: 2px solid #e77823;
 
-  margin-top: 10px;
+
   border-radius: 15px;
   outline: none;
   transition: 0.2s ease;
@@ -752,11 +753,11 @@ header {
 
   .rejectreason2 {
     position: relative;
-    top: 50px;
+    top: 70px;
     font-size: 15px;
-    width: 100%;
+    width: 70%;
     font-weight: bold;
-    margin-left: -40px;
+
   }
 }
 
@@ -1368,8 +1369,8 @@ header {
   .submitDonereg {
     position: relative;
 
-    width: 326px;
-    left: -30px;
+    width: 250px;
+
   }
 
   .inputfieldGetReq {
@@ -1398,9 +1399,8 @@ header {
   }
 
   .submitQTY2 {
-    position: relative;
-    left: 10px;
-    width: 94%;
+    margin-top: 80px;
+    width: 88%;
   }
 
   .submitQTYReceining {
@@ -1713,7 +1713,7 @@ header {
   color: red;
   font-weight: bold;
   position: absolute;
-  top: 110px;
+  top: 125px;
 }
 
 .errorrequest {
