@@ -59,7 +59,7 @@ if (isset($_POST["dismantling"])) {
     $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'requestitemdes', $wereHouseItemName, $wereHouseComment, $wereHouseItemQty);
 
     if ($success) {
-        header("location: wereHousePrint.php?req=".$workOrderNo."");
+        header("location: wereHousePrint.php?req=" . $workOrderNo . "");
     }
 }
 
@@ -92,12 +92,19 @@ function getInputValue($name)
 <body>
     <div>
         <a class="Back" href="wereHouse.php">
-         
-            <i class="fa-solid fa-arrow-left" ></i> Back</a>
-               </div>
-               <div class="printwerehouse">
-               <i class="fa-solid fa-print"  id="printButton"></i>
-</div>
+
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+    <div class="printwerehouse">
+        <?php
+        if ($dismantling != 'yes') {
+            echo '
+                    <i class="fa-solid fa-print"  id="printButton"></i>
+                ';
+        }
+        ?>
+
+    </div>
     <div class="wrappe">
 
 
@@ -106,7 +113,7 @@ function getInputValue($name)
                 <?php echo $adminName; ?>
             </p>
             <br>
-         
+
             <form method="POST">
                 <div id="reqInf"></div>
 

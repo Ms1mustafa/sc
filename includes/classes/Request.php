@@ -61,7 +61,7 @@ class Request
 
     public function insertRequestDetils($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $notes)
     {
-        $query = $this->con->prepare("INSERT INTO request (reqNo, adminAddedName, workOrderNo, area, item, length, width, height, workType, priority, executer, wereHouse, inspector, notes) VALUES (:reqNo, :adminAddedName, :workOrderNo, :area, :item, :length, :width, :height, :workType, :priority, :executer, :wereHouse, :inspector, :notes)");
+        $query = $this->con->prepare("INSERT INTO request (reqNo, adminAddedName, workOrderNo, area, item, length, width, height, workType, priority, executer, wereHouse, inspector, notes, reqDate) VALUES (:reqNo, :adminAddedName, :workOrderNo, :area, :item, :length, :width, :height, :workType, :priority, :executer, :wereHouse, :inspector, :notes, :currentDateTime)");
 
         $query->bindValue(":reqNo", $reqNo);
         $query->bindValue(":adminAddedName", $adminAddedName);
@@ -77,6 +77,7 @@ class Request
         $query->bindValue(":wereHouse", $wereHouse);
         $query->bindValue(":inspector", $inspector);
         $query->bindValue(":notes", $notes);
+        $query->bindValue(":currentDateTime", $this->currentDateTime);
 
         return $query->execute();
 

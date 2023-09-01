@@ -1847,7 +1847,7 @@ header {
   .pipecomm {
     background-color: transparent;
     resize: none;
-    text-align: center;
+    /* text-align: center; */
     border: 1px solid transparent;
   }
 }
