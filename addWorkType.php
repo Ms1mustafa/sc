@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
         <a class="Back" href="ownerPage.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
-<div class="wrappe">
+<div class="wrappereq">
 
   <div class="login-container" id="login">
 <div class="top">

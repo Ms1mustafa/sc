@@ -327,7 +327,7 @@ header {
   background: #fff;
   color: #000;
   height: 50px;
-  width: 30%;
+  width: 37%;
   padding: 0px 40px 0 45px;
   border: 2px solid #e77823;
   position: relative;
@@ -461,6 +461,12 @@ header {
   background: #e77823;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+
+.Additem:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
 }
 
 .Itemlabel {
@@ -648,6 +654,12 @@ header {
   transition: 0.3s ease-in-out;
 }
 
+.submitnewreq:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
+}
+
 .rejectreason2 {
   font-size: 15px;
 
@@ -833,6 +845,12 @@ header {
   background: #e77823;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+
+.submitnewreqAction:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
 }
 
 @media only screen and (max-width: 600px) {
@@ -1437,6 +1455,12 @@ header {
   transition: 0.3s ease-in-out;
 }
 
+.submitwere:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
+}
+
 .submitGetHose {
   font-size: 15px;
   font-weight: 500;
@@ -1451,6 +1475,12 @@ header {
   background: #e77823;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+
+.submitGetHose:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
 }
 
 .buttondismantling {
@@ -1619,6 +1649,12 @@ header {
   transition: 0.3s ease-in-out;
 }
 
+.submitacceptinspecter:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
+}
+
 .inputrejectreason {
   font-size: 15px;
   font-weight: bold;
@@ -1648,6 +1684,12 @@ header {
   background: #e77823;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+
+.submitDismantling:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
 }
 
 @media only screen and (max-width: 600px) {
@@ -1760,6 +1802,12 @@ header {
   background: #e77823;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+
+.Print:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
 }
 
 .Issued {
