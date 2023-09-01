@@ -92,7 +92,7 @@ if (isset($_POST["delete"])) {
             <div class="input-box">
 
                 <form method="POST">
-                    <?php echo $request->getError(constants::$requestFailed); ?>
+                <p class="errorrequest"> <?php echo $request->getError(constants::$requestFailed); ?></p>
                     <label class="requestAction">ReqNo :
                         <?php echo $getRequest['reqNo']; ?>
                     </label>

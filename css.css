@@ -1368,8 +1368,8 @@ header {
 
   .submitDonereg {
     position: relative;
-
-    width: 250px;
+    left: 10px;
+    width: 230px;
 
   }
 
@@ -1718,7 +1718,7 @@ header {
 
 .errorrequest {
   color: red;
-  margin-top: 30px;
+  margin-top: 5px;
   margin-left: 50px;
   font-weight: bold;
 
@@ -1847,7 +1847,7 @@ header {
   .pipecomm {
     background-color: transparent;
     resize: none;
-    /* text-align: center; */
+    text-align: center;
     border: 1px solid transparent;
   }
 }
