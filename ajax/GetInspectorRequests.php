@@ -31,7 +31,6 @@ if ($isNotification == null) {
     $inspector = $requests["inspector"];
     $area = $requests["area"];
     $item = $requests["item"];
-    $notes = $requests["notes"];
     $issued = $requests["issued"] == 'yes' ? true : null;
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
@@ -57,8 +56,6 @@ if ($isNotification == null) {
    <br>
    <br>
     <label class='GetOTYNote'>Notes :</label>
-    <br>
-    <textarea class='Getnote' readonly>$notes</textarea>
     <br>
     
     ";
