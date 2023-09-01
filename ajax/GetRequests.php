@@ -217,7 +217,7 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-            <br>
+          
             <textarea class="rejectreason2" readonly>Reject Reason : ' . $rejectReason . '</textarea>
                 </div>
             ';
