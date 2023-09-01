@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let html2 = `
               <tr>
                   <td class='pipe'><input class='pipe1 cantEdit' name="wereHouseItemName[]" value="${wereHouseSelectedValue}" readonly></td>
-                  <td><textarea  class='pipecomm' type="text" name="wereHouseComment[]"></textarea ></td>
+                  <td><textarea  class='pipecomitm' type="text" name="wereHouseComment[]"></textarea ></td>
                   <td><input class='pipiss' type="number" min="1" name="wereHouseItemQty[]"></td>
               </tr>
           `;
@@ -107,6 +107,6 @@ executerDone?.addEventListener('click', function (e) {
 
 const printButton = document.getElementById("printButton");
 
-printButton.addEventListener("click", function() {
+printButton.addEventListener("click", function () {
   window.print();
 });

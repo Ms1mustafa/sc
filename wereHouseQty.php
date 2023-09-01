@@ -129,7 +129,8 @@ function getInputValue($name)
 
                 if ($dismantling == 'yes') {
                     echo '
-                        <table class="">
+                    <br><br>
+                        <table class="itemestablerq">
                             <thead >
                                 <th >
                                     <select  class="inputfieldGetReq" id="wereHouseItemDescription">

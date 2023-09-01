@@ -38,7 +38,7 @@ $request = new Request($con);
     <a  class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
     
 </div>
-<div class="wrappe">
+<div class="wrappereq">
        
         <div class="login-container" id="login">
         <p class="nameadminrequest"> <?php echo $adminName; ?></p>

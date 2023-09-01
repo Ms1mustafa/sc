@@ -158,7 +158,7 @@ if ($isNotification == null) {
                 echo "
                     <label class='GetOTYNote'>Notes</label>
                     <br>
-                    <textarea class='QTYnotes'>$notes</textarea>
+                    <textarea class='QTYnotes'readonly>$notes</textarea>
                     <br>
                     
                     <label class='Getrquest'>Date</label>
@@ -217,6 +217,7 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
+            <br>
             <textarea class="rejectreason2" readonly>Reject Reason : ' . $rejectReason . '</textarea>
                 </div>
             ';

@@ -106,7 +106,7 @@ if (isset($_POST["submit"])) {
             <div class="input-box">
 
                 <form method="POST">
-                    <?php echo $request->getError(constants::$workOrderNoTaken); ?>
+                  <p class="errorrequest">  <?php echo $request->getError(constants::$workOrderNoTaken); ?></p>
                     <br>
                     <label class="labelnewrequest">Req Name</label>
                     <br>

@@ -41,8 +41,7 @@ $request = new Request($con);
     <i class="fa-solid fa-arrow-left"></i>    Back</a>
 </div>
 
-<div class="wrappe">
-       
+<div class="wrappereq ">
         
         <div class="login-container" id="login">
     <p class="nameadminrequest"><?php echo $adminName; ?></p>

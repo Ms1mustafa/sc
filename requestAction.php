@@ -102,7 +102,7 @@ if (isset($_POST["delete"])) {
                         <?php echo $workOrderNo; ?>
                     </label>
                     <br>
-                    <br>
+                   
                     <br>
                     <label class="requestAction">Requester :
                         <?php echo $getRequest['adminAddedName']; ?>
