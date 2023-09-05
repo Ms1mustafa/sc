@@ -93,6 +93,25 @@ class Account
         return $query->execute();
     }
 
+    public function deleteUser($usernames)
+    {
+        if ($usernames && is_array($usernames)) {
+            foreach ($usernames as $username) {
+                $query = $this->con->prepare("DELETE FROM users WHERE username=:username");
+                $query->bindValue(":username", $username);
+                $result = $query->execute();
+
+                if (!$result) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function validateUsername($un)
     {
         $query = $this->con->prepare('SELECT * FROM users WHERE username = :un');
@@ -304,10 +323,22 @@ class Account
             $email = $row["email"];
             $html .= "<option value='$name'>$name</option>";
         }
-
-
-
         return $html;
+    }
+    public function getAllAccounts()
+    {
+
+        $query = $this->con->prepare("SELECT * FROM users ");
+
+        $query->execute();
+
+        $rows = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 }
 ?>

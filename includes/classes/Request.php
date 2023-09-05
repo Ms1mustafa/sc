@@ -389,8 +389,14 @@ class Request
 
         $array = array();
 
-        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        if(!$workOrderNo){
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $array[] = $row;
+            }
+        }else{
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $array = $row;
+        }
         }
 
         return $array;
