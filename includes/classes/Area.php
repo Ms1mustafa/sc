@@ -42,6 +42,25 @@ class Area
         return $query->execute();
     }
 
+    public function deleteArea($ids)
+    {
+        if ($ids && is_array($ids)) {
+            foreach ($ids as $id) {
+                $query = $this->con->prepare("DELETE FROM area WHERE number=:number");
+                $query->bindValue(":number", $id);
+                $result = $query->execute();
+
+                if (!$result) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function insertItemDetils($id, $ai, $nm)
     {
 
@@ -54,41 +73,87 @@ class Area
         return $query->execute();
     }
 
-    public function getIdNum(){
+    public function getIdNum()
+    {
         $query = $this->con->prepare("SELECT * FROM area");
         $query->execute();
         return $query->rowCount() + 1;
     }
 
-    public function getItemIdNum(){
+    public function getItemIdNum()
+    {
         $query = $this->con->prepare("SELECT * FROM areaitems");
         $query->execute();
         return $query->rowCount() + 1;
     }
 
-    public function getArea(){
+    public function getArea($all = null)
+    {
         $query = $this->con->prepare("SELECT * FROM area ");
-        
+
         $query->execute();
 
         $html = "";
+        $rows = array();
 
-        while($row = $query->fetch(PDO::FETCH_ASSOC)){
-            $areaId = $row["number"];
-            $areaName = $row["name"];
-            $html .= "<option value='$areaId'>$areaId - $areaName</option>";
+        if ($all) {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $rows[] = $row;
+            }
+            return $rows;
+        } else {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $areaId = $row["number"];
+                $areaName = $row["name"];
+                $html .= "<option value='$areaId'>$areaId - $areaName</option>";
+            }
+            return $html;
         }
 
-        return $html;
     }
-    public function getAreaName($ai){
+
+    public function getLocation()
+    {
+        $query = $this->con->prepare("SELECT * FROM areaitems ");
+
+        $query->execute();
+
+        $rows = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $rows[] = $row;
+        }
+        return $rows;
+
+    }
+
+    public function deleteLocation($ids)
+    {
+        if ($ids && is_array($ids)) {
+            foreach ($ids as $id) {
+                $query = $this->con->prepare("DELETE FROM areaitems WHERE number=:number");
+                $query->bindValue(":number", $id);
+                $result = $query->execute();
+
+                if (!$result) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getAreaName($ai)
+    {
         $query = $this->con->prepare("SELECT * FROM area Where number =:ai");
         $query->bindValue(":ai", $ai);
         $query->execute();
 
         $html = "";
 
-        while($row = $query->fetch(PDO::FETCH_ASSOC)){
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $areaName = $row["name"];
             $html = $areaName;
         }

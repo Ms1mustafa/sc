@@ -12,25 +12,6 @@ Powers::owner($account, $userEmail);
 
 $req = new Request($con);
 $requests = $req->getRequestDetails();
-// print_r($requests);
-
-// if (isset($_POST["submit"])) {
-
-//     // Check if "delete" checkboxes are selected
-//     if (isset($_POST["delete"]) && is_array($_POST["delete"])) {
-//         $usernames = $_POST["delete"];
-        
-//         $deletedSuccessfully = $account->deleteUser($usernames);
-
-//         if ($deletedSuccessfully) {
-//             header("Refresh: 0");
-//         } else {
-//             echo "Failed to delete users.";
-//         }
-//     } else {
-//         echo "No users selected for deletion.";
-//     }
-// }
 ?>
 
 <!DOCTYPE html>
@@ -76,22 +57,34 @@ $requests = $req->getRequestDetails();
                     $executer = $request["executer"];
                     $wereHouse = $request["wereHouse"];
                     $inspector = $request["inspector"];
+                    $reqDate = FormSanitizer::formatDate($request["reqDate"]);
+                    $executerDate = FormSanitizer::formatDate($request["executerDate"]);
+                    $wereHouseDate = FormSanitizer::formatDate($request["wereHouseDate"]);
+                    $inspectorDate = FormSanitizer::formatDate($request["inspectorDate"]);
 
                     $reqStatus = "";
 
                     if($executerNew == 'yes'){
                         $reqStatus = $executer;
+                        $finishDate = $reqDate;
+                        if($wereHouseDate){
+                            $finishDate = $wereHouseDate;
+                        }
                     }
                     if(($executerNew != 'yes' && $issued != 'yes' && $status == 'pending') || $status == 'resent'){
                         $reqStatus = $wereHouse;
+                        $finishDate = $executerDate;
                     }
                     if(($issued == 'yes' && $status == 'pending') || $status == 'resentInspector'){
                         $reqStatus = $inspector;
+                        $finishDate = $executerDate;
                     }
                     if($status == 'rejected'){
                         $reqStatus = 'rejected';
+                        $finishDate = $inspectorDate;
                     }elseif($status == 'accepted'){
                         $reqStatus = 'accepted';
+                        $finishDate = $inspectorDate;
                     }
                     if($qtyBackStatus != 'no'){
                         $reqStatus = 'dismantling';
@@ -102,9 +95,9 @@ $requests = $req->getRequestDetails();
                         <td>'. $id .'</td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
-                        <td>' . FormSanitizer::formatDate($request["reqDate"]) . '</td>
+                        <td>' . $reqDate . '</td>
                         <td>' . $reqStatus . '</td>
-                        <td>' . FormSanitizer::formatDate($request["reqDate"]) . '</td>
+                        <td>' . $finishDate . '</td>
                         </tr>
                     ';
                     $id ++;
@@ -112,38 +105,7 @@ $requests = $req->getRequestDetails();
                 ?>
             </tbody>
         </table>
-        <input type="submit" style="display: none;" name="submit" value="Submit">
     </form>
-    <script>
-    // Function to check if at least one checkbox is checked
-    function atLeastOneCheckboxChecked() {
-        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="delete[]"]');
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                return true; // At least one checkbox is checked
-            }
-        }
-        return false; // No checkboxes are checked
-    }
-
-    // Function to toggle the display of the submit button
-    function toggleSubmitButton() {
-        var submitRow = document.getElementById("submit-row");
-        var submitButton = document.querySelector('input[type="submit"][name="submit"]');
-        
-        if (atLeastOneCheckboxChecked()) {
-            submitButton.style.display = "block"; // Show the button
-        } else {
-            submitButton.style.display = "none"; // Hide the button
-        }
-    }
-
-    // Add event listeners to checkboxes to toggle the submit button
-    var checkboxes = document.querySelectorAll('input[type="checkbox"][name="delete[]"]');
-    for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].addEventListener("change", toggleSubmitButton);
-    }
-</script>
 </body>
 
 </html>

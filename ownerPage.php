@@ -79,7 +79,7 @@ $request = new Request($con);
             </div>
             <br>
             <div class="input-box">
-                <button class="inputfieldowner"> <a href="#.php">All Areas</a></button>
+                <button class="inputfieldowner"> <a href="allAreas.php">All Areas</a></button>
             </div>
             <br>
             <div class="input-box">

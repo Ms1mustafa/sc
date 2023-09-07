@@ -1,5 +1,6 @@
 <?php
 include_once('includes/classes/Account.php');
+include_once('includes/classes/Area.php');
 include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
@@ -46,7 +47,7 @@ if (isset($_POST["submit"])) {
 
 
 <body>
-    <form method="POST" action=""> <!-- Assuming "deleteUser.php" is the action URL -->
+    <form method="POST" action="">
         <table>
             <thead>
                 <tr>
@@ -63,12 +64,14 @@ if (isset($_POST["submit"])) {
             <tbody>
                 <?php
                 foreach ($users as $user) {
+                    $area = new Area($con);
+                    $areaName = $area->getAreaName($user["area"]);
                     echo '
                     <tr>
-                        <td><input readonly name="username[]" value="' . $user["username"] . '"></td>
+                        <td>' . $user["username"] . '</td>
                         <td>' . $user["email"] . '</td>
                         <td>' . $user["password"] . '</td>
-                        <td>' . $user["area"] . '</td>
+                        <td>' . $areaName . '</td>
                         <td>' . $user["type"] . '</td>
                         <td>' . $user["requestNum"] . '</td>
                         <td><input type="checkbox" name="delete[]" value="' . $user["username"] . '"> Delete</td>
@@ -78,7 +81,7 @@ if (isset($_POST["submit"])) {
                 ?>
             </tbody>
         </table>
-        <input type="submit" style="display: none;" name="submit" value="Submit">
+        <input type="submit" id="deleteBtn" style="display: none;" name="submit" value="delete">
     </form>
     <script>
     // Function to check if at least one checkbox is checked
@@ -94,8 +97,7 @@ if (isset($_POST["submit"])) {
 
     // Function to toggle the display of the submit button
     function toggleSubmitButton() {
-        var submitRow = document.getElementById("submit-row");
-        var submitButton = document.querySelector('input[type="submit"][name="submit"]');
+        var submitButton = document.getElementById('deleteBtn');
         
         if (atLeastOneCheckboxChecked()) {
             submitButton.style.display = "block"; // Show the button

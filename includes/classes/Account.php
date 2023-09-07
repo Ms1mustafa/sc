@@ -224,14 +224,13 @@ class Account
         $query->bindValue(':type', $type);
         $query->execute();
 
-        $html = "";
+        $rows = array();
 
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            $name = $row["username"];
-            $html .= $name;
+            $rows[] = $row;
         }
 
-        return $html;
+        return $rows;
     }
 
     public function getAccountNum($admin = false)
