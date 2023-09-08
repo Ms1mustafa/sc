@@ -86,13 +86,26 @@ if (isset($_POST["inspectorDeleteBtn"])) {
 </head>
 
 <body>
+<div>
+        <a class="Back" href="ownerPage.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+<div class="wrappereq">
+
+  <div class="login-container" id="login">
+<div class="top">
+<div style="overflow-x:auto;">
     <form method="POST" action="">
+        <br>
+        <br>
+        <br>
+        <br>
         <table>
             <thead>
                 <tr>
-                    <td>id</td>
-                    <td>area name</td>
-                    <td>delete</td>
+                    <th>id</th>
+                    <th>area name</th>
+                    <th>delete</th>
                 </tr>
             </thead>
 
@@ -112,17 +125,19 @@ if (isset($_POST["inspectorDeleteBtn"])) {
                 ?>
             </tbody>
         </table>
-        <input type="submit" id="areaDeleteBtn" style="display: none;" name="areaDeleteBtn" value="delete">
+        <input class="submitDelet" type="submit" id="areaDeleteBtn" style="display: none;" name="areaDeleteBtn" value="delete">
     </form>
+    <br>
+    <br>
 
     <form method="POST" action="">
         <table>
             <thead>
                 <tr>
-                    <td>id</td>
-                    <td>location name</td>
-                    <td>area name</td>
-                    <td>delete</td>
+                    <th>id</th>
+                    <th>location name</th>
+                    <th>area name</th>
+                    <th>delete</th>
                 </tr>
             </thead>
 
@@ -145,19 +160,20 @@ if (isset($_POST["inspectorDeleteBtn"])) {
                 ?>
             </tbody>
         </table>
-        <input type="submit" id="locationDeleteBtn" style="display: none;" name="locationDeleteBtn" value="delete">
+        <input  class="submitDelet" type="submit" id="locationDeleteBtn" style="display: none;" name="locationDeleteBtn" value="delete">
     </form>
-    
+    <br>
+    <br>
     <form method="POST" action="">
         <table>
             <thead>
                 <tr>
-                    <td>id</td>
-                    <td>inspector name</td>
-                    <td>inspector email</td>
-                    <td>inspector passowrd</td>
-                    <td>inspector area</td>
-                    <td>delete</td>
+                    <th>id</th>
+                    <th>inspector name</th>
+                    <th>inspector email</th>
+                    <th>inspector passowrd</th>
+                    <th>inspector area</th>
+                    <th>delete</th>
                 </tr>
             </thead>
 
@@ -182,7 +198,7 @@ if (isset($_POST["inspectorDeleteBtn"])) {
                 ?>
             </tbody>
         </table>
-        <input type="submit" id="inspectorDeleteBtn" style="display: none;" name="inspectorDeleteBtn" value="delete">
+        <input  class="submitDelet" type="submit" id="inspectorDeleteBtn" style="display: none;" name="inspectorDeleteBtn" value="delete">
     </form>
 
     <script>
