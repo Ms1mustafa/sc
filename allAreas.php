@@ -19,7 +19,7 @@ if (isset($_POST["areaDeleteBtn"])) {
     // Check if "delete" checkboxes are selected
     if (isset($_POST["deleteArea"]) && is_array($_POST["deleteArea"])) {
         $ids = $_POST["deleteArea"];
-        
+
         $deletedSuccessfully = $area->deleteArea($ids);
 
         if ($deletedSuccessfully) {
@@ -37,7 +37,7 @@ if (isset($_POST["locationDeleteBtn"])) {
     // Check if "delete" checkboxes are selected
     if (isset($_POST["deleteLocation"]) && is_array($_POST["deleteLocation"])) {
         $ids = $_POST["deleteLocation"];
-        
+
         $deletedSuccessfully = $area->deleteLocation($ids);
 
         if ($deletedSuccessfully) {
@@ -55,7 +55,7 @@ if (isset($_POST["inspectorDeleteBtn"])) {
     // Check if "delete" checkboxes are selected
     if (isset($_POST["deleteinspector"]) && is_array($_POST["deleteinspector"])) {
         $usernames = $_POST["deleteinspector"];
-        
+
         $deletedSuccessfully = $account->deleteUser($usernames);
 
         if ($deletedSuccessfully) {
@@ -147,7 +147,7 @@ if (isset($_POST["inspectorDeleteBtn"])) {
         </table>
         <input type="submit" id="locationDeleteBtn" style="display: none;" name="locationDeleteBtn" value="delete">
     </form>
-    
+
     <form method="POST" action="">
         <table>
             <thead>
@@ -205,31 +205,28 @@ if (isset($_POST["inspectorDeleteBtn"])) {
                 submitButton.style.display = "none"; // Hide the button
             }
         }
+
+        const showBtn = function (submitButton, checkboxes) {
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener("change", function () {
+                    toggleSubmitButton(submitButton, checkboxes)
+                });
+            }
+        }
+
         
         // Add event listeners to checkboxes to toggle the submit button
         const submitButton = document.getElementById('areaDeleteBtn');
         const checkboxes = document.querySelectorAll('input[type="checkbox"][name="deleteArea[]"]');
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].addEventListener("change", function () {
-                toggleSubmitButton(submitButton, checkboxes)
-            });
-        }
+        showBtn(submitButton, checkboxes);
 
         const submitButton2 = document.getElementById('locationDeleteBtn');
         const checkboxes2 = document.querySelectorAll('input[type="checkbox"][name="deleteLocation[]"]');
-        for (var i = 0; i < checkboxes2.length; i++) {
-            checkboxes2[i].addEventListener("change", function () {
-                toggleSubmitButton(submitButton2, checkboxes2)
-            });
-        }
+        showBtn(submitButton2, checkboxes2);
 
         const submitButton3 = document.getElementById('inspectorDeleteBtn');
         const checkboxes3 = document.querySelectorAll('input[type="checkbox"][name="deleteinspector[]"]');
-        for (var i = 0; i < checkboxes3.length; i++) {
-            checkboxes3[i].addEventListener("change", function () {
-                toggleSubmitButton(submitButton3, checkboxes3)
-            });
-        }
+        showBtn(submitButton3, checkboxes3);
     </script>
 
 </body>
