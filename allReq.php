@@ -32,16 +32,25 @@ $requests = $req->getRequestDetails();
 
 
 <body>
+<div>
+        <a class="Back" href="ownerPage.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+<div class="wrappereq">
+
+  <div class="login-container" id="login">
+<div class="top">
+<div style="overflow-x:auto;">
     <form method="POST" action=""> <!-- Assuming "deleteUser.php" is the action URL -->
-        <table>
+        <table  class="alluser">
             <thead>
                 <tr>
-                    <td>id</td>
-                    <td>requester</td>
-                    <td>work order No</td>
-                    <td>request added date</td>
-                    <td>request status</td>
-                    <td>request finish date</td>
+                    <th>id</th>
+                    <th>requester</th>
+                    <th>work order No</td>
+                    <th>request added date</th>
+                    <th>request status</th>
+                    <th>request finish date</th>
                 </tr>
             </thead>
     

@@ -1,7 +1,7 @@
 <?php
 include_once('includes/classes/Account.php');
-include_once('includes/classes/Area.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Area.php');
 
 $userEmail = $_COOKIE["email"];
 
@@ -39,7 +39,7 @@ if (isset($_POST["submit"])) {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css.css?1999">
+    <link rel="stylesheet" href="css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <title>All users </title>
@@ -47,21 +47,30 @@ if (isset($_POST["submit"])) {
 
 
 <body>
-    <form method="POST" action="">
-        <table>
-            <thead>
+<div>
+        <a class="Back" href="ownerPage.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
+<div class="wrappereq">
+
+  <div class="login-container" id="login">
+<div class="top">
+<div style="overflow-x:auto;">
+    <form method="POST" action=""> <!-- Assuming "deleteUser.php" is the action URL -->
+        <table class="alluser">
+            
                 <tr>
-                    <td>username</td>
-                    <td>email</td>
-                    <td>password</td>
-                    <td>area</td>
-                    <td>type</td>
-                    <td>request number</td>
-                    <td>delete</td>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>password</th>
+                    <th>area</th>
+                    <th>type</th>
+                    <th>request number</th>
+                    <th>delete</th>
                 </tr>
-            </thead>
+            
     
-            <tbody>
+            
                 <?php
                 foreach ($users as $user) {
                     $area = new Area($con);
@@ -79,10 +88,11 @@ if (isset($_POST["submit"])) {
                     ';
                 }
                 ?>
-            </tbody>
+            
         </table>
-        <input type="submit" id="deleteBtn" style="display: none;" name="submit" value="delete">
+        <input  class="submitDelet" type="submit" style="display: none;" name="submit"  class="submitalluser" value="Submit">
     </form>
+            </div>
     <script>
     // Function to check if at least one checkbox is checked
     function atLeastOneCheckboxChecked() {
@@ -97,7 +107,8 @@ if (isset($_POST["submit"])) {
 
     // Function to toggle the display of the submit button
     function toggleSubmitButton() {
-        var submitButton = document.getElementById('deleteBtn');
+        var submitRow = document.getElementById("submit-row");
+        var submitButton = document.querySelector('input[type="submit"][name="submit"]');
         
         if (atLeastOneCheckboxChecked()) {
             submitButton.style.display = "block"; // Show the button
