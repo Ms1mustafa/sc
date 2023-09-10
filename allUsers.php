@@ -1,6 +1,7 @@
 <?php
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Area.php');
 
 $userEmail = $_COOKIE["email"];
 
@@ -69,12 +70,14 @@ if (isset($_POST["submit"])) {
             
                 <?php
                 foreach ($users as $user) {
+                    $area = new Area($con);
+                    $areaName = $area->getAreaName($user["area"]);
                     echo '
                     <tr>
-                        <td><input readonly name="username[]" value="' . $user["username"] . '"></td>
+                        <td>' . $user["username"] . '</td>
                         <td>' . $user["email"] . '</td>
                         <td>' . $user["password"] . '</td>
-                        <td>' . $user["area"] . '</td>
+                        <td>' . $areaName . '</td>
                         <td>' . $user["type"] . '</td>
                         <td>' . $user["requestNum"] . '</td>
                         <td><input type="checkbox" name="delete[]" value="' . $user["username"] . '"> Delete</td>
