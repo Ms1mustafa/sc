@@ -24,13 +24,13 @@
       <h1>Dashboard</h1>
       <nav class="Dashboard-menu">
         <ul>
-          <li class="Drop"><a> Request Duretion </a></li>
+          <li class="Drop"><a href="RequestDuretion.php"> Request Duretion </a></li>
         </ul>
         <ul>
-          <li class="Drop"><a> User Request </a></li>
+          <li class="Drop"><a href="UserRequest.php"> User Request </a></li>
         </ul>
         <ul>
-          <li class="Drop"><a>Type Request </a></li>
+          <li class="Drop"><a href="TypeRequest.php">Type Request </a></li>
         </ul>
         <ul>
           <li class="Drop"><a href="allReq.php">All Request </a></li>
@@ -40,7 +40,101 @@
       </nav>
 
     </section>
-  </main>
+    <section >
+      <label class="LabelRq"for="">Request</label>
+    <table class="alluser">
+                  <tr>
+                <th>Area</th>
+                <th>Don</th>
+                <th>InProcess</th>
+               
+                
+            </tr>
+            <td>Packing</td>
+            <td>30</td>
+            <td>20</td>
+            <tr>
+                    </table>
+    </section>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <section>
+    <label class="LabelRq"for="">User</label>
+    <table class="alluser">
+                  <tr>
+                <th>User</th>
+                <th>All Req</th>
+                <th> Done</th>
+                <th>InProcess</th>
+               
+                
+            </tr>
+            <td>Packing</td>
+            <td>30</td>
+            <td>20</td>
+            <td>20</td>
+            <tr>
+                    </table>
+    </section>
+    <section >
+      <label class="LabelRq"for="">BestRequest</label>
+    <table class="alluser">
+                  <tr>
+                <th>Req No</th>
+                <th>Req Name</th>
+                <th>Duretion</th>
+               
+                
+            </tr>
+            <td>Packing</td>
+            <td>30</td>
+            <td>20</td>
+            <tr>
+                    </table>
+    </section>
+</main>
+<br>
+ 
+<main>
+  <section class="sectiondas">
+  <label class=""for="">MonthlyReport</label>
+    <table class="alluser">
+                  <tr>
+                <th>Area</th>
+                <th>JAN</th>
+                <th> FEB</th>
+                <th>MAR</th>
+                <th>APR</th>
+                <th>MAY</th>
+                <th>JUN</th>
+                <th>JUL</th>
+                <th>AUG</th>
+                <th>SEP</th>
+                <th>OCT</th>
+                <th>NOV</th>
+                <th>DEC</th>
+               
+                
+            </tr>
+            <td>Packing</td>
+            <td>30</td>
+            <td>20</td>
+            <td>20</td>
+            <td>40</td>
+            <td>20</td>
+            <td>20</td>
+            <td>20</td>
+            <td>20</td>
+            <td>20</td>
+            <td>20</td>
+            <td>20</td>
+            <td>20</td>
+            <tr>
+                    </table>
+  </section>
+</main>
+ 
+  
 </body>
 
 </html>

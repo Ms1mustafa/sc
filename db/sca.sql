@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2023 at 12:56 PM
--- Server version: 10.4.28-MariaDB
+-- Generation Time: 11 سبتمبر 2023 الساعة 21:15
+-- إصدار الخادم: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `area`
+-- بنية الجدول `area`
 --
 
 CREATE TABLE `area` (
@@ -34,18 +34,19 @@ CREATE TABLE `area` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `area`
+-- إرجاع أو استيراد بيانات الجدول `area`
 --
 
 INSERT INTO `area` (`id`, `number`, `name`) VALUES
 (1, '1', 'Packing'),
 (3, '2', 'WareHouse'),
-(4, '3', 'Clinker');
+(4, '3', 'Clinker'),
+(6, '4', 'open yared');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `areaitems`
+-- بنية الجدول `areaitems`
 --
 
 CREATE TABLE `areaitems` (
@@ -56,18 +57,19 @@ CREATE TABLE `areaitems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `areaitems`
+-- إرجاع أو استيراد بيانات الجدول `areaitems`
 --
 
 INSERT INTO `areaitems` (`id`, `number`, `areaId`, `name`) VALUES
 (8, '1', '1', 'line 1'),
 (9, '2', '1', 'line 2'),
-(10, '3', '1', 'line 3');
+(10, '3', '1', 'line 3'),
+(11, '4', '4', 'mian stor');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `itemdes`
+-- بنية الجدول `itemdes`
 --
 
 CREATE TABLE `itemdes` (
@@ -77,7 +79,7 @@ CREATE TABLE `itemdes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `itemdes`
+-- إرجاع أو استيراد بيانات الجدول `itemdes`
 --
 
 INSERT INTO `itemdes` (`id`, `number`, `name`) VALUES
@@ -101,7 +103,7 @@ INSERT INTO `itemdes` (`id`, `number`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rejectitemdes`
+-- بنية الجدول `rejectitemdes`
 --
 
 CREATE TABLE `rejectitemdes` (
@@ -117,19 +119,35 @@ CREATE TABLE `rejectitemdes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `rejectitemdes`
+-- إرجاع أو استيراد بيانات الجدول `rejectitemdes`
 --
 
 INSERT INTO `rejectitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHouseQty`, `wereHouseComment`, `rejectsNum`, `qtyBack`, `rejectDate`) VALUES
-(42, '775474732', 'Movable clamp', '11', '11', '', 0, '11', '2023-08-26 14:11:39'),
-(43, '775474732', 'Fixed clamp', '22', '22', '', 0, '40', '2023-08-26 14:11:39'),
-(44, '775474732 ', 'Fixed clamp', '33', '33', '', 1, '40', '2023-08-26 14:13:39'),
-(45, '775474732 ', 'Pipe scaffolding 6m', '44', '44', '', 1, '44', '2023-08-26 14:13:39');
+(96, '123456745', 'Pipe scaffolding3m', '5', '5', '', 0, '5', '2023-09-01 13:36:49'),
+(97, '123456745', 'Pipe scaffolding Under 1M', '5', '5', '', 0, '5', '2023-09-01 13:36:49'),
+(98, '123456745', 'Woode borders 4m', '5', '5', '', 0, '5', '2023-09-01 13:36:49'),
+(99, '123456745 ', 'Pipe scaffolding Under 1M', '6', '6', '', 1, '5', '2023-09-01 13:40:32'),
+(100, '123456745 ', 'Woode borders 3m', '6', '6', '', 1, '5', '2023-09-01 13:40:32'),
+(101, '5555566', 'Woode borders 3m', '4', '4', '', 0, '', '2023-09-01 13:56:12'),
+(102, '5555566', 'Movable clamp', '4', '4', '', 0, '', '2023-09-01 13:56:12'),
+(103, '4545677', 'Woode borders 4m', '', '6', '', 0, '', '2023-09-01 16:19:08'),
+(104, '4545677 ', 'Woode borders 3m', '', '', '', 1, '', '2023-09-01 16:20:28'),
+(105, '222243444', 'Woode borders 3m', '5', '5', '', 0, '', '2023-09-01 18:00:06'),
+(106, '222243444 ', 'Pipe scaffolding 1m', '5', '5', '', 1, '', '2023-09-01 18:01:21'),
+(107, '222243444 ', 'Woode borders 3m', '5', '5', '', 1, '', '2023-09-01 18:01:21'),
+(108, '556789976', 'Woode borders 3m', '4', '4', '', 0, '', '2023-09-01 18:10:42'),
+(109, '556789976 ', 'Woode borders 2m', '5', '', '', 1, '', '2023-09-01 18:13:28'),
+(110, '556789976 ', 'Woode borders 1m', '5', '', '', 1, '', '2023-09-01 18:13:28'),
+(111, '786999', 'Woode borders 2m', '4', '4', '', 0, '', '2023-09-01 18:31:24'),
+(112, '786999 ', 'Woode borders 3m', '5', '', '', 1, '', '2023-09-01 18:43:55'),
+(113, '5655', 'Woode borders 3m', '4', '6', '', 0, '', '2023-09-01 23:18:11'),
+(114, '5655 ', 'Woode borders 2m', '', '', '', 1, '', '2023-09-01 23:23:02'),
+(115, '67578977', 'Woode borders Under 1M', '4', '', '', 0, '', '2023-09-06 22:16:24');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `request`
+-- بنية الجدول `request`
 --
 
 CREATE TABLE `request` (
@@ -167,16 +185,16 @@ CREATE TABLE `request` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `request`
+-- إرجاع أو استيراد بيانات الجدول `request`
 --
 
 INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerNew`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`, `qtyBackStatus`, `qtyBackDate`) VALUES
-(16, '202300001', 'Requester', '775474732', 'Packing', 'line 2', '4', '7', '2', '3 - PM', 'Low More than 5 days', 'Excauter', 'Warehouse', 'Inspector', 're', '2023-08-26 14:11:05.882633', 'no', '2023-08-26 14:13:39.000000', 'accepted', '', 1, 'no', '2023-08-26', 'yes', '2023-08-26 14:14:45.000000', 'yes', '2023-08-26 14:12:56.000000', '2023-08-26 14:15:48.000000', '2023-08-26 14:15:03.000000', 'done', '2023-08-27 13:55:21');
+(40, '202300001', 'Requester', '67578977', 'Packing', 'line 1', '5', '5', '5', '1 - Incident', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', '5555', '2023-09-06 22:15:18.000000', 'no', '2023-09-06 22:16:24.000000', 'pending', '', 0, 'no', '2023-09-16', 'no', NULL, 'no', NULL, NULL, NULL, 'no', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- بنية الجدول `users`
 --
 
 CREATE TABLE `users` (
@@ -192,7 +210,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- إرجاع أو استيراد بيانات الجدول `users`
 --
 
 INSERT INTO `users` (`id`, `token`, `username`, `email`, `password`, `area`, `type`, `requestNum`, `main`) VALUES
@@ -200,12 +218,13 @@ INSERT INTO `users` (`id`, `token`, `username`, `email`, `password`, `area`, `ty
 (26, '230821114122103', 'Warehouse', 'Warehouse@gmail.com', 'W12341234', '', 'wereHouse', '', 'yes'),
 (27, '230821114149170', 'Excauter', 'Excauter@gmail.come', 'E12341234', '', 'execution', '', 'yes'),
 (28, '230821114217156', 'Inspector', 'Inspector@gmail.com', 'I12341234', '1', 'inspector', '', 'yes'),
-(29, '230821114247185', 'Manager', 'Manager@gmail.com', 'M12341234', '', 'owner', '', 'yes');
+(29, '230821114247185', 'Manager', 'Manager@gmail.com', 'M12341234', '', 'owner', '', 'yes'),
+(30, '230910110411191', 'supervisor', 'supervisor@gmail.com', 's12341234', '', 'supervisor', '', 'no');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `werehouseback`
+-- بنية الجدول `werehouseback`
 --
 
 CREATE TABLE `werehouseback` (
@@ -216,17 +235,10 @@ CREATE TABLE `werehouseback` (
   `qtyBack` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `werehouseback`
---
-
-INSERT INTO `werehouseback` (`id`, `workOrderNo`, `itemName`, `wereHouseComment`, `qtyBack`) VALUES
-(54, '775474732', 'Fixed clamp', 'cmt', '15');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `worktype`
+-- بنية الجدول `worktype`
 --
 
 CREATE TABLE `worktype` (
@@ -236,7 +248,7 @@ CREATE TABLE `worktype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `worktype`
+-- إرجاع أو استيراد بيانات الجدول `worktype`
 --
 
 INSERT INTO `worktype` (`id`, `number`, `name`) VALUES
@@ -305,13 +317,13 @@ ALTER TABLE `worktype`
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `areaitems`
 --
 ALTER TABLE `areaitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `itemdes`
@@ -323,25 +335,25 @@ ALTER TABLE `itemdes`
 -- AUTO_INCREMENT for table `rejectitemdes`
 --
 ALTER TABLE `rejectitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `werehouseback`
 --
 ALTER TABLE `werehouseback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `worktype`

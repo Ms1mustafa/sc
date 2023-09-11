@@ -44,12 +44,12 @@ $requests = $req->getRequestDetails();
         <table  class="alluser">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>requester</th>
-                    <th>work order No</td>
-                    <th>request added date</th>
-                    <th>request status</th>
-                    <th>request finish date</th>
+                    <th>Id</th>
+                    <th>Requester</th>
+                    <th>Work order No</td>
+                    <th>Start date</th>
+                    <th>Pending In</th>
+                    <th>Pending Date</th>
                 </tr>
             </thead>
     
