@@ -116,7 +116,7 @@ if ($isNotification == null) {
             echo '
             </tbody>
         </table>
-        <button class="submitQTYReceining" name="dismantling">Receiving</button>
+        <button class="submitQTYReceining" name="dismantling">Send</button>
         ';
     } else {
         echo "<label class='Getrquest'>ReqNo</label>

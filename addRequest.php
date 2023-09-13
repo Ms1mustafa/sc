@@ -90,7 +90,7 @@ if (isset($_POST["submit"])) {
     <title>Request </title>
 </head>
 
-<body>
+<body class="bodyaddrequest">
 <div >
     <a class="Back" href="home.php">
     <i class="fa-solid fa-arrow-left"></i>    Back</a>

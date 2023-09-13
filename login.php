@@ -50,7 +50,7 @@ function getInputValue($name)
      <!------------------- login form -------------------------->
 <div class="login-container" id="login">
 <div class="">
-    <h1 class="welcomlogin"><span class="colorScaffolding">W</span>elcome  <span class="colorScaffolding">T</span>o <span class="colorScaffolding">S</span>caffolding <span class="colorScaffolding">A</span>pplaction </h1>
+<h1 class="welcomlogin"><span class="colorScaffolding">W</span>elcome  <span class="colorScaffolding">T</span>o The <span class="colorScaffolding">S</span>caffolding <span class="colorScaffolding">A</span>pplication </h1>
 <br>
 <br>
           <header><span class="colorScaffolding">L</span>ogin </header>
@@ -69,7 +69,7 @@ function getInputValue($name)
         </div>
         <br>
         <div class="input-box1">
-        <input type="submit" name="submit" class="submitlogin" value="Signin">
+        <input type="submit" name="submit" class="submitlogin" value="Sing in">
         </div>
         
     </form>

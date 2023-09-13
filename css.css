@@ -12,6 +12,13 @@ body {
   background-repeat: no-repeat;
 }
 
+.bodyaddrequest {
+  background: url("images/1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 171vh;
+}
+
 /*---------------------login---------------------------------------*/
 
 .wrapp {
@@ -1713,7 +1720,8 @@ header {
   color: red;
   font-weight: bold;
   position: absolute;
-  top: 125px;
+  top: 116px;
+
 }
 
 .errorrequest {
