@@ -26,6 +26,13 @@ if (isset($_POST["dismantling"])) {
     }
 }
 
+if(isset($_POST["doneReq"])){
+    $success = $request->requesterDisDone($workOrderNo, 'requesterDone');
+    if ($success) {
+        header("location: inspectorPage.php");
+    }
+}
+
 function getInputValue($name)
 {
     if (isset($_POST[$name]))
@@ -63,7 +70,14 @@ function getInputValue($name)
        
         <form method="POST">
             <div id="reqInf"></div>
+
+        <?php 
+        if(@$_GET["status"] == 'done'){
+            echo '<button class="submitDismantling" name="doneReq">Done</button>';
+        }
+        ?>
         </form>
+
 
     </form>
 

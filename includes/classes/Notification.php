@@ -9,12 +9,13 @@ class Notification
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
         $inspector = $data["inspector"];
+        $qtyBackStatus	 = $data["qtyBackStatus"] == 'done' ? '&status=done' : '';
         $status = ucfirst($data["status"]);
         $inspectorDate = FormSanitizer::formatDate($data["inspectorDate"]);
 
         if (empty($this->errorArray)) {
             $html = "
-            <a class='' href='adminQty.php?workOrderNo=" . $workOrderNo . "'>
+            <a class='' href='adminQty.php?workOrderNo=" . $workOrderNo . "$qtyBackStatus'>
             <p>$status, $inspector</p>
             <p>$priority</p>
             <p>Inspector accepted : $inspectorDate</p>

@@ -146,6 +146,7 @@ function getInputValue($name)
                                 </th>
                                 <th><p class="inputfieldGetReqoty"> comment</p></th>
                                 <th><p class="inputfieldGetReqoty"> Qty</p></th>
+                                <th><p class="inputfieldGetReqoty"> delete</p></th>
                             </thead>
                             <tbody id="wereHouseItemDescriptionBody">
 

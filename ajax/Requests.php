@@ -10,7 +10,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND qtyBackStatus = 'no'";
+        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND (qtyBackStatus = 'no' OR qtyBackStatus = 'done')";
 
         if (!$isNoti) {
             $whereClause[] = "workOrderNo = :workOrderNo ";
@@ -19,9 +19,8 @@ class Requests
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
-            $sql .= "ORDER BY inspectorDate DESC";
+            $sql .= " ORDER BY inspectorDate DESC";
         }
-        ;
 
         $query = $con->prepare($sql);
 
@@ -45,6 +44,7 @@ class Requests
 
         return $array;
     }
+
 
     public static function getRequestsAction($con, $isNoti = null, $admin, $workOrderNo = null)
     {
@@ -241,7 +241,7 @@ class Requests
     {
         $sql = "SELECT * FROM rejectitemdes WHERE workOrderNo = :workOrderNo ";
 
-        if($last){
+        if ($last) {
             $sql .= "AND rejectsNum = (SELECT MAX(rejectsNum) FROM rejectitemdes WHERE workOrderNo = :workOrderNo)";
         }
 

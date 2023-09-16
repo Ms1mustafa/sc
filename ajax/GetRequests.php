@@ -186,13 +186,12 @@ if ($isNotification == null) {
                     <th >QTY Req</th>
                     <th>QTY Issued</th>
                     <th>Comment</th>
-              
             ';
             }
             foreach ($lastrejectItems as $item) {
                 if ($status != 'rejected') {
                     echo '
-                    <tr >
+                    <tr class="itemTr">
                         <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>
