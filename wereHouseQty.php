@@ -42,7 +42,11 @@ if (isset($_POST["submit"])) {
     }
 
     if ($success) {
-        header("location: wereHouse.php");
+        if ($resent == 'yes') {
+            header("location: wereHousePrint.php?req=" . $workOrderNo . "&rejected=1");
+        } else {
+            header("location: wereHousePrint.php?req=" . $workOrderNo . "");
+        }
     }
 }
 
@@ -51,7 +55,7 @@ if (isset($_POST["change"])) {
     $success = $request->transfer($newUser, 'wereHouse', $workOrderNo);
 
     if ($success) {
-        header("location: wereHouse.php");
+        header("location: wereHousePrint.php?req=" . $workOrderNo . "");
     }
 }
 

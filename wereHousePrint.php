@@ -1,6 +1,7 @@
 <?php
 
 $workOrderNo = $_GET["req"];
+$isRejected = @$_GET["rejected"];
 
 // require_once('ajax/GetWereHousePrint.php');
 
@@ -43,7 +44,7 @@ $workOrderNo = $_GET["req"];
         $(window).on("load", function () {
             $.get(
                 "ajax/GetWereHousePrint.php",
-                { workOrderNo: '<?php echo $workOrderNo; ?>' },
+                { workOrderNo: '<?php echo $workOrderNo; ?>', isRejected: '<?php echo $isRejected; ?>' },
                 function (data) {
                     $("#reqInf").html(data);
                 }
