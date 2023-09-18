@@ -178,7 +178,7 @@ if ($isNotification == null) {
             echo '
                 <main>
                 <div>
-                <table class="description" >
+                <table class="itemestable " >
             ';
             if ($status != 'rejected') {
                 echo '
@@ -216,7 +216,7 @@ if ($isNotification == null) {
         }
         if ($status == 'rejected' || $status == 'backExecuter') {
             echo '
-          
+         
             <textarea class="rejectreason2" readonly>Reject Reason : ' . $rejectReason . '</textarea>
                 </div>
             ';

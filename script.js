@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
               <tr class="itemTr">
                   <td class='pipe'><input class='pipe1 cantEdit' name="itemName[]" value="${selectedValue}" readonly></td>
                   <td><input class='pipe2' type="number" min="1" name="itemQty[]"></td>
-                  <td><button type="button" class="deleteTr">delete</button></td>
+                 
+                  <td> <a class="deleteTr" ><i class="fa-sharp fa-solid fa-xmark"></i></a>  </td>
               </tr>
           `;
 
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   <td class='pipe'><input class='pipe1 cantEdit' name="wereHouseItemName[]" value="${wereHouseSelectedValue}" readonly></td>
                   <td><textarea  class='pipecomitm' type="text" name="wereHouseComment[]"></textarea ></td>
                   <td><input class='pipiss' type="number" min="1" name="wereHouseItemQty[]"></td>
-                  <td><button type="button" class="deleteTr">delete</button></td>
+                  <td> <a class="deleteTr" ><i class="fa-sharp fa-solid fa-xmark"></i></a></td>
               </tr>
           `;
 
