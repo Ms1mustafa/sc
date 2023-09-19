@@ -24,9 +24,9 @@ $request = new Request($con);
 <html lang="en">
 
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
     <link rel="stylesheet" href="css.css">
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -36,40 +36,67 @@ $request = new Request($con);
 </head>
 
 <body>
-<div >
-    <a  class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
-    
-</div>
-<div class="wrappereq">
-        
+    <audio id="notificationSound">
+        <source src="images/smile-ringtone.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div>
+        <a class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
+
+    </div>
+    <div class="wrappereq">
+
         <div class="login-container" id="login">
-   <p class="nameadminrequest"> <?php echo $adminName; ?></p>
-    <br>
-    <p  class="nameadminrequest">Notification</p>
-    <div id="result"></div>
+            <p class="nameadminrequest">
+                <?php echo $adminName; ?>
+            </p>
+            <br>
+            <p class="nameadminrequest">Notification</p>
+            <div id="result"></div>
 
-    <script>
-        let timeout = 0;
+            <button id="playSoundButton">Play Sound</button>
 
-        function loadRequests() {
-            $.get(
-                "ajax/GetRequests.php",
-                { isNotification: true, executer: '<?php echo $adminName; ?>' },
-                function (data) {
-                    $("#result").html(data);
+            <script>
+                let timeout = 0;
+                let previousContent = "";
+                
+                document.getElementById("playSoundButton").addEventListener("click", function () {
+                    playNotificationSound();
+                });
+
+                function playNotificationSound() {
+                    var audio = document.getElementById("notificationSound");
+                    audio.play();
+                    // document.getElementById("playSoundButton").click();
                 }
-            );
-        }
 
-        function startTimer() {
-            loadRequests();
-            timeout = 3000;
-            setTimeout(startTimer, timeout);
-        }
 
-        startTimer();
+                function loadRequests() {
+                    $.get(
+                        "ajax/GetRequests.php",
+                        { isNotification: true, executer: '<?php echo $adminName; ?>' },
+                        function (data) {
+                            var parser = new DOMParser();
+                            var doc = parser.parseFromString(data, 'text/html');
+                            var aElements = doc.querySelectorAll('a.notification');
+                            var numberOfAElements = aElements.length;
 
-    </script>
+                            if (+numberOfAElements > previousContent) {
+                                playNotificationSound();
+                            }
+
+                            $("#result").html(data);
+
+                            previousContent = numberOfAElements;
+
+                            setTimeout(loadRequests, 3000);
+                        }
+                    );
+                }
+
+                loadRequests();
+            </script>
+
 </body>
 
 </html>
