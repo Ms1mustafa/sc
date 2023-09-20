@@ -415,6 +415,17 @@ class Request
         return $array;
     }
 
+    public function getReqNum()
+    {
+        $sql = "SELECT * FROM request ";
+
+        $query = $this->con->prepare($sql);
+
+        $query->execute();
+
+        return $query->rowCount() + 1;
+    }
+
     public function getError($error)
     {
         if (in_array($error, $this->errorArray)) {

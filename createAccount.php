@@ -4,22 +4,9 @@ include_once('includes/classes/Account.php');
 include_once('includes/classes/Area.php');
 
 $account = new Account($con);
-$requestNum = $account->getAccountNum($admin = true);
-
-$numberOfElements = $requestNum;
 
 $area = new Area($con);
 $getArea = $area->getArea();
-
-$i = 1;
-$requestNum = "";
-$currentYear = date("Y");
-while ($i <= $numberOfElements) {
-  $requestNum = str_pad($i, 5, '0', STR_PAD_LEFT);
-  $requestNum = $currentYear . $requestNum;
-  $i++;
-}
-
 
 $Token = @date("ymdhis");
 $RandomNumber = rand(100, 200);
@@ -32,12 +19,10 @@ if (isset($_POST["submit"])) {
   $type = FormSanitizer::sanitizeFormString($_POST["type"]);
   $areaName = FormSanitizer::sanitizeFormString($_POST["areaName"]);
 
-  if ($_POST["type"] == "admin") {
-    $success = $account->register($NewToken, $username, $email, $password, $type, $requestNum);
-  } elseif ($_POST["type"] == "inspector") {
-    $success = $account->register($NewToken, $username, $email, $password, $type, "", $areaName);
+  if ($_POST["type"] == "inspector") {
+    $success = $account->register($NewToken, $username, $email, $password, $type, $areaName);
   } else {
-    $success = $account->register($NewToken, $username, $email, $password, $type, "");
+    $success = $account->register($NewToken, $username, $email, $password, $type);
   }
 
   if ($success) {
@@ -84,10 +69,6 @@ function getInputValue($name)
       </div>
       <br>
       <br>
-      <p class="adminNameowner">
-        Rq num:
-        <?php echo $requestNum; ?>
-      </p>
       <br>
       <div class="input-box">
         <form method="POST">
@@ -124,8 +105,8 @@ function getInputValue($name)
         <option value="supervisor">Supervisor</option>
       </select>
       <br>
-<br>
-      <select  class="inputfieldownerselect-areatAccount" name="areaName" id="areas" style="display: none;">
+      <br>
+      <select class="inputfieldownerselect-areatAccount" name="areaName" id="areas" style="display: none;">
         <?php echo $getArea; ?>
       </select>
       <br>

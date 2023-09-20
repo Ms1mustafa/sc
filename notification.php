@@ -54,48 +54,43 @@ $request = new Request($con);
             <p class="nameadminrequest">Notification</p>
             <div id="result"></div>
 
-            <button id="playSoundButton" hidden>Play Sound</button>
-
             <script>
-                let timeout = 0;
-                let previousContent = "";
-                
-                document.getElementById("playSoundButton").addEventListener("click", function () {
+    let timeout = 0;
+    let previousContent = "";
+    let isFirstLoad = true; // Flag to track the initial page load
+
+    function playNotificationSound() {
+        var audio = document.getElementById("notificationSound");
+        audio.play();
+    }
+
+    function loadRequests() {
+        $.get(
+            "ajax/GetRequests.php",
+            { isNotification: true, executer: '<?php echo $adminName; ?>' },
+            function (data) {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(data, 'text/html');
+                var aElements = doc.querySelectorAll('a.notification');
+                var numberOfAElements = aElements.length;
+
+                if (!isFirstLoad && +numberOfAElements > previousContent) {
                     playNotificationSound();
-                });
-
-                function playNotificationSound() {
-                    var audio = document.getElementById("notificationSound");
-                    audio.play();
-                    // document.getElementById("playSoundButton").click();
                 }
 
+                $("#result").html(data);
 
-                function loadRequests() {
-                    $.get(
-                        "ajax/GetRequests.php",
-                        { isNotification: true, executer: '<?php echo $adminName; ?>' },
-                        function (data) {
-                            var parser = new DOMParser();
-                            var doc = parser.parseFromString(data, 'text/html');
-                            var aElements = doc.querySelectorAll('a.notification');
-                            var numberOfAElements = aElements.length;
+                previousContent = numberOfAElements;
+                isFirstLoad = false; // Set the flag to false after the first load
 
-                            if (+numberOfAElements > previousContent) {
-                                playNotificationSound();
-                            }
+                setTimeout(loadRequests, 3000);
+            }
+        );
+    }
 
-                            $("#result").html(data);
+    loadRequests();
+</script>
 
-                            previousContent = numberOfAElements;
-
-                            setTimeout(loadRequests, 3000);
-                        }
-                    );
-                }
-
-                loadRequests();
-            </script>
 
 </body>
 

@@ -36,10 +36,14 @@ $request = new Request($con);
 </head>
 
 <body>
-<div >
-    <a  class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
-    
-</div>
+    <audio id="notificationSound">
+        <source src="images/smile-ringtone.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div>
+        <a class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
+
+    </div>
     <div class="wrappereq">
 
 
@@ -62,30 +66,44 @@ $request = new Request($con);
 
             </div>
         </div>
-        
+
     </div>
 
     <script>
         let timeout = 0;
+        let previousContent = "";
+        let isFirstLoad = true; // Flag to track the initial page load
+
+        function playNotificationSound() {
+            var audio = document.getElementById("notificationSound");
+            audio.play();
+        }
 
         function loadRequests() {
             $.get(
                 "ajax/GetAdminReq.php",
                 { isNotification: true, admin: '<?php echo $adminName; ?>' },
                 function (data) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(data, 'text/html');
+                    var aElements = doc.querySelectorAll('a.notification');
+                    var numberOfAElements = aElements.length;
+
+                    if (!isFirstLoad && +numberOfAElements > previousContent) {
+                        playNotificationSound();
+                    }
+
                     $("#result").html(data);
+
+                    previousContent = numberOfAElements;
+                    isFirstLoad = false; // Set the flag to false after the first load
+
+                    setTimeout(loadRequests, 3000);
                 }
             );
         }
 
-        function startTimer() {
-            loadRequests();
-            timeout = 5000;
-            setTimeout(startTimer, timeout);
-        }
-
-        startTimer();
-
+        loadRequests();
     </script>
 </body>
 
