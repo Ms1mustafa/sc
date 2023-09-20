@@ -54,7 +54,7 @@ $request = new Request($con);
             <p class="nameadminrequest">Notification</p>
             <div id="result"></div>
 
-            <button id="playSoundButton">Play Sound</button>
+            <button id="playSoundButton" hidden>Play Sound</button>
 
             <script>
                 let timeout = 0;
