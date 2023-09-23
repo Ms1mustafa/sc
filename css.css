@@ -1381,8 +1381,8 @@ header {
 
   .submitQTYReceining {
     position: relative;
+    width: 80%;
 
-    width: 94%;
   }
 
   .pipiss {
@@ -1498,6 +1498,7 @@ header {
 
 .reqhr {
   width: 25%;
+  margin-top: 2%;
   border: 1px solid #000;
 }
 
@@ -1529,6 +1530,8 @@ header {
 
   .reqhr {
     width: 100%;
+
+
   }
 }
 
