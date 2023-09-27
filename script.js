@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 itemDescriptionBody?.addEventListener("keydown", function (event) {
   const target = event.target;
   if (target.classList.contains("cantEdit")) {
@@ -137,3 +136,65 @@ const printButton = document.getElementById("printButton");
 printButton?.addEventListener("click", function () {
   window.print();
 });
+
+function notificationOn() {
+  window.addEventListener("load", () => {
+    if ("Notification" in window) {
+      // Check if notifications are allowed
+      if (Notification.permission === "granted") {
+        // Notifications are allowed
+      } else if (Notification.permission === "denied") {
+        // User has denied notification permission
+        alert(
+          "You have denied notification permission. You can enable it in your browser settings."
+        );
+      } else {
+        // Request permission to send notifications
+        Notification.requestPermission()
+          .then((permission) => {
+            if (permission === "granted") {
+              // Notifications are allowed
+            } else if (permission === "denied") {
+              // User has denied notification permission
+              alert(
+                "You have denied notification permission. You can enable it in your browser settings."
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Error requesting notification permission:", error);
+          });
+      }
+    }
+  });
+}
+
+function sendNotification(title, body, icon, url) {
+  if ("Notification" in window) {
+    // Check if notifications are allowed
+    if (Notification.permission === "granted") {
+      // Create and display a notification
+      var notification = new Notification(title, {
+        body: body,
+        icon: icon, // You can specify an icon image
+      });
+
+      // Handle click event if the user interacts with the notification
+      notification.onclick = function () {
+        // Open the specified URL when the notification is clicked
+        window.open(url, "_blank");
+      };
+    } else if (Notification.permission !== "denied") {
+      // Request permission to send notifications (same as in the previous code)
+      Notification.requestPermission()
+        .then((permission) => {
+          if (permission === "granted") {
+            // You can send notifications here
+          }
+        })
+        .catch((error) => {
+          console.error("Error requesting notification permission:", error);
+        });
+    }
+  }
+}

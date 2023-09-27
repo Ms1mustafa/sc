@@ -30,16 +30,13 @@ $request = new Request($con);
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css.css?1999">
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="css.css">
     <title>Request </title>
 </head>
 
 <body>
-    <audio id="notificationSound">
-        <source src="images/smile-ringtone.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
     <div>
         <a class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
 
@@ -70,40 +67,41 @@ $request = new Request($con);
     </div>
 
     <script>
-        let timeout = 0;
-        let previousContent = "";
-        let isFirstLoad = true; // Flag to track the initial page load
+    notificationOn();
 
-        function playNotificationSound() {
-            var audio = document.getElementById("notificationSound");
-            audio.play();
-        }
+    let timeout = 0;
+    let previousContent = "";
+    let isFirstLoad = true; // Flag to track the initial page load
 
-        function loadRequests() {
-            $.get(
-                "ajax/GetAdminReq.php",
-                { isNotification: true, admin: '<?php echo $adminName; ?>' },
-                function (data) {
-                    var parser = new DOMParser();
-                    var doc = parser.parseFromString(data, 'text/html');
-                    var aElements = doc.querySelectorAll('a.notification');
-                    var numberOfAElements = aElements.length;
+    function loadRequests() {
+        $.get(
+            "ajax/GetAdminReq.php", {
+                isNotification: true,
+                admin: '<?php echo $adminName; ?>'
+            },
+            function(data) {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(data, 'text/html');
+                var aElements = doc.querySelectorAll('a.notification');
+                var numberOfAElements = aElements.length;
 
-                    if (!isFirstLoad && +numberOfAElements > previousContent) {
-                        playNotificationSound();
-                    }
-
-                    $("#result").html(data);
-
-                    previousContent = numberOfAElements;
-                    isFirstLoad = false; // Set the flag to false after the first load
-
-                    setTimeout(loadRequests, 3000);
+                if (!isFirstLoad && +numberOfAElements > previousContent) {
+                    sendNotification(`New notification from ${doc.querySelector('span.sender').textContent}`,
+                        "tap to see the details", "images/notification.png",
+                        window.location.href);
                 }
-            );
-        }
 
-        loadRequests();
+                $("#result").html(data);
+
+                previousContent = numberOfAElements;
+                isFirstLoad = false; // Set the flag to false after the first load
+
+                setTimeout(loadRequests, 3000);
+            }
+        );
+    }
+
+    loadRequests();
     </script>
 </body>
 

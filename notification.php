@@ -31,15 +31,12 @@ $request = new Request($con);
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
 
     <title>Notification</title>
 </head>
 
 <body>
-    <audio id="notificationSound">
-        <source src="images/smile-ringtone.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
     <div>
         <a class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
 
@@ -53,35 +50,37 @@ $request = new Request($con);
             <br>
             <p class="nameadminrequest">Notification</p>
             <div id="result"></div>
+        </div>
+    </div>
+    <script>
+    notificationOn();
 
-            <script>
     let timeout = 0;
     let previousContent = "";
     let isFirstLoad = true; // Flag to track the initial page load
 
-    function playNotificationSound() {
-        var audio = document.getElementById("notificationSound");
-        audio.play();
-    }
-
     function loadRequests() {
         $.get(
-            "ajax/GetRequests.php",
-            { isNotification: true, executer: '<?php echo $adminName; ?>' },
-            function (data) {
+            "ajax/GetRequests.php", {
+                isNotification: true,
+                executer: '<?php echo $adminName; ?>'
+            },
+            function(data) {
                 var parser = new DOMParser();
                 var doc = parser.parseFromString(data, 'text/html');
                 var aElements = doc.querySelectorAll('a.notification');
                 var numberOfAElements = aElements.length;
 
                 if (!isFirstLoad && +numberOfAElements > previousContent) {
-                    playNotificationSound();
+                    sendNotification(`New notification from ${doc.querySelector('span.sender').textContent}`,
+                        "tap to see the details", "images/notification.png",
+                        window.location.href);
                 }
 
                 $("#result").html(data);
 
                 previousContent = numberOfAElements;
-                isFirstLoad = false; // Set the flag to false after the first load
+                isFirstLoad = false;
 
                 setTimeout(loadRequests, 3000);
             }
@@ -89,7 +88,7 @@ $request = new Request($con);
     }
 
     loadRequests();
-</script>
+    </script>
 
 
 </body>

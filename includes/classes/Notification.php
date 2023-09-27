@@ -9,14 +9,16 @@ class Notification
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
         $inspector = $data["inspector"];
-        $qtyBackStatus	 = $data["qtyBackStatus"] == 'done' ? '&status=done' : '';
-        $status = ucfirst($data["status"]);
+        $wereHouse = $data["wereHouse"];
+        $sender = $data["qtyBackStatus"] == 'done' ? $wereHouse : $inspector;
+        $qtyBackStatus = $data["qtyBackStatus"] == 'done' ? '&status=done' : '';
+        $status = $data["qtyBackStatus"] == 'done' ? 'Done' : ucfirst($data["status"]);
         $inspectorDate = FormSanitizer::formatDate($data["inspectorDate"]);
 
         if (empty($this->errorArray)) {
             $html = "
-            <a class='' href='adminQty.php?workOrderNo=" . $workOrderNo . "$qtyBackStatus'>
-            <p>$status, $inspector</p>
+            <a class='notification' href='adminQty.php?workOrderNo=" . $workOrderNo . "$qtyBackStatus'>
+            <p>$status, <span class='sender'>$sender</span></p>
             <p>$priority</p>
             <p>Inspector accepted : $inspectorDate</p>
             </a>
@@ -97,7 +99,7 @@ class Notification
     public function getExecuterNotification($data)
     {
         $issued = $data["issued"] == 'yes' ? true : false;
-        $reqNo =  !$issued ? $data["reqNo"] . ', ' : '';
+        $reqNo = !$issued ? $data["reqNo"] . ', ' : '';
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
         $adminAddedName = $data["adminAddedName"];
@@ -117,7 +119,7 @@ class Notification
         if (empty($this->errorArray)) {
             $html = "
             <a  class='notification'  href='qty.php?qtyNo=" . $workOrderNo . $new . " $reject'>
-            <p>$reqNo" . $type . ", " . $sender . "</p>
+            <p class='senderDetils'>$reqNo" . $type . ", <span class='sender'>" . $sender . "</span></p>
             <p>$priority</p>
             <p>" . $this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate, $qtyBackDate) . "</p>
             </a>
@@ -149,7 +151,7 @@ class Notification
             $html = "
             
                 <a class='notification' href='wereHouseQty.php?qtyNo=" . $workOrderNo . $resent . "'>
-                <p>Executer: $executer</p>
+                <p>Executer: <span class='sender'>$executer</span></p>
                 <br>
                 <p>$priority</p>
                 <br>
@@ -177,7 +179,7 @@ class Notification
         if (empty($this->errorArray)) {
             $html = "
                 <a   class='notification' href='inspectorQty.php?qtyNo=" . $workOrderNo . "'>
-                <p>Executer : $executer</p>
+                <p>Executer : <span class='sender'>$executer</span></p>
                 <p>$priority</span></p>
             ";
             if ($status == 'resentInspector') {
