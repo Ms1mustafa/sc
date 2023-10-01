@@ -63,7 +63,6 @@ if (isset($_POST["submit"])) {
                                 <th>password</th>
                                 <th>area</th>
                                 <th>type</th>
-                                <th>request number</th>
                                 <th>delete</th>
                             </tr>
 
@@ -80,7 +79,6 @@ if (isset($_POST["submit"])) {
                         <td>' . $user["password"] . '</td>
                         <td>' . $areaName . '</td>
                         <td>' . $user["type"] . '</td>
-                        <td>' . $user["requestNum"] . '</td>
                         <td><input type="checkbox" name="delete[]" value="' . $user["username"] . '"> Delete</td>
                         </tr>
                     ';

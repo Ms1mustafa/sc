@@ -2,8 +2,11 @@
 
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Area.php');
+include_once('includes/classes/Powers.php');
 
+$userEmail = $_COOKIE["email"];
 $account = new Account($con);
+Powers::owner($account, $userEmail);
 
 $area = new Area($con);
 $getArea = $area->getArea();

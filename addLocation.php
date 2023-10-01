@@ -1,8 +1,12 @@
 <?php
 include_once('includes/classes/Area.php');
 include_once('includes/classes/FormSanitizer.php');
+include_once('includes/classes/Account.php');
+include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
+$account = new Account($con);
+Powers::owner($account, $userEmail);
 
 if (!$userEmail) {
   header("location: login.php");
@@ -39,12 +43,12 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-<div>
-        <a class="Back" href="ownerPage.php">
-            <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
+  <div>
+    <a class="Back" href="ownerPage.php">
+      <i class="fa-solid fa-arrow-left"></i> Back</a>
+  </div>
   <div class="wrappereq">
-        <div class="login-container" id="login">
+    <div class="login-container" id="login">
       <div class="top">
 
         <header class="nameowner">Add Location...</header>
@@ -63,14 +67,14 @@ if (isset($_POST["submit"])) {
       <br>
       <br>
       <br>
-      <div >
+      <div>
 
-  
+
         <input type="text" class="inputfieldarea3" name="itemName" placeholder="Add Item" required>
       </div>
       <br>
       <br>
-      <div >
+      <div>
         <button type="submit" name="submit" class="submitlocation">Add</button>
       </div>
 

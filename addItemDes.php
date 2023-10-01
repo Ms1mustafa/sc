@@ -6,8 +6,7 @@ include_once('includes/classes/Powers.php');
 
 $userEmail = $_COOKIE["email"];
 $account = new Account($con);
-
-// Powers::owner($account, $userEmail);
+Powers::owner($account, $userEmail);
 
 $area = new ItemDes($con);
 $getAreaId = $area->getIdNum();
@@ -38,34 +37,36 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-<div>
-        <a class="Back" href="ownerPage.php">
-            <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
+  <div>
+    <a class="Back" href="ownerPage.php">
+      <i class="fa-solid fa-arrow-left"></i> Back</a>
+  </div>
   <div class="wrappereq">
-        <div class="login-container" id="login">
+    <div class="login-container" id="login">
       <div class="top">
 
         <header class="nameowner">Add Item...</header>
       </div>
       <div class="input-item">
 
-  <form method="POST">
-    <label class="Itemlabel">Item Description id</label>
-    <br>
-    <br>
-    <input class="iteminput" type="text" name="itemdesId" value="<?php echo $getAreaId; ?>" placeholder="id" readonly required>
-    <br>
-    <br>
-    <label  class="Itemlabel" sfor="itemdesName">Item Description </label>
-    <br>
-    <br>
-    <input  class="iteminput" type="text" name="itemdesName" id="itemdesName" placeholder="Item Description name" required>
-    <br>
-    <br>
-    <button  class="Additem"name="submit">Add</button>
-    <br>
-  </form>
+        <form method="POST">
+          <label class="Itemlabel">Item Description id</label>
+          <br>
+          <br>
+          <input class="iteminput" type="text" name="itemdesId" value="<?php echo $getAreaId; ?>" placeholder="id"
+            readonly required>
+          <br>
+          <br>
+          <label class="Itemlabel" sfor="itemdesName">Item Description </label>
+          <br>
+          <br>
+          <input class="iteminput" type="text" name="itemdesName" id="itemdesName" placeholder="Item Description name"
+            required>
+          <br>
+          <br>
+          <button class="Additem" name="submit">Add</button>
+          <br>
+        </form>
 </body>
 
 </html>
