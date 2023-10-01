@@ -1,10 +1,28 @@
+<?php
+include_once('includes/classes/Account.php');
+include_once('includes/classes/Powers.php');
+include_once('includes/classes/Request.php');
+
+$userEmail = $_COOKIE["email"];
+$account = new Account($con);
+$isAcc = $account->getAccountDetails($userEmail, true);
+
+if (!$userEmail || !$isAcc) {
+  header("location: login.php");
+}
+
+Powers::Safety($account, $userEmail);
+
+$request = new Request($con);
+$requests = $request->getAllRequests('rejected');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
- 
-  
+
+
   <link rel="stylesheet" href="css.css?1999">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,35 +32,41 @@
 </head>
 
 <body>
-<div>
-        <a class="Back" href="Safety.php">
-            <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
-    <div class="wrappereq">
+  <div>
+    <a class="Back" href="Safety.php">
+      <i class="fa-solid fa-arrow-left"></i> Back</a>
+  </div>
+  <div class="wrappereq">
 
 
-<div class="login-container" id="login">
+    <div class="login-container" id="login">
 
-    <div class="input-box">
-    <section >
-     
-    <table class="Accipted">
-                  <tr>
-                <th>Request NO</th>
-                <th>Request Name</th>
-                
-                <th>Type</th>
-                            
-            </tr>
-            <td>202300001</td>
-            <td>Basem</td>
-            <td>Rejected</td>
-           
+      <div class="input-box">
+        <section>
+
+          <table class="Accipted">
             <tr>
-                    </table>
-    </section>
-</div>
-</div>
-</div>
+              <th>Request NO</th>
+              <th>Request Name</th>
+              <th>Type</th>
+
+            </tr>
+            <?php
+            foreach ($requests as $req) {
+              echo '
+                              <tr>
+                                <td>' . $req["reqNo"] . '</td>
+                                <td>' . $req["adminAddedName"] . '</td>
+                                <td>' . $req["status"] . '</td>
+                              <tr>
+                            ';
+            }
+            ?>
+          </table>
+        </section>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

@@ -103,6 +103,7 @@ function getInputValue($name)
         <option value="execution">Execution</option>
         <option value="wereHouse">WereHouse</option>
         <option value="supervisor">Supervisor</option>
+        <option value="safety">Safety</option>
       </select>
       <br>
       <br>

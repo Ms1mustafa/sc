@@ -415,6 +415,38 @@ class Request
         return $array;
     }
 
+    public function getAllRequests($status = false)
+    {
+
+        $sql = "SELECT * FROM request ";
+
+        if ($status === 'accepted' || $status === 'rejected') {
+            $sql .= "WHERE status = :status ";
+        } elseif ($status === 'done') {
+            $sql .= "WHERE qtyBackStatus = :status ";
+        } elseif ($status === true) {
+            $sql .= "WHERE status = 'accepted' AND qtyBackStatus != 'done' AND qtyBackStatus != 'no' ";
+        }
+
+
+
+        $query = $this->con->prepare($sql);
+
+        if ($status && $status !== true) {
+            $query->bindValue(":status", $status);
+        }
+
+        $query->execute();
+
+        $rows = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
     public function getReqNum()
     {
         $sql = "SELECT * FROM request ";

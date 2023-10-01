@@ -41,27 +41,32 @@ class Powers
             header("location: index.php");
         }
     }
-    public static function goTo($account, $userEmail)
+    public static function Safety($account, $userEmail)
     {
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
-        if(!$userEmail){
+        if (!$userEmail || ($type != 'safety' && $type != 'owner')) {
+            header("location: index.php");
+        }
+    }
+    public static function goTo ($account, $userEmail)
+    {
+        $type = $account->getAccountDetails($userEmail, null, null, null, true);
+
+        if (!$userEmail) {
             header("location: login.php");
-        }
-        elseif ($type == 'owner') {
+        } elseif ($type == 'owner') {
             header("location: ownerPage.php");
-        }
-        elseif ($type == 'admin') {
+        } elseif ($type == 'admin') {
             header("location: home.php");
-        }
-        elseif ($type == 'execution') {
+        } elseif ($type == 'execution') {
             header("location: notification.php");
-        }
-        elseif ($type == 'wereHouse') {
+        } elseif ($type == 'wereHouse') {
             header("location: wereHouse.php");
-        }
-        elseif ($type == 'inspector') {
+        } elseif ($type == 'inspector') {
             header("location: inspectorPage.php");
+        } elseif ($type == 'safety') {
+            header("location: Safety.php");
         }
     }
 }

@@ -1,5 +1,21 @@
+<?php
+include_once('includes/classes/Account.php');
+include_once('includes/classes/Powers.php');
+
+$userEmail = $_COOKIE["email"];
+$account = new Account($con);
+$isAcc = $account->getAccountDetails($userEmail, true);
+
+if (!$userEmail || !$isAcc) {
+    header("location: login.php");
+}
+
+Powers::Safety($account, $userEmail);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +27,9 @@
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <title>Request </title>
 </head>
+
 <body>
-<div>
+    <div>
         <a class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
 
     </div>
@@ -20,10 +37,10 @@
 
 
         <div class="login-container" id="login">
-                      <div class="input-box">
+            <div class="input-box">
                 <button class="inputfieldowner"><a href="SafetyRequisted.php">Requisted</a></button>
             </div>
-                       <br>
+            <br>
             <div class="input-box">
                 <button class="inputfieldowner"> <a href="Accipted.php">Accipted</a></button>
             </div>
@@ -39,11 +56,11 @@
             <div class="input-box">
                 <button class="inputfieldowner"> <a href="dismantling.php"> Dismantling</a></button>
             </div>
-                   </div>
         </div>
+    </div>
 
     </div>
-    
+
 </body>
 
 </html>
