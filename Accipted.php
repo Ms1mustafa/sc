@@ -61,6 +61,8 @@ $requests = $request->getAllRequests('accepted');
                               <tr>
                             ';
             }
+            if (!$requests)
+              echo '<tr><td colspan="3">No data</td></tr>';
             ?>
           </table>
         </section>
