@@ -7,16 +7,13 @@ include_once('includes/classes/WorkType.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
-
-if (!$userEmail) {
-    header("location: login.php");
-}
-
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
+$userEmail = $account->getAccountEmail($userToken);
+
 $inspectors = $account->getAccount(true, false, true, true);
 
-Powers::admin($account, $userEmail);
+Powers::admin($account, $userToken);
 
 $workOrderNo = $_GET["workOrderNo"];
 
@@ -77,23 +74,25 @@ if (isset($_POST["delete"])) {
 </head>
 
 <body class="bodyaddrequest">
-<div>
-<a class="Back" href="adminRequests.php">
-    <i class="fa-solid fa-arrow-left"></i>    Back</a>
-</div>
+    <div>
+        <a class="Back" href="adminRequests.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+    </div>
 
     <div class="newrequest">
-        
+
         <div class="login-container" id="login">
             <div class="top">
 
-                <header  class="namerequest">EditRequest</header>
+                <header class="namerequest">EditRequest</header>
             </div>
             <br>
             <div class="input-box">
 
                 <form method="POST">
-                <p class="errorrequest"> <?php echo $request->getError(constants::$requestFailed); ?></p>
+                    <p class="errorrequest">
+                        <?php echo $request->getError(constants::$requestFailed); ?>
+                    </p>
                     <label class="requestAction">ReqNo :
                         <?php echo $getRequest['reqNo']; ?>
                     </label>
@@ -103,7 +102,7 @@ if (isset($_POST["delete"])) {
                         <?php echo $workOrderNo; ?>
                     </label>
                     <br>
-                   
+
                     <br>
                     <label class="requestAction">Requester :
                         <?php echo $getRequest['adminAddedName']; ?>
@@ -162,7 +161,9 @@ if (isset($_POST["delete"])) {
                     <br>
                     <br>
                     <select class="inputfieldrequestAction" name="workType" required <?php echo $canEdit; ?>>
-                        <option selected value="<?php echo $getRequest['workType'] ?? ''; ?>"><?php echo $getRequest['workType'] ?? 'Select work type'; ?></option>
+                        <option selected value="<?php echo $getRequest['workType'] ?? ''; ?>">
+                            <?php echo $getRequest['workType'] ?? 'Select work type'; ?>
+                        </option>
                         <?php echo $getWT; ?>
                     </select>
                     <br>
@@ -171,7 +172,9 @@ if (isset($_POST["delete"])) {
                     <br>
                     <br>
                     <select class="inputfieldrequestAction" name="inspector" id="inspector" required <?php echo $canEdit; ?>>
-                        <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>"><?php echo $getRequest['inspector'] ?? 'select inspector'; ?></option>
+                        <option selected value="<?php echo $getRequest['inspector'] ?? ''; ?>">
+                            <?php echo $getRequest['inspector'] ?? 'select inspector'; ?>
+                        </option>
                         <?php echo $inspectors; ?>
                     </select>
                     <br>
@@ -179,7 +182,8 @@ if (isset($_POST["delete"])) {
                     <label class="requestActionArea">Notes</label>
                     <br>
                     <br>
-                    <textarea class="inputfieldnotAction" name="notes" ><?php echo $getRequest['notes']; ?> <?php echo $canEdit; ?></textarea>
+                    <textarea class="inputfieldnotAction"
+                        name="notes"><?php echo $getRequest['notes']; ?> <?php echo $canEdit; ?></textarea>
                     <br>
                     <br>
                     <?php
