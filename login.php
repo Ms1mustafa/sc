@@ -1,6 +1,7 @@
 <?php
 
 include_once('includes/classes/Account.php');
+include_once('includes/classes/Encryption.php');
 
 $userEmail = @$_COOKIE["email"];
 if (@$userEmail) {
@@ -14,13 +15,21 @@ $account = new Account($con);
 if (isset($_POST["submit"])) {
     $username = FormSanitizer::sanitizeFormString($_POST["username"]);
     $password = FormSanitizer::sanitizeFormString($_POST["password"]);
-    $email = $account->getAccountEmail($username);
+    // $email = $account->getAccountEmail($username);
 
     $success = $account->login($username, $password);
 
     if ($success) {
-        setcookie('email', $email, time() + (86400 * 365), "/");
+        $token = $account->getAccountToken($username);
+        $hashedToken = Encryption::encryptToken($token, 'msSCAra');
+        setcookie('token', $hashedToken, time() + (86400 * 365), "/");
         header("location: index.php");
+        // $salt = "msSCAra";
+        // $iterations = 10000;
+        // $token = $account->getAccountToken($username);
+        // $dataToHash = $salt . $token;
+        // $hashedToken = hash_pbkdf2("sha512", $dataToHash, $salt, $iterations, 64);
+        // echo $hashedToken;
     }
 }
 

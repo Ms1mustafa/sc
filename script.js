@@ -138,35 +138,25 @@ printButton?.addEventListener("click", function () {
 });
 
 function notificationOn() {
-  window.addEventListener("load", () => {
-    if ("Notification" in window) {
-      // Check if notifications are allowed
-      if (Notification.permission === "granted") {
-        // Notifications are allowed
-      } else if (Notification.permission === "denied") {
-        // User has denied notification permission
-        alert(
-          "You have denied notification permission. You can enable it in your browser settings."
-        );
-      } else {
-        // Request permission to send notifications
-        Notification.requestPermission()
-          .then((permission) => {
-            if (permission === "granted") {
-              // Notifications are allowed
-            } else if (permission === "denied") {
-              // User has denied notification permission
-              alert(
-                "You have denied notification permission. You can enable it in your browser settings."
-              );
-            }
-          })
-          .catch((error) => {
-            console.error("Error requesting notification permission:", error);
-          });
-      }
-    }
-  });
+  if (Notification.permission === "granted") {
+    // Notifications are allowed
+  } else if (Notification.permission !== "denied") {
+    // Request permission to send notifications
+    Notification.requestPermission()
+      .then((permission) => {
+        if (permission === "granted") {
+          // Notifications are allowed
+        }
+      })
+      .catch((error) => {
+        console.error("Error requesting notification permission:", error);
+      });
+  } else {
+    // The user has denied notification permission
+    console.log(
+      "You have denied notification permission. You can enable it in your browser settings."
+    );
+  }
 }
 
 function sendNotification(title, body, icon, url) {

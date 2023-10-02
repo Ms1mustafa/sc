@@ -2,11 +2,19 @@
 require_once("../includes/config.php");
 include_once('Requests.php');
 
+
 $workOrderNo = $_GET['workOrderNo'];
 $isRejected = $_GET['isRejected'];
 
+$request = Requests::getRequest($con, $workOrderNo);
 $requests = Requests::getWereHouseItems($con, $workOrderNo);
 $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo);
+
+$reqNo = $request["reqNo"];
+$adminAddedName = $request["adminAddedName"];
+$inspector = $request["inspector"];
+$area = $request["area"];
+$item = $request["item"];
 
 echo "
     <table class='descriptiontableReceivingMaterials'>
@@ -17,6 +25,30 @@ echo "
             <th>Comment</th>
         </thead>
         <tbody>
+    ";
+
+echo "
+    <label  class='Getrquest'>ReqNo</label>
+
+    <label class='GetrquesQTY'>$reqNo</label>
+   <br>
+   <br>
+    <label class='Getrquest' >Requester </label>
+    <label class='GetrquesQTY'>$adminAddedName</label>
+    <br>
+    <br>
+    <label  class='Getrquest'>Inspector</label>
+    <label  class='GetrquesQTY'>$inspector</label>
+   <br>
+   <br>
+    <label class='Getrquest'>Area</label>
+    <label class='GetrquesQTY'>$area</label>
+  <br>
+  <br>
+    <label class='Getrquest'>Location</label>
+    <label class='GetrquesQTY'>$item</label>
+    <br>
+    <br>
     ";
 
 if ($isRejected) {

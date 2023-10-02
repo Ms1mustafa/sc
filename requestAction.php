@@ -5,6 +5,7 @@ include_once('includes/classes/Request.php');
 include_once('includes/classes/Area.php');
 include_once('includes/classes/WorkType.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
 $userEmail = $_COOKIE["email"];
 

@@ -1,20 +1,25 @@
 <?php
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
+include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
 $workOrderNo = $_GET["qtyNo"];
 $new = @$_GET["new"];
 $reject = @$_GET["reject"];
 
-if (!$userEmail) {
-    header("location: login.php");
-}
-
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
 $account = new Account($con);
+$userEmail = $account->getAccountEmail($userToken);
+Powers::executer($account, $userToken);
+
+if (!$workOrderNo)
+    header("location: index.php");
+
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
 $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
 $anotherExecuter = $account->getTransferAccount('execution', $userEmail);
+
 
 $request = new Request($con);
 
@@ -91,7 +96,7 @@ function getInputValue($name)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
-   
+
     <link rel="stylesheet" href="css.css?1990">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -137,11 +142,11 @@ function getInputValue($name)
                         </table>
                       
                     ';
-                    if($reject == 'yes'){
-                        echo '
+                if ($reject == 'yes') {
+                    echo '
                             <button class="submitDonereg" name="resendToWereHouse">Done</button>
                         ';
-                    }
+                }
                 ?>
                 <br>
                 <?php if ($new) {

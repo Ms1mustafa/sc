@@ -259,6 +259,26 @@ class Requests
 
         return $array;
     }
+
+    public static function getRequest($con, $workOrderNo)
+    {
+        $sql = "SELECT * FROM request WHERE workOrderNo =:workOrderNo";
+
+
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $array = $row;
+        }
+
+        return $array;
+    }
 }
 
 

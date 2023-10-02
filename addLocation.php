@@ -3,10 +3,12 @@ include_once('includes/classes/Area.php');
 include_once('includes/classes/FormSanitizer.php');
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
 $account = new Account($con);
-Powers::owner($account, $userEmail);
+$userEmail = $account->getAccountEmail($userToken);
+Powers::owner($account, $userToken);
 
 if (!$userEmail) {
   header("location: login.php");

@@ -1,56 +1,63 @@
 <?php
 class Powers
 {
-    public static function owner($account, $userEmail)
+    public static function owner($account, $userToken)
     {
+        $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
         if (!$userEmail || $type != 'owner') {
             header("location: index.php");
         }
     }
-    public static function admin($account, $userEmail)
+    public static function admin($account, $userToken)
     {
+        $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
         if (!$userEmail || ($type != 'admin' && $type != 'owner')) {
             header("location: index.php");
         }
     }
-    public static function executer($account, $userEmail)
+    public static function executer($account, $userToken)
     {
+        $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
         if (!$userEmail || ($type != 'execution' && $type != 'owner')) {
             header("location: index.php");
         }
     }
-    public static function wereHouse($account, $userEmail)
+    public static function wereHouse($account, $userToken)
     {
+        $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
         if (!$userEmail || ($type != 'wereHouse' && $type != 'owner')) {
             header("location: index.php");
         }
     }
-    public static function inspector($account, $userEmail)
+    public static function inspector($account, $userToken)
     {
+        $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
         if (!$userEmail || ($type != 'inspector' && $type != 'owner')) {
             header("location: index.php");
         }
     }
-    public static function Safety($account, $userEmail)
+    public static function Safety($account, $userToken)
     {
+        $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
         if (!$userEmail || ($type != 'safety' && $type != 'owner')) {
             header("location: index.php");
         }
     }
-    public static function goTo ($account, $userEmail)
+    public static function goTo ($account, $userToken)
     {
+        $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
         if (!$userEmail) {

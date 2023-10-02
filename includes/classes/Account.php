@@ -80,7 +80,7 @@ class Account
 
     public function insertUserDetils($tk, $un, $em, $pw, $ty, $area = '')
     {
-        $query = $this->con->prepare("INSERT INTO users (token,username,email, password, type, area) VALUES (:tk, :un, :em, :pw, :ty, :area)");
+        $query = $this->con->prepare("INSERT INTO users (token, username ,email, password, type, area) VALUES (:tk, :un, :em, :pw, :ty, :area)");
 
         $query->bindValue(":tk", $tk);
         $query->bindValue(":un", $un);
@@ -272,11 +272,23 @@ class Account
         }
     }
 
-    public function getAccountEmail($un)
+    public function getAccountToken($un)
     {
         $query = $this->con->prepare("SELECT * FROM users WHERE username = :un");
 
         $query->bindValue(':un', $un);
+
+        $query->execute();
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        if (!empty($row)) {
+            return $row["token"];
+        }
+    }
+    public function getAccountEmail($tk)
+    {
+        $query = $this->con->prepare("SELECT * FROM users WHERE token = :tk");
+
+        $query->bindValue(':tk', $tk);
 
         $query->execute();
         $row = $query->fetch(PDO::FETCH_ASSOC);

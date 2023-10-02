@@ -2,6 +2,7 @@
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Area.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
 $userEmail = $_COOKIE["email"];
 $account = new Account($con);
@@ -17,7 +18,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST["email"];
     $areaName = $_POST["areaName"];
 
-    $success = $account->updateUser($email, $areaName,'inspector');
+    $success = $account->updateUser($email, $areaName, 'inspector');
 
     if ($success) {
         header("location: ownerPage.php");
@@ -38,7 +39,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-<div>
+    <div>
         <a class="Back" href="ownerPage.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>

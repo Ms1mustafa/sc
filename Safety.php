@@ -1,16 +1,14 @@
 <?php
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
-$isAcc = $account->getAccountDetails($userEmail, true);
+$userEmail = $account->getAccountEmail($userToken);
 
-if (!$userEmail || !$isAcc) {
-    header("location: login.php");
-}
 
-Powers::Safety($account, $userEmail);
+Powers::Safety($account, $userToken);
 ?>
 
 <!DOCTYPE html>
