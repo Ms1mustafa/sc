@@ -5,7 +5,7 @@ include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
 
 $workOrderNo = $_GET["workOrderNo"];
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 

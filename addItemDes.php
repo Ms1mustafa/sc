@@ -5,7 +5,7 @@ include_once('includes/classes/FormSanitizer.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
 
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 Powers::owner($account, $userToken);
@@ -13,14 +13,20 @@ Powers::owner($account, $userToken);
 $area = new ItemDes($con);
 $getAreaId = $area->getIdNum();
 
+$err = 'Item Description';
 
 if (isset($_POST["submit"])) {
-  $itemdesId = $_POST["itemdesId"];
+  $itemdesId = $getAreaId;
   $itemdesName = FormSanitizer::sanitizeFormString($_POST["itemdesName"]);
 
-  $success = $area->addWT($itemdesId, $itemdesName);
+  if (!$itemdesName) {
+    $err = 'Item description is required';
+  }
+  ;
+  if ($itemdesId && $itemdesName)
+    $success = $area->addWT($itemdesId, $itemdesName);
 
-  if ($success) {
+  if (@$success) {
     header("location: addItemDes.php");
   }
 }
@@ -59,7 +65,9 @@ if (isset($_POST["submit"])) {
             readonly required>
           <br>
           <br>
-          <label class="Itemlabel" sfor="itemdesName">Item Description </label>
+          <label class="Itemlabel" sfor="itemdesName">
+            <?php echo $err; ?>
+          </label>
           <br>
           <br>
           <input class="iteminput" type="text" name="itemdesName" id="itemdesName" placeholder="Item Description name"

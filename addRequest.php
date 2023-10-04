@@ -7,7 +7,7 @@ include_once('includes/classes/FormSanitizer.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
 
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 

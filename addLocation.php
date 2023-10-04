@@ -5,7 +5,7 @@ include_once('includes/classes/Account.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
 
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 Powers::owner($account, $userToken);
@@ -18,14 +18,24 @@ $area = new Area($con);
 $getItemId = $area->getItemIdNum();
 $getArea = $area->getArea();
 
+$err = '';
+$errArea = '';
+
 if (isset($_POST["submit"])) {
-  $id = $_POST["id"];
+  $id = $getItemId;
   $areaId = $_POST["areaId"];
   $itemName = FormSanitizer::sanitizeFormString($_POST["itemName"]);
 
-  $success = $area->addItem($id, $areaId, $itemName);
+  if (!$itemName)
+    $err = 'Location name is required';
 
-  if ($success) {
+  if (!$areaId)
+    $errArea = 'Area is required';
+
+  if ($id && $areaId && $itemName)
+    $success = $area->addItem($id, $areaId, $itemName);
+
+  if (@$success) {
     header("location: ownerPage.php");
   }
 }
@@ -61,6 +71,7 @@ if (isset($_POST["submit"])) {
           <input type="text" class="inputfieldarea" name="id" value="<?php echo $getItemId; ?>" placeholder="id"
             readonly required>
       </div>
+      <?php echo $errArea; ?>
       <br>
 
       <select class="inputfieldarea2" name="areaId">
@@ -68,11 +79,11 @@ if (isset($_POST["submit"])) {
       </select>
       <br>
       <br>
+      <?php echo $err; ?>
       <br>
       <div>
 
-
-        <input type="text" class="inputfieldarea3" name="itemName" placeholder="Add Item" required>
+        <input type="text" class="inputfieldarea3" name="itemName" placeholder="Add Location" required>
       </div>
       <br>
       <br>

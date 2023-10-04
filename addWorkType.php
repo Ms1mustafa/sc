@@ -5,7 +5,7 @@ include_once('includes/classes/Account.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
 
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 Powers::owner($account, $userToken);
@@ -13,13 +13,20 @@ Powers::owner($account, $userToken);
 $area = new workType($con);
 $getAreaId = $area->getIdNum();
 
+$err = '';
+
 if (isset($_POST["submit"])) {
-  $wtId = $_POST["wtId"];
+  $wtId = $getAreaId;
   $wtName = FormSanitizer::sanitizeFormString($_POST["wtName"]);
 
-  $success = $area->addWT($wtId, $wtName);
+  if (!$wtName) {
+    $err = 'Work type name is required';
+  }
+  ;
+  if ($wtId && $wtName)
+    $success = $area->addWT($wtId, $wtName);
 
-  if ($success) {
+  if (@$success) {
     header("location: ownerPage.php");
   }
 }
@@ -59,7 +66,8 @@ if (isset($_POST["submit"])) {
       <br>
       <div class="input-box">
         <form method="POST">
-
+          <?php echo $err; ?>
+          <br>
           <input type="text" class="inputfieldarea" name="wtName" id="wtName" placeholder="Work type name" required>
       </div>
       <br>

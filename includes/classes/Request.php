@@ -122,6 +122,8 @@ class Request
     {
         $query = $this->con->prepare("INSERT INTO rejectitemdes (workOrderNo, itemName, itemQty, rejectsNum) VALUES (:workOrderNo, :itemName, :itemQty, :rejectsNum)");
 
+        if (!$itemName)
+            return;
         for ($i = 0; $i < count($itemName); $i++) {
             $query->bindValue(":workOrderNo", $workOrderNo);
             $query->bindValue(":rejectsNum", $rejectsNum);

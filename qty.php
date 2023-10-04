@@ -8,7 +8,10 @@ $workOrderNo = $_GET["qtyNo"];
 $new = @$_GET["new"];
 $reject = @$_GET["reject"];
 
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$err = '';
+$errDate = '';
+
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 Powers::executer($account, $userToken);
@@ -30,9 +33,14 @@ $rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"];
 
 if (isset($_POST["submit"])) {
 
-    $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
+    if (!$itemName)
+        $err = 'please add 1 item description at least';
+    if (!$finishDate)
+        $errDate = 'please select date';
+    if ($itemName && $finishDate)
+        $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
 
-    if ($success) {
+    if (@$success) {
         header("location: notification.php");
     }
 }
@@ -137,7 +145,7 @@ function getInputValue($name)
                                
                             </thead>
                             <tbody id="ItemDescriptionBody">
-
+' . $err . '
                             </tbody>
                         </table>
                       
@@ -164,7 +172,7 @@ function getInputValue($name)
                 $(document).ready(function () {
                     $.get(
                         "ajax/GetRequests.php",
-                        { isNotification: null, executer: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
+                        { isNotification: null, executer: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>', errDate: '<?php echo $errDate; ?>' },
                         function (data) {
                             $("#reqInf").html(data);
                         }

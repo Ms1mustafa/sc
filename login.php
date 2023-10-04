@@ -3,8 +3,7 @@
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Encryption.php');
 
-$userEmail = @$_COOKIE["email"];
-if (@$userEmail) {
+if (@$_COOKIE["token"]) {
     header("location: index.php");
 }
 
@@ -21,7 +20,7 @@ if (isset($_POST["submit"])) {
 
     if ($success) {
         $token = $account->getAccountToken($username);
-        $hashedToken = Encryption::encryptToken($token, 'msSCAra');
+        $hashedToken = Encryption::encryptToken($token, constants::$tokenEncKey);
         setcookie('token', $hashedToken, time() + (86400 * 365), "/");
         header("location: index.php");
         // $salt = "msSCAra";

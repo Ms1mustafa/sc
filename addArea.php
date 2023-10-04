@@ -9,18 +9,25 @@ $area = new Area($con);
 $getAreaId = $area->getIdNum();
 // $allAreas = $area->getArea();
 
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 Powers::owner($account, $userToken);
 
+$err = '';
+
 if (isset($_POST["submit"])) {
-  $areaId = $_POST["areaId"];
+  $areaId = $getAreaId;
   $areaName = FormSanitizer::sanitizeFormString($_POST["areaName"]);
 
-  $success = $area->addArea($areaId, $areaName);
+  if (!$areaName) {
+    $err = 'Area name is required';
+  }
+  ;
+  if ($areaId && $areaName)
+    $success = $area->addArea($areaId, $areaName);
 
-  if ($success) {
+  if (@$success) {
     header("location: ownerPage.php");
   }
 }
@@ -57,6 +64,7 @@ if (isset($_POST["submit"])) {
             readonly required>
       </div>
       <br>
+      <?php echo $err; ?>
       <div class="input-box">
         <input type="text" class="inputfieldarea" name="areaName" placeholder="Add Area" required>
       </div>

@@ -20,6 +20,7 @@ if ($isNotification != null) {
 
 if ($isNotification == null) {
     $workOrderNo = $_GET['workOrderNo'];
+    $errDate = $_GET['errDate'];
 
     $requests = Requests::getExecuterRequests($con, null, $executer, $workOrderNo);
     $lastrejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
@@ -81,39 +82,39 @@ if ($isNotification == null) {
             </thead>
             <tbody>
             ";
-            $mergedItems = array();
+        $mergedItems = array();
 
-            foreach ($rejectItems as $item) {
-                if ($status != 'rejected') {
-                    $itemName = $item['itemName'];
-                    if (!isset($mergedItems[$itemName])) {
-                        $mergedItems[$itemName] = array(
-                            'itemName' => $itemName,
-                            'itemQty' => 0,
-                            'wereHouseQty' => 0,
-                            'rejectsNum' => 0
-                        );
-                    }
-            
-                    $mergedItems[$itemName]['itemQty'] += $item['itemQty'];
-                    $mergedItems[$itemName]['wereHouseQty'] += $item['wereHouseQty'];
-                    $mergedItems[$itemName]['rejectsNum'] += $item['rejectsNum'];
+        foreach ($rejectItems as $item) {
+            if ($status != 'rejected') {
+                $itemName = $item['itemName'];
+                if (!isset($mergedItems[$itemName])) {
+                    $mergedItems[$itemName] = array(
+                        'itemName' => $itemName,
+                        'itemQty' => 0,
+                        'wereHouseQty' => 0,
+                        'rejectsNum' => 0
+                    );
                 }
+
+                $mergedItems[$itemName]['itemQty'] += $item['itemQty'];
+                $mergedItems[$itemName]['wereHouseQty'] += $item['wereHouseQty'];
+                $mergedItems[$itemName]['rejectsNum'] += $item['rejectsNum'];
             }
-            
-            foreach ($mergedItems as $item) {
-                echo '
+        }
+
+        foreach ($mergedItems as $item) {
+            echo '
                     <tr>
                         <td><input class="pipe1" min="1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td>' . $item['itemQty'] . '</td>
                         <td>' . $item['wereHouseQty'] . '</td>';
-                if ($item["rejectsNum"] > 0) {
-                    echo '<td hidden>reject ' . $item["rejectsNum"] . '</td>';
-                }
-                echo '</tr>';
+            if ($item["rejectsNum"] > 0) {
+                echo '<td hidden>reject ' . $item["rejectsNum"] . '</td>';
             }
-            
-            echo '
+            echo '</tr>';
+        }
+
+        echo '
             </tbody>
         </table>
         <button class="submitQTYReceining" name="dismantling">Send</button>
@@ -154,8 +155,8 @@ if ($isNotification == null) {
          <br>
         <br>
         ";
-            if(!$issued){
-                echo "
+        if (!$issued) {
+            echo "
                     <label class='GetOTYNote'>Notes</label>
                     <br>
                     <textarea class='QTYnotes'readonly>$notes</textarea>
@@ -163,16 +164,18 @@ if ($isNotification == null) {
                     
                     <label class='Getrquest'>Date</label>
                     <br>
+                    " . $errDate . "
+                    <br>
                     <input class='inputfieldrequestqty' type='date' id='finishDate' name='finishDate' value= '$finishDate'
                     ";
-                    if (!$new) {
-                        echo 'readonly ';
-                    }
-                    echo"
+            if (!$new) {
+                echo 'readonly ';
+            }
+            echo "
                     >
                 ";
-            }
-        echo"
+        }
+        echo "
          ";
         if ($issued && $status != 'rejected') {
             echo '
@@ -221,7 +224,7 @@ if ($isNotification == null) {
                 </div>
             ';
         }
-        
+
         if ($status == 'backExecuter') {
             echo '
             <br>

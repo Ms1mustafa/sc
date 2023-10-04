@@ -5,7 +5,7 @@ include_once('includes/classes/Area.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
 
-$userToken = Encryption::decryptToken(@$_COOKIE["token"], 'msSCAra');
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 Powers::owner($account, $userToken);
@@ -16,22 +16,29 @@ $getArea = $area->getArea();
 $Token = @date("ymdhis");
 $RandomNumber = rand(100, 200);
 $NewToken = $Token . $RandomNumber;
-$hashedToken = Encryption::encryptToken($NewToken, 'msSCAra');
+$hashedToken = Encryption::encryptToken($NewToken, constants::$tokenEncKey);
+
+$err = '';
 
 if (isset($_POST["submit"])) {
   $username = FormSanitizer::sanitizeFormString($_POST["username"]);
   $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
   $password = FormSanitizer::sanitizeFormString($_POST["password"]);
-  $type = FormSanitizer::sanitizeFormString($_POST["type"]);
+  $type = FormSanitizer::sanitizeFormString(@$_POST["type"]);
   $areaName = FormSanitizer::sanitizeFormString($_POST["areaName"]);
 
-  if ($_POST["type"] == "inspector") {
-    $success = $account->register($NewToken, $username, $email, $password, $type, $areaName);
+  if ($username && $email && $password && $type && @$areaName) {
+    if ($_POST["type"] == "inspector") {
+      $success = $account->register($NewToken, $username, $email, $password, $type, $areaName);
+    } else {
+      $success = $account->register($NewToken, $username, $email, $password, $type);
+    }
   } else {
-    $success = $account->register($NewToken, $username, $email, $password, $type);
+    $err = 'All fields are required';
   }
 
-  if ($success) {
+
+  if (@$success) {
     header("location: index.php");
   }
 }
@@ -74,6 +81,7 @@ function getInputValue($name)
         <header class="nameowner">CreateAccount</header>
       </div>
       <br>
+      <?php echo $err; ?>
       <br>
       <br>
       <div class="input-box">
