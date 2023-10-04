@@ -9,6 +9,9 @@ $userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKe
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 
+if (!@$workOrderNo)
+    header("Location: home.php");
+
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
 $adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
 

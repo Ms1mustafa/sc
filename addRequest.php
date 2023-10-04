@@ -120,6 +120,7 @@ if (isset($_POST["submit"])) {
                 <form method="POST">
                     <p class="errorrequest">
                         <?php echo $request->getError(constants::$workOrderNoTaken); ?>
+                        <?php echo $request->getError(constants::$requestFailed); ?>
                     </p>
                     <br>
                     <label class="labelnewrequest">Req Name</label>
@@ -140,7 +141,6 @@ if (isset($_POST["submit"])) {
             </div>
             <br>
             <div class="input-box">
-                <?php echo $request->getError(constants::$usernameTaken); ?>
                 <label class="labelnewrequest">Work Order No</label>
                 <br>
                 <br>

@@ -12,7 +12,7 @@ if (!$userToken) {
     header("location: login.php");
 }
 if (!$isAcc) {
-    echo '<h1>You dont have permissions to this site!</h1>';
+    header("location: logout.php");
 } else
     Powers::goTo($account, @$userToken);
 ?>

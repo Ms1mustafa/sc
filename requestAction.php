@@ -17,6 +17,9 @@ Powers::admin($account, $userToken);
 
 $workOrderNo = $_GET["workOrderNo"];
 
+if (!@$workOrderNo)
+    header("Location: adminRequests.php");
+
 $request = new Request($con);
 $getRequest = $request->getRequestDetails($workOrderNo);
 
