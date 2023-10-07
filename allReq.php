@@ -9,7 +9,7 @@ include_once('includes/classes/Encryption.php');
 $userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
-Powers::owner($account, $userToken);
+Powers::Safety($account, $userToken);
 
 $req = new Request($con);
 $requests = $req->getRequestDetails();
@@ -48,6 +48,8 @@ $requests = $req->getRequestDetails();
                                     <th>Id</th>
                                     <th>Requester</th>
                                     <th>Work order No</td>
+                                    <th>Area</th>
+                                    <th>Item</th>
                                     <th>Start date</th>
                                     <th>Pending In</th>
                                     <th>Pending Date</th>
@@ -73,37 +75,41 @@ $requests = $req->getRequestDetails();
 
                                     $reqStatus = "";
 
+                                    $reqStatus = '';
+                                    $finishDate = '';
+
                                     if ($executerNew == 'yes') {
                                         $reqStatus = $executer;
                                         $finishDate = $reqDate;
                                         if ($wereHouseDate) {
                                             $finishDate = $wereHouseDate;
                                         }
-                                    }
-                                    if (($executerNew != 'yes' && $issued != 'yes' && $status == 'pending') || $status == 'resent') {
+                                    } elseif (($executerNew != 'yes' && $issued != 'yes' && $status == 'pending') || $status == 'resent') {
                                         $reqStatus = $wereHouse;
                                         $finishDate = $executerDate;
-                                    }
-                                    if (($issued == 'yes' && $status == 'pending') || $status == 'resentInspector') {
+                                    } elseif (($issued == 'yes' && $status == 'pending') || $status == 'resentInspector') {
                                         $reqStatus = $inspector;
                                         $finishDate = $executerDate;
-                                    }
-                                    if ($status == 'rejected') {
+                                    } elseif ($status == 'rejected') {
                                         $reqStatus = 'rejected';
                                         $finishDate = $inspectorDate;
                                     } elseif ($status == 'accepted') {
                                         $reqStatus = 'accepted';
                                         $finishDate = $inspectorDate;
                                     }
+
                                     if ($qtyBackStatus != 'no') {
                                         $reqStatus = 'dismantling';
                                     }
+
 
                                     echo '
                     <tr>
                         <td>' . $id . '</td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
+                        <td>' . $request["area"] . '</td>
+                        <td>' . $request["item"] . '</td>
                         <td>' . $reqDate . '</td>
                         <td>' . $reqStatus . '</td>
                         <td>' . $finishDate . '</td>

@@ -5,6 +5,7 @@ include_once('Requests.php');
 
 $workOrderNo = $_GET['workOrderNo'];
 $isRejected = $_GET['isRejected'];
+$firstCm = $_GET['firstCm'];
 
 $request = Requests::getRequest($con, $workOrderNo);
 $requests = Requests::getWereHouseItems($con, $workOrderNo);
@@ -16,13 +17,29 @@ $inspector = $request["inspector"];
 $area = $request["area"];
 $item = $request["item"];
 
+
 echo "
     <table class='descriptiontableReceivingMaterials'>
         <thead>
-            <th>Item description</th>
-            <th>QTY Issued</th>
-            <th>QTY dismantling</th>
-            <th>Comment</th>
+        ";
+if ($firstCm) {
+    echo '
+        <th>Item description</th>
+        <th>QTY Req</th>
+        <th>QTY Issued</th>
+        <th>Comment</th>
+            ';
+} else {
+
+    echo '
+        <th>Item description</th>
+        <th>QTY Issued</th>
+        <th>QTY dismantling</th>
+        <th>Comment</th>
+        ';
+}
+echo
+    "
         </thead>
         <tbody>
     ";
@@ -96,8 +113,21 @@ if ($isRejected) {
         $mergedItems[$itemName]['qtyBack'] = @$item['qtyBack'];
     }
 
-    foreach ($mergedItems as $item) {
-        echo '
+    if ($firstCm) {
+        foreach ($rejectItems as $item) {
+            echo '
+            <tr>
+                <td>' . $item['itemName'] . '</td>
+                <td>' . $item['itemQty'] . '</td>
+                <td>' . $item['wereHouseQty'] . '</td>
+                <td>' . $item['wereHouseComment'] . '</td>
+            </tr>
+        ';
+        }
+    } else {
+
+        foreach ($mergedItems as $item) {
+            echo '
         <tr>
             <td>' . $item['itemName'] . '</td>
             <td>' . $item['wereHouseQty'] . '</td>
@@ -105,6 +135,7 @@ if ($isRejected) {
             <td></td>
         </tr>
     ';
+        }
     }
 
     foreach ($requests as $request) {

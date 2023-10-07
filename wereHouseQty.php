@@ -45,7 +45,7 @@ if (isset($_POST["submit"])) {
         if ($resent == 'yes') {
             header("location: wereHousePrint.php?req=" . $workOrderNo . "&rejected=1");
         } else {
-            header("location: wereHousePrint.php?req=" . $workOrderNo . "");
+            header("location: wereHousePrint.php?req=" . $workOrderNo . "&firstCm=1");
         }
     }
 }

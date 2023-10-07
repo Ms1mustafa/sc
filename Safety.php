@@ -54,6 +54,10 @@ Powers::Safety($account, $userToken);
             <div class="input-box">
                 <button class="inputfieldowner"> <a href="dismantling.php"> Dismantling</a></button>
             </div>
+            <br>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="allReq.php">All Requests</a></button>
+            </div>
         </div>
     </div>
 

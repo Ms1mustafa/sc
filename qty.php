@@ -153,6 +153,8 @@ function getInputValue($name)
                 if ($reject == 'yes') {
                     echo '
                             <button class="submitDonereg" name="resendToWereHouse">Done</button>
+                            <br>
+                            <button class="submitDonereg" name="resendToInspector">Resend to inspector</button>
                         ';
                 }
                 ?>

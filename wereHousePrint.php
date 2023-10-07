@@ -5,6 +5,7 @@ include_once('includes/classes/Encryption.php');
 
 $workOrderNo = $_GET["req"];
 $isRejected = @$_GET["rejected"];
+$firstCm = @$_GET["firstCm"];
 
 if (!$workOrderNo)
     header("location: index.php");
@@ -58,7 +59,7 @@ Powers::wereHouse($account, $userToken);
                 $(window).on("load", function () {
                     $.get(
                         "ajax/GetWereHousePrint.php",
-                        { workOrderNo: '<?php echo $workOrderNo; ?>', isRejected: '<?php echo $isRejected; ?>' },
+                        { workOrderNo: '<?php echo $workOrderNo; ?>', isRejected: '<?php echo $isRejected; ?>', firstCm: '<?php echo $firstCm; ?>' },
                         function (data) {
                             $("#reqInf").html(data);
                         }
