@@ -36,11 +36,11 @@ Powers::Safety($account, $userToken);
 
         <div class="login-container" id="login">
             <div class="input-box">
-                <button class="inputfieldowner"><a href="SafetyRequisted.php">Requisted</a></button>
+                <button class="inputfieldowner"><a href="SafetyRequisted.php">Request</a></button>
             </div>
             <br>
             <div class="input-box">
-                <button class="inputfieldowner"> <a href="Accipted.php">Accipted</a></button>
+                <button class="inputfieldowner"> <a href="Accipted.php">Accepted</a></button>
             </div>
             <br>
             <div class="input-box">
