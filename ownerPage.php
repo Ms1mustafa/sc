@@ -12,8 +12,8 @@ if (!$userToken) {
 
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 $isOwner = $account->getAccountDetails($userEmail, null, null, null, true);
 
 Powers::owner($account, $userToken);

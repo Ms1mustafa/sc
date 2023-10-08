@@ -1,21 +1,29 @@
-var fs = require("fs");
+const fs = require("fs");
+const jsObfuscator = require("javascript-obfuscator");
 
-var jsObfuscator = require("javascript-obfuscator");
-
-fs.readFile("./script.js", "UTF-8", function (error, code) {
-  if (error) {
-    throw error;
-  }
-
-  var obfuscateResult = jsObfuscator.obfuscate(code);
-
-  fs.writeFile(
-    "./scriptt.js",
-    obfuscateResult.getObfuscatedCode(),
-    function (fsError) {
-      if (fsError) {
-        throw fsError;
-      }
+function obfuscateAndSave(inputFilePath, outputFilePath) {
+  fs.readFile(inputFilePath, "UTF-8", (error, code) => {
+    if (error) {
+      throw error;
     }
-  );
-});
+
+    const obfuscateResult = jsObfuscator.obfuscate(code);
+
+    fs.writeFile(
+      outputFilePath,
+      obfuscateResult.getObfuscatedCode(),
+      (fsError) => {
+        if (fsError) {
+          throw fsError;
+        }
+        console.log(
+          `JavaScript file obfuscated and saved to ${outputFilePath}`
+        );
+      }
+    );
+  });
+}
+
+// Call the function with input and output file paths
+obfuscateAndSave("./script_main.js", "./script.js");
+obfuscateAndSave("./getData.js", "./gndt.js");

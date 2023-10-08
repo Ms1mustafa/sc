@@ -42,7 +42,7 @@ if (isset($_POST["edit"])) {
     $priority = @$_POST["priority"];
     $workType = @$_POST["workType"];
     $inspector = @$_POST["inspector"];
-    $inspectorName = $getRequest["inspector"] ?? $account->getAccountDetails($inspector, true, false, false, false, false);
+    $inspectorName = $getRequest["inspector"] ?? $account->getAccountDetails($inspector, true, false, false, false);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
     $success = $request->editRequest($workOrderNo, $area, $item, $length, $width, $height, $priority, $workType, $inspectorName, $notes);

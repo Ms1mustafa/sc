@@ -43,7 +43,7 @@ while ($i <= $numberOfElements) {
     $i++;
 }
 
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
 $executer = $account->getAccountByType('Execution');
 
 $area = new Area($con);
@@ -68,7 +68,7 @@ if (isset($_POST["submit"])) {
     $executer = $account->getMainAccount('Execution');
     $wereHouse = $account->getMainAccount('wereHouse');
     $inspector = @$_POST["inspector"];
-    $inspectorName = $account->getAccountDetails($inspector, true, false, false, false, true);
+    $inspectorName = $account->getAccountDetails($inspector, true, false, false, false);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
     $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $notes);
@@ -99,6 +99,7 @@ if (isset($_POST["submit"])) {
         rel="stylesheet">
 
     <script src="script.js" defer></script>
+    <script src="gndt.js"></script>
     <title>Request </title>
 </head>
 
@@ -209,23 +210,7 @@ if (isset($_POST["submit"])) {
     </div>
 
     <script>
-        $("#area").on("change", function (e) {
-            $.get(
-                "ajax/GetItems.php",
-                { areaId: $("#area").val() },
-                function (data) {
-                    $("#item").html(data);
-                }
-            );
-            $.get(
-                "ajax/GetInspectors.php",
-                { areaId: $("#area").val() },
-                function (data) {
-                    $("#inspector").html(data);
-                }
-            );
-
-        })
+        GetIaI()
     </script>
 </body>
 

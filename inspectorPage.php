@@ -8,8 +8,8 @@ $userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKe
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 
 Powers::inspector($account, $userToken);
 
@@ -31,6 +31,7 @@ $request = new Request($con);
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script src="gndt.js"></script>
     <title>Notification</title>
 </head>
 
@@ -52,42 +53,8 @@ $request = new Request($con);
             <div id="result"></div>
         </div>
         <script>
-
             notificationOn();
-
-            let timeout = 0;
-            let previousContent = "";
-            let isFirstLoad = true; // Flag to track the initial page load
-
-            function loadRequests() {
-                $.get(
-                    "ajax/GetInspectorRequests.php", {
-                    isNotification: true,
-                    inspector: '<?php echo $adminName; ?>'
-                },
-                    function (data) {
-                        var parser = new DOMParser();
-                        var doc = parser.parseFromString(data, 'text/html');
-                        var aElements = doc.querySelectorAll('a.notification');
-                        var numberOfAElements = aElements.length;
-
-                        if (!isFirstLoad && +numberOfAElements > previousContent) {
-                            sendNotification(`New notification from ${doc.querySelector('span.sender').textContent}`,
-                                "tap to see the details", "images/notification.png",
-                                window.location.href);
-                        }
-
-                        $("#result").html(data);
-
-                        previousContent = numberOfAElements;
-                        isFirstLoad = false; // Set the flag to false after the first load
-
-                        setTimeout(loadRequests, 3000);
-                    }
-                );
-            }
-
-            loadRequests();
+            Gndt('inspector', '<?php echo $adminName; ?>')
         </script>
 </body>
 

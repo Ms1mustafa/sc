@@ -16,8 +16,8 @@ if (!$workOrderNo) {
 $resent = @$_GET["resent"];
 $dismantling = @$_GET["dismantling"];
 
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 $anotherWereHouse = $account->getTransferAccount('wereHouse', $userEmail);
 
 Powers::wereHouse($account, $userToken);
@@ -82,7 +82,7 @@ function getInputValue($name)
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="scriptt.js" defer></script>
+    <script src="script.js" defer></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css.css?1999">
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>

@@ -13,8 +13,8 @@ $userEmail = $account->getAccountEmail($userToken);
 if (!$workOrderNo)
     header("location: index.php");
 
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 
 Powers::inspector($account, $userToken);
 

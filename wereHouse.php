@@ -12,8 +12,8 @@ if (!$userToken) {
 
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 
 Powers::wereHouse($account, $userToken);
 
@@ -32,6 +32,7 @@ $request = new Request($con);
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script src="gndt.js"></script>
 
     <title>Notification</title>
 </head>
@@ -53,40 +54,7 @@ $request = new Request($con);
         </div>
         <script>
             notificationOn();
-
-            let timeout = 0;
-            let previousContent = "";
-            let isFirstLoad = true;
-
-            function loadRequests() {
-                $.get(
-                    "ajax/GetWereHouseReq.php", {
-                    isNotification: true,
-                    wereHouse: '<?php echo $adminName; ?>'
-                },
-                    function (data) {
-                        var parser = new DOMParser();
-                        var doc = parser.parseFromString(data, 'text/html');
-                        var aElements = doc.querySelectorAll('a.notification');
-                        var numberOfAElements = aElements.length;
-
-                        if (!isFirstLoad && +numberOfAElements > previousContent) {
-                            sendNotification(`New notification from ${doc.querySelector('span.sender').textContent}`,
-                                "tap to see the details", "images/notification.png",
-                                window.location.href);
-                        }
-
-                        $("#result").html(data);
-
-                        previousContent = numberOfAElements;
-                        isFirstLoad = false;
-
-                        setTimeout(loadRequests, 3000);
-                    }
-                );
-            }
-
-            loadRequests();
+            Gndt('wereHouse', '<?php echo $adminName; ?>')
         </script>
 </body>
 

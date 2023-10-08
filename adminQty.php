@@ -12,8 +12,8 @@ $userEmail = $account->getAccountEmail($userToken);
 if (!@$workOrderNo)
     header("Location: home.php");
 
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 
 Powers::admin($account, $userToken);
 
