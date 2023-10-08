@@ -22,7 +22,7 @@ echo "
     <table class='descriptiontableReceivingMaterials'>
         <thead>
         ";
-if ($firstCm) {
+if ($firstCm || $isRejected) {
     echo '
         <th>Item description</th>
         <th>QTY Req</th>
@@ -89,8 +89,9 @@ if ($isRejected) {
         echo '
                 <tr>
                     <td>' . $item['itemName'] . '</td>
+                    <td>' . $item['itemQty'] . '</td>
                     <td>' . $item['wereHouseQty'] . '</td>
-                    <td>' . $item['qtyBack'] . '</td>
+                    <td>' . $item['wereHouseComment'] . '</td>
                 </tr>
             ';
     }
@@ -124,7 +125,7 @@ if ($isRejected) {
             </tr>
         ';
         }
-    } else {
+    } elseif (!$firstCm || !$isRejected) {
 
         foreach ($mergedItems as $item) {
             echo '

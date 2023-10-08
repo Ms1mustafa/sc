@@ -47,10 +47,10 @@ $requests = $req->getRequestDetails();
                                 <tr>
                                     <th>Id</th>
                                     <th>Requester</th>
+                                    <th>Start date</th>
                                     <th>Work order No</td>
                                     <th>Area</th>
                                     <th>Item</th>
-                                    <th>Start date</th>
                                     <th>Pending In</th>
                                     <th>Pending Date</th>
                                 </tr>
@@ -58,7 +58,6 @@ $requests = $req->getRequestDetails();
 
                             <tbody>
                                 <?php
-                                $id = 1;
                                 foreach ($requests as $request) {
                                     $status = $request["status"];
                                     $qtyBackStatus = $request["qtyBackStatus"];
@@ -105,17 +104,16 @@ $requests = $req->getRequestDetails();
 
                                     echo '
                     <tr>
-                        <td>' . $id . '</td>
+                        <td>' . $request["reqNo"] . '</td>
                         <td>' . $request["adminAddedName"] . '</td>
+                        <td>' . $reqDate . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
                         <td>' . $request["area"] . '</td>
                         <td>' . $request["item"] . '</td>
-                        <td>' . $reqDate . '</td>
                         <td>' . $reqStatus . '</td>
                         <td>' . $finishDate . '</td>
                         </tr>
                     ';
-                                    $id++;
                                 }
                                 ?>
                             </tbody>
