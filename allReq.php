@@ -45,12 +45,12 @@ $requests = $req->getRequestDetails();
                         <table class="alluser">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Req No</th>
                                     <th>Requester</th>
                                     <th>Start date</th>
                                     <th>Work order No</td>
                                     <th>Area</th>
-                                    <th>Item</th>
+                                    <th>Location</th>
                                     <th>Pending In</th>
                                     <th>Pending Date</th>
                                 </tr>
