@@ -46,6 +46,10 @@ if ($isNotification == null) {
     <label class='GetrquesQTY'>$adminAddedName</label>
     <br>
     <br>
+    <label class='Getrquest' >WorkOrder No </label>
+    <label class='GetrquesQTY'>$workOrderNo</label>
+    <br>
+    <br>
     <label  class='Getrquest'>Inspector</label>
     <label  class='GetrquesQTY'>$inspector</label>
    <br>

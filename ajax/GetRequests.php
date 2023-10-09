@@ -57,6 +57,10 @@ if ($isNotification == null) {
         <label class='GetrquesQTY'>$adminAddedName</label>
         <br>
         <br>
+        <label class='Getrquest'>workOrder No</label>
+        <label class='GetrquesQTY'>$workOrderNo</label>
+        <br>
+        <br>
         <label class='Getrquest' >Inspector</label>
         <label class='GetrquesQTY'>$inspector</label>
         <br>
@@ -126,6 +130,10 @@ if ($isNotification == null) {
        <br>
         <label class='Getrquest'>Requester</label>
         <label class='GetrquesQTY'>$adminAddedName</label>
+        <br>
+        <br>
+        <label class='Getrquest'>workOrder No</label>
+        <label class='GetrquesQTY'>$workOrderNo</label>
         <br>
         <br>
         <label class='Getrquest' >Inspector</label>
