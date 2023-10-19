@@ -170,7 +170,9 @@ class Requests
         $whereClause = [];
 
         $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' AND status != 'resent' AND status != 'backExecuter'";
-
+        if (!$isNoti) {
+            $whereClause[] = "workOrderNo = :workOrderNo ";
+        }
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
@@ -180,9 +182,14 @@ class Requests
         }
         ;
 
+
         $query = $con->prepare($sql);
 
+
         $query->bindValue(":inspector", $inspector);
+        if (!$isNoti) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+        }
 
         $query->execute();
 
