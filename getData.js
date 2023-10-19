@@ -16,16 +16,16 @@ function loadNotifications(url, usertype, user) {
         var aElements = doc.querySelectorAll("a.notification");
         var numberOfAElements = aElements.length;
 
-        if (!isFirstLoad && +numberOfAElements > previousContent) {
-          sendNotification(
-            `New notification from ${
-              doc.querySelector("span.sender").textContent
-            }`,
-            "tap to see the details",
-            "images/notification.png",
-            window.location.href
-          );
-        }
+        // if (!isFirstLoad && +numberOfAElements > previousContent) {
+        //   sendNotification(
+        //     `New notification from ${
+        //       doc.querySelector("span.sender").textContent
+        //     }`,
+        //     "tap to see the details",
+        //     "images/notification.png",
+        //     window.location.href
+        //   );
+        // }
 
         $("#result").html(data);
 
