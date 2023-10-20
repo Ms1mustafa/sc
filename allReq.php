@@ -97,7 +97,7 @@ $requests = $req->getRequestDetails();
                                         $finishDate = $inspectorDate;
                                     }
 
-                                    if ($qtyBackStatus != 'no') {
+                                    if ($qtyBackStatus != 'no' && $qtyBackStatus != 'rejectDone') {
                                         $reqStatus = 'dismantling';
                                     }
 

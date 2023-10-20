@@ -10,7 +10,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND (qtyBackStatus = 'no' OR qtyBackStatus = 'done')";
+        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND (qtyBackStatus = 'no' OR qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no')";
 
         if (!$isNoti) {
             $whereClause[] = "workOrderNo = :workOrderNo ";
@@ -19,7 +19,8 @@ class Requests
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
-            $sql .= " ORDER BY inspectorDate DESC";
+            // $sql .= " ORDER BY inspectorDate DESC";
+            $sql .= "ORDER BY GREATEST(COALESCE(inspectorDate, '0000-00-00'), COALESCE(executerDate, '0000-00-00')) DESC";
         }
 
         $query = $con->prepare($sql);

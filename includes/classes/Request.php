@@ -49,6 +49,21 @@ class Request
         }
         return false;
     }
+    public function executerReject($workOrderNo, $rejectReason)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE request SET status = 'rejected', rejectReason = :rejectReason, executerDate = :currentDateTime, new = 'no', executerNew = 'no'
+                                        WHERE workOrderNo = :workOrderNo");
+
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":rejectReason", $rejectReason);
+            $query->bindValue(":currentDateTime", $this->currentDateTime);
+
+            return $query->execute();
+        }
+
+        return false;
+    }
     public function wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment)
     {
         if (empty($this->errorArray)) {
@@ -361,13 +376,16 @@ class Request
         return false;
     }
 
-    public function requesterDisDone($workOrderNo, $qtyBackStatus)
+    public function requesterDone($workOrderNo, $qtyBackStatus, $rejected = null)
     {
         $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus WHERE workOrderNo = :workOrderNo";
+        if ($rejected)
+            $sql = "UPDATE request SET qtyBackStatus = 'done' WHERE workOrderNo = :workOrderNo";
         $query = $this->con->prepare($sql);
 
         $query->bindValue(":workOrderNo", $workOrderNo);
-        $query->bindValue(":qtyBackStatus", $qtyBackStatus);
+        if (!$rejected)
+            $query->bindValue(":qtyBackStatus", $qtyBackStatus);
 
         return $query->execute();
     }

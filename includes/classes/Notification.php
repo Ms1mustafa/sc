@@ -8,12 +8,18 @@ class Notification
     {
         $workOrderNo = $data["workOrderNo"];
         $priority = $data["priority"];
+        $executer = $data["executer"];
         $inspector = $data["inspector"];
         $wereHouse = $data["wereHouse"];
         $sender = $data["qtyBackStatus"] == 'done' ? $wereHouse : $inspector;
         $qtyBackStatus = $data["qtyBackStatus"] == 'done' ? '&status=done' : '';
         $status = $data["qtyBackStatus"] == 'done' ? 'Done' : ucfirst($data["status"]);
         $inspectorDate = FormSanitizer::formatDate($data["inspectorDate"]);
+        if (!$data["inspectorDate"]) {
+            $sender = $executer;
+            $inspectorDate = FormSanitizer::formatDate($data["executerDate"]);
+            $qtyBackStatus = '&status=rejected';
+        }
 
         if (empty($this->errorArray)) {
             $html = "

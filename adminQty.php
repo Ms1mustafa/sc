@@ -28,7 +28,7 @@ if (isset($_POST["dismantling"])) {
 }
 
 if (isset($_POST["doneReq"])) {
-    $success = $request->requesterDisDone($workOrderNo, 'requesterDone');
+    $success = $request->requesterDone($workOrderNo, '', true);
     if ($success) {
         header("location: inspectorPage.php");
     }
@@ -75,7 +75,7 @@ function getInputValue($name)
                     <div id="reqInf"></div>
 
                     <?php
-                    if (@$_GET["status"] == 'done') {
+                    if (@$_GET["status"] == 'done' || @$_GET["status"] == 'rejected') {
                         echo '<button class="submitDismantling" name="doneReq">Done</button>';
                     }
                     ?>
