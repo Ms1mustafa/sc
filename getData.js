@@ -29,7 +29,7 @@ function loadNotifications(url, usertype, user) {
 
         $("#result").html(data);
 
-        previousContent = numberOfAElements;
+        // previousContent = numberOfAElements;
         isFirstLoad = false; // Set the flag to false after the first load
 
         setTimeout(loadRequests, 3000);
@@ -62,6 +62,7 @@ function Gndt(type, user) {
   }
 }
 
+// Get items and inspectors
 function GetIaI() {
   $("#area").on("change", function (e) {
     $.get("ajax/GetItems.php", { areaId: $("#area").val() }, function (data) {
