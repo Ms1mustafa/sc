@@ -67,7 +67,7 @@ $request = new Request($con);
     </div>
 
     <script>
-        notificationOn();
+        // notificationOn();
         Gndt('home', '<?php echo $adminName; ?>')
     </script>
 </body>

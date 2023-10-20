@@ -53,7 +53,7 @@ $request = new Request($con);
             <div id="result"></div>
         </div>
         <script>
-            notificationOn();
+            // notificationOn();
             Gndt('wereHouse', '<?php echo $adminName; ?>')
         </script>
 </body>
