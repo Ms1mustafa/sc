@@ -80,7 +80,7 @@ $requests = $req->getRequestDetails();
                                     if ($executerNew == 'yes') {
                                         $reqStatus = $executer;
                                         $finishDate = $reqDate;
-                                        if ($request["wereHouseDate"]) {
+                                        if ($wereHouseDate) {
                                             $finishDate = $wereHouseDate;
                                         }
                                     } elseif (($executerNew != 'yes' && $issued != 'yes' && $status == 'pending') || $status == 'resent') {
