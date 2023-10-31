@@ -63,7 +63,7 @@ if ($isNotification == null) {
     <br>
     <br>
     ";
-    if ($qtyBackStatus != 'done' || !$qtyBackStatus) {
+    if ($qtyBackStatus != 'done') {
         echo "<button class='submitDismantling' name='dismantling'>Dsmantling</button>";
     }
     echo "
