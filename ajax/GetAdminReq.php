@@ -38,7 +38,7 @@ if ($isNotification == null) {
     $inspector = $requests["inspector"];
     $area = $requests["area"];
     $item = $requests["item"];
-    $qtyBackStatus	 = $requests["qtyBackStatus"];
+    $qtyBackStatus = $requests["qtyBackStatus"];
     $reqDate = FormSanitizer::formatDate($requests["reqDate"]);
     $inspectorDate = FormSanitizer::formatDate($requests["inspectorDate"]);
 
@@ -63,7 +63,7 @@ if ($isNotification == null) {
     <br>
     <br>
     ";
-    if($qtyBackStatus != 'done'){
+    if ($qtyBackStatus != 'done' || !$qtyBackStatus) {
         echo "<button class='submitDismantling' name='dismantling'>Dsmantling</button>";
     }
     echo "
