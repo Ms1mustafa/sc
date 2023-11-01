@@ -32,7 +32,11 @@ $request = new Request($con);
     <script src="script.js"></script>
     <script src="gndt.js"></script>
     <script></script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="css.css?1999">
+=======
+    <link rel="stylesheet" href="css.css">
+>>>>>>> ea6b03f677f8d1e14a37a2770cd14897b092d470
     <title>Request </title>
 </head>
 

@@ -9,13 +9,22 @@ class Requests
         $sql = "SELECT * FROM request ";
 
         $whereClause = [];
+<<<<<<< HEAD
 
         $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND (qtyBackStatus = 'no' OR qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no') ";
 
+=======
+>>>>>>> ea6b03f677f8d1e14a37a2770cd14897b092d470
         if (!$isNoti) {
             $whereClause[] = "workOrderNo = :workOrderNo ";
         }
 
+<<<<<<< HEAD
+=======
+        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND (qtyBackStatus = 'no' OR qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no') ";
+
+
+>>>>>>> ea6b03f677f8d1e14a37a2770cd14897b092d470
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
