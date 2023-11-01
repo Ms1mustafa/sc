@@ -2,19 +2,21 @@
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
 $workOrderNo = $_GET["qtyNo"];
 
-if (!$userEmail) {
-    header("location: login.php");
-}
-
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$userEmail = $account->getAccountEmail($userToken);
 
-Powers::inspector($account, $userEmail);
+if (!$workOrderNo)
+    header("location: index.php");
+
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
+
+Powers::inspector($account, $userToken);
 
 $request = new Request($con);
 $rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"] + 1;
@@ -61,19 +63,19 @@ function getInputValue($name)
 </head>
 
 <body>
-<div>
+    <div>
         <a class="Back" href="inspectorPage.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
 
     <div class="wrappe">
-      
+
         <div class="login-container" id="login">
             <form method="POST">
                 <p class="namerQTY">
                     <?php echo $adminName; ?>
                 </p>
-<br>
+                <br>
 
                 <form method="POST">
                     <div id="reqInf"></div>

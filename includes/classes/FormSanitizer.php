@@ -1,26 +1,33 @@
 <?php
-class FormSanitizer{
+class FormSanitizer
+{
 
-    public static function sanitizeFormString($inputText){
+    public static function sanitizeFormString($inputText)
+    {
         $inputText = strip_tags($inputText);
         return $inputText;
     }
 
-    public static function sanitizeFormEmail($inputText){
+    public static function sanitizeFormEmail($inputText)
+    {
         $inputText = strip_tags($inputText);
         $inputText = str_replace(" ", "", $inputText);
         return $inputText;
     }
 
-    public static function formatDate($inputDate) {
+    public static function formatDate($inputDate)
+    {
         $currentTime = time(); // Current Unix timestamp
         $inputTime = strtotime($inputDate); // Convert input date to Unix timestamp
-    
+
         $timeDiff = $currentTime - $inputTime;
         $minute = 60;
         $hour = 60 * $minute;
         $day = 24 * $hour;
-    
+
+        if ($inputDate === null)
+            return $inputDate;
+
         if ($timeDiff < $minute) {
             return "Just now";
         } elseif ($timeDiff < $hour) {

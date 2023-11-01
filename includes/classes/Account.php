@@ -47,14 +47,14 @@ class Account
         return false;
     }
 
-    public function register($tk, $un, $em, $pw, $ty, $requestNum, $area = '')
+    public function register($tk, $un, $em, $pw, $ty, $area = '')
     {
         $this->validateUsername($un);
         $this->validateEmail($em);
         $this->validatePassword($pw);
 
         if (empty($this->errorArray)) {
-            return $this->insertUserDetils($tk, $un, $em, $pw, $ty, $requestNum, $area);
+            return $this->insertUserDetils($tk, $un, $em, $pw, $ty, $area);
         }
 
         return false;
@@ -78,16 +78,15 @@ class Account
         return false;
     }
 
-    public function insertUserDetils($tk, $un, $em, $pw, $ty, $requestNum, $area = '')
+    public function insertUserDetils($tk, $un, $em, $pw, $ty, $area = '')
     {
-        $query = $this->con->prepare("INSERT INTO users (token,username,email, password, type, requestNum, area) VALUES (:tk, :un, :em, :pw, :ty, :requestNum, :area)");
+        $query = $this->con->prepare("INSERT INTO users (token, username ,email, password, type, area) VALUES (:tk, :un, :em, :pw, :ty, :area)");
 
         $query->bindValue(":tk", $tk);
         $query->bindValue(":un", $un);
         $query->bindValue(":em", $em);
         $query->bindValue(":pw", $pw);
         $query->bindValue(":ty", $ty);
-        $query->bindValue(":requestNum", $requestNum);
         $query->bindValue(":area", $area);
 
         return $query->execute();
@@ -250,7 +249,7 @@ class Account
         return $query->rowCount() + 1;
     }
 
-    public function getAccountDetails($em, $name = false, $password = false, $area = false, $type = false, $requestNum = false)
+    public function getAccountDetails($em, $name = false, $password = false, $area = false, $type = false)
     {
         $query = $this->con->prepare("SELECT * FROM users WHERE email = :em");
 
@@ -271,16 +270,25 @@ class Account
         if ($type) {
             return $row["type"];
         }
-        if ($requestNum) {
-            return $row["requestNum"];
-        }
     }
 
-    public function getAccountEmail($un)
+    public function getAccountToken($un)
     {
         $query = $this->con->prepare("SELECT * FROM users WHERE username = :un");
 
         $query->bindValue(':un', $un);
+
+        $query->execute();
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        if (!empty($row)) {
+            return $row["token"];
+        }
+    }
+    public function getAccountEmail($tk)
+    {
+        $query = $this->con->prepare("SELECT * FROM users WHERE token = :tk");
+
+        $query->bindValue(':tk', $tk);
 
         $query->execute();
         $row = $query->fetch(PDO::FETCH_ASSOC);

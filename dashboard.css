@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Changa&display=swap");
 
-
 * {
   padding: 0;
   margin: 0;
@@ -14,6 +13,11 @@ body {
   font-family: "Alexandria", sans-serif;
 }
 
+.Safety {
+  background: url("images/1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 .Dashboard {
   display: flex;
@@ -30,7 +34,6 @@ body {
 }
 
 .Dashboard-section {
-
   background: #ffff;
   width: 30%;
 }
@@ -40,7 +43,6 @@ body {
 }
 
 .Dashboard-section2 {
-
   background: #222;
 }
 
@@ -95,22 +97,18 @@ body {
 
 .th,
 td {
-
   text-align: center;
   border: 2px solid #fff;
   min-width: 98px;
   font-weight: bold;
-  font-size: 18px
+  font-size: 18px;
 }
 
 th {
   background-color: rgb(231, 120, 35);
   color: #fff;
   font-size: 20px;
-
 }
-
-
 
 tr:nth-child(even) {
   background-color: #f2f2f2;
@@ -119,7 +117,6 @@ tr:nth-child(even) {
 @media only screen and (max-width: 600px) {
   .alluser {
     margin-top: 150px;
-
   }
 }
 
@@ -173,10 +170,7 @@ tr:nth-child(even) {
   font-weight: bold;
   font-size: 25px;
   top: 50px;
-
 }
-
-
 
 @media only screen and (max-width: 600px) {
   body {

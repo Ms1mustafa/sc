@@ -533,14 +533,22 @@ header {
 }
 
 .addRequest {
-  position: relative;
-  top: 180px;
+
   font-weight: bold;
   font-size: 20px;
 }
 
 /*----------------addrequestNewrequest---------------------*/
 .newrequest {
+  display: flex;
+  width: 80%;
+  height: 90vh;
+  position: relative;
+  top: 70px;
+  left: 10%;
+}
+
+.newrExcauter {
   display: flex;
   width: 80%;
   height: 90vh;
@@ -670,7 +678,7 @@ header {
 
 .rejectreason2 {
   font-size: 15px;
-
+  margin-top: 10px;
   background: #fff;
   color: #000;
   height: 60px;
@@ -745,6 +753,7 @@ header {
     position: relative;
     top: 80px;
     width: 90%;
+    margin-left: -10px;
   }
 
   .Notesaddreq {
@@ -764,6 +773,11 @@ header {
     font-size: 15px;
     width: 70%;
     font-weight: bold;
+
+  }
+
+  .newrExcauter {
+    margin-top: 80px;
 
   }
 }
@@ -936,14 +950,13 @@ header {
 }
 
 .inputfieldGetReq {
-  font-size: 13px;
+  font-size: 15px;
+  text-align: center;
   font-weight: bold;
-
   color: #000;
   height: 50px;
   width: 95%;
   border: none;
-
   position: relative;
   left: 2px;
   border-radius: 5px;
@@ -951,21 +964,8 @@ header {
   transition: 0.2s ease;
 }
 
-.inputfieldGetReqoty {
-  font-size: 13px;
-  font-weight: bold;
 
-  color: #000;
-  height: 50px;
-  width: 80%;
-  text-align: center;
 
-  position: relative;
-  right: 3px;
-  border-radius: 5px;
-  outline: none;
-  transition: 0.2s ease;
-}
 
 .QTYnotes {
   font-size: 15px;
@@ -989,14 +989,30 @@ header {
   font-size: 20px;
 }
 
-/* table */
+/*table QTY Executer*/
 
-.description {
-  margin-top: -10px;
-  width: 290px;
+.itemestablerq1 {
+  width: 24%;
   border: 2px solid #e77823;
   border-radius: 10px;
 }
+
+.itemestablerq1 tr {
+  transition: all 0.2s ease-in;
+  border: 2px solid #e77823;
+
+}
+
+.itemestablerq1 tr:hover {
+  background-color: #ddd;
+  transform: scale(1.02);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+*/
+/* table */
+
+
 
 .descriptiontable {
   margin-top: -10px;
@@ -1030,6 +1046,7 @@ header {
   height: 200px;
   border-radius: 10px;
   margin-top: 10px;
+
 }
 
 .descriptiontable2 tr {
@@ -1046,7 +1063,7 @@ header {
 }
 
 .descriptiontable2 tr:hover {
-  background-color: #e77823;
+  background-color: #ddd;
   transform: scale(1.02);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1058,7 +1075,7 @@ header {
   border-radius: 10px;
   margin-top: 10px;
   position: relative;
-  left: -50px;
+
 }
 
 .descriptiontableReceivingMaterials tr {
@@ -1084,6 +1101,7 @@ header {
   border: 2px solid #e77823;
   height: 200px;
   border-radius: 10px;
+  margin-left: -110px;
 }
 
 .itemestable tr {
@@ -1109,6 +1127,7 @@ header {
 
 .itemestablerq {
   margin-top: -10px;
+
   width: 290px;
   border: 2px solid #e77823;
   border-radius: 10px;
@@ -1128,64 +1147,13 @@ header {
 }
 
 .itemestablerq tr:hover {
-  background-color: #e77823;
+  background-color: #ddd;
   transform: scale(1.02);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-.itemestablerq1 {
-  margin-top: -10px;
-  width: 290px;
-  border: 2px solid #e77823;
-  border-radius: 10px;
-}
-
-.itemestablerq1 tr {
-  transition: all 0.2s ease-in;
-  cursor: pointer;
-}
-
-.itemestablerq1 th,
-.itemestablerq1 td {
-  padding: 0px;
-  text-align: left;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-.itemestablerq1 tr:hover {
-  background-color: #e77823;
-  transform: scale(1.02);
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-.description tr {
-  transition: all 0.2s ease-in;
-  cursor: pointer;
-}
-
-.description th,
-.description td {
-  padding: 0px;
-  text-align: left;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-.description tr:hover {
-  background-color: #e77823;
-  transform: scale(1.02);
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
-}
 
 @media only screen and (max-width: 600px) {
-  .description {
-    width: 240px;
-    margin-left: -40px;
-    margin-top: 100px;
-  }
 
   .descriptiontable {
     width: 100px;
@@ -1194,7 +1162,7 @@ header {
 
   .descriptiontable2 {
     margin-top: 90px;
-    margin-left: -20px;
+    margin-left: -40px;
   }
 
   .descriptiontableReceivingMaterials {
@@ -1205,23 +1173,22 @@ header {
   .itemestable {
     font-size: 13px;
     margin-top: 80px;
-    margin-left: -40px;
+    margin-left: -50px;
   }
 
   .itemestablerq {
     width: 240px;
-    margin-left: -40px;
+    margin-left: -53px;
     margin-top: 20px;
   }
 
   .itemestablerq1 {
-    width: 240px;
-    margin-top: 64px;
+    width: 260px;
+    margin-top: 90px;
+    margin-left: -5px;
   }
 
-  .inputfieldGetReqoty {
-    width: 100px;
-  }
+
 
   .GetOTYNote {
     position: relative;
@@ -1232,13 +1199,14 @@ header {
     position: relative;
     top: 60px;
     width: 74%;
+    left: 5px;
   }
 }
 
 .pipe2 {
   font-size: 14px;
   font-weight: bold;
-  width: 120px;
+  width: 60px;
   height: 30px;
   padding: 0 5px;
   text-align: center;
@@ -1250,11 +1218,11 @@ header {
 .clamp1,
 .Wood1 {
   /* color: #fff; */
-  font-size: 11px;
+  font-size: 14px;
   font-weight: bold;
-  width: 180px;
-  height: 30px;
-
+  width: 200px;
+  height: 35px;
+  margin-left: 8px;
   text-align: center;
   border: none;
   border-radius: 5px;
@@ -1272,14 +1240,14 @@ header {
   width: 200px;
   border: 1px #e77823 solid;
   border-radius: 5px;
-  height: 40px;
+  height: 30px;
 }
 
 .pipecomitm {
-  width: 300px;
+  width: 100px;
   border: 1px #e77823 solid;
   border-radius: 5px;
-  height: 50px;
+  height: 30px;
 }
 
 .submitQTY {
@@ -1412,8 +1380,8 @@ header {
 
   .submitQTYReceining {
     position: relative;
+    width: 80%;
 
-    width: 94%;
   }
 
   .pipiss {
@@ -1421,7 +1389,7 @@ header {
   }
 
   .pipecomm {
-    width: 90px;
+    width: 70px;
     height: 10vh;
   }
 
@@ -1436,11 +1404,12 @@ header {
   }
 
   .pipe2 {
-    height: 10vh;
+    height: 5vh;
+    border: 1px solid #e77823;
   }
 
   .pipe1 {
-    width: 140px;
+    width: 180px;
   }
 }
 
@@ -1495,10 +1464,10 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 25%;
+  width: 20%;
   border: none;
   border-radius: 15px;
-
+  margin-left: 20px;
 
   outline: none;
   background: #e77823;
@@ -1528,6 +1497,7 @@ header {
 
 .reqhr {
   width: 25%;
+  margin-top: 2%;
   border: 1px solid #000;
 }
 
@@ -1539,6 +1509,7 @@ header {
 
   .buttondismantling {
     width: 93%;
+    margin-left: -30PX;
   }
 
   .submitGetHose {
@@ -1558,6 +1529,8 @@ header {
 
   .reqhr {
     width: 100%;
+
+
   }
 }
 
@@ -1720,8 +1693,7 @@ header {
   color: red;
   font-weight: bold;
   position: absolute;
-  top: 116px;
-
+  top: 115px;
 }
 
 .errorrequest {
@@ -1788,7 +1760,7 @@ header {
 }
 
 .ReceivingMaterials {
-  margin-left: 90px;
+  margin-left: 50px;
 }
 
 .ReceivingMaterialswere {
@@ -1834,6 +1806,10 @@ header {
     display: none;
   }
 
+  .itemestable {
+    margin-left: 2px;
+  }
+
   .Back {
     display: none;
   }
@@ -1865,4 +1841,68 @@ header {
   color: rgb(231, 120, 35);
   margin-top: 10px;
   font-size: 20px;
+}
+
+.fa-xmark {
+  color: #e77823;
+  width: 20px;
+}
+
+/*-------------------*/
+.alluser {
+  border-collapse: collapse;
+  width: 60%;
+  padding: 8px;
+  border: 3px solid #ddd;
+  margin-left: -100px;
+  margin-top: 70px;
+  text-align: center;
+}
+
+.Accipted {
+  border-collapse: collapse;
+  width: 60%;
+  padding: 8px;
+  border: 3px solid #ddd;
+  margin-left: -100px;
+  margin-top: 70px;
+  text-align: center;
+}
+
+.th,
+td {
+
+  text-align: center;
+  border: 3px solid #fff;
+  min-width: 98px;
+  font-weight: bold;
+  font-size: 18px
+}
+
+th {
+  background-color: rgb(231, 120, 35);
+  color: #fff;
+  font-size: 20px;
+
+}
+
+
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+@media only screen and (max-width: 600px) {
+  .alluser {
+    position: relative;
+    left: 30px;
+    top: -80px;
+  }
+
+  .Accipted {
+    position: relative;
+    left: 70px;
+    top: -80px;
+
+  }
 }

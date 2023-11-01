@@ -10,7 +10,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND qtyBackStatus = 'no'";
+        $whereClause[] = "status = 'accepted' AND adminAddedName = :admin AND (qtyBackStatus = 'no' OR qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no') ";
 
         if (!$isNoti) {
             $whereClause[] = "workOrderNo = :workOrderNo ";
@@ -19,9 +19,9 @@ class Requests
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
-            $sql .= "ORDER BY inspectorDate DESC";
+            // $sql .= " ORDER BY inspectorDate DESC";
+            $sql .= "ORDER BY GREATEST(COALESCE(inspectorDate, '0000-00-00'), COALESCE(executerDate, '0000-00-00')) DESC";
         }
-        ;
 
         $query = $con->prepare($sql);
 
@@ -45,6 +45,7 @@ class Requests
 
         return $array;
     }
+
 
     public static function getRequestsAction($con, $isNoti = null, $admin, $workOrderNo = null)
     {
@@ -170,7 +171,9 @@ class Requests
         $whereClause = [];
 
         $whereClause[] = "executerAccept = 'yes' AND inspector = :inspector AND status != 'accepted' AND status != 'rejected' AND status != 'resent' AND status != 'backExecuter'";
-
+        if (!$isNoti) {
+            $whereClause[] = "workOrderNo = :workOrderNo ";
+        }
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
 
@@ -180,9 +183,14 @@ class Requests
         }
         ;
 
+
         $query = $con->prepare($sql);
 
+
         $query->bindValue(":inspector", $inspector);
+        if (!$isNoti) {
+            $query->bindValue(":workOrderNo", $workOrderNo);
+        }
 
         $query->execute();
 
@@ -241,7 +249,7 @@ class Requests
     {
         $sql = "SELECT * FROM rejectitemdes WHERE workOrderNo = :workOrderNo ";
 
-        if($last){
+        if ($last) {
             $sql .= "AND rejectsNum = (SELECT MAX(rejectsNum) FROM rejectitemdes WHERE workOrderNo = :workOrderNo)";
         }
 
@@ -255,6 +263,26 @@ class Requests
 
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $array[] = $row;
+        }
+
+        return $array;
+    }
+
+    public static function getRequest($con, $workOrderNo)
+    {
+        $sql = "SELECT * FROM request WHERE workOrderNo =:workOrderNo";
+
+
+        $query = $con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $array = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $array = $row;
         }
 
         return $array;

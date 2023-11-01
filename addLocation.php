@@ -1,8 +1,14 @@
 <?php
 include_once('includes/classes/Area.php');
 include_once('includes/classes/FormSanitizer.php');
+include_once('includes/classes/Account.php');
+include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
+$account = new Account($con);
+$userEmail = $account->getAccountEmail($userToken);
+Powers::owner($account, $userToken);
 
 if (!$userEmail) {
   header("location: login.php");
@@ -12,14 +18,24 @@ $area = new Area($con);
 $getItemId = $area->getItemIdNum();
 $getArea = $area->getArea();
 
+$err = '';
+$errArea = '';
+
 if (isset($_POST["submit"])) {
-  $id = $_POST["id"];
+  $id = $getItemId;
   $areaId = $_POST["areaId"];
   $itemName = FormSanitizer::sanitizeFormString($_POST["itemName"]);
 
-  $success = $area->addItem($id, $areaId, $itemName);
+  if (!$itemName)
+    $err = 'Location name is required';
 
-  if ($success) {
+  if (!$areaId)
+    $errArea = 'Area is required';
+
+  if ($id && $areaId && $itemName)
+    $success = $area->addItem($id, $areaId, $itemName);
+
+  if (@$success) {
     header("location: ownerPage.php");
   }
 }
@@ -39,12 +55,12 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-<div>
-        <a class="Back" href="ownerPage.php">
-            <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
+  <div>
+    <a class="Back" href="ownerPage.php">
+      <i class="fa-solid fa-arrow-left"></i> Back</a>
+  </div>
   <div class="wrappereq">
-        <div class="login-container" id="login">
+    <div class="login-container" id="login">
       <div class="top">
 
         <header class="nameowner">Add Location...</header>
@@ -55,6 +71,7 @@ if (isset($_POST["submit"])) {
           <input type="text" class="inputfieldarea" name="id" value="<?php echo $getItemId; ?>" placeholder="id"
             readonly required>
       </div>
+      <?php echo $errArea; ?>
       <br>
 
       <select class="inputfieldarea2" name="areaId">
@@ -62,15 +79,15 @@ if (isset($_POST["submit"])) {
       </select>
       <br>
       <br>
+      <?php echo $err; ?>
       <br>
-      <div >
+      <div>
 
-  
-        <input type="text" class="inputfieldarea3" name="itemName" placeholder="Add Item" required>
+        <input type="text" class="inputfieldarea3" name="itemName" placeholder="Add Location" required>
       </div>
       <br>
       <br>
-      <div >
+      <div>
         <button type="submit" name="submit" class="submitlocation">Add</button>
       </div>
 

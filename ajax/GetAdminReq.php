@@ -38,6 +38,7 @@ if ($isNotification == null) {
     $inspector = $requests["inspector"];
     $area = $requests["area"];
     $item = $requests["item"];
+    $qtyBackStatus = $requests["qtyBackStatus"];
     $reqDate = FormSanitizer::formatDate($requests["reqDate"]);
     $inspectorDate = FormSanitizer::formatDate($requests["inspectorDate"]);
 
@@ -56,12 +57,16 @@ if ($isNotification == null) {
     <label class='Getrquest'>Request Added :</label>
     <label  class='GetrquesQTY'>$reqDate</label>
     <br>
-<br>
+    <br>
     <label class='Getrquest'>Inspector accept :</label>
     <label  class='GetrquesQTY'>$inspectorDate</label>
     <br>
     <br>
-    <button class='submitDismantling' name='dismantling'>Dsmantling</button>
+    ";
+    if ($qtyBackStatus != 'done') {
+        echo "<button class='submitDismantling' name='dismantling'>Dsmantling</button>";
+    }
+    echo "
 ";
 }
 

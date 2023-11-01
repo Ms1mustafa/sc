@@ -1,6 +1,20 @@
 <?php
+include_once('includes/classes/Account.php');
+include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
 $workOrderNo = $_GET["req"];
+$isRejected = @$_GET["rejected"];
+$firstCm = @$_GET["firstCm"];
+
+if (!$workOrderNo)
+    header("location: index.php");
+
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
+$account = new Account($con);
+$userEmail = $account->getAccountEmail($userToken);
+
+Powers::wereHouse($account, $userToken);
 
 // require_once('ajax/GetWereHousePrint.php');
 
@@ -24,7 +38,7 @@ $workOrderNo = $_GET["req"];
 
 
 <body>
-<div>
+    <div>
         <a class="Back" href="wereHouseQty.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
@@ -35,21 +49,23 @@ $workOrderNo = $_GET["req"];
             <h1 class="ReceivingMaterials">Receiving Materials</h1>
             <br>
             <br>
-    <div id="reqInf"></div>
-    <h3 class="Issued">Issued By: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Recorded By:</h3>
-    <button class="Print" id="printButton">Print</button>
+            <div id="reqInf"></div>
+            <h3 class="Issued">Issued By: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; Recorded By:</h3>
+            <button class="Print" id="printButton">Print</button>
 
-    <script>
-        $(window).on("load", function () {
-            $.get(
-                "ajax/GetWereHousePrint.php",
-                { workOrderNo: '<?php echo $workOrderNo; ?>' },
-                function (data) {
-                    $("#reqInf").html(data);
-                }
-            );
-        })
-    </script>
+            <script>
+                $(window).on("load", function () {
+                    $.get(
+                        "ajax/GetWereHousePrint.php",
+                        { workOrderNo: '<?php echo $workOrderNo; ?>', isRejected: '<?php echo $isRejected; ?>', firstCm: '<?php echo $firstCm; ?>' },
+                        function (data) {
+                            $("#reqInf").html(data);
+                        }
+                    );
+                })
+            </script>
 
 </body>
 

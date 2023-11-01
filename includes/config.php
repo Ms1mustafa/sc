@@ -1,11 +1,11 @@
 <?php
 ob_start();
+// session_start();
 
 date_default_timezone_set('Asia/Baghdad');
-$currentDateTime = date("Y-m-d H:i:s");
 
 try{
-    $con = new PDO("mysql:dbname=sca;host:localhost", "root", "1234512345");
+    $con = new PDO("mysql:dbname=sca;host:localhost", "root", "");
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 }
 catch(PDOException $e){

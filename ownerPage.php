@@ -2,15 +2,21 @@
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
+
+if (!$userToken) {
+    header("location: login.php");
+}
 
 $account = new Account($con);
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$userEmail = $account->getAccountEmail($userToken);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 $isOwner = $account->getAccountDetails($userEmail, null, null, null, true);
 
-Powers::owner($account, $userEmail);
+Powers::owner($account, $userToken);
 
 $request = new Request($con);
 // $requests = $request->getRequestNumber($adminName);
@@ -32,17 +38,17 @@ $request = new Request($con);
 </head>
 
 <body>
-<div >
-    <a  class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
-    
-</div>
-      
-        <div class="pageoner">
+    <div>
+        <a class="buttonlogout" href="logout.php"><i class="fa-sharp fa-solid fa-right-to-bracket"></i> Logout</a>
+
+    </div>
+
+    <div class="pageoner">
         <div class="login-container" id="login">
-            
+
             <div class="top">
 
-                <header class="nameowner" >Owner</header>
+                <header class="nameowner">Owner</header>
             </div>
 
             <p class="adminNameowner">
@@ -75,7 +81,7 @@ $request = new Request($con);
             </div>
             <br>
             <div class="input-box">
-                <button class="inputfieldowner"> <a href="allUsers.php">All  users</a></button>
+                <button class="inputfieldowner"> <a href="allUsers.php">All users</a></button>
             </div>
             <br>
             <div class="input-box">

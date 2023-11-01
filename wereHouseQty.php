@@ -2,25 +2,25 @@
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
 $workOrderNo = $_GET["qtyNo"];
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
+$account = new Account($con);
+$userEmail = $account->getAccountEmail($userToken);
+
 if (!$workOrderNo) {
     header("location: index.php");
 }
+
 $resent = @$_GET["resent"];
 $dismantling = @$_GET["dismantling"];
 
-if (!$userEmail) {
-    header("location: login.php");
-}
-
-$account = new Account($con);
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 $anotherWereHouse = $account->getTransferAccount('wereHouse', $userEmail);
 
-Powers::wereHouse($account, $userEmail);
+Powers::wereHouse($account, $userToken);
 
 $request = new Request($con);
 $itemName = @$_POST['itemName'];
@@ -42,7 +42,11 @@ if (isset($_POST["submit"])) {
     }
 
     if ($success) {
-        header("location: wereHouse.php");
+        if ($resent == 'yes') {
+            header("location: wereHousePrint.php?req=" . $workOrderNo . "&rejected=1");
+        } else {
+            header("location: wereHousePrint.php?req=" . $workOrderNo . "&firstCm=1");
+        }
     }
 }
 
@@ -51,7 +55,7 @@ if (isset($_POST["change"])) {
     $success = $request->transfer($newUser, 'wereHouse', $workOrderNo);
 
     if ($success) {
-        header("location: wereHouse.php");
+        header("location: wereHousePrint.php?req=" . $workOrderNo . "");
     }
 }
 
@@ -146,6 +150,7 @@ function getInputValue($name)
                                 </th>
                                 <th><p class="inputfieldGetReqoty"> comment</p></th>
                                 <th><p class="inputfieldGetReqoty"> Qty</p></th>
+                                <th><p class="inputfieldGetReqoty"> delete</p></th>
                             </thead>
                             <tbody id="wereHouseItemDescriptionBody">
 

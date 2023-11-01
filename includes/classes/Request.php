@@ -49,6 +49,21 @@ class Request
         }
         return false;
     }
+    public function executerReject($workOrderNo, $rejectReason)
+    {
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE request SET status = 'rejected', rejectReason = :rejectReason, executerDate = :currentDateTime, new = 'no', executerNew = 'no'
+                                        WHERE workOrderNo = :workOrderNo");
+
+            $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":rejectReason", $rejectReason);
+            $query->bindValue(":currentDateTime", $this->currentDateTime);
+
+            return $query->execute();
+        }
+
+        return false;
+    }
     public function wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment)
     {
         if (empty($this->errorArray)) {
@@ -122,6 +137,8 @@ class Request
     {
         $query = $this->con->prepare("INSERT INTO rejectitemdes (workOrderNo, itemName, itemQty, rejectsNum) VALUES (:workOrderNo, :itemName, :itemQty, :rejectsNum)");
 
+        if (!$itemName)
+            return;
         for ($i = 0; $i < count($itemName); $i++) {
             $query->bindValue(":workOrderNo", $workOrderNo);
             $query->bindValue(":rejectsNum", $rejectsNum);
@@ -273,15 +290,15 @@ class Request
 
         return false;
     }
-    public function transfer($newUser , $type, $workOrderNo)
+    public function transfer($newUser, $type, $workOrderNo)
     {
         if (empty($this->errorArray)) {
             $sql = "UPDATE request SET ";
 
-            if($type == 'executer'){
+            if ($type == 'executer') {
                 $sql .= "executer = :newUser ";
             }
-            if($type == 'wereHouse'){
+            if ($type == 'wereHouse') {
                 $sql .= "wereHouse = :newUser ";
             }
 
@@ -298,64 +315,80 @@ class Request
         return false;
     }
     public function dismantling($qtyBackStatus, $workOrderNo, $rejectsNum = null, $itemName = null, $qtyBack = null, $qtyBackType = null, $wereHouseItemName = null, $wereHouseComment = null, $wereHouseItemQty = null)
-{
-    if (empty($this->errorArray)) {
-        try {
-            $this->con->beginTransaction(); // Start transaction
+    {
+        if (empty($this->errorArray)) {
+            try {
+                $this->con->beginTransaction(); // Start transaction
 
-            $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus , qtyBackDate = :currentDateTime";
+                $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus , qtyBackDate = :currentDateTime";
 
-            // Add executerNew condition based on qtyBackStatus
-            if ($qtyBackStatus === 'executer') {
-                $sql .= ", executerNew = 'yes'";
-            } elseif ($qtyBackStatus === 'wereHouse') {
-                $sql .= ", executerNew = 'no'";
-            }
-
-            $sql .= " WHERE workOrderNo = :workOrderNo";
-
-            $query = $this->con->prepare($sql);
-            $query->bindValue(":qtyBackStatus", $qtyBackStatus);
-            $query->bindValue(":currentDateTime", $this->currentDateTime);
-            $query->bindValue(":workOrderNo", $workOrderNo);
-            $query->execute();
-
-            if ($qtyBackStatus == 'done') {
-                $sql2 = "INSERT INTO werehouseback (workOrderNo, itemName, wereHouseComment, qtyBack) VALUES (:workOrderNo, :itemName, :wereHouseComment, :qtyBack)";
-
-                $query2 = $this->con->prepare($sql2);
-
-                for ($i = 0; $i < count($itemName); $i++) {
-                    $query2->bindValue(":workOrderNo", $workOrderNo);
-                    $query2->bindValue(":itemName", $wereHouseItemName[$i]);
-                    $query2->bindValue(":wereHouseComment", $wereHouseComment[$i]);
-                    $query2->bindValue(":qtyBack", $wereHouseItemQty[$i]);
-                    $query2->execute();
+                // Add executerNew condition based on qtyBackStatus
+                if ($qtyBackStatus === 'executer') {
+                    $sql .= ", executerNew = 'yes'";
+                } elseif ($qtyBackStatus === 'wereHouse') {
+                    $sql .= ", executerNew = 'no'";
+                } elseif ($qtyBackStatus === 'done') {
+                    $sql .= ", executerNew = 'yes'";
                 }
 
-                $sql3 = "UPDATE rejectitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName";
-                $query3 = $this->con->prepare($sql3);
+                $sql .= " WHERE workOrderNo = :workOrderNo";
 
-                for ($i = 0; $i < count($itemName); $i++) {
-                    $query3->bindValue(":workOrderNo", $workOrderNo);
-                    // $query3->bindValue(":rejectsNum", $rejectsNum[$i]);
-                    $query3->bindValue(":itemName", $itemName[$i]);
-                    $query3->bindValue(":qtyBack", $qtyBack[$i]);
-                    $query3->execute();
+                $query = $this->con->prepare($sql);
+                $query->bindValue(":qtyBackStatus", $qtyBackStatus);
+                $query->bindValue(":currentDateTime", $this->currentDateTime);
+                $query->bindValue(":workOrderNo", $workOrderNo);
+                $query->execute();
+
+                if ($qtyBackStatus == 'done') {
+                    $sql2 = "INSERT INTO werehouseback (workOrderNo, itemName, wereHouseComment, qtyBack) VALUES (:workOrderNo, :itemName, :wereHouseComment, :qtyBack)";
+
+                    $query2 = $this->con->prepare($sql2);
+
+                    for ($i = 0; $i < count($itemName); $i++) {
+                        $query2->bindValue(":workOrderNo", $workOrderNo);
+                        $query2->bindValue(":itemName", $wereHouseItemName[$i]);
+                        $query2->bindValue(":wereHouseComment", $wereHouseComment[$i]);
+                        $query2->bindValue(":qtyBack", $wereHouseItemQty[$i]);
+                        $query2->execute();
+                    }
+
+                    $sql3 = "UPDATE rejectitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName";
+                    $query3 = $this->con->prepare($sql3);
+
+                    for ($i = 0; $i < count($itemName); $i++) {
+                        $query3->bindValue(":workOrderNo", $workOrderNo);
+                        // $query3->bindValue(":rejectsNum", $rejectsNum[$i]);
+                        $query3->bindValue(":itemName", $itemName[$i]);
+                        $query3->bindValue(":qtyBack", $qtyBack[$i]);
+                        $query3->execute();
+                    }
                 }
+
+                $this->con->commit(); // Commit the transaction
+
+                return true;
+            } catch (PDOException $e) {
+                $this->con->rollBack(); // Rollback the transaction if an error occurs
+                // Handle the error here or log it
+                return false;
             }
-
-            $this->con->commit(); // Commit the transaction
-
-            return true;
-        } catch (PDOException $e) {
-            $this->con->rollBack(); // Rollback the transaction if an error occurs
-            // Handle the error here or log it
-            return false;
         }
+        return false;
     }
-    return false;
-}
+
+    public function requesterDone($workOrderNo, $qtyBackStatus, $rejected = null)
+    {
+        $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus WHERE workOrderNo = :workOrderNo";
+        if ($rejected)
+            $sql = "UPDATE request SET qtyBackStatus = 'done' WHERE workOrderNo = :workOrderNo";
+        $query = $this->con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+        if (!$rejected)
+            $query->bindValue(":qtyBackStatus", $qtyBackStatus);
+
+        return $query->execute();
+    }
 
 
 
@@ -389,17 +422,60 @@ class Request
 
         $array = array();
 
-        if(!$workOrderNo){
+        if (!$workOrderNo) {
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 $array[] = $row;
             }
-        }else{
+        } else {
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            $array = $row;
-        }
+                $array = $row;
+            }
         }
 
         return $array;
+    }
+
+    public function getAllRequests($status = false)
+    {
+
+        $sql = "SELECT * FROM request ";
+
+        if ($status === 'accepted' || $status === 'rejected') {
+            $sql .= "WHERE status = :status ";
+        } elseif ($status === 'done') {
+            $sql .= "WHERE qtyBackStatus = :status ";
+        } elseif ($status === true) {
+            $sql .= "WHERE status = 'accepted' AND qtyBackStatus != 'done' AND qtyBackStatus != 'no' ";
+        }
+
+
+
+        $query = $this->con->prepare($sql);
+
+        if ($status && $status !== true) {
+            $query->bindValue(":status", $status);
+        }
+
+        $query->execute();
+
+        $rows = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
+    public function getReqNum()
+    {
+        $sql = "SELECT * FROM request ";
+
+        $query = $this->con->prepare($sql);
+
+        $query->execute();
+
+        return $query->rowCount() + 1;
     }
 
     public function getError($error)

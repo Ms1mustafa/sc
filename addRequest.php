@@ -5,18 +5,15 @@ include_once('includes/classes/WorkType.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/FormSanitizer.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
-
-if (!$userEmail) {
-    header("location: login.php");
-}
-
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
+$userEmail = $account->getAccountEmail($userToken);
 
 $request = new Request($con);
 
-Powers::admin($account, $userEmail);
+Powers::admin($account, $userToken);
 
 $generatedNumbers = [];
 
@@ -30,8 +27,23 @@ while (true) {
     }
 }
 
-$requestNum = $account->getAccountDetails($userEmail, false, false, false, false, true);
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, true);
+$requestNum = $request->getReqNum();
+
+$numberOfElements = $requestNum;
+
+$area = new Area($con);
+$getArea = $area->getArea();
+
+$i = 1;
+$requestNum = "";
+$currentYear = date("Y");
+while ($i <= $numberOfElements) {
+    $requestNum = str_pad($i, 5, '0', STR_PAD_LEFT);
+    $requestNum = $currentYear . $requestNum;
+    $i++;
+}
+
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
 $executer = $account->getAccountByType('Execution');
 
 $area = new Area($con);
@@ -56,7 +68,7 @@ if (isset($_POST["submit"])) {
     $executer = $account->getMainAccount('Execution');
     $wereHouse = $account->getMainAccount('wereHouse');
     $inspector = @$_POST["inspector"];
-    $inspectorName = $account->getAccountDetails($inspector, true, false, false, false, true);
+    $inspectorName = $account->getAccountDetails($inspector, true, false, false, false);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
     $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $notes);
@@ -74,31 +86,32 @@ if (isset($_POST["submit"])) {
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-   
+
+
     <link rel="stylesheet" href="css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-        <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@200;300;400;500;600;700;800&family=Source+Sans+Pro:wght@600&display=swap"
         rel="stylesheet">
-    
+
     <script src="script.js" defer></script>
+    <script src="gndt.js"></script>
     <title>Request </title>
 </head>
 
 <body class="bodyaddrequest">
-<div >
-    <a class="Back" href="home.php">
-    <i class="fa-solid fa-arrow-left"></i>    Back</a>
-    
-   
-</div>
+    <div>
+        <a class="Back" href="home.php">
+            <i class="fa-solid fa-arrow-left"></i> Back</a>
+
+
+    </div>
     <div class="newrequest">
-              <div class="login-container" id="login">
+        <div class="login-container" id="login">
             <div class="top">
                 <header class="namerequest">NewRequest</header>
             </div>
@@ -106,7 +119,10 @@ if (isset($_POST["submit"])) {
             <div class="input-box">
 
                 <form method="POST">
-                  <p class="errorrequest">  <?php echo $request->getError(constants::$workOrderNoTaken); ?></p>
+                    <p class="errorrequest">
+                        <?php echo $request->getError(constants::$workOrderNoTaken); ?>
+                        <?php echo $request->getError(constants::$requestFailed); ?>
+                    </p>
                     <br>
                     <label class="labelnewrequest">Req Name</label>
                     <br>
@@ -115,7 +131,7 @@ if (isset($_POST["submit"])) {
                         value="<?php echo $adminName; ?>" readonly required>
             </div>
 
-            
+
             <br>
             <div class="input-box">
                 <label class="labelnewrequest">Req No</label>
@@ -126,33 +142,32 @@ if (isset($_POST["submit"])) {
             </div>
             <br>
             <div class="input-box">
-            <?php echo $request->getError(constants::$usernameTaken); ?>
                 <label class="labelnewrequest">Work Order No</label>
                 <br>
                 <br>
                 <input type="text" class="inputfieldrequest" placeholder="Work Order No" name="workOrderNo" required>
             </div>
             <br>
-<div>
+            <div>
 
 
-            <select name="area" class="inputfieldselectnewreq" id="area" required>
-                <option disabled selected value="">select area</option>
-                <?php echo $getArea; ?>
-            </select>
-</div>
-<br>
+                <select name="area" class="inputfieldselectnewreq" id="area" required>
+                    <option disabled selected value="">select area</option>
+                    <?php echo $getArea; ?>
+                </select>
+            </div>
+            <br>
             <select name="item" class="inputfieldselectnewreq" id="item" required>
                 <option disabled selected value="">select location</option>
             </select>
             <br>
             <br>
             <div class="met">
-            <input type="number" class="input-length" id="length" min="1" placeholder="L" name="length">
-            <input type="number" class="input-length" id="width" min="1" placeholder="W" name="width">
-              
-              <input type="number" class="input-length" id="height" min="1" placeholder="H" name="height">
-</div>
+                <input type="number" class="input-length" id="length" min="1" placeholder="L" name="length">
+                <input type="number" class="input-length" id="width" min="1" placeholder="W" name="width">
+
+                <input type="number" class="input-length" id="height" min="1" placeholder="H" name="height">
+            </div>
             <p id="boxResult"></p>
             <br>
             <label class="labelnewrequestpriority">Priority</label>
@@ -161,10 +176,10 @@ if (isset($_POST["submit"])) {
             <input class="priorty" type="radio" id="immediately" value="Immediately Today" name="priority" checked>
             <label class="priorty" for="immediately">Immediately &nbsp; Today</label>
             <br>
-            <input  class="priorty" type="radio" id="high" value="High 2-3 Days" name="priority">
-            <label  class="priorty" for="high">High &nbsp; 2-3 Days</label>
+            <input class="priorty" type="radio" id="high" value="High 2-3 Days" name="priority">
+            <label class="priorty" for="high">High &nbsp; 2-3 Days</label>
             <br>
-            <input  class="priorty" type="radio" id="medium" value="Medium 3-4 Days" name="priority">
+            <input class="priorty" type="radio" id="medium" value="Medium 3-4 Days" name="priority">
             <label class="priorty" for="medium">Medium &nbsp; 4-5 Days</label>
             <br>
             <input class="priorty" type="radio" id="low" value="Low More than 5 days" name="priority">
@@ -184,7 +199,7 @@ if (isset($_POST["submit"])) {
             <label class="labelnewrequestpriority">Notes</label>
             <br>
             <textarea class="inputfieldnot" name="notes" required></textarea>
-         
+
             <div class="input-box">
                 <button type="submit" name="submit" class="submitnewreq">Done</button>
             </div>
@@ -195,23 +210,7 @@ if (isset($_POST["submit"])) {
     </div>
 
     <script>
-        $("#area").on("change", function (e) {
-            $.get(
-                "ajax/GetItems.php",
-                { areaId: $("#area").val() },
-                function (data) {
-                    $("#item").html(data);
-                }
-            );
-            $.get(
-                "ajax/GetInspectors.php",
-                { areaId: $("#area").val() },
-                function (data) {
-                    $("#inspector").html(data);
-                }
-            );
-
-        })
+        GetIaI()
     </script>
 </body>
 

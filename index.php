@@ -1,12 +1,18 @@
 <?php
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = @$_COOKIE["email"];
-if (!$userEmail) {
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
+$account = new Account($con);
+$userEmail = $account->getAccountEmail($userToken);
+$isAcc = @$account->getAccountEmail($userToken);
+
+if (!$userToken) {
     header("location: login.php");
 }
-
-$account = new Account($con);
-Powers::goTo($account, @$userEmail);
+if (!$isAcc) {
+    header("location: logout.php");
+} else
+    Powers::goTo($account, @$userToken);
 ?>

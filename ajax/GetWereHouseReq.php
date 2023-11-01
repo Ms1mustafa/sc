@@ -46,6 +46,10 @@ if ($isNotification == null) {
     <label class='GetrquesQTY'>$adminAddedName</label>
     <br>
     <br>
+    <label class='Getrquest' >WorkOrder No </label>
+    <label class='GetrquesQTY'>$workOrderNo</label>
+    <br>
+    <br>
     <label  class='Getrquest'>Inspector</label>
     <label  class='GetrquesQTY'>$inspector</label>
    <br>
@@ -62,7 +66,7 @@ if ($isNotification == null) {
     ";
 
     if ($qtyBackStatus == 'wereHouse') {
-        
+
         echo '
         </tbody>
         </table>
@@ -76,34 +80,34 @@ if ($isNotification == null) {
             </thead>
             <tbody>
             ';
-            $mergedItems = array();
+        $mergedItems = array();
 
-            if ($rejectItems) {
-                $itemsLoop = $rejectItems;
-            } else {
-                $itemsLoop = $items;
-            }
-            
-            $dismantling = 'dismantling';
-            foreach ($itemsLoop as $item) {
-                if ($status != 'rejected') {
-                    $itemName = $item['itemName'];
-                    if (!isset($mergedItems[$itemName])) {
-                        $mergedItems[$itemName] = array(
-                            'itemName' => $itemName,
-                            'itemQty' => 0,
-                            'wereHouseQty' => 0,
-                            'rejectsNum' => 0
-                        );
-                    }
-            
-                    $mergedItems[$itemName]['wereHouseQty'] += $item['wereHouseQty'];
-                    $mergedItems[$itemName]['rejectsNum'] += @$item['rejectsNum'];
+        if ($rejectItems) {
+            $itemsLoop = $rejectItems;
+        } else {
+            $itemsLoop = $items;
+        }
+
+        $dismantling = 'dismantling';
+        foreach ($itemsLoop as $item) {
+            if ($status != 'rejected') {
+                $itemName = $item['itemName'];
+                if (!isset($mergedItems[$itemName])) {
+                    $mergedItems[$itemName] = array(
+                        'itemName' => $itemName,
+                        'itemQty' => 0,
+                        'wereHouseQty' => 0,
+                        'rejectsNum' => 0
+                    );
                 }
+
+                $mergedItems[$itemName]['wereHouseQty'] += $item['wereHouseQty'];
+                $mergedItems[$itemName]['rejectsNum'] += @$item['rejectsNum'];
             }
-            
-            foreach ($mergedItems as $item) {
-                echo '
+        }
+
+        foreach ($mergedItems as $item) {
+            echo '
                     <tr>
                         <td><input class="pipe1" min="1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
                         <td hidden>' . $item['itemQty'] . '</td>
@@ -112,8 +116,8 @@ if ($isNotification == null) {
                         <td><input class="pipiss" type="number" min="1" name="qtyBack[]" required></td>
                     </tr>
                 ';
-            }
-            
+        }
+
         echo '
             </tbody>
         </table>
@@ -139,10 +143,12 @@ if ($isNotification == null) {
             <td><input class = "pipe1" min = "1" name="itemName[]" value="' . $item['itemName'] . '" readonly></td>
             <td>' . $item['itemQty'] . '</td>
             ';
-            echo "<td> <input class = 'pipiss' type='number' min = '1' name='wereHouseQty[]' value= " . @$item['wereHouseQty'] . "> </td>";
+            echo "<td> <input class = 'pipiss' required type='number' min = '1' name='wereHouseQty[]' value= " . @$item['wereHouseQty'] . "> </td>";
             echo "<td><textarea class = 'pipecomm' type='text' min = '1' name='wereHouseComment[]' ";
             if (@$item['wereHouseComment']) {
-                echo 'readonly';} echo">". @$item['wereHouseComment'] ."</textarea></td>";
+                echo 'readonly';
+            }
+            echo ">" . @$item['wereHouseComment'] . "</textarea></td>";
             echo '
         </tr>
         ';
@@ -153,7 +159,7 @@ if ($isNotification == null) {
     </div>
     <div>
     <h3 class='Issuedprint'>Issued By: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Recorded By:</h3>
-    <button  class='submitGetHose' name='submit'>Done</button>
+    <button  class='submitGetHose' id='done' name='submit'>Done</button>
     </div>
     ";
         echo "

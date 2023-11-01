@@ -1,20 +1,28 @@
 <?php
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
+include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
-$userEmail = $_COOKIE["email"];
 $workOrderNo = $_GET["qtyNo"];
 $new = @$_GET["new"];
 $reject = @$_GET["reject"];
 
-if (!$userEmail) {
-    header("location: login.php");
-}
+$err = '';
+$errDate = '';
 
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
-$adminName = $account->getAccountDetails($userEmail, true, false, false, false, false);
-$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false, true);
+$userEmail = $account->getAccountEmail($userToken);
+Powers::executer($account, $userToken);
+
+if (!$workOrderNo)
+    header("location: index.php");
+
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$adminReqNo = $account->getAccountDetails($userEmail, false, false, false, false);
 $anotherExecuter = $account->getTransferAccount('execution', $userEmail);
+
 
 $request = new Request($con);
 
@@ -25,9 +33,29 @@ $rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"];
 
 if (isset($_POST["submit"])) {
 
-    $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
+    if (!$itemName)
+        $err = 'please add 1 item description at least';
+    if (!$finishDate)
+        $errDate = 'please select date';
+    if ($itemName && $finishDate)
+        $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
 
-    if ($success) {
+    if (@$success) {
+        header("location: notification.php");
+    }
+}
+
+$errRejectReason = '';
+
+if (isset($_POST["reject"])) {
+    $rejectReason = @$_POST['rejectReason'];
+
+    if (!$rejectReason)
+        $errRejectReason = 'please write rejectReason';
+    if ($rejectReason)
+        $success = $request->executerReject($workOrderNo, $rejectReason);
+
+    if (@$success) {
         header("location: notification.php");
     }
 }
@@ -91,8 +119,8 @@ function getInputValue($name)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css.css">
+
+    <link rel="stylesheet" href="css.css?1990">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
@@ -105,7 +133,7 @@ function getInputValue($name)
         <a class="Back" href="notification.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
-    <div class="wrappe">
+    <div class="newrExcauter">
 
 
         <div class="login-container" id="login">
@@ -129,27 +157,37 @@ function getInputValue($name)
                                     </select>
                                 </th>
                                 <th><p class="inputfieldGetReqoty"> Qty</p></th>
+                               
                             </thead>
                             <tbody id="ItemDescriptionBody">
-
+' . $err . '
                             </tbody>
                         </table>
                       
                     ';
-                    if($reject == 'yes'){
-                        echo '
+                if ($reject == 'yes') {
+                    echo '
                             <button class="submitDonereg" name="resendToWereHouse">Done</button>
+                            <br>
+                            <button class="submitDonereg" name="resendToInspector">Resend to inspector</button>
                         ';
-                    }
+                }
                 ?>
                 <br>
                 <?php if ($new) {
                     echo '
                     <button class="submitQTY" name="submit" id="executerDone">Done</button>
                     <br>
-                   <br>
-                    
-                   
+                    <br>
+
+                    <br>
+                    <br>
+                    <button class="submitQTY" onclick="removeRequiredAttribute()" name="reject" id="reject" onclick="addRequiredAttribute()">Reject</button>
+                    <br>
+                    ' . $errRejectReason . '
+                    <br>
+                    <textarea class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason"></textarea>
+                    <br>
                     ';
                 } ?>
             </form>
@@ -158,7 +196,7 @@ function getInputValue($name)
                 $(document).ready(function () {
                     $.get(
                         "ajax/GetRequests.php",
-                        { isNotification: null, executer: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>' },
+                        { isNotification: null, executer: '<?php echo $adminName; ?>', workOrderNo: '<?php echo $workOrderNo; ?>', errDate: '<?php echo $errDate; ?>' },
                         function (data) {
                             $("#reqInf").html(data);
                         }

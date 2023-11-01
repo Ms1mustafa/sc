@@ -2,45 +2,43 @@
 
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Area.php');
+include_once('includes/classes/Powers.php');
+include_once('includes/classes/Encryption.php');
 
+$userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
-$requestNum = $account->getAccountNum($admin = true);
-
-$numberOfElements = $requestNum;
+$userEmail = $account->getAccountEmail($userToken);
+Powers::owner($account, $userToken);
 
 $area = new Area($con);
 $getArea = $area->getArea();
 
-$i = 1;
-$requestNum = "";
-$currentYear = date("Y");
-while ($i <= $numberOfElements) {
-  $requestNum = str_pad($i, 5, '0', STR_PAD_LEFT);
-  $requestNum = $currentYear . $requestNum;
-  $i++;
-}
-
-
 $Token = @date("ymdhis");
 $RandomNumber = rand(100, 200);
 $NewToken = $Token . $RandomNumber;
+$hashedToken = Encryption::encryptToken($NewToken, constants::$tokenEncKey);
+
+$err = '';
 
 if (isset($_POST["submit"])) {
   $username = FormSanitizer::sanitizeFormString($_POST["username"]);
   $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
   $password = FormSanitizer::sanitizeFormString($_POST["password"]);
-  $type = FormSanitizer::sanitizeFormString($_POST["type"]);
+  $type = FormSanitizer::sanitizeFormString(@$_POST["type"]);
   $areaName = FormSanitizer::sanitizeFormString($_POST["areaName"]);
 
-  if ($_POST["type"] == "admin") {
-    $success = $account->register($NewToken, $username, $email, $password, $type, $requestNum);
-  } elseif ($_POST["type"] == "inspector") {
-    $success = $account->register($NewToken, $username, $email, $password, $type, "", $areaName);
+  if ($username && $email && $password && $type && @$areaName) {
+    if ($_POST["type"] == "inspector") {
+      $success = $account->register($NewToken, $username, $email, $password, $type, $areaName);
+    } else {
+      $success = $account->register($NewToken, $username, $email, $password, $type);
+    }
   } else {
-    $success = $account->register($NewToken, $username, $email, $password, $type, "");
+    $err = 'All fields are required';
   }
 
-  if ($success) {
+
+  if (@$success) {
     header("location: index.php");
   }
 }
@@ -83,11 +81,8 @@ function getInputValue($name)
         <header class="nameowner">CreateAccount</header>
       </div>
       <br>
+      <?php echo $err; ?>
       <br>
-      <p class="adminNameowner">
-        Rq num:
-        <?php echo $requestNum; ?>
-      </p>
       <br>
       <div class="input-box">
         <form method="POST">
@@ -122,10 +117,11 @@ function getInputValue($name)
         <option value="execution">Execution</option>
         <option value="wereHouse">WereHouse</option>
         <option value="supervisor">Supervisor</option>
+        <option value="safety">Safety</option>
       </select>
       <br>
-<br>
-      <select  class="inputfieldownerselect-areatAccount" name="areaName" id="areas" style="display: none;">
+      <br>
+      <select class="inputfieldownerselect-areatAccount" name="areaName" id="areas" style="display: none;">
         <?php echo $getArea; ?>
       </select>
       <br>
