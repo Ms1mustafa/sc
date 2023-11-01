@@ -23,7 +23,7 @@ class Notification
 
         if (empty($this->errorArray)) {
             $html = "
-            <a class='notification' href='adminQty.php?workOrderNo=" . $workOrderNo . "$qtyBackStatus'>
+            <a class='' href='adminQty.php?workOrderNo=" . $workOrderNo . "$qtyBackStatus'>
             <p>$status, <span class='sender'>$sender</span></p>
             <p>$priority</p>
             <p>Inspector accepted : $inspectorDate</p>
