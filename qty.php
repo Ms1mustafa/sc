@@ -156,13 +156,16 @@ function getInputValue($name)
                                         <option disabled selected>Item description</option>
                                     </select>
                                 </th>
-                                <th><p class="inputfieldGetReqoty"> Qty</p></th>
+                               
+                                <th><p class=""> Qty &nbsp; &nbsp;</p></th>
+                                <th><p class=""> Delet</p></th>
                                
                             </thead>
                             <tbody id="ItemDescriptionBody">
 ' . $err . '
                             </tbody>
                         </table>
+                        <br>
                       
                     ';
                 if ($reject == 'yes') {
@@ -179,14 +182,12 @@ function getInputValue($name)
                     <button class="submitQTY" name="submit" id="executerDone">Done</button>
                     <br>
                     <br>
-
-                    <br>
-                    <br>
-                    <button class="submitQTY" onclick="removeRequiredAttribute()" name="reject" id="reject" onclick="addRequiredAttribute()">Reject</button>
+                                     
+                    <button class="submitQTYreject" onclick="removeRequiredAttribute()" name="reject" id="reject" onclick="addRequiredAttribute()">Reject</button>
                     <br>
                     ' . $errRejectReason . '
                     <br>
-                    <textarea class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason"></textarea>
+                    <textarea class="rejectqty" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason"></textarea>
                     <br>
                     ';
                 } ?>

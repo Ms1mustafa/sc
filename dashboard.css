@@ -87,10 +87,10 @@ body {
 /*-------------------*/
 .alluser {
   border-collapse: collapse;
-  width: 25%;
+  width: 50%;
   padding: 8px;
   border: 1px solid #ddd;
-  margin-left: 40px;
+
   margin-top: 70px;
   text-align: center;
 }
@@ -99,9 +99,10 @@ body {
 td {
   text-align: center;
   border: 2px solid #fff;
-  min-width: 98px;
+  min-width: 190px;
   font-weight: bold;
   font-size: 18px;
+
 }
 
 th {
@@ -137,10 +138,10 @@ tr:nth-child(even) {
 
 .wrappereq {
   display: flex;
-  width: 80%;
+  width: 90%;
   position: relative;
-  top: 120px;
-  left: 10%;
+
+  left: 5%;
 }
 
 .Back {

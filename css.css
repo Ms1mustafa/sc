@@ -243,10 +243,9 @@ header {
 
 .wrappereq {
   display: flex;
-  width: 80%;
-  position: relative;
-  top: 120px;
-  left: 10%;
+  max-width: 80%;
+  margin-top: 70px;
+  margin-left: 8%;
 }
 
 .inputfieldarea {
@@ -303,7 +302,7 @@ header {
   }
 
   .wrappereq {
-    margin-top: 30px;
+    margin-top: 58px;
   }
 
   .submitarea {
@@ -538,6 +537,7 @@ header {
   font-size: 20px;
 }
 
+
 /*----------------addrequestNewrequest---------------------*/
 .newrequest {
   display: flex;
@@ -551,7 +551,7 @@ header {
 .newrExcauter {
   display: flex;
   width: 80%;
-  height: 90vh;
+  height: 170vh;
   position: relative;
   top: 70px;
   left: 10%;
@@ -605,7 +605,7 @@ header {
   background: #fff;
   color: #000;
   height: 60px;
-  width: 32%;
+  width: 30%;
   padding: 0px 20px 20px;
   border: 2px solid #e77823;
   margin-top: 15px;
@@ -658,15 +658,53 @@ header {
   font-weight: 500;
   color: black;
   height: 50px;
-  width: 38%;
+  width: 34%;
   border: none;
   border-radius: 15px;
   position: relative;
-  right: 20px;
+  right: 5px;
   outline: none;
   background: #e77823;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+
+.rejectqty {
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  color: #000;
+  height: 70px;
+  width: 17%;
+  padding: 0px 40px 0 45px;
+  border: 2px solid #e77823;
+  position: relative;
+
+  border-radius: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.submitEdite {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 50px;
+  width: 28%;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  right: 5px;
+  outline: none;
+  background: #e77823;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.submitEdite:hover {
+  background: #fff;
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+  border: 2px solid #e77823;
 }
 
 .submitnewreq:hover {
@@ -695,7 +733,7 @@ header {
 @media only screen and (max-width: 600px) {
   .namerequest {
     position: relative;
-    top: 150px;
+    top: 190px;
     left: -20px;
   }
 
@@ -745,8 +783,19 @@ header {
   }
 
   .submitnewreq {
-    width: 280px;
+    width: 230px;
     margin-top: 20px;
+  }
+
+
+
+  .submitEdite {
+    width: 250px;
+  }
+
+  .rejectqty {
+    width: 60%;
+
   }
 
   .inputfieldrequestqty {
@@ -791,7 +840,7 @@ header {
 @media only screen and (max-width: 600px) {
   .nameadminrequest {
     position: relative;
-    top: 90px;
+    top: 200px;
     font-size: 25px;
   }
 }
@@ -924,6 +973,16 @@ header {
   font-weight: bold;
 }
 
+.submitQTYreject {
+  color: black;
+  height: 50px;
+  width: 25%;
+  border: none;
+  border-radius: 15px;
+  background-color: #e77823;
+
+}
+
 .inputfieldownerselectqty {
   font-size: 15px;
   font-weight: bold;
@@ -951,21 +1010,10 @@ header {
 
 .inputfieldGetReq {
   font-size: 15px;
-  text-align: center;
-  font-weight: bold;
-  color: #000;
-  height: 50px;
-  width: 95%;
+  width: 70%;
   border: none;
-  position: relative;
-  left: 2px;
-  border-radius: 5px;
-  outline: none;
-  transition: 0.2s ease;
+  height: 40px;
 }
-
-
-
 
 .QTYnotes {
   font-size: 15px;
@@ -992,19 +1040,17 @@ header {
 /*table QTY Executer*/
 
 .itemestablerq1 {
-  width: 24%;
+  margin-top: -10px;
+  width: 400px;
+
   border: 2px solid #e77823;
   border-radius: 10px;
-}
-
-.itemestablerq1 tr {
-  transition: all 0.2s ease-in;
-  border: 2px solid #e77823;
-
+  position: relative;
+  right: 60px;
 }
 
 .itemestablerq1 tr:hover {
-  background-color: #ddd;
+  background-color: #dbdad9;
   transform: scale(1.02);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
@@ -1034,11 +1080,7 @@ header {
   text-align: center;
 }
 
-.descriptiontable tr:hover {
-  background-color: #e77823;
-  transform: scale(1.02);
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
-}
+
 
 .descriptiontable2 {
   border: 2px solid #e77823;
@@ -1062,11 +1104,7 @@ header {
   text-align: center;
 }
 
-.descriptiontable2 tr:hover {
-  background-color: #ddd;
-  transform: scale(1.02);
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
-}
+
 
 .descriptiontableReceivingMaterials {
   border: 2px solid #e77823;
@@ -1116,14 +1154,6 @@ header {
   border: 1px solid #ddd;
   text-align: center;
 }
-
-.itemestable tr:hover {
-  background-color: #e77823;
-  transform: scale(1.02);
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
-}
-
-
 
 .itemestablerq {
   margin-top: -10px;
@@ -1183,12 +1213,11 @@ header {
   }
 
   .itemestablerq1 {
-    width: 260px;
+    width: 370px;
     margin-top: 90px;
-    margin-left: -5px;
+
+
   }
-
-
 
   .GetOTYNote {
     position: relative;
@@ -1201,6 +1230,7 @@ header {
     width: 74%;
     left: 5px;
   }
+
 }
 
 .pipe2 {
@@ -1316,7 +1346,7 @@ header {
 .submitDonereg {
   font-size: 15px;
   margin-bottom: 30px;
-  margin-top: 20px;
+  margin-top: 10px;
   font-weight: 500;
   color: black;
   height: 50px;
@@ -1404,7 +1434,8 @@ header {
   }
 
   .pipe2 {
-    height: 5vh;
+    height: 7vh;
+
     border: 1px solid #e77823;
   }
 
@@ -1504,7 +1535,7 @@ header {
 @media only screen and (max-width: 600px) {
   .notification {
     position: relative;
-    top: 90px;
+    top: 208px;
   }
 
   .buttondismantling {
@@ -1523,7 +1554,7 @@ header {
 
   .hrQty {
     position: relative;
-    top: 80px;
+    top: 200px;
     width: 100%;
   }
 
@@ -1854,9 +1885,14 @@ header {
   width: 60%;
   padding: 8px;
   border: 3px solid #ddd;
-  margin-left: -100px;
+  position: relative;
+  left: 100%;
   margin-top: 70px;
   text-align: center;
+}
+
+.safety {
+  margin-left: 60px;
 }
 
 .Accipted {
@@ -1880,10 +1916,11 @@ td {
 }
 
 th {
+  /*
   background-color: rgb(231, 120, 35);
   color: #fff;
   font-size: 20px;
-
+*/
 }
 
 

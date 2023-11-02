@@ -192,10 +192,10 @@ if (isset($_POST["delete"])) {
                     <?php
                     if (!$executerAccept) {
                         echo '
-                <button type="submit"  class="submitnewreq" name="edit"' . $canEdit . '>Edit</button>
+                <button type="submit"  class="submitEdite" name="edit"' . $canEdit . '>Edit</button>
                 <br>
                 <br>
-                <button type="submit"  class="submitnewreq" name="delete"' . $canEdit . '>Delete</button>
+                <button type="submit"  class="submitEdite" name="delete"' . $canEdit . '>Delete</button>
             ';
                     } else {
                         echo '

@@ -53,6 +53,7 @@ $request = new Request($con);
                 <br>
 
                 <p class="Notificationshome">Notifications</p>
+                <br>
                 <div id="result"></div>
 
                 <a class="addRequest" href="addRequest.php">New Request</a>
