@@ -60,6 +60,9 @@ $request = new Request($con);
                 <br>
                 <br>
                 <a class="addRequest" href="adminRequests.php">Modify Request</a>
+                <br>
+                <br>
+                <a class="addRequest" href="allReq.php?type=requester">All Requests</a>
 
 
             </div>

@@ -28,6 +28,7 @@ while (true) {
 }
 
 $requestNum = $request->getReqNum();
+$requestNum++;
 
 $numberOfElements = $requestNum;
 
@@ -35,13 +36,14 @@ $area = new Area($con);
 $getArea = $area->getArea();
 
 $i = 1;
-$requestNum = "";
+// $requestNum = "";
 $currentYear = date("Y");
-while ($i <= $numberOfElements) {
-    $requestNum = str_pad($i, 5, '0', STR_PAD_LEFT);
-    $requestNum = $currentYear . $requestNum;
-    $i++;
-}
+if (!$requestNum)
+    while ($i <= 1) {
+        $requestNum = str_pad($i, 5, '0', STR_PAD_LEFT);
+        $requestNum = $currentYear . $requestNum;
+        $i++;
+    }
 
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false);
 $executer = $account->getAccountByType('Execution');

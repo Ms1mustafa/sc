@@ -404,18 +404,23 @@ class Request
         }
     }
 
-    public function getRequestDetails($workOrderNo = null)
+    public function getRequestDetails($workOrderNo = null, $byRequester = null)
     {
         $sql = "SELECT * FROM request ";
 
         if ($workOrderNo) {
             $sql .= "WHERE workOrderNo=:workOrderNo";
         }
+        if ($byRequester)
+            $sql .= "WHERE adminAddedName=:byRequester";
 
         $query = $this->con->prepare($sql);
 
         if ($workOrderNo) {
             $query->bindValue(":workOrderNo", $workOrderNo);
+        }
+        if ($byRequester) {
+            $query->bindValue(":byRequester", $byRequester);
         }
 
         $query->execute();
@@ -469,13 +474,16 @@ class Request
 
     public function getReqNum()
     {
-        $sql = "SELECT * FROM request ";
+        $sql = "SELECT reqNo FROM request ORDER BY reqNo DESC LIMIT 1;";
 
         $query = $this->con->prepare($sql);
 
         $query->execute();
 
-        return $query->rowCount() + 1;
+        $reqNo = $query->fetchColumn();
+
+        return $reqNo;
+
     }
 
     public function getError($error)

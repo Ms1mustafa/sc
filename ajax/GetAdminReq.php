@@ -35,15 +35,43 @@ if ($isNotification == null) {
     $items = Requests::getItemsDes($con, $workOrderNo);
 
     $workOrderNo = $requests["workOrderNo"];
+    $reqNo = $requests["reqNo"];
     $inspector = $requests["inspector"];
+    $adminAddedName = $requests["adminAddedName"];
     $area = $requests["area"];
     $item = $requests["item"];
+    $executerAccept = $requests["executerAccept"];
+    $rejectReason = $requests["rejectReason"];
+    $executerDate = FormSanitizer::formatDate($requests["executerDate"]);
     $qtyBackStatus = $requests["qtyBackStatus"];
     $reqDate = FormSanitizer::formatDate($requests["reqDate"]);
     $inspectorDate = FormSanitizer::formatDate($requests["inspectorDate"]);
 
-    echo "<label  class='Getrquest'>Inspector : </label>
-    <label class='GetrquesQTY'>$inspector</label>
+    $isRejected = $executerAccept === 'no' && $rejectReason;
+    if ($isRejected)
+        echo "
+        <label  class='Getrquest'>Request No :</label>
+        <label class='GetrquesQTY' >$reqNo</label>
+        <br>
+        <br>
+        <label  class='Getrquest'>workOrderNo :</label>
+        <label class='GetrquesQTY' >$workOrderNo</label>
+        <br>
+        <br>
+        ";
+
+    echo "<label  class='Getrquest'>";
+    if ($isRejected)
+        echo 'Requester';
+    else
+        echo 'Inspector';
+    echo " : </label>
+    <label class='GetrquesQTY'>";
+    if ($isRejected)
+        echo $adminAddedName;
+    else
+        echo $inspector;
+    echo "</label>
     <br>
     <br>
     <label  class='Getrquest'>Area :</label>
@@ -54,14 +82,30 @@ if ($isNotification == null) {
     <label class='GetrquesQTY'>$item</label>
     <br>
     <br>
-    <label class='Getrquest'>Request Added :</label>
-    <label  class='GetrquesQTY'>$reqDate</label>
-    <br>
-    <br>
-    <label class='Getrquest'>Inspector accept :</label>
-    <label  class='GetrquesQTY'>$inspectorDate</label>
-    <br>
-    <br>
+    ";
+    if ($isRejected) {
+        echo "
+            <label class='Getrquest'>Reject Date :</label>
+            <label  class='GetrquesQTY'>$executerDate</label>
+            <br>
+            <br>
+            <label class='Getrquest'>Reject reason :</label>
+            <label  class='GetrquesQTY'>$rejectReason</label>
+            <br>
+            <br>
+        ";
+    } else
+        echo "
+            <label class='Getrquest'>Request Added :</label>
+            <label  class='GetrquesQTY'>$reqDate</label>
+            <br>
+            <br>
+            <label class='Getrquest'>Inspector accept :</label>
+            <label  class='GetrquesQTY'>$inspectorDate</label>
+            <br>
+            <br>
+        ";
+    echo "
     ";
     if ($qtyBackStatus != 'done') {
         echo "<button class='submitDismantling' name='dismantling'>Dsmantling</button>";

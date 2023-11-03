@@ -9,10 +9,18 @@ include_once('includes/classes/Encryption.php');
 $userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
-Powers::Safety($account, $userToken);
+$adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$type = @$_GET["type"];
 
 $req = new Request($con);
-$requests = $req->getRequestDetails();
+
+if ($type === "requester") {
+    Powers::admin($account, $userToken);
+    $requests = $req->getRequestDetails(null, $adminName);
+} else {
+    Powers::Safety($account, $userToken);
+    $requests = $req->getRequestDetails();
+}
 ?>
 
 <!DOCTYPE html>
