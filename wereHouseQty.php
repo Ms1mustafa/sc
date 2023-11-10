@@ -3,6 +3,7 @@ include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
+include_once('includes/classes/SendMail.php');
 
 $workOrderNo = $_GET["qtyNo"];
 $userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
@@ -34,7 +35,6 @@ $wereHouseComment = @$_POST['wereHouseComment'];
 $wereHouseItemQty = @$_POST['wereHouseItemQty'];
 
 if (isset($_POST["submit"])) {
-
     if ($resent == 'yes') {
         $success = $request->updateRejectWerehouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment, $rejectsNum);
     } else {
@@ -42,6 +42,10 @@ if (isset($_POST["submit"])) {
     }
 
     if ($success) {
+        $executer = $account->getMainAccount('Execution');
+        $toMail = $account->getMailByName($executer);
+        $sendMail = new SendMail();
+        $mailDone = $sendMail->sendMail($toMail, "New notification from $adminName");
         if ($resent == 'yes') {
             header("location: wereHousePrint.php?req=" . $workOrderNo . "&rejected=1");
         } else {

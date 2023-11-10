@@ -472,6 +472,65 @@ class Request
         return $rows;
     }
 
+    public function getWereHouse($workOrderNo)
+    {
+        $sql = "SELECT * FROM request WHERE workOrderNo = :workOrderNo";
+
+        $query = $this->con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $row["wereHouse"];
+        return $name;
+    }
+    public function getExecuter($workOrderNo)
+    {
+        $sql = "SELECT * FROM request WHERE workOrderNo = :workOrderNo";
+
+        $query = $this->con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $row["executer"];
+        return $name;
+    }
+
+    public function getInspector($workOrderNo)
+    {
+        $sql = "SELECT * FROM request WHERE workOrderNo = :workOrderNo";
+
+        $query = $this->con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $row["inspector"];
+        return $name;
+    }
+
+    public function getRequester($workOrderNo)
+    {
+        $sql = "SELECT * FROM request WHERE workOrderNo = :workOrderNo";
+
+        $query = $this->con->prepare($sql);
+
+        $query->bindValue(":workOrderNo", $workOrderNo);
+
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $row["adminAddedName"];
+        return $name;
+    }
+
     public function getReqNum()
     {
         $sql = "SELECT reqNo FROM request ORDER BY reqNo DESC LIMIT 1;";

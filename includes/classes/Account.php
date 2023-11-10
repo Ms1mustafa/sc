@@ -314,6 +314,23 @@ class Account
 
         return $html;
     }
+    public function getMailByName($username)
+    {
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:username");
+
+        $query->bindValue(':username', $username);
+        $query->execute();
+
+        $html = "";
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $row["email"];
+        $html .= $name;
+
+
+        return $html;
+    }
     public function getTransferAccount($type, $email)
     {
 

@@ -53,7 +53,7 @@ $request = new Request($con);
     </div>
     <script>
         // notificationOn();
-        Gndt('excauter', '<?php echo $adminName; ?>');
+        Gndt('excauter', '<?php echo $adminName; ?>', '<?php echo $userEmail; ?>');
     </script>
 </body>
 

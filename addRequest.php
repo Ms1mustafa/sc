@@ -6,10 +6,12 @@ include_once('includes/classes/Request.php');
 include_once('includes/classes/FormSanitizer.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
+include_once('includes/classes/SendMail.php');
 
 $userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKey);
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
+$userName = $account->getAccountDetails($userEmail, true, false, false, false);
 
 $request = new Request($con);
 
@@ -55,7 +57,6 @@ $workType = new workType($con);
 $getWT = $workType->getWT();
 
 $request = new Request($con);
-
 if (isset($_POST["submit"])) {
     $reqNo = FormSanitizer::sanitizeFormString($_POST["reqNo"]);
     $adminAddedName = FormSanitizer::sanitizeFormString($_POST["adminAddedName"]);
@@ -76,6 +77,9 @@ if (isset($_POST["submit"])) {
     $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $notes);
 
     if ($success) {
+        $sendMail = new SendMail();
+        $toMail = $account->getMailByName($executer);
+        $mailDone = $sendMail->sendMail($toMail, "New notification from $userName");
         header("location: home.php");
     }
 }

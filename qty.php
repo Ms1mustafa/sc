@@ -3,6 +3,7 @@ include_once('includes/classes/Account.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/Encryption.php');
+include_once('includes/classes/SendMail.php');
 
 $workOrderNo = $_GET["qtyNo"];
 $new = @$_GET["new"];
@@ -25,6 +26,9 @@ $anotherExecuter = $account->getTransferAccount('execution', $userEmail);
 
 
 $request = new Request($con);
+$wereHouse = $request->getWereHouse($workOrderNo);
+$requester = $request->getRequester($workOrderNo);
+$inspector = $request->getInspector($workOrderNo);
 
 $itemName = @$_POST['itemName'];
 $itemQty = @$_POST['itemQty'];
@@ -32,7 +36,6 @@ $finishDate = @$_POST['finishDate'];
 $rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"];
 
 if (isset($_POST["submit"])) {
-
     if (!$itemName)
         $err = 'please add 1 item description at least';
     if (!$finishDate)
@@ -41,6 +44,9 @@ if (isset($_POST["submit"])) {
         $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
 
     if (@$success) {
+        $toMail = $account->getMailByName($wereHouse);
+        $sendMail = new SendMail();
+        $mailDone = $sendMail->sendMail($toMail, "New notification from $adminName");
         header("location: notification.php");
     }
 }
@@ -74,6 +80,9 @@ if (isset($_POST["accept"])) {
     $success = $request->executerAccept($workOrderNo);
 
     if ($success) {
+        $toMail = $account->getMailByName($inspector);
+        $sendMail = new SendMail();
+        $mailDone = $sendMail->sendMail($toMail, "New notification from $adminName");
         header("location: notification.php");
     }
 }
@@ -83,6 +92,9 @@ if (isset($_POST["resendToWereHouse"])) {
     $success = $request->updateRejectExecuter($workOrderNo, $itemName, $itemQty, $rejectsNum);
 
     if ($success) {
+        $toMail = $account->getMailByName($wereHouse);
+        $sendMail = new SendMail();
+        $mailDone = $sendMail->sendMail($toMail, "New notification from $adminName");
         header("location: notification.php");
     }
 }
@@ -92,6 +104,9 @@ if (isset($_POST["resendToInspector"])) {
     $success = $request->resendToInspector($workOrderNo);
 
     if ($success) {
+        $toMail = $account->getMailByName($inspector);
+        $sendMail = new SendMail();
+        $mailDone = $sendMail->sendMail($toMail, "New notification from $adminName");
         header("location: notification.php");
     }
 }
@@ -100,6 +115,9 @@ if (isset($_POST["dismantling"])) {
     $success = $request->dismantling('wereHouse', $workOrderNo);
 
     if ($success) {
+        $toMail = $account->getMailByName($requester);
+        $sendMail = new SendMail();
+        $mailDone = $sendMail->sendMail($toMail, "New notification from $adminName");
         header("location: inspectorPage.php");
     }
 }
