@@ -114,7 +114,7 @@ if (isset($_POST["inspectorDeleteBtn"])) {
                                 foreach ($areas as $area) {
                                     echo '
                     <tr>
-                        <td>' . $area["number"] . '</td>
+                        <td>' . $id . '</td>
                         <td>' . $area["name"] . '</td>
                         <td><input type="checkbox" name="deleteArea[]" value="' . $area["number"] . '"> Delete</td>
                     </tr>
@@ -149,7 +149,7 @@ if (isset($_POST["inspectorDeleteBtn"])) {
                                     $areaName = $area->getAreaName($location["areaId"]);
                                     echo '
                     <tr>
-                        <td>' . $location["number"] . '</td>
+                        <td>' . $id . '</td>
                         <td>' . $location["name"] . '</td>
                         <td>' . $areaName . '</td>
                         <td><input type="checkbox" name="deleteLocation[]" value="' . $location["number"] . '"> Delete</td>
