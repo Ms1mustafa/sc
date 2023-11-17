@@ -80,7 +80,7 @@ $request = new Request($con);
         function loadRequests() {
             $.get(
                 "ajax/GetAdminReq.php",
-                { isNotification: true, admin: '<?php echo $adminName; ?>', requestAction: false },
+                { isNotification: true, admin: '<?php echo $adminName; ?>' },
                 function (data) {
                     $("#result").html(data);
                 }
