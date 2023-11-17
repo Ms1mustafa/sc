@@ -25,12 +25,12 @@ class Requests
 
         $query = $con->prepare($sql);
 
-        $query->bindValue(":admin", $admin);
+
 
         if (!$isNoti) {
             $query->bindValue(":workOrderNo", $workOrderNo);
         }
-
+        $query->bindValue(":admin", $admin);
         $query->execute();
 
         $array = array();
