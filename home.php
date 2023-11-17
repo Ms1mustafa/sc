@@ -70,9 +70,31 @@ $request = new Request($con);
 
     </div>
 
-    <script>
+    <!-- <script>
         // notificationOn();
         Gndt('home', '<?php echo $adminName; ?>')
+    </script> -->
+    <script>
+        let timeout = 0;
+
+        function loadRequests() {
+            $.get(
+                "ajax/GetAdminReq.php",
+                { isNotification: true, admin: '<?php echo $adminName; ?>' },
+                function (data) {
+                    $("#result").html(data);
+                }
+            );
+        }
+
+        function startTimer() {
+            loadRequests();
+            timeout = 3000;
+            setTimeout(startTimer, timeout);
+        }
+
+        startTimer();
+
     </script>
 </body>
 
