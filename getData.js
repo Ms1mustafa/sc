@@ -1,4 +1,4 @@
-function loadNotifications(url, admin, user) {
+function loadNotifications(url, usertype, user) {
   let timeout = 0;
   let previousContent = "";
   let isFirstLoad = true; // Flag to track the initial page load
@@ -8,7 +8,7 @@ function loadNotifications(url, admin, user) {
       url,
       {
         isNotification: true,
-        admin: user, // Use dynamic property name based on admin
+        [usertype]: user, // Use dynamic property name based on usertype
       },
       function (data) {
         var parser = new DOMParser();
