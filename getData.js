@@ -8,7 +8,7 @@ function loadNotifications(url, usertype, user) {
       url,
       {
         isNotification: true,
-        [usertype]: user, // Use dynamic property name based on usertype
+        admin: user, // Use dynamic property name based on usertype
       },
       function (data) {
         var parser = new DOMParser();
