@@ -5,7 +5,7 @@ include_once('../includes/classes/FormSanitizer.php');
 include_once('../includes/classes/Notification.php');
 
 $isNotification = $_GET['isNotification'];
-$executer = $_GET['executer'];
+$executer = @$_GET['executer'] ?? @$_GET['admin'];
 
 if ($isNotification != null) {
 

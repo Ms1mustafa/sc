@@ -5,10 +5,10 @@ include_once('../includes/classes/FormSanitizer.php');
 include_once('../includes/classes/Notification.php');
 
 $isNotification = $_GET['isNotification'];
-$inspector = $_GET['inspector'];
+$inspector = @$_GET['inspector'] ?? @$_GET['admin'];
 
 if ($isNotification != null) {
-    $inspector = $_GET['inspector'];
+    $inspector = @$_GET['inspector'] ?? @$_GET['admin'];
 
     $requests = Requests::getInspectorRequests($con, true, $inspector);
     foreach ($requests as $request) {
@@ -24,7 +24,7 @@ if ($isNotification == null) {
     $requests = Requests::getInspectorRequests($con, null, $inspector, $workOrderNo);
     $items = Requests::getItemsDes($con, $workOrderNo);
     $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
-    
+
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
     $adminAddedName = $requests["adminAddedName"];
@@ -59,8 +59,8 @@ if ($isNotification == null) {
     <br>
     
     ";
-    
-   
+
+
     // if ($status == 'resent') {
     //     echo '
     //         <button name="accept" onclick="removeRequiredAttribute()">accept</button>
