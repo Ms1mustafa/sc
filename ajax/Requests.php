@@ -14,7 +14,7 @@ class Requests
             $whereClause[] = "workOrderNo = :workOrderNo ";
         }
 
-        $whereClause[] = "adminAddedName = :admin AND ((qtyBackStatus != 'executer') AND (status = 'accepted' AND qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no')) ";
+        $whereClause[] = "adminAddedName = :admin AND ((qtyBackStatus != 'executer') AND (status = 'accepted' AND qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no') OR (status = 'accepted' AND qtyBackStatus = 'no')) ";
 
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
