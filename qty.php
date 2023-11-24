@@ -112,7 +112,7 @@ if (isset($_POST["resendToInspector"])) {
 }
 
 if (isset($_POST["dismantling"])) {
-    $success = $request->dismantling('wereHouse', $workOrderNo);
+    $success = $request->dismantling('wereHouse&requester', $workOrderNo);
 
     if ($success) {
         $toMail = $account->getMailByName($requester);
