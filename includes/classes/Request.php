@@ -380,7 +380,7 @@ class Request
     {
         $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus WHERE workOrderNo = :workOrderNo";
         if ($rejected)
-            $sql = "UPDATE request SET qtyBackStatus = 'done' WHERE workOrderNo = :workOrderNo";
+            $sql = "UPDATE request SET qtyBackStatus = 'finish' WHERE workOrderNo = :workOrderNo";
         $query = $this->con->prepare($sql);
 
         $query->bindValue(":workOrderNo", $workOrderNo);
