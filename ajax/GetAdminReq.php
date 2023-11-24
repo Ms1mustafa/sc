@@ -36,6 +36,7 @@ if ($isNotification == null) {
 
     $workOrderNo = $requests["workOrderNo"];
     $reqNo = $requests["reqNo"];
+    $status = $requests["status"];
     $inspector = $requests["inspector"];
     $adminAddedName = $requests["adminAddedName"];
     $area = $requests["area"];
@@ -107,7 +108,8 @@ if ($isNotification == null) {
         ";
     echo "
     ";
-    if ($qtyBackStatus != 'done') {
+    //$qtyBackStatus != 'done' || 
+    if ($status != 'rejected') {
         echo "<button class='submitDismantling' name='dismantling'>Dsmantling</button>";
     }
     echo "
