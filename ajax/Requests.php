@@ -14,7 +14,7 @@ class Requests
             $whereClause[] = "workOrderNo = :workOrderNo ";
         }
 
-        $whereClause[] = "adminAddedName = :admin AND ((qtyBackStatus != 'executer') AND (status = 'accepted' AND qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no') OR (status = 'accepted' AND qtyBackStatus = 'no')) ";
+        $whereClause[] = "adminAddedName = :admin AND ((qtyBackStatus != 'executer') AND (status = 'accepted' AND qtyBackStatus = 'done') OR (status = 'rejected' AND inspectorDate IS NULL AND qtyBackStatus = 'no') OR (status = 'accepted' AND qtyBackStatus = 'no') OR (qtyBackStatus = 'wereHouse&requester')) ";
 
         if (!empty($whereClause)) {
             $sql .= "WHERE " . implode(" AND ", $whereClause);
@@ -128,7 +128,7 @@ class Requests
 
         $whereClause = [];
 
-        $whereClause[] = "(finishDate != '0000:00:00' AND issued != 'yes' OR status = 'resent' OR qtyBackStatus = 'wereHouse') ";
+        $whereClause[] = "(finishDate != '0000:00:00' AND issued != 'yes' OR status = 'resent' OR (qtyBackStatus = 'wereHouse' OR qtyBackStatus = 'wereHouse&requester')) ";
         $whereClause[] = "wereHouse = :wereHouse ";
         if (!$isNoti) {
             $whereClause[] = "workOrderNo = :workOrderNo ";

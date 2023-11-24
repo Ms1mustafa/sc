@@ -109,12 +109,13 @@ if ($isNotification == null) {
     echo "
     ";
     //$qtyBackStatus != 'done' || 
-    if ($status != 'rejected') {
-        if ($qtyBackStatus != 'done') {
-
-            echo "<button class='submitDismantling' name='dismantling'>Dsmantling</button>";
-        }
+    if ($status != 'rejected' && $qtyBackStatus != 'done' && $qtyBackStatus != 'wereHouse&requester') {
+        echo "<button class='submitDismantling' name='dismantling'>Dismantling</button>";
     }
+    if ($qtyBackStatus === 'wereHouse&requester') {
+        echo "<button class='submitDismantling' name='RequesterDismDone'>Done</button>";
+    }
+
     echo "
 ";
 }

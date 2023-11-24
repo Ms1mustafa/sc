@@ -376,6 +376,14 @@ class Request
         return false;
     }
 
+    public function RequesterDismDone($workOrderNo)
+    {
+        $sql = "UPDATE request SET qtyBackStatus = 'wereHouse' WHERE workOrderNo = :workOrderNo";
+        $query = $this->con->prepare($sql);
+        $query->bindValue(":workOrderNo", $workOrderNo);
+        return $query->execute();
+    }
+
     public function requesterDone($workOrderNo, $qtyBackStatus, $rejected = null)
     {
         $sql = "UPDATE request SET qtyBackStatus = :qtyBackStatus WHERE workOrderNo = :workOrderNo";

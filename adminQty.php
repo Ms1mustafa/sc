@@ -34,6 +34,13 @@ if (isset($_POST["doneReq"])) {
     }
 }
 
+if (isset($_POST["RequesterDismDone"])) {
+    $success = $request->RequesterDismDone($workOrderNo);
+    if ($success) {
+        header("location: inspectorPage.php");
+    }
+}
+
 function getInputValue($name)
 {
     if (isset($_POST[$name]))

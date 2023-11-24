@@ -12,21 +12,28 @@ class Notification
         $inspector = $data["inspector"];
         $wereHouse = $data["wereHouse"];
         $sender = $data["qtyBackStatus"] == 'done' ? $wereHouse : $inspector;
+        $sender = $data["qtyBackStatus"] == 'wereHouse&requester' ? $executer : $sender;
         $qtyBackStatus = $data["qtyBackStatus"] == 'done' ? '&status=done' : '';
+        $qtyBackStatus = $data["qtyBackStatus"] == 'wereHouse&requester' ? '&status=wereHouse&requester' : $qtyBackStatus;
         $status = $data["qtyBackStatus"] == 'done' ? 'Done' : ucfirst($data["status"]);
+        $status = $data["qtyBackStatus"] == 'wereHouse&requester' ? 'dismantling' : $status;
         $inspectorDate = FormSanitizer::formatDate($data["inspectorDate"]);
+        $notiDateFrom = 'Inspector accepted';
+
         if (!$data["inspectorDate"]) {
             $sender = $executer;
             $inspectorDate = FormSanitizer::formatDate($data["executerDate"]);
             $qtyBackStatus = '&status=rejected';
         }
+        $inspectorDate = $data["qtyBackStatus"] == 'wereHouse&requester' ? FormSanitizer::formatDate($data["qtyBackDate"]) : $inspectorDate;
+        $notiDateFrom = $data["qtyBackStatus"] == 'wereHouse&requester' ? 'Executer sent' : $notiDateFrom;
 
         if (empty($this->errorArray)) {
             $html = "
             <a class='' href='adminQty.php?workOrderNo=" . $workOrderNo . "$qtyBackStatus'>
             <p>$status, <span class='sender'>$sender</span></p>
             <p>$priority</p>
-            <p>Inspector accepted : $inspectorDate</p>
+            <p>$notiDateFrom : $inspectorDate</p>
             </a>
             <br>
             <hr class='reqhr'>
