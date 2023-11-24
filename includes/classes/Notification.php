@@ -128,6 +128,7 @@ class Notification
         $reject = $status == 'rejected' ? '&reject=yes' : '';
         $new = $data["new"] == "yes" ? '&new=yes' : '';
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
+        $sender = $status = 'backExecuter' ? $werehouseName : $sender;
 
         if (empty($this->errorArray)) {
             $html = "
@@ -156,15 +157,17 @@ class Notification
         $executerDate = FormSanitizer::formatDate($data["executerDate"]);
         $date = $qtyBackDate ? FormSanitizer::formatDate($qtyBackDate) : $executerDate;
         $resent = $status == 'resent' ? '&resent=yes' : '&resent=no';
+        $sender = 'Executer';
         if ($data["qtyBackStatus"] == 'wereHouse') {
             $resent = '&dismantling=yes';
         }
+        $sender = $status = 'reject' ? 'Reject' : $sender;
 
         if (empty($this->errorArray)) {
             $html = "
             
                 <a class='notification' href='wereHouseQty.php?qtyNo=" . $workOrderNo . $resent . "'>
-                <p>Executer: <span class='sender'>$executer</span></p>
+                <p>$sender: <span class='sender'>$executer</span></p>
                 <br>
                 <p>$priority</p>
                 <br>
