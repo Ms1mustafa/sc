@@ -35,7 +35,26 @@ Powers::Safety($account, $userToken);
 
 
         <div class="login-container" id="login">
-
+            <div class="input-box">
+                <button class="inputfieldowner"><a href="SafetyRequisted.php">Request</a></button>
+            </div>
+            <br>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="Accipted.php">Accepted</a></button>
+            </div>
+            <br>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="Rejected.php">Rejected</a></button>
+            </div>
+            <br>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="Done.php">Done</a></button>
+            </div>
+            <br>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="dismantling.php"> Dismantling</a></button>
+            </div>
+            <br>
             <div class="input-box">
                 <button class="inputfieldowner"> <a href="allReq.php">All Requests</a></button>
             </div>
