@@ -41,7 +41,7 @@ if ($type === "requester") {
 
 <body>
     <div>
-        <a class="Back" href="ownerPage.php">
+        <a class="Back" href="home.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
     <div class="wrappereq">
