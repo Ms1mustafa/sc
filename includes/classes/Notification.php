@@ -125,10 +125,10 @@ class Notification
         $wereHouseDate = $data["wereHouseDate"] ?? false;
         $type = $this->getNotiType($issued, $werehouseName, $inspectorDate, $qtyBackDate);
         $sender = $this->getNotiFrom($issued, $werehouseName, $inspectorDate, $inspector, $adminAddedName, $qtyBackStatus);
-        $reject = $status == 'rejected' ? '&reject=yes' : '';
+        $reject = $status === 'rejected' ? '&reject=yes' : '';
         $new = $data["new"] == "yes" ? '&new=yes' : '';
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
-        $sender = $status = 'backExecuter' ? $werehouseName : $sender;
+        $sender = $status === 'backExecuter' ? $werehouseName : $sender;
 
         if (empty($this->errorArray)) {
             $html = "
