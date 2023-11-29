@@ -65,7 +65,7 @@ if ($isNotification == null) {
     </div>
     ";
 
-    if ($qtyBackStatus == 'wereHouse') {
+    if ($qtyBackStatus == 'wereHouse' || $qtyBackStatus == 'wereHouse&requester') {
 
         echo '
         </tbody>

@@ -153,15 +153,19 @@ class Notification
         $executer = $data["executer"];
         $status = $data["status"];
         // $notiType = $data["qtyBackStatus"] == 'wereHouse' ? 'Dismantling' : 'Request';
+        $qtyBackStatus = $data["qtyBackStatus"];
         $qtyBackDate = $data["qtyBackDate"];
         $executerDate = FormSanitizer::formatDate($data["executerDate"]);
         $date = $qtyBackDate ? FormSanitizer::formatDate($qtyBackDate) : $executerDate;
         $resent = $status == 'resent' ? '&resent=yes' : '&resent=no';
         $sender = 'Executer';
-        if ($data["qtyBackStatus"] == 'wereHouse') {
+        if ($qtyBackStatus == 'wereHouse' || $qtyBackStatus = 'wereHouse&requester') {
             $resent = '&dismantling=yes';
         }
         $sender = $status = 'reject' ? 'Reject' : $sender;
+        if ($qtyBackStatus = 'wereHouse&requester' || $qtyBackStatus = 'wereHouse') {
+            $sender = 'dismantling';
+        }
 
         if (empty($this->errorArray)) {
             $html = "
