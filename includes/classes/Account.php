@@ -364,5 +364,18 @@ class Account
 
         return $rows;
     }
+    public function getTypeByName($username)
+    {
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:username");
+
+        $query->bindValue(':username', $username);
+        $query->execute();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            return $type = $row["type"];
+        }
+        // return $type;
+    }
 }
 ?>

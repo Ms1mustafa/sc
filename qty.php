@@ -41,7 +41,7 @@ if (isset($_POST["submit"])) {
     if (!$finishDate)
         $errDate = 'please select date';
     if ($itemName && $finishDate)
-        $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate);
+        $success = $request->executerUpdate($workOrderNo, $itemName, $itemQty, $rejectsNum, $finishDate, $request->getRequestDetails($workOrderNo)["wereHouse"], "WereHouse");
 
     if (@$success) {
         $toMail = $account->getMailByName($wereHouse);
@@ -59,7 +59,7 @@ if (isset($_POST["reject"])) {
     if (!$rejectReason)
         $errRejectReason = 'please write rejectReason';
     if ($rejectReason)
-        $success = $request->executerReject($workOrderNo, $rejectReason);
+        $success = $request->executerReject($workOrderNo, $rejectReason, $request->getRequestDetails($workOrderNo)["adminAddedName"], "Reject");
 
     if (@$success) {
         header("location: notification.php");
@@ -77,7 +77,7 @@ if (isset($_POST["change"])) {
 
 if (isset($_POST["accept"])) {
 
-    $success = $request->executerAccept($workOrderNo);
+    $success = $request->executerAccept($workOrderNo, $request->getRequestDetails($workOrderNo)["inspector"], "Done");
 
     if ($success) {
         $toMail = $account->getMailByName($inspector);
@@ -89,7 +89,7 @@ if (isset($_POST["accept"])) {
 
 if (isset($_POST["resendToWereHouse"])) {
 
-    $success = $request->updateRejectExecuter($workOrderNo, $itemName, $itemQty, $rejectsNum);
+    $success = $request->updateRejectExecuter($workOrderNo, $itemName, $itemQty, $rejectsNum, $request->getRequestDetails($workOrderNo)["wereHouse"], "Reject");
 
     if ($success) {
         $toMail = $account->getMailByName($wereHouse);
@@ -101,7 +101,7 @@ if (isset($_POST["resendToWereHouse"])) {
 
 if (isset($_POST["resendToInspector"])) {
 
-    $success = $request->resendToInspector($workOrderNo);
+    $success = $request->resendToInspector($workOrderNo, $request->getRequestDetails($workOrderNo)["inspector"], "Resent");
 
     if ($success) {
         $toMail = $account->getMailByName($inspector);
@@ -112,7 +112,7 @@ if (isset($_POST["resendToInspector"])) {
 }
 
 if (isset($_POST["dismantling"])) {
-    $success = $request->dismantling('wereHouse&requester', $workOrderNo);
+    $success = $request->dismantling('wereHouse&requester', $workOrderNo, $request->getRequestDetails($workOrderNo)["wereHouse"], "Dismantling");
 
     if ($success) {
         $toMail = $account->getMailByName($requester);

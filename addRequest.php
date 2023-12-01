@@ -74,7 +74,7 @@ if (isset($_POST["submit"])) {
     $inspectorName = $account->getAccountDetails($inspector, true, false, false, false);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
-    $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $notes);
+    $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $notes, $executer, 'Done');
 
     if ($success) {
         $sendMail = new SendMail();

@@ -60,6 +60,8 @@ if ($type === "requester") {
                                     <th>Area</th>
                                     <th>Location</th>
                                     <th>Pending In</th>
+                                    <th>Type pending</th>
+                                    <th>Type Req</th>
                                     <th>Pending Date</th>
                                 </tr>
                             </thead>
@@ -85,30 +87,30 @@ if ($type === "requester") {
                                     $reqStatus = '';
                                     $finishDate = '';
 
-                                    if ($executerNew == 'yes') {
-                                        $reqStatus = $executer;
-                                        $finishDate = $reqDate;
-                                        if ($wereHouseDate) {
-                                            $finishDate = $wereHouseDate;
-                                        }
-                                    } elseif (($executerNew != 'yes' && $issued != 'yes' && $status == 'pending') || $status == 'resent') {
-                                        $reqStatus = $wereHouse;
-                                        $finishDate = $executerDate;
-                                    } elseif (($issued == 'yes' && $status == 'pending') || $status == 'resentInspector') {
-                                        $reqStatus = $inspector;
-                                        $finishDate = $executerDate;
-                                    } elseif ($status == 'rejected') {
-                                        $reqStatus = 'rejected';
-                                        $finishDate = $inspectorDate;
-                                    } elseif ($status == 'accepted') {
-                                        $reqStatus = 'accepted';
-                                        $finishDate = $inspectorDate;
-                                    }
-
-                                    if ($qtyBackStatus != 'no' && $qtyBackStatus != 'rejectDone') {
-                                        $reqStatus = 'dismantling';
-                                    }
-
+                                    // if ($executerNew == 'yes') {
+                                    //     $reqStatus = $executer;
+                                    //     $finishDate = $reqDate;
+                                    //     if ($wereHouseDate) {
+                                    //         $finishDate = $wereHouseDate;
+                                    //     }
+                                    // } elseif (($executerNew != 'yes' && $issued != 'yes' && $status == 'pending') || $status == 'resent') {
+                                    //     $reqStatus = $wereHouse;
+                                    //     $finishDate = $executerDate;
+                                    // } elseif (($issued == 'yes' && $status == 'pending') || $status == 'resentInspector') {
+                                    //     $reqStatus = $inspector;
+                                    //     $finishDate = $executerDate;
+                                    // } elseif ($status == 'rejected') {
+                                    //     $reqStatus = 'rejected';
+                                    //     $finishDate = $inspectorDate;
+                                    // } elseif ($status == 'accepted') {
+                                    //     $reqStatus = 'accepted';
+                                    //     $finishDate = $inspectorDate;
+                                    // }
+                                
+                                    // if ($qtyBackStatus != 'no' && $qtyBackStatus != 'rejectDone') {
+                                    //     $reqStatus = 'dismantling';
+                                    // }
+                                
 
                                     echo '
                     <tr>
@@ -118,8 +120,10 @@ if ($type === "requester") {
                         <td>' . $request["workOrderNo"] . '</td>
                         <td>' . $request["area"] . '</td>
                         <td>' . $request["item"] . '</td>
-                        <td>' . $reqStatus . '</td>
-                        <td>' . $finishDate . '</td>
+                        <td>' . $request["pending_in"] . '</td>
+                        <td>' . ucfirst($account->getTypeByName($request["pending_in"])) . '</td>
+                        <td>' . $request["type_req"] . '</td>
+                        <td>' . FormSanitizer::formatDate($request["pending_date"]) . '</td>
                         </tr>
                     ';
                                 }

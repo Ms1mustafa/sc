@@ -36,9 +36,9 @@ $wereHouseItemQty = @$_POST['wereHouseItemQty'];
 
 if (isset($_POST["submit"])) {
     if ($resent == 'yes') {
-        $success = $request->updateRejectWerehouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment, $rejectsNum);
+        $success = $request->updateRejectWerehouse($workOrderNo, $itemName, $wereHouseQty, $wereHouseComment, $rejectsNum, $request->getRequestDetails($workOrderNo)["executer"], "Reject");
     } else {
-        $success = $request->wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment);
+        $success = $request->wereHouseUpdate($workOrderNo, $itemName, $wereHouseQty, $rejectsNum, $wereHouseComment, $request->getRequestDetails($workOrderNo)["executer"], "Done");
     }
 
     if ($success) {
@@ -64,7 +64,7 @@ if (isset($_POST["change"])) {
 }
 
 if (isset($_POST["dismantling"])) {
-    $success = $request->dismantling('done', $workOrderNo, $rejectsNum, $itemName, $qtyBack, 'requestitemdes', $wereHouseItemName, $wereHouseComment, $wereHouseItemQty);
+    $success = $request->dismantling('done', $workOrderNo, $request->getRequestDetails($workOrderNo)["adminAddedName"], "Dismantling", $rejectsNum, $itemName, $qtyBack, 'requestitemdes', $wereHouseItemName, $wereHouseComment, $wereHouseItemQty);
 
     if ($success) {
         header("location: wereHousePrint.php?req=" . $workOrderNo . "");

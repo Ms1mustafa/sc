@@ -20,7 +20,7 @@ Powers::admin($account, $userToken);
 $request = new Request($con);
 
 if (isset($_POST["dismantling"])) {
-    $success = $request->dismantling('executer', $workOrderNo);
+    $success = $request->dismantling('executer', $workOrderNo, $request->getRequestDetails($workOrderNo)["executer"], "Dismantling");
 
     if ($success) {
         header("location: inspectorPage.php");
@@ -28,7 +28,7 @@ if (isset($_POST["dismantling"])) {
 }
 
 if (isset($_POST["doneReq"])) {
-    $success = $request->requesterDone($workOrderNo, '', true);
+    $success = $request->requesterDone($workOrderNo, 'dismantilingDone', true, $request->getRequestDetails($workOrderNo)["adminAddedName"], "Dismantling done");
     if ($success) {
         header("location: inspectorPage.php");
     }
