@@ -15,7 +15,7 @@ class Powers
         $userEmail = $account->getAccountEmail($userToken);
         $type = $account->getAccountDetails($userEmail, null, null, null, true);
 
-        if (!$userEmail || ($type != 'admin' && $type != 'owner')) {
+        if (!$userEmail || ($type != 'requester' && $type != 'owner')) {
             header("location: index.php");
         }
     }
@@ -64,7 +64,7 @@ class Powers
             header("location: login.php");
         } elseif ($type == 'owner') {
             header("location: ownerPage.php");
-        } elseif ($type == 'admin') {
+        } elseif ($type == 'requester') {
             header("location: home.php");
         } elseif ($type == 'execution') {
             header("location: notification.php");

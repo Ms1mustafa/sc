@@ -112,7 +112,7 @@ function getInputValue($name)
       <select class="inputfieldownerselect-areatAccount" id="userType" name="type" required>
         <option value="" disabled selected>Select Aperson</option>
         <option value="owner">owner</option>
-        <option value="admin">admin</option>
+        <option value="requester">requester</option>
         <option value="inspector">inspector</option>
         <option value="execution">Execution</option>
         <option value="wereHouse">WereHouse</option>
