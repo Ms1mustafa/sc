@@ -162,7 +162,7 @@ class Notification
         if ($qtyBackStatus === 'wereHouse' || $qtyBackStatus === 'wereHouse&requester') {
             $resent = '&dismantling=yes';
         }
-        $sender = $status = 'reject' ? 'Reject' : $sender;
+        $sender = $status === 'reject' ? 'Reject' : $sender;
         if ($qtyBackStatus === 'wereHouse&requester' || $qtyBackStatus === 'wereHouse') {
             $sender = 'dismantling';
         }
