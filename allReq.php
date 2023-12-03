@@ -29,15 +29,11 @@ if ($type === "requester") {
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
     <link rel="stylesheet" href="dashboard.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
     <title>All users </title>
 </head>
-
 
 <body>
     <div>
@@ -86,35 +82,9 @@ if ($type === "requester") {
 
                                     $reqStatus = '';
                                     $finishDate = '';
-
-                                    // if ($executerNew == 'yes') {
-                                    //     $reqStatus = $executer;
-                                    //     $finishDate = $reqDate;
-                                    //     if ($wereHouseDate) {
-                                    //         $finishDate = $wereHouseDate;
-                                    //     }
-                                    // } elseif (($executerNew != 'yes' && $issued != 'yes' && $status == 'pending') || $status == 'resent') {
-                                    //     $reqStatus = $wereHouse;
-                                    //     $finishDate = $executerDate;
-                                    // } elseif (($issued == 'yes' && $status == 'pending') || $status == 'resentInspector') {
-                                    //     $reqStatus = $inspector;
-                                    //     $finishDate = $executerDate;
-                                    // } elseif ($status == 'rejected') {
-                                    //     $reqStatus = 'rejected';
-                                    //     $finishDate = $inspectorDate;
-                                    // } elseif ($status == 'accepted') {
-                                    //     $reqStatus = 'accepted';
-                                    //     $finishDate = $inspectorDate;
-                                    // }
-                                
-                                    // if ($qtyBackStatus != 'no' && $qtyBackStatus != 'rejectDone') {
-                                    //     $reqStatus = 'dismantling';
-                                    // }
-                                
-
                                     echo '
                     <tr>
-                        <td>' . $request["reqNo"] . '</td>
+                        <td><a href="showReq.php?reqNo=' . $request["workOrderNo"] . '">' . $request["reqNo"] . '</a></td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $reqDate . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
