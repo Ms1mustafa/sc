@@ -99,7 +99,7 @@ if ($type === "requester") {
                                 $finishDate = '';
                                 echo '
                     <tr>
-                        <td><a href="showReq.php?reqNo=' . $request["workOrderNo"] . '">' . $request["reqNo"] . '</a></td>
+                        <td>' . $request["workOrderNo"] . '</a></td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $reqDate . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
