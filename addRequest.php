@@ -158,8 +158,7 @@ if (isset($_POST["submit"])) {
             <div class="input-box">
                 <label class="labelnewrequest">Discription</label>
                 <br>
-                <br>
-                <textarea class="inputfieldnot" name="discription" required></textarea>
+                                <textarea class="Discription" name="discription" required></textarea>
             </div>
             <br>
             <div>

@@ -174,7 +174,6 @@ tr:nth-child(even) {
 }
 
 @media only screen and (max-width: 600px) {
-  body {}
 
   .wrappereq {
     margin-top: 30px;
@@ -183,5 +182,44 @@ tr:nth-child(even) {
   .Back {
     position: relative;
     left: 30px;
+  }
+
+}
+
+.filter {
+  width: 500px;
+  border: 2px solid #e77823;
+  border-radius: 5px;
+  height: 4vh;
+  position: relative;
+  left: 400px;
+  top: 32px;
+}
+
+.inputfilter {
+  width: 70px;
+
+  position: relative;
+  height: 4vh;
+  top: 30px;
+  left: 400px;
+  border: 30px;
+  background-color: #e77823;
+  border: none;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .filter {
+    width: 200px;
+    position: relative;
+    left: 40px;
+
+  }
+
+  .inputfilter {
+    position: relative;
+    left: 40px;
   }
 }
