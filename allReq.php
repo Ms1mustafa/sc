@@ -21,7 +21,7 @@ if ($type === "requester") {
     $requests = $req->getRequestDetails($filter, null, $adminName);
 } else {
     Powers::Safety($account, $userToken);
-    $requests = $req->getRequestDetails();
+    $requests = $req->getRequestDetails($filter);
 }
 ?>
 
