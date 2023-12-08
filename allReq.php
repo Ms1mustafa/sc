@@ -14,9 +14,11 @@ $type = @$_GET["type"];
 
 $req = new Request($con);
 
+$filter = @$_POST["filter"] ?? "all";
+
 if ($type === "requester") {
     Powers::admin($account, $userToken);
-    $requests = $req->getRequestDetails(null, $adminName);
+    $requests = $req->getRequestDetails($filter, null, $adminName);
 } else {
     Powers::Safety($account, $userToken);
     $requests = $req->getRequestDetails();
@@ -41,48 +43,55 @@ if ($type === "requester") {
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
     <div class="wrappereq">
-
+        <form action="" method="POST">
+            <select name="filter">
+                <option value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
+                <option value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
+                <option value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted</option>
+                <option value="rejected" <?php echo $filter === "rejected" ? "selected" : ""; ?>>Rejected</option>
+            </select>
+            <input type="submit" value="filter">
+        </form>
         <div class="login-container" id="login">
             <div class="top">
                 <div style="overflow-x:auto;">
-                    <form method="POST" action=""> <!-- Assuming "deleteUser.php" is the action URL -->
-                        <table class="alluser">
-                            <thead>
-                                <tr>
-                                    <th>Req No</th>
-                                    <th>Requester</th>
-                                    <th>Start date</th>
-                                    <th>Work order No</td>
-                                    <th>Area</th>
-                                    <th>Location</th>
-                                    <th>Pending In</th>
-                                    <th>Type pending</th>
-                                    <th>Type Req</th>
-                                    <th>Pending Date</th>
-                                </tr>
-                            </thead>
+                    <table class="alluser">
+                        <thead>
+                            <tr>
+                                <th>Req No</th>
+                                <th>Requester</th>
+                                <th>Start date</th>
+                                <th>Work order No</td>
+                                <th>Area</th>
+                                <th>Location</th>
+                                <th>Pending In</th>
+                                <th>Type pending</th>
+                                <th>Type Req</th>
+                                <th>Pending Date</th>
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                                <?php
-                                foreach ($requests as $request) {
-                                    $status = $request["status"];
-                                    $qtyBackStatus = $request["qtyBackStatus"];
-                                    $executerAccept = $request["executerAccept"];
-                                    $executerNew = $request["executerNew"];
-                                    $issued = $request["issued"];
-                                    $executer = $request["executer"];
-                                    $wereHouse = $request["wereHouse"];
-                                    $inspector = $request["inspector"];
-                                    $reqDate = FormSanitizer::formatDate($request["reqDate"]);
-                                    $executerDate = FormSanitizer::formatDate($request["executerDate"]);
-                                    $wereHouseDate = FormSanitizer::formatDate($request["wereHouseDate"]);
-                                    $inspectorDate = FormSanitizer::formatDate($request["inspectorDate"]);
+                        <tbody>
+                            <?php
+                            foreach ($requests as $request) {
+                                $status = $request["status"];
+                                $qtyBackStatus = $request["qtyBackStatus"];
+                                $executerAccept = $request["executerAccept"];
+                                $executerNew = $request["executerNew"];
+                                $issued = $request["issued"];
+                                $executer = $request["executer"];
+                                $wereHouse = $request["wereHouse"];
+                                $inspector = $request["inspector"];
+                                $reqDate = FormSanitizer::formatDate($request["reqDate"]);
+                                $executerDate = FormSanitizer::formatDate($request["executerDate"]);
+                                $wereHouseDate = FormSanitizer::formatDate($request["wereHouseDate"]);
+                                $inspectorDate = FormSanitizer::formatDate($request["inspectorDate"]);
 
-                                    $reqStatus = "";
+                                $reqStatus = "";
 
-                                    $reqStatus = '';
-                                    $finishDate = '';
-                                    echo '
+                                $reqStatus = '';
+                                $finishDate = '';
+                                echo '
                     <tr>
                         <td><a href="showReq.php?reqNo=' . $request["workOrderNo"] . '">' . $request["reqNo"] . '</a></td>
                         <td>' . $request["adminAddedName"] . '</td>
@@ -96,11 +105,10 @@ if ($type === "requester") {
                         <td>' . FormSanitizer::formatDate($request["pending_date"]) . '</td>
                         </tr>
                     ';
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </form>
+                            }
+                            ?>
+                        </tbody>
+                    </table>
 </body>
 
 </html>

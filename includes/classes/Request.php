@@ -438,15 +438,22 @@ class Request
         }
     }
 
-    public function getRequestDetails($workOrderNo = null, $byRequester = null)
+    public function getRequestDetails($filter = "all", $workOrderNo = null, $byRequester = null)
     {
         $sql = "SELECT * FROM request ";
+        $condition = "WHERE";
+
+        if ($filter !== "all") {
+            $sql .= "WHERE status = :filter ";
+            $condition = "AND";
+        }
 
         if ($workOrderNo) {
-            $sql .= "WHERE workOrderNo=:workOrderNo";
+            $sql .= "$condition workOrderNo=:workOrderNo";
         }
         if ($byRequester)
-            $sql .= "WHERE adminAddedName=:byRequester";
+            $sql .= "$condition adminAddedName=:byRequester";
+
 
         $query = $this->con->prepare($sql);
 
@@ -456,6 +463,8 @@ class Request
         if ($byRequester) {
             $query->bindValue(":byRequester", $byRequester);
         }
+        if ($filter !== "all")
+            $query->bindValue(":filter", $filter);
 
         $query->execute();
 
