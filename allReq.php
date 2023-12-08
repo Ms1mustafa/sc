@@ -104,7 +104,7 @@ if ($type === "requester") {
                                 $finishDate = '';
                                 echo '
                     <tr>
-                        <td>' . $request["workOrderNo"] . '</a></td>
+                        <td>' . $request["reqNo"] . '</a></td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $reqDate . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
