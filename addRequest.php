@@ -72,9 +72,10 @@ if (isset($_POST["submit"])) {
     $wereHouse = $account->getMainAccount('wereHouse');
     $inspector = @$_POST["inspector"];
     $inspectorName = $account->getAccountDetails($inspector, true, false, false, false);
+    $discription = FormSanitizer::sanitizeFormString(@$_POST["discription"]);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
-    $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $notes, $executer, 'Done');
+    $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $discription, $notes, $executer, 'Done');
 
     if ($success) {
         $sendMail = new SendMail();
@@ -153,10 +154,15 @@ if (isset($_POST["submit"])) {
                 <br>
                 <input type="text" class="inputfieldrequest" placeholder="Work Order No" name="workOrderNo" required>
             </div>
+
+            <div class="input-box">
+                <label class="labelnewrequest">Discription</label>
+                <br>
+                <br>
+                <textarea class="inputfieldnot" name="discription" required></textarea>
+            </div>
             <br>
             <div>
-
-
                 <select name="area" class="inputfieldselectnewreq" id="area" required>
                     <option disabled selected value="">select area</option>
                     <?php echo $getArea; ?>

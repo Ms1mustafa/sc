@@ -33,15 +33,31 @@ Powers::Safety($account, $userToken);
     </div>
     <div class="wrappereq">
 
-
         <div class="login-container" id="login">
             <div class="input-box">
                 <button class="inputfieldowner"> <a href="allReq.php">All Requests</a></button>
             </div>
+            <div id="result"></div>
         </div>
     </div>
 
     </div>
+
+    <script>
+        function loadRequests() {
+            $(document).ready(function () {
+                $.get(
+                    "ajax/getSafetyReq.php",
+                    { isNotification: true },
+                    function (data) {
+                        $("#result").html(data);
+                    }
+                );
+            })
+            setTimeout(loadRequests, 3000);
+        }
+        loadRequests();
+    </script>
 
 </body>
 

@@ -15,13 +15,13 @@ class Request
         $this->currentDateTime = date("Y-m-d H:i:s");
     }
 
-    public function addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $notes, $pending_in, $type_req)
+    public function addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $discription, $notes, $pending_in, $type_req)
     {
         $this->validateworkOrderNo($workOrderNo);
 
         if ($reqNo && $adminAddedName && $workOrderNo && $area && $item && $length && $width && $height && $priority && $workType && $executer && $inspector && $notes) {
             if (empty($this->errorArray)) {
-                return $this->insertRequestDetils($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $notes, $pending_in, $type_req);
+                return $this->insertRequestDetils($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $discription, $notes, $pending_in, $type_req);
             }
         } else {
             array_push($this->errorArray, constants::$requestFailed);
@@ -76,9 +76,9 @@ class Request
         return false;
     }
 
-    public function insertRequestDetils($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $notes, $pending_in, $type_req)
+    public function insertRequestDetils($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspector, $discription, $notes, $pending_in, $type_req)
     {
-        $query = $this->con->prepare("INSERT INTO request (reqNo, adminAddedName, workOrderNo, area, item, length, width, height, workType, priority, executer, wereHouse, inspector, notes, pending_in, type_req, reqDate) VALUES (:reqNo, :adminAddedName, :workOrderNo, :area, :item, :length, :width, :height, :workType, :priority, :executer, :wereHouse, :inspector, :notes, :pending_in, :type_req, :currentDateTime)");
+        $query = $this->con->prepare("INSERT INTO request (reqNo, adminAddedName, workOrderNo, area, item, length, width, height, workType, priority, executer, wereHouse, inspector, discription, notes, pending_in, type_req, reqDate) VALUES (:reqNo, :adminAddedName, :workOrderNo, :area, :item, :length, :width, :height, :workType, :priority, :executer, :wereHouse, :inspector, :discription, :notes, :pending_in, :type_req, :currentDateTime)");
 
         $query->bindValue(":reqNo", $reqNo);
         $query->bindValue(":adminAddedName", $adminAddedName);
@@ -93,6 +93,7 @@ class Request
         $query->bindValue(":executer", $executer);
         $query->bindValue(":wereHouse", $wereHouse);
         $query->bindValue(":inspector", $inspector);
+        $query->bindValue(":discription", $discription);
         $query->bindValue(":notes", $notes);
         $query->bindValue(":pending_in", $pending_in);
         $query->bindValue(":type_req", $type_req);

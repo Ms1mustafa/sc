@@ -7,6 +7,7 @@ class Notification
     public function getAdminNotification($data)
     {
         $workOrderNo = $data["workOrderNo"];
+        $discription = $data["discription"] ? "Discription: " . $data["discription"] : "";
         $priority = $data["priority"];
         $executer = $data["executer"];
         $inspector = $data["inspector"];
@@ -33,6 +34,8 @@ class Notification
             <a class='' href='adminQty.php?workOrderNo=" . $workOrderNo . "$qtyBackStatus'>
             <p>$status, <span class='sender'>$sender</span></p>
             <p>$priority</p>
+            <p>Work Order No: $workOrderNo</p>
+            <p>$discription</p>
             <p>$notiDateFrom : $inspectorDate</p>
             </a>
             <br>
@@ -49,6 +52,7 @@ class Notification
     {
         $reqNo = $data["reqNo"];
         $workOrderNo = $data["workOrderNo"];
+        $discription = $data["discription"] ? "Discription: " . $data["discription"] : "";
         $priority = $data["priority"];
         $adminAddedName = $data["adminAddedName"];
         $reqDate = FormSanitizer::formatDate($data["reqDate"]);
@@ -58,6 +62,8 @@ class Notification
             <a  class='notification' href='requestAction.php?workOrderNo=" . $workOrderNo . "'>
             <p>$reqNo, Request, $adminAddedName</p>
             <p>$priority</p>
+            <p>Work Order No: $workOrderNo</p>
+            <p>$discription</p>
             <p>request added : $reqDate</p>
             </a>
             <br>
@@ -114,6 +120,7 @@ class Notification
         $issued = $data["issued"] == 'yes' ? true : false;
         $reqNo = !$issued ? $data["reqNo"] . ', ' : '';
         $workOrderNo = $data["workOrderNo"];
+        $discription = $data["discription"] ? "Discription: " . $data["discription"] : "";
         $priority = $data["priority"];
         $adminAddedName = $data["adminAddedName"];
         $status = $data["status"];
@@ -135,6 +142,8 @@ class Notification
             <a  class='notification'  href='qty.php?qtyNo=" . $workOrderNo . $new . " $reject'>
             <p class='senderDetils'>$reqNo" . $type . ", <span class='sender'>" . $sender . "</span></p>
             <p>$priority</p>
+            <p>Work Order No: $workOrderNo</p>
+            <p>$discription</p>
             <p>" . $this->getNotiDate($wereHouseDate, $inspectorDate, $reqDate, $qtyBackDate) . "</p>
             </a>
             <br>
@@ -149,6 +158,7 @@ class Notification
     public function getWereHouseNotification($data)
     {
         $workOrderNo = $data["workOrderNo"];
+        $discription = $data["discription"] ? "Discription: " . $data["discription"] : "";
         $priority = $data["priority"];
         $executer = $data["executer"];
         $status = $data["status"];
@@ -175,6 +185,10 @@ class Notification
                 <br>
                 <p>$priority</p>
                 <br>
+                <p>Work Order No: $workOrderNo</p>
+                <br>
+                <p>$discription</p>
+                <br>
                 <p>Executer sent: $date</p>
                 </a>
                 <br>
@@ -190,6 +204,7 @@ class Notification
     public function getInspectorNotification($data)
     {
         $workOrderNo = $data["workOrderNo"];
+        $discription = $data["discription"] ? "Discription: " . $data["discription"] : "";
         $priority = $data["priority"];
         $executer = $data["executer"];
         $status = $data["status"];
@@ -201,17 +216,19 @@ class Notification
                 <a   class='notification' href='inspectorQty.php?qtyNo=" . $workOrderNo . "'>
                 <p>Executer : <span class='sender'>$executer</span></p>
                 <p>$priority</span></p>
-            ";
+                <p>Work Order No: $workOrderNo</p>
+                <p>$discription</p>
+                ";
             if ($status == 'resentInspector') {
                 $html .= "<p>resent : $resentDate</p>";
             }
             $html .= "
-                <p>Executer accept : $executerAcceptDate</p>
-                </a>
-                <br>
-                <hr class='hrQty'>
-                <br>
-            ";
+                    <p>Executer accept : $executerAcceptDate</p>
+                    </a>
+                    <br>
+                    <hr class='hrQty'>
+                    <br>
+                ";
 
             return $html;
         }

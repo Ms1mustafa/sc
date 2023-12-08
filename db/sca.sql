@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 07:57 PM
+-- Generation Time: Dec 08, 2023 at 01:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -135,7 +135,8 @@ INSERT INTO `rejectitemdes` (`id`, `workOrderNo`, `itemName`, `itemQty`, `wereHo
 (107, '33333', 'Pipe scaffolding 4M', '55', '55', '', 0, '55', '2023-12-01 19:27:06'),
 (108, '000000000 ', 'Pipe scaffolding 6m', '5', '5', '', 1, '', '2023-12-01 20:06:53'),
 (109, '000000000 ', 'Woode borders 3m', '55', '55', '', 1, '', '2023-12-01 20:07:09'),
-(110, '000000000 ', 'Woode borders 4m', '55', '55', '', 1, '', '2023-12-01 20:08:18');
+(110, '000000000 ', 'Woode borders 4m', '55', '55', '', 1, '', '2023-12-01 20:08:18'),
+(111, '444444', 'Pipe scaffolding 6m', '4', '', '', 0, '', '2023-12-01 22:38:04');
 
 -- --------------------------------------------------------
 
@@ -158,6 +159,7 @@ CREATE TABLE `request` (
   `executer` varchar(255) NOT NULL,
   `wereHouse` varchar(255) NOT NULL,
   `inspector` varchar(255) NOT NULL,
+  `discription` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `notes` varchar(255) NOT NULL,
   `reqDate` datetime(6) NOT NULL,
   `executerNew` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'yes',
@@ -184,11 +186,13 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `notes`, `reqDate`, `executerNew`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `pending_in`, `type_req`, `pending_date`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`, `qtyBackStatus`, `qtyBackDate`) VALUES
-(162, '202300001', 'Requester', '000000000', 'Packing', 'line 1', '1', '1', '1', '2 - Routine', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', 'vv', '2023-12-01 17:47:58.000000', 'yes', '2023-12-01 20:08:18.000000', 'rejected', 'cc', 2, 'no', '2023-12-01', 'yes', 'Excauter', 'Reject', '2023-12-01 21:46:43.000000', '2023-12-01 20:15:04.000000', 'yes', '2023-12-01 20:02:35.000000', '2023-12-01 21:46:43.000000', '2023-12-01 20:18:08.000000', 'no', NULL),
-(163, '202300002', 'Requester', '111111111111111', 'Packing', 'line 1', '1', '1', '1', '1 - Incident', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', 'jf', '2023-12-01 17:56:48.000000', 'yes', '2023-12-01 18:18:17.000000', 'pending', '', 0, 'no', '2023-12-01', 'yes', 'Excauter', 'Done', '2023-12-01 19:21:08.000000', '2023-12-01 19:21:08.000000', 'no', NULL, NULL, NULL, 'no', NULL),
-(164, '202300003', 'Requester', '2222222222', 'Packing', 'line 2', '1', '1', '1', '1 - Incident', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', 'ws\r\n', '2023-12-01 19:04:28.000000', 'no', '2023-12-01 19:06:05.000000', 'rejected', 'vv', 0, 'no', NULL, 'no', 'Requester', 'Reject', '2023-12-01 19:06:05.000000', NULL, 'no', NULL, NULL, NULL, 'finish', NULL),
-(165, '202300004', 'Requester', '33333', 'Packing', 'line 1', '1', '1', '1', '2 - Routine', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', 'ee', '2023-12-01 19:23:45.000000', 'yes', '2023-12-01 19:27:06.000000', 'accepted', '', 0, 'no', '2023-12-02', 'yes', 'Requester', 'Dismantling done', '2023-12-01 21:56:30.000000', '2023-12-01 19:27:30.000000', 'yes', '2023-12-01 19:33:01.000000', '2023-12-01 20:02:09.000000', NULL, 'finish', '2023-12-01 21:33:48');
+INSERT INTO `request` (`id`, `reqNo`, `adminAddedName`, `workOrderNo`, `area`, `item`, `length`, `width`, `height`, `workType`, `priority`, `executer`, `wereHouse`, `inspector`, `discription`, `notes`, `reqDate`, `executerNew`, `executerDate`, `status`, `rejectReason`, `rejectsNum`, `new`, `finishDate`, `issued`, `pending_in`, `type_req`, `pending_date`, `wereHouseDate`, `executerAccept`, `executerAcceptDate`, `inspectorDate`, `resentDate`, `qtyBackStatus`, `qtyBackDate`) VALUES
+(162, '202300001', 'Requester', '000000000', 'Packing', 'line 1', '1', '1', '1', '2 - Routine', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', NULL, 'vv', '2023-12-01 17:47:58.000000', 'yes', '2023-12-01 20:08:18.000000', 'rejected', 'cc', 2, 'no', '2023-12-01', 'yes', 'Excauter', 'Reject', '2023-12-01 21:46:43.000000', '2023-12-01 20:15:04.000000', 'yes', '2023-12-01 20:02:35.000000', '2023-12-01 21:46:43.000000', '2023-12-01 20:18:08.000000', 'no', NULL),
+(163, '202300002', 'Requester', '111111111111111', 'Packing', 'line 1', '1', '1', '1', '1 - Incident', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', NULL, 'jf', '2023-12-01 17:56:48.000000', 'yes', '2023-12-01 18:18:17.000000', 'pending', '', 0, 'no', '2023-12-01', 'yes', 'Excauter', 'Done', '2023-12-01 19:21:08.000000', '2023-12-01 19:21:08.000000', 'no', NULL, NULL, NULL, 'no', NULL),
+(164, '202300003', 'Requester', '2222222222', 'Packing', 'line 2', '1', '1', '1', '1 - Incident', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', NULL, 'ws\r\n', '2023-12-01 19:04:28.000000', 'no', '2023-12-01 19:06:05.000000', 'rejected', 'vv', 0, 'no', NULL, 'no', 'Requester', 'Reject', '2023-12-01 19:06:05.000000', NULL, 'no', NULL, NULL, NULL, 'finish', NULL),
+(165, '202300004', 'Requester', '33333', 'Packing', 'line 1', '1', '1', '1', '2 - Routine', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', NULL, 'ee', '2023-12-01 19:23:45.000000', 'yes', '2023-12-01 19:27:06.000000', 'accepted', '', 0, 'no', '2023-12-02', 'yes', 'Requester', 'Dismantling done', '2023-12-01 21:56:30.000000', '2023-12-01 19:27:30.000000', 'yes', '2023-12-01 19:33:01.000000', '2023-12-01 20:02:09.000000', NULL, 'finish', '2023-12-01 21:33:48'),
+(166, '202300005', 'Requester', '444444', 'Packing', 'line 1', '1', '1', '1', '1 - Incident', 'Immediately Today', 'Excauter', 'Warehouse', 'Inspector', NULL, 'يي\r\n', '2023-12-01 22:36:52.000000', 'no', '2023-12-01 22:38:04.000000', 'pending', '', 0, 'no', '2023-12-02', 'no', 'Warehouse', 'WereHouse', '2023-12-01 22:38:04.000000', NULL, 'no', NULL, NULL, NULL, 'no', NULL),
+(167, '202300006', 'Requester', '6666754544', 'Packing', 'line 2', '1', '1', '1', '2 - Routine', 'Medium 3-4 Days', 'Excauter', 'Warehouse', 'Inspector', 'fdg', 'eddfvb', '2023-12-08 15:21:58.000000', 'yes', NULL, 'pending', '', 0, 'yes', NULL, 'no', 'Excauter', 'Done', '2023-12-08 15:21:58.538904', NULL, 'no', NULL, NULL, NULL, 'no', NULL);
 
 -- --------------------------------------------------------
 
@@ -212,7 +216,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `token`, `username`, `email`, `password`, `area`, `type`, `main`) VALUES
-(25, '230821114033162', 'Requester', 'Requester@gmail.com', 'R12341234', '', 'admin', 'yes'),
+(25, '230821114033162', 'Requester', 'Requester@gmail.com', 'R12341234', '', 'requester', 'yes'),
 (26, '230821114122103', 'Warehouse', 'Warehouse@gmail.com', 'W12341234', '', 'wereHouse', 'yes'),
 (27, '230821114149170', 'Excauter', 'mstafawahed1@gmail.com', 'E12341234', '', 'execution', 'yes'),
 (28, '230821114217156', 'Inspector', 'Inspector@gmail.com', 'I12341234', '1', 'inspector', 'yes'),
@@ -343,13 +347,13 @@ ALTER TABLE `itemdes`
 -- AUTO_INCREMENT for table `rejectitemdes`
 --
 ALTER TABLE `rejectitemdes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT for table `users`
