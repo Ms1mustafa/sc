@@ -438,7 +438,7 @@ class Request
         }
     }
 
-    public function getRequestDetails($filter = "all", $workOrderNo = null, $byRequester = null)
+    public function getRequestDetails($workOrderNo = null, $byRequester = null, $filter = "all")
     {
         $sql = "SELECT * FROM request ";
         $condition = "WHERE";

@@ -18,10 +18,10 @@ $filter = @$_POST["filter"] ?? "all";
 
 if ($type === "requester") {
     Powers::admin($account, $userToken);
-    $requests = $req->getRequestDetails($filter, null, $adminName);
+    $requests = $req->getRequestDetails(null, $adminName, $filter);
 } else {
     Powers::Safety($account, $userToken);
-    $requests = $req->getRequestDetails($filter);
+    $requests = $req->getRequestDetails(null, null, $filter);
 }
 ?>
 
@@ -43,19 +43,21 @@ if ($type === "requester") {
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
     <br>
-   
-        <form action="" method="POST">
-        
-            <select class="filter"name="filter">
-                <option class="filter" value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
-                <option class="filter" value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
-                <option class="filter" value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted</option>
-                <option  class="filter" value="rejected" <?php echo $filter === "rejected" ? "selected" : ""; ?>>Rejected</option>
-            </select>
-            <input class=" inputfilter" type="submit" value="filter">
-        </form>
 
-        <div class="wrappereq">
+    <form action="" method="POST">
+
+        <select class="filter" name="filter">
+            <option class="filter" value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
+            <option class="filter" value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
+            <option class="filter" value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted
+            </option>
+            <option class="filter" value="rejected" <?php echo $filter === "rejected" ? "selected" : ""; ?>>Rejected
+            </option>
+        </select>
+        <input class=" inputfilter" type="submit" value="filter">
+    </form>
+
+    <div class="wrappereq">
         <div class="login-container" id="login">
             <div class="top">
                 <div style="overflow-x:auto;">
