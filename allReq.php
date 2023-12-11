@@ -120,11 +120,11 @@ if ($type === "requester") {
                             ?>
                         </tbody>
                     </table>
-                    <script>
+                    <!-- <script>
                         $(document).ready(function () {
                             $('#myTable').DataTable();
                         });
-                    </script>
+                    </script> -->
 </body>
 
 </html>
