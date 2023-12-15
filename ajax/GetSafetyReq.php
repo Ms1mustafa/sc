@@ -6,21 +6,19 @@ include_once('../includes/classes/Notification.php');
 
 $isNotification = $_GET['isNotification'];
 
-if($isNotification != null) {
+if ($isNotification != null) {
     $requests = Requests::getSafetyRequests($con, true, "accepted");
-    foreach($requests as $request) {
+    foreach ($requests as $request) {
         $notification = new Notification();
 
-        echo $notification->getInspectorNotification($request);
+        echo $notification->getInspectorNotification($request, 'safety');
     }
 }
 
-if($isNotification == null) {
+if ($isNotification == null) {
     $workOrderNo = $_GET['workOrderNo'];
 
-    $requests = Requests::getInspectorRequests($con, null, $inspector, $workOrderNo);
-    $items = Requests::getItemsDes($con, $workOrderNo);
-    $rejectItems = Requests::getRejectItemsDes($con, $workOrderNo, true);
+    $requests = Requests::getSafetyRequests($con, null, 'accepted', $workOrderNo);
 
     $reqNo = $requests["reqNo"];
     $workOrderNo = $requests["workOrderNo"];
@@ -28,6 +26,7 @@ if($isNotification == null) {
     $inspector = $requests["inspector"];
     $area = $requests["area"];
     $item = $requests["item"];
+    $notes = $requests["notes"];
     $issued = $requests["issued"] == 'yes' ? true : null;
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
@@ -53,27 +52,8 @@ if($isNotification == null) {
    <br>
    <br>
     <label class='GetOTYNote'>Notes :</label>
+    <label class='GetrquesQTY'>$notes</label>
     <br>
-    
-    ";
-
-
-    // if ($status == 'resent') {
-    //     echo '
-    //         <button name="accept" onclick="removeRequiredAttribute()">accept</button>
-    //     ';
-    // }
-    if($status = 'pending') {
-        echo '
-            <button class="submitacceptinspecter" name="accept" onclick="removeRequiredAttribute()">Accept</button>
-         
-            <button class="submitacceptinspecter" name="reject" id="reject" onclick="addRequiredAttribute()">Reject</button>
-            <br>
-            <br>
-            <textarea class="inputrejectreason" type="text" name="rejectReason" id="rejectReason" placeholder = "Reject reason"></textarea>
-        ';
-    }
-    echo "
 ";
 }
 

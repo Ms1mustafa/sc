@@ -44,7 +44,7 @@ if ($type === "requester") {
 
 <body>
     <div>
-        <a class="Back" href="home.php">
+        <a class="Back" href="index.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     </div>
     <br>
