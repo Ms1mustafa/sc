@@ -34,12 +34,17 @@ if ($type === "requester") {
     <link rel="stylesheet" href="dashboard.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <title>All users </title>
 </head>
 
 <body>
     <div>
-        <a class="Back" href="home.php">
+        <a class="Back" href="index.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
     
     <br>
@@ -61,7 +66,7 @@ if ($type === "requester") {
         <div class="login-container" id="login">
             <div class="top">
                 <div style="overflow-x:auto;">
-                    <table class="alluser">
+                    <table class="alluser" id="myTable">
                         <thead>
                             <tr>
                                 <th>Req No</th>
@@ -99,7 +104,7 @@ if ($type === "requester") {
                                 $finishDate = '';
                                 echo '
                     <tr>
-                        <td>' . $request["workOrderNo"] . '</a></td>
+                        <td>' . $request["reqNo"] . '</a></td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $reqDate . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
@@ -115,6 +120,11 @@ if ($type === "requester") {
                             ?>
                         </tbody>
                     </table>
+                    <!-- <script>
+                        $(document).ready(function () {
+                            $('#myTable').DataTable();
+                        });
+                    </script> -->
 </body>
 
 </html>
