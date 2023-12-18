@@ -35,7 +35,7 @@ Powers::Safety($account, $userToken);
 
         <div class="login-container" id="login">
             <div class="input-box">
-                <button class="inputfieldowner"> <a href="allReq.php">All Requests</a></button>
+               <a href="allReq.php">All Requests</a>
             </div>
             <div id="result"></div>
         </div>

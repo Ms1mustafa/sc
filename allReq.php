@@ -41,22 +41,22 @@ if ($type === "requester") {
     <div>
         <a class="Back" href="home.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
+    
     <br>
 
     <form action="" method="POST">
 
         <select class="filter" name="filter">
-            <option class="filter" value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
-            <option class="filter" value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
-            <option class="filter" value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted
+            <option class="" value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
+            <option class="" value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
+            <option class="" value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted
             </option>
             <option class="filter" value="rejected" <?php echo $filter === "rejected" ? "selected" : ""; ?>>Rejected
             </option>
         </select>
         <input class=" inputfilter" type="submit" value="filter">
     </form>
-
+</div>
     <div class="wrappereq">
         <div class="login-container" id="login">
             <div class="top">
