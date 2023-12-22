@@ -44,5 +44,17 @@ class FormSanitizer
             return date("d M Y", $inputTime); // Format as 'day month year' (e.g., 22 Jul 2023)
         }
     }
+
+    public static function formatMonthYear($inputDate)
+    {
+        $inputTime = strtotime($inputDate); // Convert input date to Unix timestamp
+
+        if ($inputDate === null) {
+            return $inputDate;
+        }
+
+        return date("M Y", $inputTime); // Format as 'month year' (e.g., Jan 2023)
+    }
+
 }
 ?>

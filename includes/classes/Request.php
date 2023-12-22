@@ -588,6 +588,21 @@ class Request
 
     }
 
+    public function getRequestNum($area, $condition)
+    {
+        // Prepare the SQL query
+        $sql = "SELECT * FROM request WHERE area = :area AND " . $condition;
+
+        // Prepare and execute the query
+        $query = $this->con->prepare($sql);
+        $query->bindValue(":area", $area);
+        $query->execute();
+
+        // Return the row count
+        return $query->rowCount();
+    }
+
+
     public function getError($error)
     {
         if (in_array($error, $this->errorArray)) {
