@@ -7,6 +7,8 @@ include_once('includes/classes/FormSanitizer.php');
 
 $request = new Request($con);
 $Area = new Area($con);
+
+$filter = @$_POST["month"] ?? date('Y-m');
 // echo FormSanitizer::formatMonthYear('2023-01');
 ?>
 <!DOCTYPE html>
@@ -28,16 +30,50 @@ $Area = new Area($con);
 
   <!--------------------------------Dashboard-------------------------------------->
 
- 
-    <section>
-      <label class="LabelRq" for="">Request</label>
+
+  <section>
+    <label class="LabelRq" for="">Request</label>
+    <table class="alluser">
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Don</th>
+          <th>InProcess</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($Area->getArea(true) as $area) {
+          echo "
+            <tr>
+          <td>";
+          echo $area['name'] . "</td>
+          <td>";
+          echo $request->getRequestNum($area['name'], "qtyBackStatus = 'finish'") . "</td>
+          <td>";
+          echo $request->getRequestNum($area['name'], "qtyBackStatus != 'finish'") . "</td>
+            </tr>
+          ";
+          // echo "<td>" . $area['name'] . "</td>";
+        }
+        ?>
+      </tbody>
+    </table>
+  </section>
+  </main>
+  <br>
+
+  <main>
+    <section class="sectiondas">
+      <label class="" for=""></label>
       <table class="alluser">
+        <form action="" method="POST">
+          <input type="month" id="month" name="month" value=<?php echo $filter; ?>>
+          <input class="" type="submit" value="filter">
+        </form>
         <thead>
-          <tr>
-            <th>Area</th>
-            <th>Don</th>
-            <th>InProcess</th>
-          </tr>
+          <th>Area</th>
+          <th>Num</th>
         </thead>
         <tbody>
           <?php
@@ -47,37 +83,17 @@ $Area = new Area($con);
           <td>";
             echo $area['name'] . "</td>
           <td>";
-            echo $request->getRequestNum($area['name'], "qtyBackStatus = 'finish'") . "</td>
-          <td>";
-            echo $request->getRequestNum($area['name'], "qtyBackStatus != 'finish'") . "</td>
-            </tr>
+            echo $request->getRequestNum($area['name'], null, $filter) . "</td>
+          <td>
           ";
             // echo "<td>" . $area['name'] . "</td>";
           }
           ?>
         </tbody>
+        <tr>
       </table>
     </section>
-        </main>
-  <br>
 
-  <main>
-    <section class="sectiondas">
-      <label class="" for=""></label>
-      <table class="alluser">
-      <input type="month" id="monthInput" name="monthInput">
-        <tr>
-          <th>Area</th>
-          <th>Num</th>
-              </tr>
-        <td>Packing</td>
-        <td>30</td>
-        
-       
-        <tr>
-      </table>
-    </section>
-   
 
   </main>
 

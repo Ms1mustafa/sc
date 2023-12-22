@@ -588,21 +588,30 @@ class Request
 
     }
 
-    public function getRequestNum($area, $condition)
+    public function getRequestNum($area, $condition, $date = null)
     {
         // Prepare the SQL query
-        $sql = "SELECT * FROM request WHERE area = :area AND " . $condition;
+        $sql = "SELECT * FROM request WHERE area = :area ";
+
+        if ($condition) {
+            $sql .= "AND $condition ";
+        }
+
+        if ($date) {
+            $sql .= "AND DATE_FORMAT(reqDate, '%Y-%m') = :date";
+        }
 
         // Prepare and execute the query
         $query = $this->con->prepare($sql);
         $query->bindValue(":area", $area);
+        if ($date) {
+            $query->bindValue(":date", $date);
+        }
         $query->execute();
 
         // Return the row count
         return $query->rowCount();
     }
-
-
     public function getError($error)
     {
         if (in_array($error, $this->errorArray)) {
