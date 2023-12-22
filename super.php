@@ -110,8 +110,8 @@ $requests = $request->getRequestDetails(null, null, 'all');
           }
 
           if (ucfirst($account->getTypeByName($req["pending_in"])) === "Inspector") {
-            $executerAcceptDate = $data["executerAcceptDate"] ? FormSanitizer::formatDate($data["executerAcceptDate"]) : null;
-            $resentDate = $data["resentDate"] ? FormSanitizer::formatDate($data["resentDate"]) : null;
+            $executerAcceptDate = $req["executerAcceptDate"] ? FormSanitizer::formatDate($req["executerAcceptDate"]) : null;
+            $resentDate = $req["resentDate"] ? FormSanitizer::formatDate($req["resentDate"]) : null;
             $pendingTime = FormSanitizer::formatTimeDifference($executerAcceptDate, date('Y-m-d H:i:s.u'));
             if ($status === 'resentInspector') {
               $pendingTime = FormSanitizer::formatTimeDifference($resentDate, date('Y-m-d H:i:s.u'));
