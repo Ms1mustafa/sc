@@ -16,7 +16,7 @@ $filter = @$_POST["month"] ?? date('Y-m');
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/dashboard.css" />
+  
   <!-- <link rel="stylesheet" href="../shared.css" /> -->
   <link rel="stylesheet" href="dashboard.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,10 +60,29 @@ $filter = @$_POST["month"] ?? date('Y-m');
       </tbody>
     </table>
   </section>
-  </main>
-  <br>
 
-  <main>
+ 
+  <section>
+    <label class="LabelRq" for="">Request the best</label>
+    <table class="alluser">
+      <thead>
+        <tr>
+          <th> Req Num</th>
+          <th>Pending In</th>
+          <th>Type pending</th>
+          <th>Pending time</th>
+      </tr>
+        </thead>
+        <tr>
+        <td>20230001</td>
+        <td>20230001</td>
+        <td>20230001</td>
+        <td>20230001</td>
+        </tr>
+        
+      </tablel>
+      </section>
+  
     <section class="sectiondas">
       <label class="" for=""></label>
       <table class="alluser">
@@ -71,10 +90,10 @@ $filter = @$_POST["month"] ?? date('Y-m');
           <input type="month" id="month" name="month" value=<?php echo $filter; ?>>
           <input class="" type="submit" value="filter">
         </form>
-        <thead>
+        <tr>
           <th>Area</th>
-          <th>Num</th>
-        </thead>
+          <th>Orders</th>
+        </tr>
         <tbody>
           <?php
           foreach ($Area->getArea(true) as $area) {
@@ -83,19 +102,20 @@ $filter = @$_POST["month"] ?? date('Y-m');
           <td>";
             echo $area['name'] . "</td>
           <td>";
-            echo $request->getRequestNum($area['name'], null, $filter) . "</td>
-          <td>
+            echo $request->getRequestNum($area['name'], null, $filter) . "
+          </tr>
           ";
             // echo "<td>" . $area['name'] . "</td>";
           }
+       
           ?>
         </tbody>
-        <tr>
+      
       </table>
     </section>
 
 
-  </main>
+  
 
 
 </body>
