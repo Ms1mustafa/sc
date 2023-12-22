@@ -92,6 +92,9 @@ $request = new Request($con);
                 <button class="inputfieldowner"> <a href="allReq.php">All Requests</a></button>
             </div>
             <br>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="super.php">Dashboard</a></button>
+            </div>
         </div>
     </div>
 </body>

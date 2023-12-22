@@ -41,7 +41,7 @@ if ($type === "requester") {
     <div>
         <a class="Back" href="home.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
+    
     <br>
 
     <form action="" method="POST">
@@ -56,7 +56,7 @@ if ($type === "requester") {
         </select>
         <input class=" inputfilter" type="submit" value="filter">
     </form>
-
+</div>
     <div class="wrappereq">
         <div class="login-container" id="login">
             <div class="top">
