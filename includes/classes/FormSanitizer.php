@@ -74,17 +74,17 @@ class FormSanitizer
             return "Just now";
         } elseif ($timeDiff < $hour) {
             $minutesAgo = floor($timeDiff / $minute);
-            return $minutesAgo . " min ago";
+            return $minutesAgo . " min";
         } elseif ($timeDiff < 2 * $hour) {
-            return "An hour ago";
+            return "An hour";
         } elseif ($timeDiff < $day) {
             $hoursAgo = floor($timeDiff / $hour);
-            return $hoursAgo . " hours ago";
+            return $hoursAgo . " hours";
         } elseif ($timeDiff < 2 * $day) {
-            return "Yesterday";
+            return "24 hours";
         } else {
             $daysAgo = floor($timeDiff / $day);
-            return $daysAgo . " day" . ($daysAgo > 1 ? 's' : '') . " ago";
+            return $daysAgo . " day" . ($daysAgo > 1 ? 's' : '');
         }
     }
 
