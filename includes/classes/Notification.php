@@ -201,7 +201,7 @@ class Notification
 
         return false;
     }
-    public function getInspectorNotification($data)
+    public function getInspectorNotification($data, $user = 'inspector')
     {
         $workOrderNo = $data["workOrderNo"];
         $discription = $data["discription"] ? "Discription: " . $data["discription"] : "";
@@ -210,10 +210,12 @@ class Notification
         $status = $data["status"];
         $executerAcceptDate = $data["executerAcceptDate"] ? FormSanitizer::formatDate($data["executerAcceptDate"]) : null;
         $resentDate = $data["resentDate"] ? FormSanitizer::formatDate($data["resentDate"]) : null;
+        $link = $user == 'safety' ? 'safetyQty' : 'inspectorQty';
+
 
         if (empty($this->errorArray)) {
             $html = "
-                <a   class='notification' href='inspectorQty.php?qtyNo=" . $workOrderNo . "'>
+                <a   class='notification' href='$link.php?qtyNo=" . $workOrderNo . "'>
                 <p>Executer : <span class='sender'>$executer</span></p>
                 <p>$priority</span></p>
                 <p>Work Order No: $workOrderNo</p>

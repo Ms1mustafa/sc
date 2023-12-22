@@ -193,7 +193,7 @@ tr:nth-child(even) {
   height: 4vh;
   position: relative;
   left: 400px;
-  top: 32px;
+
 }
 
 .inputfilter {
@@ -201,7 +201,7 @@ tr:nth-child(even) {
 
   position: relative;
   height: 4vh;
-  top: 30px;
+
   left: 400px;
   border: 30px;
   background-color: #e77823;
@@ -215,11 +215,13 @@ tr:nth-child(even) {
     width: 200px;
     position: relative;
     left: 40px;
+    top: 50px;
 
   }
 
   .inputfilter {
     position: relative;
     left: 40px;
+    top: 50px;
   }
 }

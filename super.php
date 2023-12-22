@@ -1,3 +1,14 @@
+<?php
+include_once('includes/classes/Account.php');
+include_once('includes/classes/Area.php');
+include_once('includes/classes/Request.php');
+include_once('includes/classes/Powers.php');
+include_once('includes/classes/FormSanitizer.php');
+
+$request = new Request($con);
+$Area = new Area($con);
+// echo FormSanitizer::formatMonthYear('2023-01');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,101 +51,116 @@
       </nav>
 
     </section>
-    <section >
-      <label class="LabelRq"for="">Request</label>
-    <table class="alluser">
-                  <tr>
-                <th>Area</th>
-                <th>Don</th>
-                <th>InProcess</th>
-               
-                
-            </tr>
-            <td>Packing</td>
-            <td>30</td>
-            <td>20</td>
+    <section>
+      <label class="LabelRq" for="">Request</label>
+      <table class="alluser">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Don</th>
+            <th>InProcess</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($Area->getArea(true) as $area) {
+            echo "
             <tr>
-                    </table>
+          <td>";
+            echo $area['name'] . "</td>
+          <td>";
+            echo $request->getRequestNum($area['name'], "qtyBackStatus = 'finish'") . "</td>
+          <td>";
+            echo $request->getRequestNum($area['name'], "qtyBackStatus != 'finish'") . "</td>
+            </tr>
+          ";
+            // echo "<td>" . $area['name'] . "</td>";
+          }
+          ?>
+        </tbody>
+      </table>
     </section>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <section>
-    <label class="LabelRq"for="">User</label>
-    <table class="alluser">
-                  <tr>
-                <th>User</th>
-                <th>All Req</th>
-                <th> Done</th>
-                <th>InProcess</th>
-               
-                
-            </tr>
-            <td>Packing</td>
-            <td>30</td>
-            <td>20</td>
-            <td>20</td>
-            <tr>
-                    </table>
+      <label class="LabelRq" for="">User</label>
+      <table class="alluser">
+        <tr>
+          <th>User</th>
+          <th>All Req</th>
+          <th> Done</th>
+          <th>InProcess</th>
+
+
+        </tr>
+        <td>Packing</td>
+        <td>30</td>
+        <td>20</td>
+        <td>20</td>
+        <tr>
+      </table>
     </section>
-    <section >
-      <label class="LabelRq"for="">BestRequest</label>
-    <table class="alluser">
-                  <tr>
-                <th>Req No</th>
-                <th>Req Name</th>
-                <th>Duretion</th>
-               
-                
-            </tr>
-            <td>Packing</td>
-            <td>30</td>
-            <td>20</td>
-            <tr>
-                    </table>
+    <section>
+      <label class="LabelRq" for="">BestRequest</label>
+      <table class="alluser">
+        <tr>
+          <th>Req No</th>
+          <th>Req Name</th>
+          <th>Duretion</th>
+
+
+        </tr>
+        <td>Packing</td>
+        <td>30</td>
+        <td>20</td>
+        <tr>
+      </table>
     </section>
-</main>
-<br>
- 
-<main>
-  <section class="sectiondas">
-  <label class=""for="">MonthlyReport</label>
-    <table class="alluser">
-                  <tr>
-                <th>Area</th>
-                <th>JAN</th>
-                <th> FEB</th>
-                <th>MAR</th>
-                <th>APR</th>
-                <th>MAY</th>
-                <th>JUN</th>
-                <th>JUL</th>
-                <th>AUG</th>
-                <th>SEP</th>
-                <th>OCT</th>
-                <th>NOV</th>
-                <th>DEC</th>
-               
-                
-            </tr>
-            <td>Packing</td>
-            <td>30</td>
-            <td>20</td>
-            <td>20</td>
-            <td>40</td>
-            <td>20</td>
-            <td>20</td>
-            <td>20</td>
-            <td>20</td>
-            <td>20</td>
-            <td>20</td>
-            <td>20</td>
-            <td>20</td>
-            <tr>
-                    </table>
-  </section>
-</main>
- 
-  
+  </main>
+  <br>
+
+  <main>
+    <section class="sectiondas">
+      <label class="" for="">MonthlyReport</label>
+      <table class="alluser">
+        <tr>
+          <th>Area</th>
+          <th>JAN</th>
+          <th> FEB</th>
+          <th>MAR</th>
+          <th>APR</th>
+          <th>MAY</th>
+          <th>JUN</th>
+          <th>JUL</th>
+          <th>AUG</th>
+          <th>SEP</th>
+          <th>OCT</th>
+          <th>NOV</th>
+          <th>DEC</th>
+
+
+        </tr>
+        <td>Packing</td>
+        <td>30</td>
+        <td>20</td>
+        <td>20</td>
+        <td>40</td>
+        <td>20</td>
+        <td>20</td>
+        <td>20</td>
+        <td>20</td>
+        <td>20</td>
+        <td>20</td>
+        <td>20</td>
+        <td>20</td>
+        <tr>
+      </table>
+    </section>
+    <input type="month" id="monthInput" name="monthInput">
+
+  </main>
+
+
 </body>
 
 </html>
