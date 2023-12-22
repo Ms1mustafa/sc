@@ -96,6 +96,8 @@ $requests = $request->getRequestDetails(null, null, 'all');
           }
 
           if (ucfirst($account->getTypeByName($req["pending_in"])) === "Execution") {
+            $pendingTime = FormSanitizer::formatTimeDifference($reqDate, date('Y-m-d H:i:s.u'));
+
             if ($qtyBackDate) {
               $pendingTime = FormSanitizer::formatTimeDifference($qtyBackDate, date('Y-m-d H:i:s.u'));
             } elseif ($inspectorDate) {
