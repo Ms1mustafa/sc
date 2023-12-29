@@ -454,7 +454,7 @@ class Request
         if ($byRequester)
             $sql .= "$condition adminAddedName=:byRequester";
         if ($sqlcondition)
-            $sql .= " $sqlcondition";
+            $sql .= "$condition $sqlcondition";
 
         $query = $this->con->prepare($sql);
 

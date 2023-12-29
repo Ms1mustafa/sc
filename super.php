@@ -46,20 +46,36 @@ $requests = $request->getRequestDetails(null, null, 'all');
       <tbody>
         <?php
         foreach ($Area->getArea(true) as $area) {
-          echo "
-            <tr>
-          <td>";
-          echo $area['name'] . "</td>
-          <td><a href=allReq.php?qbs=finish&n=" . $area['name'] . ">";
-          echo $request->getRequestNum($area['name'], "qtyBackStatus = 'finish'") . "</td>
-          </a><td><a href=allReq.php?qbs=notfinish&n=" . $area['name'] . ">";
-          echo $request->getRequestNum($area['name'], "qtyBackStatus != 'finish'") . "</td>
-            </a></tr>
-          ";
-          // echo "<td>" . $area['name'] . "</td>";
+          $areaName = $area['name'];
+          $finishCount = $request->getRequestNum($areaName, "qtyBackStatus = 'finish'");
+          $notFinishCount = $request->getRequestNum($areaName, "qtyBackStatus != 'finish'");
+
+          echo "<tr>
+                  <td>$areaName</td>
+                  <td>";
+          // Check if finish count is greater than 0
+          if ($finishCount > 0) {
+            echo "<a href='allReq.php?qbs=finish&n=$areaName'>$finishCount</a>";
+          } else {
+            echo $finishCount;
+          }
+
+          echo "</td>
+              <td>";
+
+          // Check if not finish count is greater than 0
+          if ($notFinishCount > 0) {
+            echo "<a href='allReq.php?qbs=notfinish&n=$areaName'>$notFinishCount</a>";
+          } else {
+            echo $notFinishCount;
+          }
+
+          echo "</td>
+              </tr>";
         }
         ?>
       </tbody>
+
     </table>
   </section>
 

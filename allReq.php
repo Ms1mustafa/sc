@@ -16,10 +16,10 @@ $req = new Request($con);
 
 $filter = @$_POST["filter"] ?? "all";
 
-$sqlcondition = "WHERE qtyBackStatus = '" . @$_GET["qbs"] . "'AND area = '" . @$_GET["n"] . "'";
+$sqlcondition = " qtyBackStatus = '" . @$_GET["qbs"] . "'AND area = '" . @$_GET["n"] . "' ";
 
 if (@$_GET["qbs"] != "finish")
-    $sqlcondition = "WHERE qtyBackStatus != 'finish'AND area = '" . @$_GET["n"] . "'";
+    $sqlcondition = " qtyBackStatus != 'finish'AND area = '" . @$_GET["n"] . "'";
 if ($type === "requester") {
     Powers::admin($account, $userToken);
     $requests = $req->getRequestDetails(null, $adminName, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
