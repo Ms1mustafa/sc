@@ -50,11 +50,11 @@ $requests = $request->getRequestDetails(null, null, 'all');
             <tr>
           <td>";
           echo $area['name'] . "</td>
-          <td>";
+          <td><a href=allReq.php?qbs=finish&n=" . $area['name'] . ">";
           echo $request->getRequestNum($area['name'], "qtyBackStatus = 'finish'") . "</td>
-          <td>";
+          </a><td><a href=allReq.php?qbs=notfinish&n=" . $area['name'] . ">";
           echo $request->getRequestNum($area['name'], "qtyBackStatus != 'finish'") . "</td>
-            </tr>
+            </a></tr>
           ";
           // echo "<td>" . $area['name'] . "</td>";
         }

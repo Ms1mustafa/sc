@@ -438,7 +438,7 @@ class Request
         }
     }
 
-    public function getRequestDetails($workOrderNo = null, $byRequester = null, $filter = "all")
+    public function getRequestDetails($workOrderNo = null, $byRequester = null, $filter = "all", $sqlcondition = null)
     {
         $sql = "SELECT * FROM request ";
         $condition = "WHERE";
@@ -453,7 +453,8 @@ class Request
         }
         if ($byRequester)
             $sql .= "$condition adminAddedName=:byRequester";
-
+        if ($sqlcondition)
+            $sql .= " $sqlcondition";
 
         $query = $this->con->prepare($sql);
 
@@ -586,6 +587,28 @@ class Request
 
         return $reqNo;
 
+    }
+
+    public function getConRequests($condition)
+    {
+
+        $sql = "SELECT * FROM request ";
+
+        if ($condition) {
+            $sql .= "WHERE $condition ";
+        }
+
+        $query = $this->con->prepare($sql);
+
+        $query->execute();
+
+        $rows = array();
+
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 
     public function getRequestNum($area, $condition, $date = null)

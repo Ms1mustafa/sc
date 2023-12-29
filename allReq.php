@@ -16,12 +16,16 @@ $req = new Request($con);
 
 $filter = @$_POST["filter"] ?? "all";
 
+$sqlcondition = "WHERE qtyBackStatus = '" . @$_GET["qbs"] . "'AND area = '" . @$_GET["n"] . "'";
+
+if (@$_GET["qbs"] != "finish")
+    $sqlcondition = "WHERE qtyBackStatus != 'finish'AND area = '" . @$_GET["n"] . "'";
 if ($type === "requester") {
     Powers::admin($account, $userToken);
-    $requests = $req->getRequestDetails(null, $adminName, $filter);
+    $requests = $req->getRequestDetails(null, $adminName, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
 } else {
     Powers::Safety($account, $userToken);
-    $requests = $req->getRequestDetails(null, null, $filter);
+    $requests = $req->getRequestDetails(null, null, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
 }
 ?>
 
@@ -46,22 +50,22 @@ if ($type === "requester") {
     <div>
         <a class="Back" href="index.php">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
-    
-    <br>
 
-    <form action="" method="POST">
+        <br>
 
-        <select class="filter" name="filter">
-            <option class="" value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
-            <option class="" value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
-            <option class="" value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted
-            </option>
-            <option class="filter" value="rejected" <?php echo $filter === "rejected" ? "selected" : ""; ?>>Rejected
-            </option>
-        </select>
-        <input class=" inputfilter" type="submit" value="filter">
-    </form>
-</div>
+        <form action="" method="POST">
+
+            <select class="filter" name="filter">
+                <option class="" value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
+                <option class="" value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
+                <option class="" value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted
+                </option>
+                <option class="filter" value="rejected" <?php echo $filter === "rejected" ? "selected" : ""; ?>>Rejected
+                </option>
+            </select>
+            <input class=" inputfilter" type="submit" value="filter">
+        </form>
+    </div>
     <div class="wrappereq">
         <div class="login-container" id="login">
             <div class="top">
