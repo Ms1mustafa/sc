@@ -28,12 +28,12 @@ $requests = $request->getRequestDetails(null, null, 'all');
   <title>Dashboard </title>
 </head>
 
-<body>
+<body class="bodyDashboardIMg">
 
   <!--------------------------------Dashboard-------------------------------------->
 
 
-  <section>
+  <section class="Dashboardsection">
     <label class="LabelRq" for="">Request</label>
     <table class="alluser">
       <thead>
@@ -77,10 +77,40 @@ $requests = $request->getRequestDetails(null, null, 'all');
       </tbody>
 
     </table>
-  </section>
+  
+  
+ 
+    <label class="" for=""></label>
+    <table class="alluser">
+      <form action="" method="POST">
+        <input class="month" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp; 
+        <input class="filterDashboard" type="submit" value="filter">
+      </form>
+      <tr>
+        <th>Area</th>
+        <th>Orders</th>
+      </tr>
+      <tbody>
+        <?php
+        foreach ($Area->getArea(true) as $area) {
+          echo "
+            <tr>
+          <td>";
+          echo $area['name'] . "</td>
+          <td>";
+          echo $request->getRequestNum($area['name'], null, $filter) . "
+          </tr>
+          ";
+          // echo "<td>" . $area['name'] . "</td>";
+        }
+
+        ?>
+      </tbody>
+
+    </table>
 
 
-  <section>
+
     <label class="LabelRq" for="">Request the best</label>
     <table class="alluser">
       <thead>
@@ -173,36 +203,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
       </tablel>
   </section>
 
-  <section class="sectiondas">
-    <label class="" for=""></label>
-    <table class="alluser">
-      <form action="" method="POST">
-        <input type="month" id="month" name="month" value=<?php echo $filter; ?>>
-        <input class="" type="submit" value="filter">
-      </form>
-      <tr>
-        <th>Area</th>
-        <th>Orders</th>
-      </tr>
-      <tbody>
-        <?php
-        foreach ($Area->getArea(true) as $area) {
-          echo "
-            <tr>
-          <td>";
-          echo $area['name'] . "</td>
-          <td>";
-          echo $request->getRequestNum($area['name'], null, $filter) . "
-          </tr>
-          ";
-          // echo "<td>" . $area['name'] . "</td>";
-        }
-
-        ?>
-      </tbody>
-
-    </table>
-  </section>
+  
 
 
 

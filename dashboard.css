@@ -85,6 +85,16 @@ body {
 }
 
 /*-------------------*/
+.bodyDashboardIMg {
+  background: url("images/1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat
+}
+
+.Dashboardsection {
+  margin-left: 70px;
+}
+
 .alluser {
   border-collapse: collapse;
   width: 50%;
@@ -224,4 +234,22 @@ tr:nth-child(even) {
     left: 40px;
     top: 50px;
   }
+}
+
+.month {
+  border: 2px solid #e77823;
+  width: 20%;
+  height: 4vh;
+  margin-top: 40px;
+}
+
+.filterDashboard {
+  width: 100px;
+  color: white;
+  position: relative;
+  height: 4vh;
+  border: 30px;
+  background-color: #e77823;
+  border: none;
+  border-radius: 5px;
 }
