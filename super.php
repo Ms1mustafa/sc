@@ -55,7 +55,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
                   <td>";
           // Check if finish count is greater than 0
           if ($finishCount > 0) {
-            echo "<a href='allReq.php?qbs=finish&n=$areaName'>$finishCount</a>";
+            echo "<a href='allReq.php?qbs=finish&n=" . urlencode($areaName) . "'>$finishCount</a>";
           } else {
             echo $finishCount;
           }
@@ -65,7 +65,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
           // Check if not finish count is greater than 0
           if ($notFinishCount > 0) {
-            echo "<a href='allReq.php?qbs=notfinish&n=$areaName'>$notFinishCount</a>";
+            echo "<a href='allReq.php?qbs=notfinish&n=" . urlencode($areaName) . "'>$notFinishCount</a>";
           } else {
             echo $notFinishCount;
           }
@@ -101,7 +101,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
           echo $areaName . "</td>
           <td>";
           if ($orders > 0) {
-            echo "<a href='allReq.php?&n=$areaName'>$orders</a>";
+            echo "<a href='allReq.php?&n=" . urlencode($areaName) . "'>$orders</a>";
           } else {
             echo $orders;
           }
