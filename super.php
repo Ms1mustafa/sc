@@ -77,13 +77,13 @@ $requests = $request->getRequestDetails(null, null, 'all');
       </tbody>
 
     </table>
-  
-  
- 
+
+
+
     <label class="" for=""></label>
     <table class="alluser">
       <form action="" method="POST">
-        <input class="month" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp; 
+        <input class="month" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp;
         <input class="filterDashboard" type="submit" value="filter">
       </form>
       <tr>
@@ -93,12 +93,19 @@ $requests = $request->getRequestDetails(null, null, 'all');
       <tbody>
         <?php
         foreach ($Area->getArea(true) as $area) {
+          $areaName = $area['name'];
+          $orders = $request->getRequestNum($area['name'], null, $filter);
           echo "
             <tr>
           <td>";
-          echo $area['name'] . "</td>
+          echo $areaName . "</td>
           <td>";
-          echo $request->getRequestNum($area['name'], null, $filter) . "
+          if ($orders > 0) {
+            echo "<a href='allReq.php?&n=$areaName'>$orders</a>";
+          } else {
+            echo $orders;
+          }
+          "
           </tr>
           ";
           // echo "<td>" . $area['name'] . "</td>";
@@ -203,7 +210,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
       </tablel>
   </section>
 
-  
+
 
 
 

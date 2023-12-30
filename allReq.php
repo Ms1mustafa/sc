@@ -18,14 +18,22 @@ $filter = @$_POST["filter"] ?? "all";
 
 $sqlcondition = " qtyBackStatus = '" . @$_GET["qbs"] . "'AND area = '" . @$_GET["n"] . "' ";
 
-if (@$_GET["qbs"] != "finish")
+if (@$_GET["qbs"] === "notfinish")
     $sqlcondition = " qtyBackStatus != 'finish'AND area = '" . @$_GET["n"] . "'";
+if (!@$_GET["qbs"])
+    $sqlcondition = " area = '" . @$_GET["n"] . "'";
 if ($type === "requester") {
     Powers::admin($account, $userToken);
     $requests = $req->getRequestDetails(null, $adminName, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
 } else {
     Powers::Safety($account, $userToken);
     $requests = $req->getRequestDetails(null, null, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
+}
+
+$href = "index.php";
+
+if (@$_GET["qbs"] || @$_GET["n"]) {
+    $href = "super.php";
 }
 ?>
 
@@ -48,7 +56,7 @@ if ($type === "requester") {
 
 <body>
     <div>
-        <a class="Back" href="index.php">
+        <a class="Back" href="<?php echo $href; ?>">
             <i class="fa-solid fa-arrow-left"></i> Back</a>
 
         <br>
