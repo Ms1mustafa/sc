@@ -100,8 +100,8 @@ if (isset($_POST["resendToWereHouse"])) {
 }
 
 if (isset($_POST["resendToInspector"])) {
-
-    $success = $request->resendToInspector($workOrderNo, $request->getRequestDetails($workOrderNo)["inspector"], "Resent");
+    $resend_note = @$_POST['resendNote'];
+    $success = $request->resendToInspector($workOrderNo, $resend_note, $request->getRequestDetails($workOrderNo)["inspector"], "Resent");
 
     if ($success) {
         $toMail = $account->getMailByName($inspector);
@@ -190,7 +190,8 @@ function getInputValue($name)
                     echo '
                             <button class="submitDonereg" name="resendToWereHouse">Done</button>
                             <br>
-                            <button class="submitDonereg" name="resendToInspector">Resend to inspector</button>
+                            <button class="submitDonereg" id="resendToInspector" name="resendToInspector">Resend to inspector</button>
+                            <textarea id="resendNote" name="resendNote"></textarea>
                         ';
                 }
                 ?>

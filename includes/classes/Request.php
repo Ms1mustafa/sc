@@ -293,13 +293,14 @@ class Request
         return true;
     }
 
-    public function resendToInspector($workOrderNo, $pending_in, $type_req)
+    public function resendToInspector($workOrderNo, $resend_note, $pending_in, $type_req)
     {
         if (empty($this->errorArray)) {
-            $query = $this->con->prepare("UPDATE request SET status = 'resentInspector', executerNew = 'no', resentDate = :currentDateTime, pending_in = :pending_in, type_req = :type_req, pending_date = :currentDateTime
+            $query = $this->con->prepare("UPDATE request SET status = 'resentInspector', resend_note = :resend_note, executerNew = 'no', resentDate = :currentDateTime, pending_in = :pending_in, type_req = :type_req, pending_date = :currentDateTime
                                         WHERE workOrderNo = :workOrderNo");
 
             $query->bindValue(":workOrderNo", $workOrderNo);
+            $query->bindValue(":resend_note", $resend_note);
             $query->bindValue(":pending_in", $pending_in);
             $query->bindValue(":type_req", $type_req);
             $query->bindValue(":currentDateTime", $this->currentDateTime);

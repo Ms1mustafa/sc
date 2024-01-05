@@ -34,6 +34,8 @@ if ($isNotification == null) {
     $issued = $requests["issued"] == 'yes' ? true : null;
     $new = $requests["new"] == "yes" ? "New" : "";
     $status = $requests["status"];
+    $note = $requests["notes"];
+    $resend_note = $requests["resend_note"];
 
     echo "<label  class='Getrquest'>ReqNo : </label>
     <label class='GetrquesQTY'>$reqNo</label>
@@ -55,12 +57,14 @@ if ($isNotification == null) {
     <label class='GetrquesQTY'>$item</label>
    <br>
    <br>
-    <label class='GetOTYNote'>Notes :</label>
+   ";
+    if ($resend_note) {
+        echo "
+    <label class='GetOTYNote'>Resent note :</label>
     <br>
-    
+    <label class='GetrquesQTY'>$resend_note</label>
     ";
-
-
+    }
     // if ($status == 'resent') {
     //     echo '
     //         <button name="accept" onclick="removeRequiredAttribute()">accept</button>

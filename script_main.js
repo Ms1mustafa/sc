@@ -131,6 +131,16 @@ executerDone?.addEventListener("click", function (e) {
   }
 });
 
+const resendToInspector = document.getElementById("resendToInspector");
+const resendNote = document.getElementById("resendNote");
+
+resendToInspector?.addEventListener("click", function (e) {
+  if (!resendNote.required == true) {
+    e.preventDefault();
+    resendNote.required = true;
+  }
+});
+
 const printButton = document.getElementById("printButton");
 
 printButton?.addEventListener("click", function () {
