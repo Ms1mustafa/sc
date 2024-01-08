@@ -82,6 +82,7 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
                         <thead>
                             <tr>
                                 <th>Req No</th>
+                                <th>Description</th>
                                 <th>Requester</th>
                                 <th>Start date</th>
                                 <th>Work order No</td>
@@ -117,6 +118,7 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
                                 echo '
                     <tr>
                         <td>' . $request["reqNo"] . '</a></td>
+                        <td>' . $request["discription"] . '</a></td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $reqDate . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
