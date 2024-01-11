@@ -28,7 +28,7 @@ if (isset($_POST["dismantling"])) {
 }
 
 if (isset($_POST["doneReq"])) {
-    $success = $request->requesterDone($workOrderNo, 'dismantilingDone', true, $request->getRequestDetails($workOrderNo)["adminAddedName"], "Dismantling done");
+    $success = $request->requesterDone($workOrderNo, 'dismantilingDone', true, $request->getRequestDetails($workOrderNo)["adminAddedName"], "Done");
     if ($success) {
         header("location: inspectorPage.php");
     }

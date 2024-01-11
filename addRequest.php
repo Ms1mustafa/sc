@@ -75,7 +75,7 @@ if (isset($_POST["submit"])) {
     $discription = FormSanitizer::sanitizeFormString(@$_POST["discription"]);
     $notes = FormSanitizer::sanitizeFormString(@$_POST["notes"]);
 
-    $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $discription, $notes, $executer, 'Done');
+    $success = $request->addRequest($reqNo, $adminAddedName, $workOrderNo, $area, $item, $length, $width, $height, $workType, $priority, $executer, $wereHouse, $inspectorName, $discription, $notes, $executer, 'Add Materials');
 
     if ($success) {
         $sendMail = new SendMail();
@@ -158,7 +158,7 @@ if (isset($_POST["submit"])) {
             <div class="input-box">
                 <label class="labelnewrequest">Discription</label>
                 <br>
-                                <textarea class="Discription" name="discription" required></textarea>
+                <textarea class="Discription" name="discription" required></textarea>
             </div>
             <br>
             <div>

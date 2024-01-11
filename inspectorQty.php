@@ -22,7 +22,7 @@ $request = new Request($con);
 $rejectsNum = $request->getRequestDetails($workOrderNo)["rejectsNum"] + 1;
 
 if (isset($_POST["accept"])) {
-    $success = $request->updateInspectorReq('accepted', '', $workOrderNo, '', $request->getRequestDetails($workOrderNo)["adminAddedName"], "Accept");
+    $success = $request->updateInspectorReq('accepted', '', $workOrderNo, '', $request->getRequestDetails($workOrderNo)["adminAddedName"], "Witing Dismalation");
 
     if ($success) {
         header("location: inspectorPage.php");
@@ -32,7 +32,7 @@ if (isset($_POST["accept"])) {
 if (isset($_POST["reject"])) {
     $rejectReason = @$_POST["rejectReason"];
 
-    $success = $request->updateInspectorReq('rejected', $rejectReason, $workOrderNo, $rejectsNum, $request->getRequestDetails($workOrderNo)["executer"], "Reject");
+    $success = $request->updateInspectorReq('rejected', $rejectReason, $workOrderNo, $rejectsNum, $request->getRequestDetails($workOrderNo)["executer"], "Reject Execution");
 
     if ($success) {
         header("location: inspectorPage.php");
