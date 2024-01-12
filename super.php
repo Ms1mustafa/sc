@@ -28,13 +28,25 @@ $requests = $request->getRequestDetails(null, null, 'all');
   <title>Dashboard </title>
 </head>
 
-<body class="bodyDashboardIMg">
+<body class="">
+  <div class="nave">
+  <p class="hidden-xs"><strong>Scaff</strong>olding</span></a><p>
+
+  <li>
+                        <form role="search" class="app-search hidden-xs">
+                            <input type="text" placeholder="Search..." class="form-control"> 
+                                    
+                        </form>
+                    </li>
+</div>
+
+
 
   <!--------------------------------Dashboard-------------------------------------->
-
-
+ 
   <section class="Dashboardsection">
     <label class="LabelRq" for="">Request</label>
+    <div class="flexe">
     <table class="alluser">
       <thead>
         <tr>
@@ -78,14 +90,16 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
     </table>
 
-
+      <div class="flexe1">
 
     <label class="" for=""></label>
     <table class="alluser">
+      <div>
       <form action="" method="POST">
         <input class="month" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp;
         <input class="filterDashboard" type="submit" value="filter">
       </form>
+      </div>
       <tr>
         <th>Area</th>
         <th>Orders</th>
@@ -116,7 +130,8 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
     </table>
 
-
+      </div>
+      </div>
 
     <label class="LabelRq" for="">Request the best</label>
     <table class="alluser">
