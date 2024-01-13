@@ -82,6 +82,15 @@ if ($type === "requester") {
                         <label class='Getrquest'>Location :</label>
                         <label class='Getrquest'>" . $request["item"] . "</label>
                         <br>
+                        <label class='Getrquest'>Length :</label>
+                        <label class='Getrquest'>" . $request["length"] . "</label>
+                        <br>
+                        <label class='Getrquest'>Width :</label>
+                        <label class='Getrquest'>" . $request["width"] . "</label>
+                        <br>
+                        <label class='Getrquest'>Height :</label>
+                        <label class='Getrquest'>" . $request["height"] . "</label>
+                        <br>
                         </div>
                     ";
 

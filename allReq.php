@@ -63,15 +63,22 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
 
         <form action="" method="POST">
 
-            <select class="filter" name="filter">
-                <option class="" value="all" <?php $filter == "all" ? "selected" : ""; ?>>All</option>
-                <option class="" value="pending" <?php echo $filter === "pending" ? "selected" : ""; ?>>Pending</option>
-                <option class="" value="accepted" <?php echo $filter === "accepted" ? "selected" : ""; ?>>Accepted
-                </option>
-                <option class="filter" value="rejected" <?php echo $filter === "rejected" ? "selected" : ""; ?>>Rejected
-                </option>
+            <select class="filter" id="filterSelect" name="filter">
+                <option class="" value="all">All</option>
+                <option value="Add Materials">Add Materials</option>
+                <option value="Reject Request">Reject Request</option>
+                <option value="Issu Materials">Issu Materials</option>
+                <option value="instulation">Instulation</option>
+                <option value="Wating Inspecter">Waiting Inspector</option>
+                <option value="Reject Execution">Reject Execution</option>
+                <option value="Witing Dismalation">Waiting Dismantlation</option>
+                <option value="Dismalation">Dismantlation</option>
+                <option value="Dismalation Done">Dismantlation Done</option>
+                <option value="Recivied">Received</option>
+                <option value="Done">Done</option>
             </select>
-            <input class=" inputfilter" type="submit" value="filter">
+
+            <!-- <input class=" inputfilter" type="submit" value="filter"> -->
         </form>
     </div>
     <div class="wrappereq">
@@ -117,14 +124,14 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
                                 $finishDate = '';
                                 echo '
                     <tr>
-                        <td>' . $request["reqNo"] . '</a></td>
+                        <td> <a href="showReq.php?reqNo=' . $request["workOrderNo"] . '">' . $request["reqNo"] . '</a></td>
                         <td>' . $request["discription"] . '</a></td>
                         <td>' . $request["adminAddedName"] . '</td>
                         <td>' . $reqDate . '</td>
                         <td>' . $request["workOrderNo"] . '</td>
                         <td>' . $request["area"] . '</td>
                         <td>' . $request["item"] . '</td>
-                        <td>' . $request["pending_in"] . '</td>
+                        <td class="pendingIn">' . $request["pending_in"] . '</td>
                         <td>' . ucfirst($account->getTypeByName($request["pending_in"])) . '</td>
                         <td>' . $request["type_req"] . '</td>
                         <td>' . FormSanitizer::formatDate($request["pending_date"]) . '</td>
@@ -140,5 +147,43 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
                         });
                     </script> -->
 </body>
+
+<script>
+    document.getElementById('filterSelect').addEventListener('change', function () {
+        var selectedValue = this.value.toLowerCase().trim();
+
+        // Get all rows in the table
+        var rows = document.querySelectorAll('.alluser tbody tr');
+
+        // Iterate through each row and show/hide based on the selected option
+        rows.forEach(function (row) {
+            var existingNoDataRow = document.querySelector('.no-data-row');
+            if (existingNoDataRow) {
+                existingNoDataRow.remove();
+            }
+            var typeReq = row.querySelector('td:nth-child(10)').textContent.toLowerCase().trim(); // Adjust the column index if needed
+
+            // Check if the typeReq matches the selected option
+            if (selectedValue === 'all' || typeReq === selectedValue) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+            if (typeReq != selectedValue) {
+                var noDataRow = document.createElement('tr');
+                var noDataCell = document.createElement('td');
+                noDataCell.setAttribute('colspan', '11'); // Adjust the colspan based on the number of columns
+                noDataCell.textContent = 'Data not found';
+                noDataRow.appendChild(noDataCell);
+                noDataRow.classList.add('no-data-row');
+
+                // Append the "Data not found" row to the tbody
+                document.querySelector('.alluser tbody').appendChild(noDataRow);
+            }
+        });
+    });
+</script>
+
+
 
 </html>
