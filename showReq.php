@@ -28,27 +28,27 @@ if ($type === "requester") {
 <html lang="en">
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
-    <title>All users </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6c84e23e68.js" crossorigin="anonymous"></script>
+  <title>All users </title>
 </head>
 
 <body>
-    <div>
-        <a class="Back" href="ownerPage.php">
-            <i class="fa-solid fa-arrow-left"></i> Back</a>
-    </div>
-    <div class="wrappereq">
+  <div>
+    <a class="Back" href="allReq.php">
+      <i class="fa-solid fa-arrow-left"></i> Back</a>
+  </div>
+  <div class="wrappereq">
 
-        <div class="login-container" id="login">
-            <div class="top">
-                <div style="overflow-x:auto;">
-                    <form method="POST" action="">
-                        <!-- Assuming "deleteUser.php" is the action URL -->
-                        <?php
+    <div class="login-container" id="login">
+      <div class="top">
+        <div style="overflow-x:auto;">
+          <form method="POST" action="">
+            <!-- Assuming "deleteUser.php" is the action URL -->
+            <?php
                         $status = $request["status"];
                         $qtyBackStatus = $request["qtyBackStatus"];
                         $executerAccept = $request["executerAccept"];
@@ -96,9 +96,9 @@ if ($type === "requester") {
                     ";
 
                         ?>
-                        </tbody>
-                        </table>
-                    </form>
+            </tbody>
+            </table>
+          </form>
 </body>
 
 </html>
