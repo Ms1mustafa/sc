@@ -109,6 +109,10 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
       </table>
 
+      <p>
+        <?php echo $totalFinishCount + $totalNotFinishCount; ?>
+      </p>
+
 
       <div class="flexe1">
 
@@ -237,14 +241,36 @@ $requests = $request->getRequestDetails(null, null, 'all');
                 $pendingTime = FormSanitizer::formatTimeDifference($resentDate, date('Y-m-d H:i:s.u'));
               }
             }
+            $sortedRequests[] = [
+              'reqNo' => $req["reqNo"],
+              'pending_in' => $req["pending_in"],
+              'type' => ucfirst($account->getTypeByName($req["pending_in"])),
+              'pendingTime' => $pendingTime,
+            ];
+          }
+
+          // Sort the array based on pending time (ascending order)
+          usort($sortedRequests, function ($a, $b) {
+            return strtotime($a['pendingTime']) - strtotime($b['pendingTime']);
+          });
+
+          // Display the first 10 rows
+          $counter = 0;
+          foreach ($sortedRequests as $sortedReq) {
+            if ($counter >= 10) {
+              break; // Limit to 10 rows
+            }
+
             echo '
-                    <tr>
-                        <td>' . $req["reqNo"] . '</a></td>
-                        <td>' . $req["pending_in"] . '</td>
-                        <td>' . ucfirst($account->getTypeByName($req["pending_in"])) . '</td>
-                        <td>' . $pendingTime . '</td>
-                        </tr>
-                    ';
+              <tr>
+                <td>' . $sortedReq["reqNo"] . '</td>
+                <td>' . $sortedReq["pending_in"] . '</td>
+                <td>' . $sortedReq["type"] . '</td>
+                <td>' . $sortedReq["pendingTime"] . '</td>
+              </tr>
+            ';
+
+            $counter++;
           }
           ?>
         </tbody>
