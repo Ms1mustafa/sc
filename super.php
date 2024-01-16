@@ -59,10 +59,17 @@ $requests = $request->getRequestDetails(null, null, 'all');
         </thead>
         <tbody>
           <?php
+          $totalFinishCount = 0;
+          $totalNotFinishCount = 0;
+
           foreach ($Area->getArea(true) as $area) {
             $areaName = $area['name'];
             $finishCount = $request->getRequestNum($areaName, "qtyBackStatus = 'finish'");
             $notFinishCount = $request->getRequestNum($areaName, "qtyBackStatus != 'finish'");
+
+            $totalFinishCount += $finishCount;
+            $totalNotFinishCount += $notFinishCount;
+
 
             echo "<tr>
                   <td>$areaName</td>
@@ -91,8 +98,12 @@ $requests = $request->getRequestDetails(null, null, 'all');
           }
           ?>
           <td>Totel</td>
-          <td>Sum</td>
-          <td>Sum</td>
+          <td>
+            <?php echo $totalFinishCount; ?>
+          </td>
+          <td>
+            <?php echo $totalNotFinishCount; ?>
+          </td>
 
         </tbody>
 
@@ -209,6 +220,15 @@ $requests = $request->getRequestDetails(null, null, 'all');
               $pendingTime = FormSanitizer::formatTimeDifference($qtyBackDate ? FormSanitizer::formatDate($qtyBackDate) : $executerDate, date('Y-m-d H:i:s.u'));
             }
 
+            if (ucfirst($account->getTypeByName($req["pending_in"])) === "Requester") {
+              if ($status === 'accepted') {
+                $pendingTime = FormSanitizer::formatTimeDifference($qtyBackDate ? FormSanitizer::formatDate($qtyBackDate) : $inspectorDate, date('Y-m-d H:i:s.u'));
+              }
+              if ($status === 'rejected' && !$inspectorDate) {
+                $pendingTime = FormSanitizer::formatTimeDifference($qtyBackDate ? FormSanitizer::formatDate($qtyBackDate) : $executerDate, date('Y-m-d H:i:s.u'));
+              }
+            }
+
             if (ucfirst($account->getTypeByName($req["pending_in"])) === "Inspector") {
               $executerAcceptDate = $req["executerAcceptDate"] ? $req["executerAcceptDate"] : null;
               $resentDate = $req["resentDate"] ? $req["resentDate"] : null;
@@ -217,23 +237,6 @@ $requests = $request->getRequestDetails(null, null, 'all');
                 $pendingTime = FormSanitizer::formatTimeDifference($resentDate, date('Y-m-d H:i:s.u'));
               }
             }
-
-            // $pendingTime = FormSanitizer::formatTimeDifference($reqDate, date('Y-m-d H:i:s.u'));
-            // if ($reqType === 'Executer')
-            //   $pendingTime = FormSanitizer::formatTimeDifference($executerDate, date('Y-m-d H:i:s.u'));
-          
-            // if ($reqType === 'Reject' && $inspectorDate)
-            //   $pendingTime = FormSanitizer::formatTimeDifference($inspectorDate, date('Y-m-d H:i:s.u'));
-          
-            // if ($reqType === 'Reject' && !$inspectorDate)
-            //   $pendingTime = FormSanitizer::formatTimeDifference($executerDate, date('Y-m-d H:i:s.u'));
-          
-            // if ($reqType === 'WereHouse')
-            //   $pendingTime = FormSanitizer::formatTimeDifference($executerDate, date('Y-m-d H:i:s.u'));
-          
-            // if ($reqType === 'Inspector')
-            //   $pendingTime = FormSanitizer::formatTimeDifference($wereHouseDate, date('Y-m-d H:i:s.u'));
-          
             echo '
                     <tr>
                         <td>' . $req["reqNo"] . '</a></td>
