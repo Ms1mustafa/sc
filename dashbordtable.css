@@ -54,7 +54,16 @@ body {
   display: flex;
 }
 
-
+.alluser2 {
+  border-collapse: collapse;
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  position: relative;
+  top: 90px;
+  right: 240px;
+  text-align: center;
+}
 
 .alluser {
   border-collapse: collapse;
@@ -249,4 +258,13 @@ tr:nth-child(even) {
 .app-search .form-control::-ms-placeholder {
   color: #4c5667;
   opacity: .5
+}
+
+.totel {
+  position: relative;
+  top: 280px;
+  right: 390px;
+  font-weight: bold;
+  font-size: 25px;
+
 }

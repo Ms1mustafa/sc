@@ -109,7 +109,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
       </table>
 
-      <p>
+      <p class="totel"> Totel =
         <?php echo $totalFinishCount + $totalNotFinishCount; ?>
       </p>
 
@@ -165,21 +165,22 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
   </section>
   <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <section class="dastable">
     <div class="flex3">
 
       <label class="Labelthebeste" for="">Request Top 10</label>
 
+      <form action="" method="POST">
+        <input class="month" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp;
+        <input class="filterDashboard" type="submit" value="filter">
+      </form>
 
-      <table class="alluser">
-        <div>
-          <form action="" method="POST">
-            <input class="month" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp;
-            <input class="filterDashboard" type="submit" value="filter">
-          </form>
-        </div>
-        <br>
-        <br>
+      <table class="alluser2">
         <thead>
           <tr>
             <th> Req Num</th>
@@ -283,29 +284,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
 
 
-        <div class="flex4">
-          <table class="alluser">
-
-            &nbsp; &nbsp; &nbsp;
-            <thead>
-              <tr>
-                <th> Req Num</th>
-                <th>Pending In</th>
-                <th>Type pending</th>
-                <th>Pending time</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>tttttttt</td>
-                <td>tttttttt</td>
-                <td>tttttttt</td>
-                <td>tttttttt</td>
-
-
-              </tr>
-            </tbody>
-            </tablel>
+        </tablel>
   </section>
 
   <div>
