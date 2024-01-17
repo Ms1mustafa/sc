@@ -175,10 +175,12 @@ $requests = $request->getRequestDetails(null, null, 'all');
 
       <label class="Labelthebeste" for="">Request Top 10</label>
 
+      <button onclick="toggleSort()">Sort by delay</button>
       <form action="" method="POST">
         <input class="month" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp;
         <input class="filterDashboard" type="submit" value="filter">
       </form>
+
 
       <table class="alluser2">
         <thead>
@@ -256,6 +258,14 @@ $requests = $request->getRequestDetails(null, null, 'all');
           });
 
           // Display the first 10 rows
+          $reverseSort = isset($_GET['reverseSort']) ? true : false;
+
+          // Reverse the array if needed
+          if ($reverseSort) {
+            $sortedRequests = array_reverse($sortedRequests);
+          }
+
+          // Display the first 10 rows
           $counter = 0;
           foreach ($sortedRequests as $sortedReq) {
             if ($counter >= 10) {
@@ -263,13 +273,13 @@ $requests = $request->getRequestDetails(null, null, 'all');
             }
 
             echo '
-              <tr>
-                <td>' . $sortedReq["reqNo"] . '</td>
-                <td>' . $sortedReq["pending_in"] . '</td>
-                <td>' . $sortedReq["type"] . '</td>
-                <td>' . $sortedReq["pendingTime"] . '</td>
-              </tr>
-            ';
+      <tr>
+        <td>' . $sortedReq["reqNo"] . '</td>
+        <td>' . $sortedReq["pending_in"] . '</td>
+        <td>' . $sortedReq["type"] . '</td>
+        <td>' . $sortedReq["pendingTime"] . '</td>
+      </tr>
+    ';
 
             $counter++;
           }
@@ -290,7 +300,25 @@ $requests = $request->getRequestDetails(null, null, 'all');
   <div>
   </div>
 
+  <script>
+    // JavaScript function to toggle between ascending and descending sort order
+    function toggleSort() {
+      var currentUrl = window.location.href;
+      var reverseSort = currentUrl.includes('reverseSort');
 
+      // Toggle the reverseSort parameter in the URL
+      if (reverseSort) {
+        // Remove the reverseSort parameter
+        currentUrl = currentUrl.replace(/[\?&]reverseSort=1/, '');
+      } else {
+        // Add the reverseSort parameter
+        currentUrl += currentUrl.includes('?') ? '&reverseSort=1' : '?reverseSort=1';
+      }
+
+      // Redirect to the updated URL
+      window.location.href = currentUrl;
+    }
+  </script>
 
 
 </body>
