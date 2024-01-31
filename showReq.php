@@ -15,13 +15,13 @@ $reqNo = @$_GET["reqNo"];
 
 $req = new Request($con);
 
-if ($type === "requester") {
-    Powers::admin($account, $userToken);
-    $request = $req->getRequestDetails($reqNo, $adminName);
-} else {
-    Powers::Safety($account, $userToken);
-    $request = $req->getRequestDetails($reqNo);
-}
+// if ($type === "requester") {
+//   Powers::admin($account, $userToken);
+//   $request = $req->getRequestDetails($reqNo, $adminName);
+// } else {
+//   Powers::Safety($account, $userToken);
+$request = $req->getRequestDetails($reqNo);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -49,24 +49,24 @@ if ($type === "requester") {
           <form method="POST" action="">
             <!-- Assuming "deleteUser.php" is the action URL -->
             <?php
-                        $status = $request["status"];
-                        $qtyBackStatus = $request["qtyBackStatus"];
-                        $executerAccept = $request["executerAccept"];
-                        $executerNew = $request["executerNew"];
-                        $issued = $request["issued"];
-                        $executer = $request["executer"];
-                        $wereHouse = $request["wereHouse"];
-                        $inspector = $request["inspector"];
-                        $reqDate = FormSanitizer::formatDate($request["reqDate"]);
-                        $executerDate = FormSanitizer::formatDate($request["executerDate"]);
-                        $wereHouseDate = FormSanitizer::formatDate($request["wereHouseDate"]);
-                        $inspectorDate = FormSanitizer::formatDate($request["inspectorDate"]);
+            $status = $request["status"];
+            $qtyBackStatus = $request["qtyBackStatus"];
+            $executerAccept = $request["executerAccept"];
+            $executerNew = $request["executerNew"];
+            $issued = $request["issued"];
+            $executer = $request["executer"];
+            $wereHouse = $request["wereHouse"];
+            $inspector = $request["inspector"];
+            $reqDate = FormSanitizer::formatDate($request["reqDate"]);
+            $executerDate = FormSanitizer::formatDate($request["executerDate"]);
+            $wereHouseDate = FormSanitizer::formatDate($request["wereHouseDate"]);
+            $inspectorDate = FormSanitizer::formatDate($request["inspectorDate"]);
 
-                        $reqStatus = "";
+            $reqStatus = "";
 
-                        $reqStatus = '';
-                        $finishDate = '';
-                        echo "
+            $reqStatus = '';
+            $finishDate = '';
+            echo "
                         <div id='reqInf'>
                         <label  class='Getrquest'>ReqNo : </label>
                         <label class='Getrquest'>" . $request["reqNo"] . "</label>
@@ -95,7 +95,7 @@ if ($type === "requester") {
                         </div>
                     ";
 
-                        ?>
+            ?>
             </tbody>
             </table>
           </form>
