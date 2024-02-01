@@ -636,6 +636,39 @@ class Request
         // Return the row count
         return $query->rowCount();
     }
+    public function transferRow($workOrderNo)
+    {
+        // Fetch data from the source table
+        $query = $this->con->prepare("SELECT * FROM request WHERE workOrderNo = :workOrderNo");
+        $query->bindValue(":workOrderNo", $workOrderNo);
+        $query->execute();
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            // Generate column names and values dynamically
+            $columns = implode(", ", array_keys($row));
+            $placeholders = ":" . implode(", :", array_keys($row));
+
+            // Insert the row into the destination table
+            $insertQuery = $this->con->prepare("INSERT INTO archive_req ($columns) VALUES ($placeholders)");
+
+            // Bind values dynamically
+            foreach ($row as $key => $value) {
+                $insertQuery->bindValue(":$key", $value);
+            }
+
+            $insertQuery->execute();
+
+            // Delete the row from the source table
+            $deleteQuery = $this->con->prepare("DELETE FROM request WHERE workOrderNo = :workOrderNo");
+            $deleteQuery->bindValue(":workOrderNo", $workOrderNo);
+            $deleteQuery->execute();
+
+            return true;
+        }
+
+        return false;
+    }
     public function getError($error)
     {
         if (in_array($error, $this->errorArray)) {

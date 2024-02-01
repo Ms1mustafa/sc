@@ -10,6 +10,7 @@ $userToken = Encryption::decryptToken(@$_COOKIE["token"], constants::$tokenEncKe
 $account = new Account($con);
 $userEmail = $account->getAccountEmail($userToken);
 $adminName = $account->getAccountDetails($userEmail, true, false, false, false);
+$accType = $account->getTypeByName($adminName);
 $type = @$_GET["type"];
 $reqNo = @$_GET["reqNo"];
 
@@ -22,6 +23,13 @@ $req = new Request($con);
 //   Powers::Safety($account, $userToken);
 $request = $req->getRequestDetails($reqNo);
 // }
+
+if (isset($_POST["deleteReq"])) {
+  $success = $req->transferRow($reqNo);
+  if (@$success) {
+    header("location: allReq.php");
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,30 +76,34 @@ $request = $req->getRequestDetails($reqNo);
             $finishDate = '';
             echo "
                         <div id='reqInf'>
-                        <label  class='Getrquest'>ReqNo : </label>
-                        <label class='Getrquest'>" . $request["reqNo"] . "</label>
-                        <br>
-                        <label class='Getrquest'>Requester :</label>
-                        <label class='Getrquest'>" . $request["adminAddedName"] . "</label>
-                        <br>
-                        <label class='Getrquest'>Inspector :</label>
-                        <label class='Getrquest'>" . $request["inspector"] . "</label>
-                        <br>
-                        <label  class='Getrquest'>Area :</label>
-                        <label class='Getrquest'>" . $request["area"] . "</label>
-                        <br>
-                        <label class='Getrquest'>Location :</label>
-                        <label class='Getrquest'>" . $request["item"] . "</label>
-                        <br>
-                        <label class='Getrquest'>Length :</label>
-                        <label class='Getrquest'>" . $request["length"] . "</label>
-                        <br>
-                        <label class='Getrquest'>Width :</label>
-                        <label class='Getrquest'>" . $request["width"] . "</label>
-                        <br>
-                        <label class='Getrquest'>Height :</label>
-                        <label class='Getrquest'>" . $request["height"] . "</label>
-                        <br>
+                          <label  class='Getrquest'>ReqNo : </label>
+                          <label class='Getrquest'>" . $request["reqNo"] . "</label>
+                          <br>
+                          <label class='Getrquest'>Requester :</label>
+                          <label class='Getrquest'>" . $request["adminAddedName"] . "</label>
+                          <br>
+                          <label class='Getrquest'>Inspector :</label>
+                          <label class='Getrquest'>" . $request["inspector"] . "</label>
+                          <br>
+                          <label  class='Getrquest'>Area :</label>
+                          <label class='Getrquest'>" . $request["area"] . "</label>
+                          <br>
+                          <label class='Getrquest'>Location :</label>
+                          <label class='Getrquest'>" . $request["item"] . "</label>
+                          <br>
+                          <label class='Getrquest'>Length :</label>
+                          <label class='Getrquest'>" . $request["length"] . "</label>
+                          <br>
+                          <label class='Getrquest'>Width :</label>
+                          <label class='Getrquest'>" . $request["width"] . "</label>
+                          <br>
+                          <label class='Getrquest'>Height :</label>
+                          <label class='Getrquest'>" . $request["height"] . "</label>
+                          <br>
+                          ";
+            if ($accType === "owner")
+              echo '<button type="submit" name="deleteReq">Delete Request<button>';
+            echo "
                         </div>
                     ";
 
