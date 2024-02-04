@@ -56,13 +56,36 @@ body {
 
 .alluser2 {
   border-collapse: collapse;
+  width: 70%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  position: relative;
+  top: 90px;
+  right: 160px;
+  text-align: center;
+}
+
+.alluser4 {
+  border-collapse: collapse;
   width: 50%;
   padding: 8px;
   border: 1px solid #ddd;
   position: relative;
   top: 90px;
-  right: 240px;
+
   text-align: center;
+}
+
+.Sortby {
+  width: 150px;
+  height: 28px;
+  background-color: #e77823;
+  border: 1px solid #e77823;
+  border-radius: 4px;
+  position: relative;
+  left: 380px;
+  top: 50px;
+  color: #fff;
 }
 
 .alluser {
@@ -189,12 +212,22 @@ tr:nth-child(even) {
 
 .month {
   border: 2px solid #e77823;
-  width: 40%;
+  width: 60%;
   height: 4vh;
   position: relative;
   top: 50px;
 
 }
+
+.month2 {
+  border: 2px solid #e77823;
+  width: 90%;
+  height: 4vh;
+  position: relative;
+  top: 50px;
+
+}
+
 
 .filterDashboard {
   width: 100px;
@@ -206,7 +239,8 @@ tr:nth-child(even) {
   border: none;
   border-radius: 5px;
   position: relative;
-  top: 50px;
+  top: 20px;
+  left: 160px;
 }
 
 .app-search {
