@@ -334,7 +334,7 @@ class Request
 
         return false;
     }
-    public function dismantling($qtyBackStatus, $workOrderNo, $pending_in, $type_req, $rejectsNum = null, $itemName = null, $qtyBack = null, $qtyBackType = null, $wereHouseItemName = null, $wereHouseComment = null, $wereHouseItemQty = null)
+    public function dismantling($qtyBackStatus, $workOrderNo, $pending_in, $type_req, $rejectsNum = null, $itemName = null, $qtyBack = null, $qtyBackType = null, $wereHouseItemName = null, $wereHouseComment = null, $wereHouseItemQty = null, $damaged = null)
     {
         if (empty($this->errorArray)) {
             try {
@@ -374,7 +374,7 @@ class Request
                         $query2->execute();
                     }
 
-                    $sql3 = "UPDATE rejectitemdes SET qtyBack = :qtyBack WHERE workOrderNo = :workOrderNo AND itemName = :itemName";
+                    $sql3 = "UPDATE rejectitemdes SET qtyBack = :qtyBack, damaged = :damaged WHERE workOrderNo = :workOrderNo AND itemName = :itemName";
                     $query3 = $this->con->prepare($sql3);
 
                     for ($i = 0; $i < count($itemName); $i++) {
@@ -382,6 +382,7 @@ class Request
                         // $query3->bindValue(":rejectsNum", $rejectsNum[$i]);
                         $query3->bindValue(":itemName", $itemName[$i]);
                         $query3->bindValue(":qtyBack", $qtyBack[$i]);
+                        $query3->bindValue(":damaged", $damaged[$i]);
                         $query3->execute();
                     }
                 }
@@ -668,6 +669,18 @@ class Request
         }
 
         return false;
+    }
+
+    public function getDamagedItems($itemName)
+    {
+        $sql = "SELECT damaged FROM rejectitemdes WHERE itemName = :itemName";
+
+        $query = $this->con->prepare($sql);
+        $query->bindValue(":itemName", $itemName);
+        $query->execute();
+
+        // Fetch all damaged items for the given item name
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getError($error)
     {

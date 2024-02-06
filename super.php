@@ -1,6 +1,7 @@
 <?php
 include_once('includes/classes/Account.php');
 include_once('includes/classes/Area.php');
+include_once('includes/classes/ItemDes.php');
 include_once('includes/classes/Request.php');
 include_once('includes/classes/Powers.php');
 include_once('includes/classes/FormSanitizer.php');
@@ -8,6 +9,7 @@ include_once('includes/classes/FormSanitizer.php');
 $account = new Account($con);
 $request = new Request($con);
 $Area = new Area($con);
+$items = new ItemDes($con);
 
 $filter = @$_POST["month"] ?? date('Y-m');
 $requests = $request->getRequestDetails(null, null, 'all');
@@ -326,10 +328,30 @@ $requests = $request->getRequestDetails(null, null, 'all');
         <tr>
           <th> Item</th>
           <th>QTY</th>
-
         </tr>
       </thead>
       <tbody>
+        <?php
+        foreach ($items->getItemDesNew() as $item) {
+          // Get the name of the item
+          $itemName = $item['name'];
+
+          // Query the database to get the sum of damaged items for the current item
+          $damagedSum = 0; // Initialize the sum
+          $damagedItems = $request->getDamagedItems($itemName); // Replace with your actual database query
+        
+          // Calculate the sum of damaged items
+          foreach ($damagedItems as $damagedItem) {
+            $damagedSum += $damagedItem['damaged']; // Assuming 'damaged' is the column name
+          }
+
+          // Output the item name and the sum of damaged items
+          echo "<tr>";
+          echo "<td>$itemName</td>";
+          echo "<td>$damagedSum</td>"; // Output the sum of damaged items
+          echo "</tr>";
+        }
+        ?>
       </tbody>
     </table>
   </div>

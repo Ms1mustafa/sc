@@ -29,6 +29,7 @@ $wereHouseQty = @$_POST['wereHouseQty'];
 $wereHouseComment = @$_POST['wereHouseComment'];
 $rejectsNum = @$_POST['rejectsNum'];
 $qtyBack = @$_POST['qtyBack'];
+$damaged = @$_POST['damaged'];
 
 $wereHouseItemName = @$_POST['wereHouseItemName'];
 $wereHouseComment = @$_POST['wereHouseComment'];
@@ -64,7 +65,7 @@ if (isset($_POST["change"])) {
 }
 
 if (isset($_POST["dismantling"])) {
-    $success = $request->dismantling('done', $workOrderNo, $request->getRequestDetails($workOrderNo)["adminAddedName"], "Done", $rejectsNum, $itemName, $qtyBack, 'requestitemdes', $wereHouseItemName, $wereHouseComment, $wereHouseItemQty);
+    $success = $request->dismantling('done', $workOrderNo, $request->getRequestDetails($workOrderNo)["adminAddedName"], "Done", $rejectsNum, $itemName, $qtyBack, 'requestitemdes', $wereHouseItemName, $wereHouseComment, $wereHouseItemQty, $damaged);
 
     if ($success) {
         header("location: wereHousePrint.php?req=" . $workOrderNo . "");
