@@ -171,14 +171,15 @@ $requests = $request->getRequestDetails(null, null, 'all');
   <br>
   <br>
   <section class="dastable">
+    <label class="Labelthebeste" for="">Request Top 10</label>
     <div class="flex3">
 
-      <label class="Labelthebeste" for="">Request Top 10</label>
+
 
       <button class="Sortby" onclick="toggleSort()">Sort by delay</button>
       <form action="" method="POST">
         <input class="month2" type="month" id="month" name="month" value=<?php echo $filter; ?>>&nbsp;
-        <input class="filterDashboard" type="submit" value="filter">
+        <input class="filterDashboard2" type="submit" value="filter">
       </form>
 
 
@@ -301,23 +302,23 @@ $requests = $request->getRequestDetails(null, null, 'all');
   </div>
 
   <script>
-  // JavaScript function to toggle between ascending and descending sort order
-  function toggleSort() {
-    var currentUrl = window.location.href;
-    var reverseSort = currentUrl.includes('reverseSort');
+    // JavaScript function to toggle between ascending and descending sort order
+    function toggleSort() {
+      var currentUrl = window.location.href;
+      var reverseSort = currentUrl.includes('reverseSort');
 
-    // Toggle the reverseSort parameter in the URL
-    if (reverseSort) {
-      // Remove the reverseSort parameter
-      currentUrl = currentUrl.replace(/[\?&]reverseSort=1/, '');
-    } else {
-      // Add the reverseSort parameter
-      currentUrl += currentUrl.includes('?') ? '&reverseSort=1' : '?reverseSort=1';
+      // Toggle the reverseSort parameter in the URL
+      if (reverseSort) {
+        // Remove the reverseSort parameter
+        currentUrl = currentUrl.replace(/[\?&]reverseSort=1/, '');
+      } else {
+        // Add the reverseSort parameter
+        currentUrl += currentUrl.includes('?') ? '&reverseSort=1' : '?reverseSort=1';
+      }
+
+      // Redirect to the updated URL
+      window.location.href = currentUrl;
     }
-
-    // Redirect to the updated URL
-    window.location.href = currentUrl;
-  }
   </script>
   <div>
     <table class="alluser4">
