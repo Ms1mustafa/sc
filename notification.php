@@ -48,6 +48,13 @@ $request = new Request($con);
             </p>
             <br>
             <p class="nameadminrequest">Notification</p>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="allReq.php?type=executer">All Requests</a></button>
+            </div>
+            <br>
+            <div class="input-box">
+                <button class="inputfieldowner"> <a href="super.php">Dashboard</a></button>
+            </div>
             <div id="result"></div>
         </div>
     </div>

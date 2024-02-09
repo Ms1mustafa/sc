@@ -191,6 +191,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
             <th> Req Num</th>
             <th>Pending In</th>
             <th>Type pending</th>
+            <th>Type Req</th>
             <th>Pending time</th>
           </tr>
         </thead>
@@ -250,6 +251,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
             $sortedRequests[] = [
               'reqNo' => $req["reqNo"],
               'pending_in' => $req["pending_in"],
+              'type_req' => $req["type_req"],
               'type' => ucfirst($account->getTypeByName($req["pending_in"])),
               'pendingTime' => $pendingTime,
             ];
@@ -280,6 +282,7 @@ $requests = $request->getRequestDetails(null, null, 'all');
         <td>' . $sortedReq["reqNo"] . '</td>
         <td>' . $sortedReq["pending_in"] . '</td>
         <td>' . $sortedReq["type"] . '</td>
+        <td>' . $sortedReq["type_req"] . '</td>
         <td>' . $sortedReq["pendingTime"] . '</td>
       </tr>
     ';

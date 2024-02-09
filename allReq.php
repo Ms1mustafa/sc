@@ -19,21 +19,24 @@ $filter = @$_POST["filter"] ?? "all";
 $sqlcondition = " qtyBackStatus = '" . @$_GET["qbs"] . "'AND area = '" . @$_GET["n"] . "' ";
 
 if (@$_GET["qbs"] === "notfinish")
-    $sqlcondition = " qtyBackStatus != 'finish'AND area = '" . @$_GET["n"] . "'";
+  $sqlcondition = " qtyBackStatus != 'finish'AND area = '" . @$_GET["n"] . "'";
 if (!@$_GET["qbs"])
-    $sqlcondition = " area = '" . @$_GET["n"] . "'";
+  $sqlcondition = " area = '" . @$_GET["n"] . "'";
 if ($type === "requester") {
-    Powers::admin($account, $userToken);
-    $requests = $req->getRequestDetails(null, $adminName, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
+  Powers::admin($account, $userToken);
+  $requests = $req->getRequestDetails(null, $adminName, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
+} else if ($type === "executer") {
+  Powers::executer($account, $userToken);
+  $requests = $req->getRequestDetails(null, null, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
 } else {
-    Powers::Safety($account, $userToken);
-    $requests = $req->getRequestDetails(null, null, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
+  Powers::Safety($account, $userToken);
+  $requests = $req->getRequestDetails(null, null, $filter, @$_GET["qbs"] || @$_GET["n"] ? $sqlcondition : null);
 }
 
 $href = "index.php";
 
 if (@$_GET["qbs"] || @$_GET["n"]) {
-    $href = "super.php";
+  $href = "super.php";
 }
 ?>
 
@@ -104,25 +107,25 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
 
             <tbody>
               <?php
-                            foreach ($requests as $request) {
-                                $status = $request["status"];
-                                $qtyBackStatus = $request["qtyBackStatus"];
-                                $executerAccept = $request["executerAccept"];
-                                $executerNew = $request["executerNew"];
-                                $issued = $request["issued"];
-                                $executer = $request["executer"];
-                                $wereHouse = $request["wereHouse"];
-                                $inspector = $request["inspector"];
-                                $reqDate = FormSanitizer::formatDate($request["reqDate"]);
-                                $executerDate = FormSanitizer::formatDate($request["executerDate"]);
-                                $wereHouseDate = FormSanitizer::formatDate($request["wereHouseDate"]);
-                                $inspectorDate = FormSanitizer::formatDate($request["inspectorDate"]);
+              foreach ($requests as $request) {
+                $status = $request["status"];
+                $qtyBackStatus = $request["qtyBackStatus"];
+                $executerAccept = $request["executerAccept"];
+                $executerNew = $request["executerNew"];
+                $issued = $request["issued"];
+                $executer = $request["executer"];
+                $wereHouse = $request["wereHouse"];
+                $inspector = $request["inspector"];
+                $reqDate = FormSanitizer::formatDate($request["reqDate"]);
+                $executerDate = FormSanitizer::formatDate($request["executerDate"]);
+                $wereHouseDate = FormSanitizer::formatDate($request["wereHouseDate"]);
+                $inspectorDate = FormSanitizer::formatDate($request["inspectorDate"]);
 
-                                $reqStatus = "";
+                $reqStatus = "";
 
-                                $reqStatus = '';
-                                $finishDate = '';
-                                echo '
+                $reqStatus = '';
+                $finishDate = '';
+                echo '
                     <tr>
                         <td> <a href="showReq.php?reqNo=' . $request["workOrderNo"] . '">' . $request["reqNo"] . '</a></td>
                         <td>' . $request["discription"] . '</a></td>
@@ -137,8 +140,8 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
                         <td>' . FormSanitizer::formatDate($request["pending_date"]) . '</td>
                         </tr>
                     ';
-                            }
-                            ?>
+              }
+              ?>
             </tbody>
           </table>
           <!-- <script>
@@ -149,40 +152,40 @@ if (@$_GET["qbs"] || @$_GET["n"]) {
 </body>
 
 <script>
-document.getElementById('filterSelect').addEventListener('change', function() {
-  var selectedValue = this.value.toLowerCase().trim();
+  document.getElementById('filterSelect').addEventListener('change', function () {
+    var selectedValue = this.value.toLowerCase().trim();
 
-  // Get all rows in the table
-  var rows = document.querySelectorAll('.alluser tbody tr');
+    // Get all rows in the table
+    var rows = document.querySelectorAll('.alluser tbody tr');
 
-  // Iterate through each row and show/hide based on the selected option
-  rows.forEach(function(row) {
-    var existingNoDataRow = document.querySelector('.no-data-row');
-    if (existingNoDataRow) {
-      existingNoDataRow.remove();
-    }
-    var typeReq = row.querySelector('td:nth-child(10)').textContent.toLowerCase()
-  .trim(); // Adjust the column index if needed
+    // Iterate through each row and show/hide based on the selected option
+    rows.forEach(function (row) {
+      var existingNoDataRow = document.querySelector('.no-data-row');
+      if (existingNoDataRow) {
+        existingNoDataRow.remove();
+      }
+      var typeReq = row.querySelector('td:nth-child(10)').textContent.toLowerCase()
+        .trim(); // Adjust the column index if needed
 
-    // Check if the typeReq matches the selected option
-    if (selectedValue === 'all' || typeReq === selectedValue) {
-      row.style.display = '';
-    } else {
-      row.style.display = 'none';
-    }
-    if (typeReq != selectedValue) {
-      var noDataRow = document.createElement('tr');
-      var noDataCell = document.createElement('td');
-      noDataCell.setAttribute('colspan', '11'); // Adjust the colspan based on the number of columns
-      noDataCell.textContent = 'Data not found';
-      noDataRow.appendChild(noDataCell);
-      noDataRow.classList.add('no-data-row');
+      // Check if the typeReq matches the selected option
+      if (selectedValue === 'all' || typeReq === selectedValue) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+      if (typeReq != selectedValue) {
+        var noDataRow = document.createElement('tr');
+        var noDataCell = document.createElement('td');
+        noDataCell.setAttribute('colspan', '11'); // Adjust the colspan based on the number of columns
+        noDataCell.textContent = 'Data not found';
+        noDataRow.appendChild(noDataCell);
+        noDataRow.classList.add('no-data-row');
 
-      // Append the "Data not found" row to the tbody
-      document.querySelector('.alluser tbody').appendChild(noDataRow);
-    }
+        // Append the "Data not found" row to the tbody
+        document.querySelector('.alluser tbody').appendChild(noDataRow);
+      }
+    });
   });
-});
 </script>
 
 
