@@ -115,7 +115,7 @@ if ($isNotification == null) {
                         <td>' . $item['wereHouseQty'] . '</td>
                         <td hidden><input class="pipiss" name="rejectsNum[]" value="' . @$item['rejectsNum'] . '" readonly></td>
                         <td><input class="pipiss" type="number" min="1" name="qtyBack[]" required></td>
-                        <td><input class="pipiss" type="number" min="1" name="damaged[]" required></td>
+                        <td><input class="pipiss" type="number" min="0" name="damaged[]" required></td>
                     </tr>
                 ';
         }
